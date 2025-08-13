@@ -1,0 +1,7 @@
+import { withUTM } from "@/lib/links";
+
+const urlWithUTM = withUTM(HOTMART_URL_CONSCIOUS, {
+  source: "website",
+  medium: "button",
+  campaign: "book_purchase",
+});
