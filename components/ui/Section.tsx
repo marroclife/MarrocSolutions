@@ -4,7 +4,7 @@ import * as React from "react";
 type Element = React.ElementType;
 type HeadingLevel = "h1" | "h2" | "h3" | "h4";
 
-function clsx(...xs: Array<string | undefined | false | null>) {
+function cn(...xs: Array<string | false | null | undefined>) {
   return xs.filter(Boolean).join(" ");
 }
 
@@ -15,37 +15,38 @@ export type SectionProps = React.HTMLAttributes<HTMLElement> & {
   title?: React.ReactNode;
   /** Subtítulo opcional (parágrafo abaixo do título) */
   subtitle?: React.ReactNode;
-  /** Nível do heading quando `title` é usado */
+  /** Nível do heading quando `title` é usado (default: "h2") */
   headingLevel?: HeadingLevel;
   /**
-   * Envolver conteúdo e/ou header com `.container`.
-   * Por padrão é **false** para evitar container duplo nas páginas que já têm container interno.
+   * Envolve header e conteúdo com `.container`.
+   * Default: false (para evitar container duplo onde a página já usa <div className="container">).
    */
   container?: boolean;
-  /** classes extras para o wrapper do conteúdo (dentro do container, se ativo) */
+  /** Classes extras para o wrapper do conteúdo (dentro do container, se ativo) */
   innerClassName?: string;
+  /** Id opcional para amarrar aria-labelledby ao título */
+  id?: string;
 };
 
-const Heading = ({
-  as,
-  className,
-  children,
-  id,
-}: {
+const Heading: React.FC<{
   as: HeadingLevel;
   className?: string;
   id?: string;
   children: React.ReactNode;
-}) => {
+}> = ({ as, className, id, children }) => {
   const Tag = as as any;
-  const typo = clsx(
+  const typo = cn(
     as === "h1" && "font-display text-3xl sm:text-4xl md:text-6xl leading-tight",
     as === "h2" && "font-display text-2xl sm:text-3xl md:text-4xl",
     as === "h3" && "font-display text-xl sm:text-2xl md:text-3xl",
     as === "h4" && "font-display text-lg sm:text-xl md:text-2xl",
     className
   );
-  return <Tag id={id} className={typo}>{children}</Tag>;
+  return (
+    <Tag id={id} className={typo}>
+      {children}
+    </Tag>
+  );
 };
 
 export function Section({
@@ -61,14 +62,13 @@ export function Section({
   ...rest
 }: SectionProps) {
   const Tag = as as Element;
-  const sectionClasses = clsx("py-10 sm:py-12 md:py-16", className);
-  const titleId = title ? `${id ?? "sec"}-title` : undefined;
+  const sectionClasses = cn("py-10 sm:py-12 md:py-16", className);
+  const titleId = title ? `${id ?? "section"}-title` : undefined;
 
   return (
     <Tag className={sectionClasses} aria-labelledby={titleId} id={id} {...rest}>
-      {/* Header opcional */}
       {title ? (
-        <header className={clsx(container && "container", "mb-4 sm:mb-6")}>
+        <header className={cn(container && "container", "mb-4 sm:mb-6")}>
           <Heading as={headingLevel} id={titleId}>
             {title}
           </Heading>
@@ -78,8 +78,7 @@ export function Section({
         </header>
       ) : null}
 
-      {/* Conteúdo */}
-      <div className={clsx(container && "container", innerClassName)}>{children}</div>
+      <div className={cn(container && "container", innerClassName)}>{children}</div>
     </Tag>
   );
 }
