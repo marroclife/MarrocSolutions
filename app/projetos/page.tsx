@@ -26,7 +26,7 @@ export default function ProjetosPage() {
         title="Projetos"
         subtitle="Três frentes vivas: Marroc, Higher Hz e Txai Marroc."
         headingLevel="h1"
-        className="py-12"
+        container
       >
         <div className="space-y-10">
           {PROJECTS.map((p) => (
