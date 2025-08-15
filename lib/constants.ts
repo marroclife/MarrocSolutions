@@ -1,4 +1,3 @@
-import { INSTAGRAM_URL } from "@/Marroc.life/lib/links";
 
 export const SITE_TITLE = "Marroc — Live Psytrance Ritualístico";
 export const SITE_DESCRIPTION =
@@ -6,7 +5,7 @@ export const SITE_DESCRIPTION =
 
 // Open Graph defaults (ajuste os caminhos conforme seus assets em /public)
 export const OG = {
-  url: "https://marroc.life",
+  url: "https://instagram.com/marroc.life",
   image: "/og.png",
   locale: "pt_BR",
   siteName: "Marroc",
