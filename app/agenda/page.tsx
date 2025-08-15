@@ -1,8 +1,8 @@
 import { Section } from "@/components/ui/Section";
 
 const eventos = [
-  { nome: "Círculo de Voz", data: "2025-09-05", local: "Mangaratiba, RJ" },
-  { nome: "Imersão Conexões", data: "2025-10-12", local: "Ilha Grande, RJ" },
+  
+  { nome: "Ayahuasca Família Amorosa", data: "2025-06-10", local: "Vargem Grande, RJ" },
 ];
 
 export default function AgendaPage() {

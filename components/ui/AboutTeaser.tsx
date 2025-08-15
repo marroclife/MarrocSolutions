@@ -23,7 +23,7 @@ export function AboutTeaser() {
           <div className="text-off/85 leading-relaxed space-y-4">
             <p>
               Sou Marcio Rocha — no palco e no rito, me chamam Marroc. Meu som é
-              <strong> Live Psytrance Ritualístico</strong>: beats autorais com instrumentos, voz e mantras tocados ao vivo.
+              <strong> Live Psytrance Ritualístico</strong>: Músicas autorais com instrumentos, voz e mantras tocados ao vivo.
             </p>
             <p>
               Integro percussões, sopros e canto em cena, unindo energia de pista e alma de ritual. Aqui, você encontra uma experiência feita para quem está pronto para atravessar.

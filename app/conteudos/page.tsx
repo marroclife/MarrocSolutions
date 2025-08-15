@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 
 const posts = [
-  { slug: "manifesto-do-som", title: "Manifesto do Som Ritual", excerpt: "Música como tecnologia de consciência." },
+  { slug: "som-ritual", title: "Manifesto do Som Ritual", excerpt: "Música como tecnologia de consciência." },
   { slug: "ganesha-stotram", title: "Notas sobre o Ganesha Stotram", excerpt: "Palavra, ritmo e invocação." }
 ];
 

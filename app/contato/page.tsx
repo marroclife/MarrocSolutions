@@ -16,7 +16,7 @@ export default function ContatoPage() {
             <textarea name="message" rows={5} className="mt-1 w-full rounded-xl bg-white/10 px-4 py-3 outline-none" required />
           </label>
           <button className="btn btn-primary mt-6" type="submit">Enviar</button>
-          <a className="btn btn-outline mt-3" href="https://wa.me/5521XXXXXXXXX" target="_blank" rel="noreferrer">Chamar no WhatsApp</a>
+          <a className="btn btn-outline mt-3" href="https://wa.me/5521992669980" target="_blank" rel="noreferrer">Chamar no WhatsApp</a>
         </form>
       </div>
     </Section>

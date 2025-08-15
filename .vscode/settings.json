@@ -1,0 +1,11 @@
+{
+  // faz o VS Code entender tailwind.config.ts
+  "tailwindCSS.experimental.configFile": "tailwind.config.ts",
+  // associa .css ao modo Tailwind (sumindo com unknownAtRules)
+  "files.associations": { "*.css": "tailwindcss" },
+  // (opcional) silencia validação CSS nativa para não conflitar
+  "css.validate": false,
+  // boas práticas do plugin
+  "editor.quickSuggestions": { "strings": true },
+  "tailwindCSS.classAttributes": ["class", "className"]
+}

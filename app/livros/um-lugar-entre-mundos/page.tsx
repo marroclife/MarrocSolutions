@@ -31,7 +31,7 @@ function ImpactoSection() {
         <CardContent className="text-paper/80 leading-relaxed">
           Parte de cada venda sustenta a aldeia indígena que inspirou esta obra.
           Nossa contribuição é trimestral e transparente — você participa da preservação
-          cultural, do cuidado com a floresta e de iniciativas de educação e saúde.
+          cultural, do cuidado com a floresta.
         </CardContent>
       </Card>
     </section>
@@ -52,7 +52,7 @@ function AutorSection() {
 
       <div className="grid md:grid-cols-[220px,1fr] gap-6 md:gap-10 items-start">
         <Image
-          src="/autor.jpg"
+          src="/txai marroc.png"
           alt="Foto do autor Marcio Rocha"
           width={220}
           height={280}
@@ -136,7 +136,7 @@ export default function LivroPage() {
                     Comprar (R$ 22,20)
                   </a>
                 </Button>
-                <Button variant="outline" asChild>
+                <Button asChild>
                   <a href={HOTMART_URL_CONSCIOUS} target="_blank" rel="noreferrer">
                     Valor consciente (R$ 33,30)
                   </a>

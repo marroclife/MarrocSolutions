@@ -1,16 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { PROJECTS } from "@/lib/projects";
-
-// Define the Project type and export it
-export type Project = {
-  name: string;
-  tagline: string;
-  year?: number;
-  image?: string;
-  summary: string[];
-  channels?: { label: string; href: string }[];
-};
+import { Project } from "@/lib/projects";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
@@ -18,11 +8,12 @@ export function ProjectCard({ project }: { project: Project }) {
       {/* Imagem */}
       <div className="relative w-full h-[240px] md:h-[360px] overflow-hidden rounded-xl">
         <Image
-          src={project.image || "/og.png"}
-          alt={`${project.name} — imagem representativa`}
-          fill
-          className="object-cover"
-          sizes="(max-width:768px) 100vw, 320px"
+          src={project.image || "/images/default.png"} // Fallback caso não tenha imagem
+          alt={`Logo do projeto ${project.name}`}
+          width={220}
+          height={280}
+          className="rounded-2xl object-contain border border-white/10 bg-off/5"
+          itemProp="image"
         />
       </div>
 

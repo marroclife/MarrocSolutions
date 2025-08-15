@@ -1,4 +1,4 @@
- import React from "react";
+import React from "react";
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
 import { ProjectCard } from "@/components/ui/ProjectCard";
