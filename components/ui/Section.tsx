@@ -1,46 +1,24 @@
-import React from "react";
+// components/ui/Section.tsx
+import * as React from "react";
 
+type Element = React.ElementType;
 
-type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-
-type SectionProps = {
-  title?: string;
-  subtitle?: string;
-  children?: React.ReactNode;
-  className?: string;
-  headingLevel?: HeadingTag;
-  id?: string;
-  ariaLabel?: string;
+export type SectionProps = React.HTMLAttributes<HTMLElement> & {
+  /** Elemento semântico da raiz (default: "section") */
+  as?: Element;
 };
 
-export const Section: React.FC<SectionProps> = ({
-  title,
-  subtitle,
-  children,
-  className = "",
-  headingLevel = "h2",
-  id,
-  ariaLabel,
-}) => {
-  const Heading = headingLevel;
-  const headingId = title ? `${id ?? title.toLowerCase().replace(/[^a-z0-9]+/g,'-')}-heading` : undefined;
+export function Section({
+  as = "section",
+  className,
+  ...rest
+}: SectionProps) {
+  const Tag = as as React.ElementType;
+  const classes = ["py-10", "sm:py-12", "md:py-16", className]
+    .filter(Boolean)
+    .join(" ");
 
-  return (
-    <section
-      id={id}
-      className={`mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 ${className}`}
-      aria-label={ariaLabel}
-      aria-labelledby={headingId}
-    >
-      {title && (
-        <Heading id={headingId} className="text-2xl sm:text-3xl lg:text-4xl font-serif text-off mb-2">
-          {title}
-        </Heading>
-      )}
-      {subtitle && (
-        <p className="text-off/80 leading-relaxed mb-6 max-w-3xl">{subtitle}</p>
-      )}
-      {children}
-    </section>
-  );
-};
+  return <Tag className={classes} {...rest} />;
+}
+
+export default Section;
