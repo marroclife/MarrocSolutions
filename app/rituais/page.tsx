@@ -206,6 +206,27 @@ export default function RituaisPage() {
             </Link>
           </div>
         </div>
+      </section> 
+      
+      {/* Área de Clientes CORRIGIDA */}
+      <section className="container mx-auto max-w-6xl px-4 pb-16">
+        <div className="card border-white/10 bg-white/5 p-6 md:p-8">
+          <h2 className="font-display text-3xl md:text-4xl">Área de Clientes</h2>
+          <div className="mt-3">
+            <p className="text-white/75">
+              <span className="font-semibold">Acesse aqui para abrir seu mapa natal,</span> resumos de Tarot e Runas, gravações de sessões e mais.
+            </p>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/rituais/rituaisclient" className="btn btn-primary rounded-full px-5 py-2">
+              ACESSAR
+            </Link>
+            <Link href="/sobre" className="btn btn-ghost rounded-full px-5 py-2">
+              Sobre o facilitador
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* NOTA DE TRANSPARÊNCIA */}
