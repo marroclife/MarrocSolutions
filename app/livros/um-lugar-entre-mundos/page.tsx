@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Sparkles, BookOpen, Feather, ArrowRight, Star, ShieldCheck, Cpu } from "lucide-react";
 import { MysticCard } from "@/components/ui/MysticCard";
 import { GlowButton } from "@/components/ui/GlowButton";
@@ -37,6 +38,8 @@ export default function LandingPageLivro() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/80 to-[#050505]" />
         
         <div className="container relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Coluna da Esquerda: Texto e Botões */}
           <div className="order-2 lg:order-1 space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 border border-gold/30 rounded-full bg-gold/5">
               <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
@@ -56,12 +59,19 @@ export default function LandingPageLivro() {
               <GlowButton href="#oferta" variant="gold">
                 Adquirir o Grimório
               </GlowButton>
-              <button className="px-8 py-4 text-sm font-mono text-white/60 hover:text-white transition flex items-center gap-2 group">
-                Ler o Capítulo Zero <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              
+              {/* Link atuando como botão (Mais seguro e leve) */}
+              <Link 
+                href="/livros/um-lugar-entre-mundos/capitulo-0"
+                className="px-8 py-4 text-sm font-mono text-white/60 hover:text-white transition flex items-center justify-center gap-2 group"
+              >
+                Ler o Capítulo Zero 
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
-          </div>
+          </div> {/* <--- ESTA DIV DE FECHAMENTO ESTAVA FALTANDO */}
 
+          {/* Coluna da Direita: Imagem do Livro */}
           <div className="order-1 lg:order-2 flex justify-center relative">
             {/* Aura atrás do livro */}
             <div className="absolute inset-0 bg-gold/20 blur-[100px] rounded-full transform scale-75" />
@@ -74,6 +84,7 @@ export default function LandingPageLivro() {
               priority
             />
           </div>
+
         </div>
       </section>
 
