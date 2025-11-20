@@ -36,7 +36,7 @@ export default function GuardianPage() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  const handleGenerate = async () => {
+ const handleGenerate = async () => {
     if (!ai) {
       setError("Erro de configuração: API Key não encontrada.");
       return;
@@ -59,18 +59,19 @@ export default function GuardianPage() {
         config: { systemInstruction: { parts: [{ text: systemInstruction }] } },
       });
 
-      // --- CORREÇÃO AQUI ---
-      // Usamos a interrogação (?.) para garantir que a função existe antes de chamar
-      // Se não existir, tentamos pegar o texto manualmente do objeto candidates
+      // --- CORREÇÃO BLINDADA ---
+      // Convertemos para 'any' para o TypeScript parar de bloquear o build
+      // verificamos todas as possibilidades (função, propriedade ou array bruto)
+      const safeResponse = response as any;
       let text = "";
-      if (typeof response.text === 'function') {
-        text = response.text() || "";
-      } else if (response.candidates && response.candidates.length > 0) {
-         // Fallback manual para garantir que pegamos o texto
-         const part = response.candidates[0].content?.parts?.[0];
-         if (part && 'text' in part) {
-            text = part.text as string;
-         }
+
+      if (typeof safeResponse.text === 'function') {
+        text = safeResponse.text(); // Se for função (SDK antigo)
+      } else if (typeof safeResponse.text === 'string') {
+        text = safeResponse.text;   // Se for propriedade (SDK novo/Erro atual)
+      } else if (safeResponse.candidates && safeResponse.candidates.length > 0) {
+        // Fallback para o dado bruto
+        text = safeResponse.candidates[0].content?.parts?.[0]?.text || "";
       }
       
       if (!text) throw new Error("Nenhuma resposta recebida do oráculo.");
