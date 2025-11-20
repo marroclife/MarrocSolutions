@@ -54,12 +54,27 @@ export default function GuardianPage() {
       const prompt = `Task: ${selectedTask}. Context/Theme: "${userInput}". Keep it mystical and connected to the book's essence.`;
       
       const response = await ai.models.generateContent({
-        model: "gemini-2.0-flash", // Modelo mais rápido e eficiente
+        model: "gemini-2.0-flash",
         contents: [{ role: "user", parts: [{ text: prompt }] }],
         config: { systemInstruction: { parts: [{ text: systemInstruction }] } },
       });
 
-      const text = response.text();
+      // --- CORREÇÃO AQUI ---
+      // Usamos a interrogação (?.) para garantir que a função existe antes de chamar
+      // Se não existir, tentamos pegar o texto manualmente do objeto candidates
+      let text = "";
+      if (typeof response.text === 'function') {
+        text = response.text() || "";
+      } else if (response.candidates && response.candidates.length > 0) {
+         // Fallback manual para garantir que pegamos o texto
+         const part = response.candidates[0].content?.parts?.[0];
+         if (part && 'text' in part) {
+            text = part.text as string;
+         }
+      }
+      
+      if (!text) throw new Error("Nenhuma resposta recebida do oráculo.");
+      
       setGeneratedContent(text);
     } catch (err) {
       console.error(err);
