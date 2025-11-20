@@ -10,6 +10,7 @@ type NavItem = { href: string; label: string };
 
 const NAV: NavItem[] = [
   { href: "/livros/um-lugar-entre-mundos", label: "Livro" },
+  { href: "/guardian", label: "Oráculo" },
   { href: "/projetos", label: "Projetos" },
   { href: "/rituais", label: "Rituais" },
   { href: "/agenda", label: "Agenda" },

@@ -280,7 +280,28 @@ export default function LandingPageLivro() {
           </div>
         </div>
       </section>
-
+{/* --- PROMOÇÃO DO GUARDIÃO --- */}
+      <section className="py-24 bg-gradient-to-b from-black to-[#0a0a0a] border-t border-white/10">
+        <div className="container max-w-4xl text-center">
+          <div className="inline-flex items-center justify-center p-3 bg-tech-cyan/10 rounded-full mb-6">
+            <Sparkles className="text-tech-cyan w-6 h-6 animate-pulse" />
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl text-white mb-6">
+            Converse com a Egrégora
+          </h2>
+          <p className="text-white/70 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Desenvolvemos uma Inteligência Artificial treinada nos conceitos do livro. 
+            O <strong>Guardião da Espiral</strong> pode criar rituais personalizados, legendas poéticas e insights baseados na geometria sagrada para você.
+          </p>
+          <Link 
+            href="/guardian"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-tech-cyan text-tech-cyan hover:bg-tech-cyan hover:text-black transition-all duration-300 font-mono text-sm tracking-widest uppercase rounded"
+          >
+            Acessar o Guardião <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+      
       {/* --- 9. FAQ --- */}
       <section className="py-16 container max-w-2xl">
         <h2 className="font-display text-2xl text-white mb-8 text-center">Perguntas Frequentes</h2>

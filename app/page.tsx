@@ -20,6 +20,11 @@ export default function HomePage() {
               href: "/livros/um-lugar-entre-mundos",
             },
             {
+              title: "Oráculo IA", // <--- NOVO CARD
+              description: "O Guardião da Espiral. Uma inteligência sutil para tecer rituais e inspirações.",
+              href: "/guardian",
+            },
+            {
               title: "Projetos & Rituais",
               description:
                 "Sets, imersões e ativações de som — onde a pista encontra o sagrado.",
