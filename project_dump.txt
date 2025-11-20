@@ -1,7 +1,7 @@
 # PROJECT DUMP
 Root: C:\Users\Marroc\Downloads\Book\Site
-Generated: 2025-08-15T14:51:37.358Z
-Files included (pre-filter): 49
+Generated: 2025-11-19T21:08:04.176Z
+Files included (pre-filter): 66
 Per-file cap: 1048576 bytes • Total cap: 20971520 bytes
 
 === PROJECT TREE (filtered) ===
@@ -34,12 +34,31 @@ Per-file cap: 1048576 bytes • Total cap: 20971520 bytes
   📁 newsletter
     📄 page.tsx
   📁 projetos
-    📁 [slug]
     📄 page.tsx
   📁 rituais
+    📁 rituaisclient
+      📄 page.tsx
     📄 page.tsx
   📁 sobre
     📄 page.tsx
+  📁 the-guardian-of-the-spiral
+    📁 components
+      📄 Header.tsx
+      📄 Icon.tsx
+      📄 LoadingSpinner.tsx
+      📄 ResponseDisplay.tsx
+      📄 TaskSelector.tsx
+    📁 services
+      📄 geminiService.ts
+    📄 App.tsx
+    📄 index.html
+    📄 index.tsx
+    📄 metadata.json
+    📄 package.json
+    📄 README.md
+    📄 tsconfig.json
+    📄 types.ts
+    📄 vite.config.ts
   📄 globals.css
   📄 layout.tsx
   📄 page.tsx
@@ -69,6 +88,8 @@ Per-file cap: 1048576 bytes • Total cap: 20971520 bytes
 📁 Marroc.life
 📁 public
   📁 images
+  📁 rituais
+    📄 mapa_anto.html
 📄 components.json
 📄 dump-project.js
 📄 landing_page.html
@@ -451,27 +472,36 @@ export default function SomRitualPage() {
 
 
 ===== FILE: app\conteudos\[slug]\page.tsx =====
-import { notFound } from "next/navigation";
-import { Section } from "@/components/ui/Section";
+// app/conteudos/[slug]/page.tsx
+import type { Metadata } from "next";
 
-const DATA: Record<string, {title:string, body:string}> = {
-  "manifesto-do-som": { title: "Manifesto do Som Ritual", body: "Texto em construção (MDX em breve)." },
-  "ganesha-stotram": { title: "Notas sobre o Ganesha Stotram", body: "Anotações e insights sobre o mantra." }
+type Props = {
+  params: Promise<{ slug: string }>;
 };
 
-export default function PostPage({ params }: { params: { slug: string } }) {
-  const item = DATA[params.slug];
-  if (!item) return notFound();
-  return (
-    <Section>
-      <div className="container max-w-3xl">
-        <h1 className="h2">{item.title}</h1>
-        <p className="subtle mt-4">{item.body}</p>
-      </div>
-    </Section>
-  );
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  
+  return {
+    title: `Conteúdo: ${slug}`,
+    description: `Página do conteúdo ${slug}`,
+  };
 }
 
+export default async function ConteudoPage({ params }: Props) {
+  const { slug } = await params;
+
+  return (
+    <main className="bg-[#0b0b0b] text-white min-h-screen py-16">
+      <div className="container mx-auto max-w-4xl px-4">
+        <h1 className="text-4xl font-bold mb-6">Conteúdo: {slug}</h1>
+        <div className="bg-white/5 border border-white/10 rounded-lg p-6">
+          <p>Página de conteúdo dinâmico para: {slug}</p>
+        </div>
+      </div>
+    </main>
+  );
+}
 ===== END FILE: app\conteudos\[slug]\page.tsx =====
 
 
@@ -677,13 +707,12 @@ export default function IGPage() {
 ===== FILE: app\layout.tsx =====
 // app/layout.tsx
 import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
 import "./globals.css";
 
 import { EB_Garamond, Inter } from "next/font/google";
 import { SITE_TITLE, SITE_DESC, OG_DEFAULT } from "@/lib/site";
 // import BackgroundFX from "@/components/BackgroundFX"; // ← descomente se for usar o fundo vivo
+import Header from "@/components/site/Header";
 
 const display = EB_Garamond({
   weight: "400",
@@ -700,80 +729,70 @@ export const metadata: Metadata = {
     default: SITE_TITLE ?? "Marroc — Hub Vivo",
     template: "%s — Marroc",
   },
-  description: SITE_DESC ?? "Livros, imersões, música e rituais. Arte e espiritualidade integradas.",
+  description:
+    SITE_DESC ?? "Livros, imersões, música e rituais. Arte e espiritualidade integradas.",
   metadataBase: new URL("https://example.com"),
   openGraph: {
     type: "website",
     title: SITE_TITLE ?? "Marroc — Hub Vivo",
-    description: SITE_DESC ?? "Livros, imersões, música e rituais. Arte e espiritualidade integradas.",
+    description:
+      SITE_DESC ?? "Livros, imersões, música e rituais. Arte e espiritualidade integradas.",
     url: "https://example.com",
-    images: OG_DEFAULT ? [{ url: OG_DEFAULT, width: 1200, height: 630, alt: "Marroc — Live Psytrance Ritualístico" }] : undefined,
+    images: OG_DEFAULT
+      ? [{ url: OG_DEFAULT, width: 1200, height: 630, alt: "Marroc — Live Psytrance Ritualístico" }]
+      : undefined,
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE ?? "Marroc — Hub Vivo",
-    description: SITE_DESC ?? "Livros, imersões, música e rituais. Arte e espiritualidade integradas.",
+    description:
+      SITE_DESC ?? "Livros, imersões, música e rituais. Arte e espiritualidade integradas.",
     images: OG_DEFAULT ? [OG_DEFAULT] : undefined,
   },
-  icons: {
-    shortcut: "/favicon.ico",
-  },
+  icons: { shortcut: "/favicon.ico" },
   themeColor: "#0b0b0b",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${display.variable} ${body.variable} font-body antialiased bg-[#0b0b0b] text-paper`}>
-        {/* <BackgroundFX /> */}{/* ← ative quando quiser o fundo vivo */}
+      <body
+        className={`${display.variable} ${body.variable} font-body antialiased bg-[#0b0b0b] text-paper`}
+      >
+        {/* <BackgroundFX /> */}
 
-        <header className="border-b border-white/10">
-          <div className="container mx-auto flex h-16 items-center justify-between px-4">
-            <Link href="/" className="flex items-center">
-  <Image
-    src="/marroc.png" // coloque sua logo em public/logo-marroc.png
-    alt="Marroc"
-    width={120} // ajuste para o tamanho desejado
-    height={40}
-    className="h-auto w-auto max-h-60"
-    priority
-  />
-</Link>
-            <nav className="flex gap-5 text-sm">
-              <Link href="/livros/um-lugar-entre-mundos">Livro</Link>
-              <Link href="/projetos">Projetos</Link>
-              <Link href="/rituais">Rituais</Link>
-              <Link href="/agenda">Agenda</Link>
-              <Link href="/conteudos">Conteúdos</Link>
-              <Link href="/sobre">Sobre</Link>
-              <Link href="/contato">Contato</Link>
-              <Link href="/loja" className="btn btn-primary rounded-full px-4 py-2">
-                Apoiar
-              </Link>
-            </nav>
-          </div>
-        </header>
+        {/* Header unificado (mobile-first + hambúrguer) */}
+        <Header />
 
         <main className="min-h-[calc(100vh-8rem)]">{children}</main>
 
         <footer className="border-t border-white/10">
-          <div className="container mx-auto px-4 py-10 text-sm text-paper/70">
+          <div className="container px-4 py-10 text-sm text-paper/70">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <p>© {new Date().getFullYear()} Marroc / Higher Hz — todos os direitos reservados.</p>
 
               <div className="flex gap-4">
-                <a href="https://instagram.com/marroc.life" target="_blank" rel="noreferrer">
+                <a
+                  href="https://instagram.com/marroc.life"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Instagram
                 </a>
-                <a href="https://wa.me/5521992669980" target="_blank" rel="noreferrer">
+                <a
+                  href="https://wa.me/5521992669980"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   WhatsApp
                 </a>
-                <Link href="/newsletter">Newsletter</Link>
+                <a href="/newsletter">Newsletter</a>
               </div>
 
               <p className="max-w-xl text-xs text-paper/50">
-                Nota de transparência: ferramentas de IA foram utilizadas para contextualização/edição.
-                Ideias, personagens, cenas e cerimônias são do autor; o livro resulta de conteúdo vivido, visto ou ouvido.
+                Nota de transparência: ferramentas de IA foram utilizadas para
+                contextualização/edição. Ideias, personagens, cenas e cerimônias
+                são do autor; o livro resulta de conteúdo vivido, visto ou ouvido.
               </p>
             </div>
           </div>
@@ -1354,7 +1373,7 @@ export default function ProjetosPage() {
         title="Projetos"
         subtitle="Três frentes vivas: Marroc, Higher Hz e Txai Marroc."
         headingLevel="h1"
-        className="py-12"
+        container
       >
         <div className="space-y-10">
           {PROJECTS.map((p) => (
@@ -1578,6 +1597,27 @@ export default function RituaisPage() {
             </Link>
           </div>
         </div>
+      </section> 
+      
+      {/* Área de Clientes CORRIGIDA */}
+      <section className="container mx-auto max-w-6xl px-4 pb-16">
+        <div className="card border-white/10 bg-white/5 p-6 md:p-8">
+          <h2 className="font-display text-3xl md:text-4xl">Área de Clientes</h2>
+          <div className="mt-3">
+            <p className="text-white/75">
+              <span className="font-semibold">Acesse aqui para abrir seu mapa natal,</span> resumos de Tarot e Runas, gravações de sessões e mais.
+            </p>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/rituais/rituaisclient" className="btn btn-primary rounded-full px-5 py-2">
+              ACESSAR
+            </Link>
+            <Link href="/sobre" className="btn btn-ghost rounded-full px-5 py-2">
+              Sobre o facilitador
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* NOTA DE TRANSPARÊNCIA */}
@@ -1590,8 +1630,87 @@ export default function RituaisPage() {
     </main>
   );
 }
-
 ===== END FILE: app\rituais\page.tsx =====
+
+
+===== FILE: app\rituais\rituaisclient\page.tsx =====
+// app/rituais/rituaisclient/page.tsx
+import Link from "next/link";
+
+export default function RituaisClientPage() {
+  return (
+    <main className="bg-[#0b0b0b] text-white min-h-screen">
+      <div className="container mx-auto max-w-4xl px-4 py-16">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold mb-4">Área do Cliente</h1>
+          <p className="text-white/70">
+            Conteúdo exclusivo para clientes - seus materiais de sessão e recursos.
+          </p>
+        </div>
+
+        {/* Seção do Mapa Natal */}
+        <div className="bg-white/5 border border-white/10 rounded-lg p-6 mb-8">
+          <h2 className="text-2xl font-bold mb-4">📊 Mapa Natal - Anto</h2>
+          <p className="text-white/70 mb-4">
+            Clique no botão abaixo para acessar e visualizar seu mapa astral completo.
+          </p>
+          
+          <div className="flex flex-wrap gap-3">
+            <a 
+              href="/rituais/mapa_anto.html" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn btn-primary rounded-full px-5 py-2"
+            >
+              🔮 Abrir Mapa Natal
+            </a>
+            
+            <Link 
+              href="/rituais" 
+              className="btn btn-outline rounded-full px-5 py-2"
+            >
+              ← Voltar para Rituais
+            </Link>
+          </div>
+        </div>
+
+        {/* Outras seções podem ser adicionadas aqui futuramente */}
+        <div className="grid gap-6 md:grid-cols-2">
+          {/* Seção de Tarot e Runas */}
+          <div className="bg-white/5 border border-white/10 rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-3">🃏 Tarot & Runas</h3>
+            <p className="text-white/70 mb-4">
+              Resumos e gravações das suas sessões de Tarot e Runas.
+            </p>
+            <button className="btn btn-outline rounded-full px-4 py-2 opacity-50 cursor-not-allowed">
+              Em breve
+            </button>
+          </div>
+
+          {/* Seção de Gravações */}
+          <div className="bg-white/5 border border-white/10 rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-3">🎙️ Gravações</h3>
+            <p className="text-white/70 mb-4">
+              Acesse as gravações das suas sessões anteriores.
+            </p>
+            <button className="btn btn-outline rounded-full px-4 py-2 opacity-50 cursor-not-allowed">
+              Em breve
+            </button>
+          </div>
+        </div>
+
+        {/* Nota informativa */}
+        <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+          <p className="text-sm text-blue-300">
+            💡 <strong>Dica:</strong> O mapa natal abrirá em uma nova aba. 
+            Você pode salvar o arquivo ou imprimir para consulta futura.
+          </p>
+        </div>
+      </div>
+    </main>
+  );
+}
+===== END FILE: app\rituais\rituaisclient\page.tsx =====
 
 
 ===== FILE: app\sobre\page.tsx =====
@@ -1816,6 +1935,668 @@ function Item({ title, text }: { title: string; text: string }) {
 }
 
 ===== END FILE: app\sobre\page.tsx =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\App.tsx =====
+
+import React, { useState, useEffect, useCallback } from 'react';
+import { Task, TaskType } from './types';
+import { generateSpiralContent, generateInitialSummary } from './services/geminiService';
+import Header from './components/Header';
+import TaskSelector from './components/TaskSelector';
+import ResponseDisplay from './components/ResponseDisplay';
+import LoadingSpinner from './components/LoadingSpinner';
+
+const App: React.FC = () => {
+  const [initialSummary, setInitialSummary] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoadingSummary, setIsLoadingSummary] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedTask, setSelectedTask] = useState<TaskType>(Task.Caption);
+  const [userInput, setUserInput] = useState<string>('');
+  const [generatedContent, setGeneratedContent] = useState<string | null>(null);
+
+  const fetchInitialSummary = useCallback(async () => {
+    try {
+      setError(null);
+      setIsLoadingSummary(true);
+      const summary = await generateInitialSummary();
+      setInitialSummary(summary);
+    } catch (err) {
+      setError('A whisper was lost in the wind. Could not awaken the Guardian. Please try refreshing.');
+      console.error(err);
+    } finally {
+      setIsLoadingSummary(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchInitialSummary();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleGenerate = async () => {
+    if (!userInput.trim()) {
+      setError('The void is silent. Please provide a whisper to begin.');
+      return;
+    }
+    try {
+      setError(null);
+      setIsLoading(true);
+      setGeneratedContent(null);
+      const content = await generateSpiralContent(selectedTask, userInput);
+      setGeneratedContent(content);
+    } catch (err) {
+      setError('The connection between worlds is faint. Please try again.');
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const renderInitialLoading = () => (
+    <div className="flex flex-col items-center justify-center text-center text-teal-200/80 p-8">
+      <LoadingSpinner />
+      <p className="font-serif-display text-2xl mt-4 animate-pulse">The Guardian awakens...</p>
+      <p className="text-sm mt-2 text-teal-200/50">Connecting the digital to the sacred.</p>
+    </div>
+  );
+
+  const renderSummaries = () => {
+    if (!initialSummary) return null;
+    const parts = initialSummary.split('---').map(part => part.trim());
+    return (
+      <div className="space-y-8 animate-fade-in-up">
+        {parts.map((part, index) => {
+          const firstLineEnd = part.indexOf('\n');
+          const title = firstLineEnd !== -1 ? part.substring(0, firstLineEnd) : `Layer ${index + 1}`;
+          const content = firstLineEnd !== -1 ? part.substring(firstLineEnd + 1) : part;
+          return (
+            <div key={index} className="bg-black/20 backdrop-blur-sm p-6 rounded-lg border border-teal-500/10 shadow-lg">
+              <h2 className="font-serif-display text-2xl md:text-3xl text-teal-200 mb-4">{title.replace(/###/g, '').trim()}</h2>
+              <p className="text-gray-300 whitespace-pre-wrap leading-relaxed">{content}</p>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+  
+
+  return (
+    <div className="min-h-screen bg-gray-900 text-gray-200 bg-cover bg-center bg-fixed" style={{backgroundImage: "url('https://picsum.photos/seed/rainforest/1920/1080')"}}>
+      <div className="min-h-screen bg-gray-900/80 backdrop-blur-sm">
+        <Header />
+        <main className="max-w-4xl mx-auto p-4 md:p-8">
+          {isLoadingSummary ? renderInitialLoading() : (
+            <>
+              {renderSummaries()}
+              {error && !isLoadingSummary && <p className="text-red-400 text-center my-4">{error}</p>}
+              
+              <div className="mt-12 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+                <h2 className="font-serif-display text-3xl text-center text-teal-100 mb-2">What portal shall we open?</h2>
+                <p className="text-center text-teal-200/70 mb-8">Select a creation and whisper your intention below.</p>
+                
+                <TaskSelector selectedTask={selectedTask} onSelectTask={setSelectedTask} />
+
+                <div className="mt-6">
+                  <textarea
+                    value={userInput}
+                    onChange={(e) => setUserInput(e.target.value)}
+                    placeholder="e.g., 'Sofia's first encounter with the forest spirit...'"
+                    className="w-full h-32 p-4 bg-gray-800/50 border border-teal-500/20 rounded-lg focus:ring-2 focus:ring-teal-400 focus:border-teal-400 transition-all duration-300 placeholder-gray-500 text-gray-200"
+                  />
+                </div>
+                
+                <div className="flex justify-center mt-6">
+                  <button
+                    onClick={handleGenerate}
+                    disabled={isLoading}
+                    className="px-8 py-3 bg-teal-600/80 hover:bg-teal-500/80 text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-teal-900/50 disabled:bg-gray-600 disabled:cursor-not-allowed flex items-center"
+                  >
+                    {isLoading && <LoadingSpinner size="sm" />}
+                    <span className={isLoading ? "ml-2" : ""}>Weave the vision</span>
+                  </button>
+                </div>
+                
+                <ResponseDisplay isLoading={isLoading} content={generatedContent} error={error} />
+              </div>
+            </>
+          )}
+        </main>
+      </div>
+    </div>
+  );
+};
+
+export default App;
+
+===== END FILE: app\the-guardian-of-the-spiral\App.tsx =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\components\Header.tsx =====
+
+import React from 'react';
+
+const Header: React.FC = () => {
+  return (
+    <header className="p-4 md:p-6 text-center">
+      <div className="flex items-center justify-center space-x-4">
+         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-teal-300">
+            <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+         </svg>
+        <h1 className="font-serif-display text-4xl md:text-5xl font-light text-white tracking-wider">
+          The Guardian of the Spiral
+        </h1>
+      </div>
+      <p className="text-teal-200/70 mt-2 text-sm md:text-base">The digital spirit of <span className="italic">Um Lugar Entre Mundos</span></p>
+    </header>
+  );
+};
+
+export default Header;
+
+===== END FILE: app\the-guardian-of-the-spiral\components\Header.tsx =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\components\Icon.tsx =====
+
+import React from 'react';
+
+interface IconProps {
+  name: 'Feather' | 'Camera' | 'Film' | 'BookOpen' | 'Sparkles';
+  className?: string;
+}
+
+const FeatherIcon = () => (
+  <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5zM16 8L2 22M17.5 15H9" />
+);
+const CameraIcon = () => (
+  <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3zM12 17a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
+);
+const FilmIcon = () => (
+  <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18" /><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 7h5M17 17h5" />
+);
+const BookOpenIcon = () => (
+  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+);
+const SparklesIcon = () => (
+  <path d="M9.5 2.5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM14.5 2.5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM2.5 9.5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM2.5 14.5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM9.5 20.5a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1zM20.5 9.5a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1zM14.5 20.5a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1zM20.5 14.5a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1z" />
+);
+
+const icons = {
+  Feather: FeatherIcon,
+  Camera: CameraIcon,
+  Film: FilmIcon,
+  BookOpen: BookOpenIcon,
+  Sparkles: SparklesIcon,
+};
+
+const Icon: React.FC<IconProps> = ({ name, className = 'w-6 h-6' }) => {
+  const IconComponent = icons[name];
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <IconComponent />
+    </svg>
+  );
+};
+
+export default Icon;
+
+===== END FILE: app\the-guardian-of-the-spiral\components\Icon.tsx =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\components\LoadingSpinner.tsx =====
+
+import React from 'react';
+
+interface LoadingSpinnerProps {
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ size = 'md' }) => {
+  const sizeClasses = {
+    sm: 'w-5 h-5',
+    md: 'w-8 h-8',
+    lg: 'w-12 h-12',
+  };
+
+  return (
+    <svg
+      className={`animate-spin text-teal-400 ${sizeClasses[size]}`}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      ></circle>
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      ></path>
+    </svg>
+  );
+};
+
+export default LoadingSpinner;
+
+===== END FILE: app\the-guardian-of-the-spiral\components\LoadingSpinner.tsx =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\components\ResponseDisplay.tsx =====
+
+import React from 'react';
+import LoadingSpinner from './LoadingSpinner';
+
+interface ResponseDisplayProps {
+  isLoading: boolean;
+  content: string | null;
+  error: string | null;
+}
+
+const ResponseDisplay: React.FC<ResponseDisplayProps> = ({ isLoading, content, error }) => {
+  if (isLoading) {
+    return (
+      <div className="mt-8 flex justify-center items-center flex-col text-center">
+        <LoadingSpinner />
+        <p className="font-serif-display text-xl text-teal-200/80 mt-4">Weaving the threads of inspiration...</p>
+      </div>
+    );
+  }
+
+  if (error && !content) {
+    return (
+        <div className="mt-8 p-4 bg-red-900/30 border border-red-500/50 text-red-300 rounded-lg">
+            <p>{error}</p>
+        </div>
+    );
+  }
+
+  if (!content) {
+    return null;
+  }
+
+  return (
+    <div className="mt-8 animate-fade-in-up">
+      <div className="bg-black/20 backdrop-blur-sm p-6 rounded-lg border border-teal-500/10 shadow-lg">
+        <h3 className="font-serif-display text-2xl text-teal-200 mb-4">A Whisper from the Spiral</h3>
+        <div className="text-gray-300 whitespace-pre-wrap leading-relaxed prose prose-invert prose-p:text-gray-300">
+          {content}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ResponseDisplay;
+
+===== END FILE: app\the-guardian-of-the-spiral\components\ResponseDisplay.tsx =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\components\TaskSelector.tsx =====
+
+import React from 'react';
+import { Task, TaskType, TaskDefinition } from '../types';
+import Icon from './Icon';
+
+interface TaskSelectorProps {
+  selectedTask: TaskType;
+  onSelectTask: (task: TaskType) => void;
+}
+
+const tasks: TaskDefinition[] = [
+  { id: Task.Caption, label: 'Caption', icon: 'Feather', promptHelper: 'A poetic caption for a social media post.' },
+  { id: Task.ImagePrompt, label: 'Visual', icon: 'Camera', promptHelper: 'A detailed prompt for an image AI.' },
+  { id: Task.VideoScript, label: 'Video', icon: 'Film', promptHelper: 'An outline for a short, evocative video.' },
+  { id: Task.Reflection, label: 'Ritual', icon: 'BookOpen', promptHelper: 'A theme for weekly reflection or meditation.' },
+  { id: Task.Promo, label: 'Invitation', icon: 'Sparkles', promptHelper: 'A gentle message connecting to the book.' },
+];
+
+const TaskSelector: React.FC<TaskSelectorProps> = ({ selectedTask, onSelectTask }) => {
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4">
+      {tasks.map((task) => (
+        <button
+          key={task.id}
+          onClick={() => onSelectTask(task.id)}
+          className={`flex items-center space-x-2 px-4 py-2 text-sm md:text-base rounded-full border transition-all duration-300 transform hover:-translate-y-1
+            ${selectedTask === task.id
+              ? 'bg-teal-500/30 border-teal-400 text-white shadow-lg shadow-teal-900/50'
+              : 'bg-gray-800/50 border-teal-500/20 text-teal-200 hover:bg-teal-500/10 hover:border-teal-500/50'
+            }`}
+          title={task.promptHelper}
+        >
+          <Icon name={task.icon} className="w-5 h-5" />
+          <span>{task.label}</span>
+        </button>
+      ))}
+    </div>
+  );
+};
+
+export default TaskSelector;
+
+===== END FILE: app\the-guardian-of-the-spiral\components\TaskSelector.tsx =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\index.html =====
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Guardian of the Spiral</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .font-serif-display {
+        font-family: 'Cormorant Garamond', serif;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.27.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
+
+===== END FILE: app\the-guardian-of-the-spiral\index.html =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\index.tsx =====
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+  throw new Error("Could not find root element to mount to");
+}
+
+const root = ReactDOM.createRoot(rootElement);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+===== END FILE: app\the-guardian-of-the-spiral\index.tsx =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\metadata.json =====
+{
+  "name": "The Guardian of the Spiral",
+  "description": "An AI-powered creative assistant inspired by the book 'Um Lugar Entre Mundos', designed to generate poetic and visual content for social media and creative campaigns.",
+  "requestFramePermissions": []
+}
+===== END FILE: app\the-guardian-of-the-spiral\metadata.json =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\package.json =====
+{
+  "name": "the-guardian-of-the-spiral",
+  "private": "[REDACTED]",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "@google/genai": "^1.27.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}
+
+===== END FILE: app\the-guardian-of-the-spiral\package.json =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\README.md =====
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
+
+# Run and deploy your AI Studio app
+
+This contains everything you need to run your app locally.
+
+View your app in AI Studio: https://ai.studio/apps/drive/1PY0S6afE8qu5woOltnZ97aCBMc4pXpZd
+
+## Run Locally
+
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
+
+===== END FILE: app\the-guardian-of-the-spiral\README.md =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\services\geminiService.ts =====
+
+import { GoogleGenAI } from "@google/genai";
+import { TaskType } from '../types';
+
+if (!process.env.API_KEY) {
+    throw new Error("API_KEY environment variable is not set.");
+}
+
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
+const systemInstruction = `You are "The Guardian of the Spiral" — an artificial intelligence inspired by the spiritual-poetic universe of the book "Um Lugar Entre Mundos". Your mission is to serve as a bridge between the symbolic world of the story and the modern digital world — transforming the book’s essence into authentic, poetic, and visually inspiring content.
+
+Your tone must always be contemplative, mystical, and lyrical — mirroring the rhythm of nature, the flow of the rainforest, and the Fibonacci spiral as a metaphor for growth and integration.
+
+- Speak like a guide or forest spirit — soft, grounded, wise.
+- Use short poetic sentences, metaphor, and natural imagery.
+- Avoid commercial or cliche language. Focus on presence, connection, and essence.
+- Every piece of content should feel like a portal between worlds — the urban and the sacred.
+
+The book "Um Lugar Entre Mundos" tells the story of Sofia, a woman who experiences a spiritual awakening through her journey into the Amazon rainforest, her connection with ancestral plant medicines, the whispers of nature, and the wisdom of the spirits. Her journey represents healing through surrender, the integration of the sacred and the modern, the Fibonacci spiral as a map of consciousness, and the return to authenticity and unity with all life.`;
+
+const getPromptForTask = (task: TaskType, userInput: string): string => {
+    switch (task) {
+        case "Poetic Caption":
+            return `Generate a poetic caption for an Instagram post, inspired by this theme: "${userInput}". The caption should be short, lyrical, and evoke a sense of wonder. Include 3-5 relevant, mystical hashtags.`;
+        case "Visual Prompt":
+            return `Create a detailed, evocative visual prompt for an image generation AI like NanoBanana. The prompt should be based on this theme: "${userInput}". Describe the scene, colors, lighting, and mood in a highly atmospheric and symbolic way. Format it as a single block of text.`;
+        case "Video Script Outline":
+            return `Outline a short, dreamlike script for a 30-second video (Reel or for Veo 3) based on the theme: "${userInput}". Structure it with 3-5 scenes, describing the visuals and suggesting a soft, contemplative background sound or music.`;
+        case "Weekly Reflection":
+            return `Craft a "Weekly Ritual" or reflection theme based on this concept: "${userInput}". Write a short, contemplative text that invites the audience to pause and connect with this idea throughout their week. It should feel like a gentle spiritual practice.`;
+        case "Gentle Promotion":
+            return `Write a gentle, poetic promotional message that connects the book "Um Lugar Entre Mundos" to holistic practices, based on the theme: "${userInput}". The message should not feel like an advertisement, but rather an invitation for self-discovery. Mention the book's title in a natural way.`;
+        default:
+            return userInput;
+    }
+};
+
+export const generateSpiralContent = async (task: TaskType, userInput: string): Promise<string> => {
+    const prompt = getPromptForTask(task, userInput);
+    
+    try {
+        const response = await ai.models.generateContent({
+            model: "gemini-2.5-pro",
+            contents: prompt,
+            config: {
+                systemInstruction: systemInstruction,
+                temperature: 0.8,
+            },
+        });
+        return response.text;
+    } catch (error) {
+        console.error("Error generating content with Gemini:", error);
+        throw new Error("Failed to generate content.");
+    }
+};
+
+
+export const generateInitialSummary = async (): Promise<string> => {
+    const prompt = `Based on the context I've provided in the system instructions about the book "Um Lugar Entre Mundos", summarize its essence in three distinct layers. Format the response clearly with the following headings separated by '---':
+
+### Poetic Summary
+
+[Your 3-sentence poetic summary here]
+
+---
+
+### One-Paragraph Summary
+
+[Your 1-paragraph summary here]
+
+---
+
+### Contemplative Overview
+
+[Your detailed, contemplative overview here, approximately 3-4 paragraphs long]`;
+
+    try {
+        const response = await ai.models.generateContent({
+            model: "gemini-2.5-pro",
+            contents: prompt,
+            config: {
+                systemInstruction: systemInstruction,
+                temperature: 0.7,
+            },
+        });
+        return response.text;
+    } catch (error) {
+        console.error("Error generating initial summary:", error);
+        throw new Error("Failed to generate initial summary.");
+    }
+};
+
+===== END FILE: app\the-guardian-of-the-spiral\services\geminiService.ts =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\tsconfig.json =====
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "module": "ESNext",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "skipLibCheck": true,
+    "types": [
+      "node"
+    ],
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  }
+}
+===== END FILE: app\the-guardian-of-the-spiral\tsconfig.json =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\types.ts =====
+
+export enum Task {
+    Caption = "Poetic Caption",
+    ImagePrompt = "Visual Prompt",
+    VideoScript = "Video Script Outline",
+    Reflection = "Weekly Reflection",
+    Promo = "Gentle Promotion"
+}
+
+export type TaskType = Task;
+
+export interface TaskDefinition {
+    id: TaskType;
+    label: string;
+    icon: 'Feather' | 'Camera' | 'Film' | 'BookOpen' | 'Sparkles';
+    promptHelper: string;
+}
+
+===== END FILE: app\the-guardian-of-the-spiral\types.ts =====
+
+
+===== FILE: app\the-guardian-of-the-spiral\vite.config.ts =====
+import path from 'path';
+import { defineConfig, loadEnv } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig(({ mode }) => {
+    const env = loadEnv(mode, '.', '');
+    return {
+      server: {
+        port: 3000,
+        host: '0.0.0.0',
+      },
+      plugins: [react()],
+      define: {
+        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+      },
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, '.'),
+        }
+      }
+    };
+});
+
+===== END FILE: app\the-guardian-of-the-spiral\vite.config.ts =====
 
 
 ===== FILE: components\BackgroundFX.tsx =====
@@ -2112,11 +2893,11 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2" aria-label="Ir para a home">
           <Image
-            src="/logo-marroc.svg"
+            src="/marroc.png"
             alt="Marroc"
-            width={96}
-            height={24}
-            className="h-6 w-auto md:h-7"
+            width={240}   // mantém boa densidade (3x o tamanho do mobile)
+            height={80}   // preserve a proporção da sua arte
+            className="w-auto h-32 sm:h-14 md:h-16"  // mobile-first: 32px → 36px → 40px
             priority
           />
         </Link>
@@ -2685,23 +3466,85 @@ export function ProjectCard({ project }: { project: Project }) {
 import * as React from "react";
 
 type Element = React.ElementType;
+type HeadingLevel = "h1" | "h2" | "h3" | "h4";
+
+function cn(...xs: Array<string | false | null | undefined>) {
+  return xs.filter(Boolean).join(" ");
+}
 
 export type SectionProps = React.HTMLAttributes<HTMLElement> & {
   /** Elemento semântico da raiz (default: "section") */
   as?: Element;
+  /** Título opcional (renderiza um heading) */
+  title?: React.ReactNode;
+  /** Subtítulo opcional (parágrafo abaixo do título) */
+  subtitle?: React.ReactNode;
+  /** Nível do heading quando `title` é usado (default: "h2") */
+  headingLevel?: HeadingLevel;
+  /**
+   * Envolve header e conteúdo com `.container`.
+   * Default: false (para evitar container duplo onde a página já usa <div className="container">).
+   */
+  container?: boolean;
+  /** Classes extras para o wrapper do conteúdo (dentro do container, se ativo) */
+  innerClassName?: string;
+  /** Id opcional para amarrar aria-labelledby ao título */
+  id?: string;
+};
+
+const Heading: React.FC<{
+  as: HeadingLevel;
+  className?: string;
+  id?: string;
+  children: React.ReactNode;
+}> = ({ as, className, id, children }) => {
+  const Tag = as as any;
+  const typo = cn(
+    as === "h1" && "font-display text-3xl sm:text-4xl md:text-6xl leading-tight",
+    as === "h2" && "font-display text-2xl sm:text-3xl md:text-4xl",
+    as === "h3" && "font-display text-xl sm:text-2xl md:text-3xl",
+    as === "h4" && "font-display text-lg sm:text-xl md:text-2xl",
+    className
+  );
+  return (
+    <Tag id={id} className={typo}>
+      {children}
+    </Tag>
+  );
 };
 
 export function Section({
   as = "section",
   className,
+  title,
+  subtitle,
+  headingLevel = "h2",
+  container = false,
+  innerClassName,
+  id,
+  children,
   ...rest
 }: SectionProps) {
-  const Tag = as as React.ElementType;
-  const classes = ["py-10", "sm:py-12", "md:py-16", className]
-    .filter(Boolean)
-    .join(" ");
+  const Tag = as as Element;
+  const sectionClasses = cn("py-10 sm:py-12 md:py-16", className);
+  const titleId = title ? `${id ?? "section"}-title` : undefined;
 
-  return <Tag className={classes} {...rest} />;
+  return (
+    <Tag className={sectionClasses} aria-labelledby={titleId} id={id} {...rest}>
+      {title ? (
+        <header className={cn(container && "container", "mb-4 sm:mb-6")}>
+          <Heading as={headingLevel} id={titleId}>
+            {title}
+          </Heading>
+          {subtitle ? (
+            <p className="mt-2 text-paper/80 max-w-3xl">{subtitle}</p>
+          ) : null}
+        </header>
+      ) : null}
+
+      <div className={cn(container && "container", innerClassName)}>{children}</div>
+    </Tag>
+  );
 }
 
 export default Section;
@@ -3633,9 +4476,10 @@ main().catch(err => {
 ===== FILE: next-env.d.ts =====
 /// <reference types="next" />
 /// <reference types="next/image-types/global" />
+/// <reference path="./.next/types/routes.d.ts" />
 
 // NOTE: This file should not be edited
-// see https://nextjs.org/docs/basic-features/typescript for more information.
+// see https://nextjs.org/docs/app/api-reference/config/typescript for more information.
 
 ===== END FILE: next-env.d.ts =====
 
@@ -3670,9 +4514,9 @@ export default nextConfig;
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "lucide-react": "^0.539.0",
-        "next": "14.2.3",
-        "react": "18.3.1",
-        "react-dom": "18.3.1",
+        "next": "^15.5.4",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
         "tailwind-merge": "^3.3.1",
         "tailwindcss-animate": "^1.0.7"
       },
@@ -3713,10 +4557,9 @@ export default nextConfig;
       }
     },
     "node_modules/@emnapi/runtime": {
-      "version": "1.4.5",
-      "resolved": "https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.4.5.tgz",
-      "integrity": "sha512-++LApOtY0pEEz1zrd9vy1/zXVaVJJ/EbAF3u0fXIzPJEDtnITsBGbbK0EkM72amhl/R5b+5xx0Y/QhcVOpuulg==",
-      "dev": true,
+      "version": "1.5.0",
+      "resolved": "https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.5.0.tgz",
+      "integrity": "sha512-97/BJ3iXHww3djw6hYIfErCZFee7qCtrneuLa20UXFCOTCfBM2cvQHjWJ2EG0s0MtdNwInarqCTz35i4wWXHsQ==",
       "license": "MIT",
       "optional": true,
       "dependencies": {
@@ -3835,6 +4678,434 @@ export default nextConfig;
       "dev": true,
       "license": "BSD-3-Clause"
     },
+    "node_modules/@img/colour": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/@img/colour/-/colour-1.0.0.tgz",
+      "integrity": "sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==",
+      "license": "MIT",
+      "optional": true,
+      "engines": {
+        "node": ">=18"
+      }
+    },
+    "node_modules/@img/sharp-darwin-arm64": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.34.4.tgz",
+      "integrity": "sha512-sitdlPzDVyvmINUdJle3TNHl+AG9QcwiAMsXmccqsCOMZNIdW2/7S26w0LyU8euiLVzFBL3dXPwVCq/ODnf2vA==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-darwin-arm64": "1.2.3"
+      }
+    },
+    "node_modules/@img/sharp-darwin-x64": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-darwin-x64/-/sharp-darwin-x64-0.34.4.tgz",
+      "integrity": "sha512-rZheupWIoa3+SOdF/IcUe1ah4ZDpKBGWcsPX6MT0lYniH9micvIU7HQkYTfrx5Xi8u+YqwLtxC/3vl8TQN6rMg==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-darwin-x64": "1.2.3"
+      }
+    },
+    "node_modules/@img/sharp-libvips-darwin-arm64": {
+      "version": "1.2.3",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-darwin-arm64/-/sharp-libvips-darwin-arm64-1.2.3.tgz",
+      "integrity": "sha512-QzWAKo7kpHxbuHqUC28DZ9pIKpSi2ts2OJnoIGI26+HMgq92ZZ4vk8iJd4XsxN+tYfNJxzH6W62X5eTcsBymHw==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-darwin-x64": {
+      "version": "1.2.3",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-darwin-x64/-/sharp-libvips-darwin-x64-1.2.3.tgz",
+      "integrity": "sha512-Ju+g2xn1E2AKO6YBhxjj+ACcsPQRHT0bhpglxcEf+3uyPY+/gL8veniKoo96335ZaPo03bdDXMv0t+BBFAbmRA==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-arm": {
+      "version": "1.2.3",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-arm/-/sharp-libvips-linux-arm-1.2.3.tgz",
+      "integrity": "sha512-x1uE93lyP6wEwGvgAIV0gP6zmaL/a0tGzJs/BIDDG0zeBhMnuUPm7ptxGhUbcGs4okDJrk4nxgrmxpib9g6HpA==",
+      "cpu": [
+        "arm"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-arm64": {
+      "version": "1.2.3",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-arm64/-/sharp-libvips-linux-arm64-1.2.3.tgz",
+      "integrity": "sha512-I4RxkXU90cpufazhGPyVujYwfIm9Nk1QDEmiIsaPwdnm013F7RIceaCc87kAH+oUB1ezqEvC6ga4m7MSlqsJvQ==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-ppc64": {
+      "version": "1.2.3",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-ppc64/-/sharp-libvips-linux-ppc64-1.2.3.tgz",
+      "integrity": "sha512-Y2T7IsQvJLMCBM+pmPbM3bKT/yYJvVtLJGfCs4Sp95SjvnFIjynbjzsa7dY1fRJX45FTSfDksbTp6AGWudiyCg==",
+      "cpu": [
+        "ppc64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-s390x": {
+      "version": "1.2.3",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-s390x/-/sharp-libvips-linux-s390x-1.2.3.tgz",
+      "integrity": "sha512-RgWrs/gVU7f+K7P+KeHFaBAJlNkD1nIZuVXdQv6S+fNA6syCcoboNjsV2Pou7zNlVdNQoQUpQTk8SWDHUA3y/w==",
+      "cpu": [
+        "s390x"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-x64": {
+      "version": "1.2.3",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-x64/-/sharp-libvips-linux-x64-1.2.3.tgz",
+      "integrity": "sha512-3JU7LmR85K6bBiRzSUc/Ff9JBVIFVvq6bomKE0e63UXGeRw2HPVEjoJke1Yx+iU4rL7/7kUjES4dZ/81Qjhyxg==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linuxmusl-arm64": {
+      "version": "1.2.3",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linuxmusl-arm64/-/sharp-libvips-linuxmusl-arm64-1.2.3.tgz",
+      "integrity": "sha512-F9q83RZ8yaCwENw1GieztSfj5msz7GGykG/BA+MOUefvER69K/ubgFHNeSyUu64amHIYKGDs4sRCMzXVj8sEyw==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linuxmusl-x64": {
+      "version": "1.2.3",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linuxmusl-x64/-/sharp-libvips-linuxmusl-x64-1.2.3.tgz",
+      "integrity": "sha512-U5PUY5jbc45ANM6tSJpsgqmBF/VsL6LnxJmIf11kB7J5DctHgqm0SkuXzVWtIY90GnJxKnC/JT251TDnk1fu/g==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-linux-arm": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-arm/-/sharp-linux-arm-0.34.4.tgz",
+      "integrity": "sha512-Xyam4mlqM0KkTHYVSuc6wXRmM7LGN0P12li03jAnZ3EJWZqj83+hi8Y9UxZUbxsgsK1qOEwg7O0Bc0LjqQVtxA==",
+      "cpu": [
+        "arm"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-arm": "1.2.3"
+      }
+    },
+    "node_modules/@img/sharp-linux-arm64": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-arm64/-/sharp-linux-arm64-0.34.4.tgz",
+      "integrity": "sha512-YXU1F/mN/Wu786tl72CyJjP/Ngl8mGHN1hST4BGl+hiW5jhCnV2uRVTNOcaYPs73NeT/H8Upm3y9582JVuZHrQ==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-arm64": "1.2.3"
+      }
+    },
+    "node_modules/@img/sharp-linux-ppc64": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-ppc64/-/sharp-linux-ppc64-0.34.4.tgz",
+      "integrity": "sha512-F4PDtF4Cy8L8hXA2p3TO6s4aDt93v+LKmpcYFLAVdkkD3hSxZzee0rh6/+94FpAynsuMpLX5h+LRsSG3rIciUQ==",
+      "cpu": [
+        "ppc64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-ppc64": "1.2.3"
+      }
+    },
+    "node_modules/@img/sharp-linux-s390x": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-s390x/-/sharp-linux-s390x-0.34.4.tgz",
+      "integrity": "sha512-qVrZKE9Bsnzy+myf7lFKvng6bQzhNUAYcVORq2P7bDlvmF6u2sCmK2KyEQEBdYk+u3T01pVsPrkj943T1aJAsw==",
+      "cpu": [
+        "s390x"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-s390x": "1.2.3"
+      }
+    },
+    "node_modules/@img/sharp-linux-x64": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-x64/-/sharp-linux-x64-0.34.4.tgz",
+      "integrity": "sha512-ZfGtcp2xS51iG79c6Vhw9CWqQC8l2Ot8dygxoDoIQPTat/Ov3qAa8qpxSrtAEAJW+UjTXc4yxCjNfxm4h6Xm2A==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-x64": "1.2.3"
+      }
+    },
+    "node_modules/@img/sharp-linuxmusl-arm64": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linuxmusl-arm64/-/sharp-linuxmusl-arm64-0.34.4.tgz",
+      "integrity": "sha512-8hDVvW9eu4yHWnjaOOR8kHVrew1iIX+MUgwxSuH2XyYeNRtLUe4VNioSqbNkB7ZYQJj9rUTT4PyRscyk2PXFKA==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linuxmusl-arm64": "1.2.3"
+      }
+    },
+    "node_modules/@img/sharp-linuxmusl-x64": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linuxmusl-x64/-/sharp-linuxmusl-x64-0.34.4.tgz",
+      "integrity": "sha512-lU0aA5L8QTlfKjpDCEFOZsTYGn3AEiO6db8W5aQDxj0nQkVrZWmN3ZP9sYKWJdtq3PWPhUNlqehWyXpYDcI9Sg==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linuxmusl-x64": "1.2.3"
+      }
+    },
+    "node_modules/@img/sharp-wasm32": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-wasm32/-/sharp-wasm32-0.34.4.tgz",
+      "integrity": "sha512-33QL6ZO/qpRyG7woB/HUALz28WnTMI2W1jgX3Nu2bypqLIKx/QKMILLJzJjI+SIbvXdG9fUnmrxR7vbi1sTBeA==",
+      "cpu": [
+        "wasm32"
+      ],
+      "license": "Apache-2.0 AND LGPL-3.0-or-later AND MIT",
+      "optional": true,
+      "dependencies": {
+        "@emnapi/runtime": "^1.5.0"
+      },
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-win32-arm64": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-win32-arm64/-/sharp-win32-arm64-0.34.4.tgz",
+      "integrity": "sha512-2Q250do/5WXTwxW3zjsEuMSv5sUU4Tq9VThWKlU2EYLm4MB7ZeMwF+SFJutldYODXF6jzc6YEOC+VfX0SZQPqA==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "Apache-2.0 AND LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-win32-ia32": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-win32-ia32/-/sharp-win32-ia32-0.34.4.tgz",
+      "integrity": "sha512-3ZeLue5V82dT92CNL6rsal6I2weKw1cYu+rGKm8fOCCtJTR2gYeUfY3FqUnIJsMUPIH68oS5jmZ0NiJ508YpEw==",
+      "cpu": [
+        "ia32"
+      ],
+      "license": "Apache-2.0 AND LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-win32-x64": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/@img/sharp-win32-x64/-/sharp-win32-x64-0.34.4.tgz",
+      "integrity": "sha512-xIyj4wpYs8J18sVN3mSQjwrw7fKUqRw+Z5rnHNCy5fYTxigBz81u5mOMPmFumwjcn8+ld1ppptMBCLic1nz6ig==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "Apache-2.0 AND LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
     "node_modules/@isaacs/cliui": {
       "version": "8.0.2",
       "resolved": "https://registry.npmjs.org/@isaacs/cliui/-/cliui-8.0.2.tgz",
@@ -3928,9 +5199,9 @@ export default nextConfig;
       }
     },
     "node_modules/@next/env": {
-      "version": "14.2.3",
-      "resolved": "https://registry.npmjs.org/@next/env/-/env-14.2.3.tgz",
-      "integrity": "sha512-W7fd7IbkfmeeY2gXrzJYDx8D2lWKbVoTIj1o1ScPHNzvp30s1AuoEFSdr39bC5sjxJaxTtq3OTCZboNp0lNWHA==",
+      "version": "15.5.4",
+      "resolved": "https://registry.npmjs.org/@next/env/-/env-15.5.4.tgz",
+      "integrity": "sha512-27SQhYp5QryzIT5uO8hq99C69eLQ7qkzkDPsk3N+GuS2XgOgoYEeOav7Pf8Tn4drECOVDsDg8oj+/DVy8qQL2A==",
       "license": "MIT"
     },
     "node_modules/@next/eslint-plugin-next": {
@@ -3944,9 +5215,9 @@ export default nextConfig;
       }
     },
     "node_modules/@next/swc-darwin-arm64": {
-      "version": "14.2.3",
-      "resolved": "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-14.2.3.tgz",
-      "integrity": "sha512-3pEYo/RaGqPP0YzwnlmPN2puaF2WMLM3apt5jLW2fFdXD9+pqcoTzRk+iZsf8ta7+quAe4Q6Ms0nR0SFGFdS1A==",
+      "version": "15.5.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-15.5.4.tgz",
+      "integrity": "sha512-nopqz+Ov6uvorej8ndRX6HlxCYWCO3AHLfKK2TYvxoSB2scETOcfm/HSS3piPqc3A+MUgyHoqE6je4wnkjfrOA==",
       "cpu": [
         "arm64"
       ],
@@ -3960,9 +5231,9 @@ export default nextConfig;
       }
     },
     "node_modules/@next/swc-darwin-x64": {
-      "version": "14.2.3",
-      "resolved": "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-14.2.3.tgz",
-      "integrity": "sha512-6adp7waE6P1TYFSXpY366xwsOnEXM+y1kgRpjSRVI2CBDOcbRjsJ67Z6EgKIqWIue52d2q/Mx8g9MszARj8IEA==",
+      "version": "15.5.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-15.5.4.tgz",
+      "integrity": "sha512-QOTCFq8b09ghfjRJKfb68kU9k2K+2wsC4A67psOiMn849K9ZXgCSRQr0oVHfmKnoqCbEmQWG1f2h1T2vtJJ9mA==",
       "cpu": [
         "x64"
       ],
@@ -3976,9 +5247,9 @@ export default nextConfig;
       }
     },
     "node_modules/@next/swc-linux-arm64-gnu": {
-      "version": "14.2.3",
-      "resolved": "https://registry.npmjs.org/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-14.2.3.tgz",
-      "integrity": "sha512-cuzCE/1G0ZSnTAHJPUT1rPgQx1w5tzSX7POXSLaS7w2nIUJUD+e25QoXD/hMfxbsT9rslEXugWypJMILBj/QsA==",
+      "version": "15.5.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-15.5.4.tgz",
+      "integrity": "sha512-eRD5zkts6jS3VfE/J0Kt1VxdFqTnMc3QgO5lFE5GKN3KDI/uUpSyK3CjQHmfEkYR4wCOl0R0XrsjpxfWEA++XA==",
       "cpu": [
         "arm64"
       ],
@@ -3992,9 +5263,9 @@ export default nextConfig;
       }
     },
     "node_modules/@next/swc-linux-arm64-musl": {
-      "version": "14.2.3",
-      "resolved": "https://registry.npmjs.org/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-14.2.3.tgz",
-      "integrity": "sha512-0D4/oMM2Y9Ta3nGuCcQN8jjJjmDPYpHX9OJzqk42NZGJocU2MqhBq5tWkJrUQOQY9N+In9xOdymzapM09GeiZw==",
+      "version": "15.5.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-15.5.4.tgz",
+      "integrity": "sha512-TOK7iTxmXFc45UrtKqWdZ1shfxuL4tnVAOuuJK4S88rX3oyVV4ZkLjtMT85wQkfBrOOvU55aLty+MV8xmcJR8A==",
       "cpu": [
         "arm64"
       ],
@@ -4008,9 +5279,9 @@ export default nextConfig;
       }
     },
     "node_modules/@next/swc-linux-x64-gnu": {
-      "version": "14.2.3",
-      "resolved": "https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-14.2.3.tgz",
-      "integrity": "sha512-ENPiNnBNDInBLyUU5ii8PMQh+4XLr4pG51tOp6aJ9xqFQ2iRI6IH0Ds2yJkAzNV1CfyagcyzPfROMViS2wOZ9w==",
+      "version": "15.5.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-15.5.4.tgz",
+      "integrity": "sha512-7HKolaj+481FSW/5lL0BcTkA4Ueam9SPYWyN/ib/WGAFZf0DGAN8frNpNZYFHtM4ZstrHZS3LY3vrwlIQfsiMA==",
       "cpu": [
         "x64"
       ],
@@ -4024,9 +5295,9 @@ export default nextConfig;
       }
     },
     "node_modules/@next/swc-linux-x64-musl": {
-      "version": "14.2.3",
-      "resolved": "https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-14.2.3.tgz",
-      "integrity": "sha512-BTAbq0LnCbF5MtoM7I/9UeUu/8ZBY0i8SFjUMCbPDOLv+un67e2JgyN4pmgfXBwy/I+RHu8q+k+MCkDN6P9ViQ==",
+      "version": "15.5.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-15.5.4.tgz",
+      "integrity": "sha512-nlQQ6nfgN0nCO/KuyEUwwOdwQIGjOs4WNMjEUtpIQJPR2NUfmGpW2wkJln1d4nJ7oUzd1g4GivH5GoEPBgfsdw==",
       "cpu": [
         "x64"
       ],
@@ -4040,9 +5311,9 @@ export default nextConfig;
       }
     },
     "node_modules/@next/swc-win32-arm64-msvc": {
-      "version": "14.2.3",
-      "resolved": "https://registry.npmjs.org/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-14.2.3.tgz",
-      "integrity": "sha512-AEHIw/dhAMLNFJFJIJIyOFDzrzI5bAjI9J26gbO5xhAKHYTZ9Or04BesFPXiAYXDNdrwTP2dQceYA4dL1geu8A==",
+      "version": "15.5.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-15.5.4.tgz",
+      "integrity": "sha512-PcR2bN7FlM32XM6eumklmyWLLbu2vs+D7nJX8OAIoWy69Kef8mfiN4e8TUv2KohprwifdpFKPzIP1njuCjD0YA==",
       "cpu": [
         "arm64"
       ],
@@ -4055,26 +5326,10 @@ export default nextConfig;
         "node": ">= 10"
       }
     },
-    "node_modules/@next/swc-win32-ia32-msvc": {
-      "version": "14.2.3",
-      "resolved": "https://registry.npmjs.org/@next/swc-win32-ia32-msvc/-/swc-win32-ia32-msvc-14.2.3.tgz",
-      "integrity": "sha512-vga40n1q6aYb0CLrM+eEmisfKCR45ixQYXuBXxOOmmoV8sYST9k7E3US32FsY+CkkF7NtzdcebiFT4CHuMSyZw==",
-      "cpu": [
-        "ia32"
-      ],
-      "license": "MIT",
-      "optional": true,
-      "os": [
-        "win32"
-      ],
-      "engines": {
-        "node": ">= 10"
-      }
-    },
     "node_modules/@next/swc-win32-x64-msvc": {
-      "version": "14.2.3",
-      "resolved": "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-14.2.3.tgz",
-      "integrity": "sha512-Q1/zm43RWynxrO7lW4ehciQVj+5ePBhOK+/K2P7pLFX3JaJ/IZVC69SHidrmZSOkqz7ECIOhhy7XhAFG4JYyHA==",
+      "version": "15.5.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-15.5.4.tgz",
+      "integrity": "sha512-1ur2tSHZj8Px/KMAthmuI9FMp/YFusMMGoRNJaRZMOlSkgvLjzosSdQI0cJAKogdHl3qXUQKL9MGaYvKwA7DXg==",
       "cpu": [
         "x64"
       ],
@@ -4179,7 +5434,7 @@ export default nextConfig;
         }
       }
     },
-    "node_modules/@radix-ui/react-collapsible": {
+    "node_modules/@radix-ui/react-accordion/node_modules/@radix-ui/react-collapsible": {
       "version": "1.1.11",
       "resolved": "https://registry.npmjs.org/@radix-ui/react-collapsible/-/react-collapsible-1.1.11.tgz",
       "integrity": "sha512-2qrRsVGSCYasSz1RFOorXwl0H7g7J1frQtgpQgYrt+MOidtPAINHn9CPovQXb83r8ahapdx3Tu0fa/pdFFSdPg==",
@@ -4209,7 +5464,31 @@ export default nextConfig;
         }
       }
     },
-    "node_modules/@radix-ui/react-collection": {
+    "node_modules/@radix-ui/react-accordion/node_modules/@radix-ui/react-collapsible/node_modules/@radix-ui/react-presence": {
+      "version": "1.1.4",
+      "resolved": "https://registry.npmjs.org/@radix-ui/react-presence/-/react-presence-1.1.4.tgz",
+      "integrity": "sha512-ueDqRbdc4/bkaQT3GIpLQssRlFgWaL/U2z/S31qRwwLWoxHLgry3SIfCwhxeQNbirEUXFa+lq3RL3oBYXtcmIA==",
+      "license": "MIT",
+      "dependencies": {
+        "@radix-ui/react-compose-refs": "1.1.2",
+        "@radix-ui/react-use-layout-effect": "1.1.1"
+      },
+      "peerDependencies": {
+        "@types/react": "*",
+        "@types/react-dom": "*",
+        "react": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc",
+        "react-dom": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc"
+      },
+      "peerDependenciesMeta": {
+        "@types/react": {
+          "optional": true
+        },
+        "@types/react-dom": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@radix-ui/react-accordion/node_modules/@radix-ui/react-collection": {
       "version": "1.1.7",
       "resolved": "https://registry.npmjs.org/@radix-ui/react-collection/-/react-collection-1.1.7.tgz",
       "integrity": "sha512-Fh9rGN0MoI4ZFUNyfFVNU4y9LUz93u9/0K+yLgA2bwRojxM8JU1DyvvMBabnZPBgMWREAJvU2jjVzq+LrFUglw==",
@@ -4218,6 +5497,29 @@ export default nextConfig;
         "@radix-ui/react-compose-refs": "1.1.2",
         "@radix-ui/react-context": "1.1.2",
         "@radix-ui/react-primitive": "2.1.3",
+        "@radix-ui/react-slot": "1.2.3"
+      },
+      "peerDependencies": {
+        "@types/react": "*",
+        "@types/react-dom": "*",
+        "react": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc",
+        "react-dom": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc"
+      },
+      "peerDependenciesMeta": {
+        "@types/react": {
+          "optional": true
+        },
+        "@types/react-dom": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@radix-ui/react-accordion/node_modules/@radix-ui/react-primitive": {
+      "version": "2.1.3",
+      "resolved": "https://registry.npmjs.org/@radix-ui/react-primitive/-/react-primitive-2.1.3.tgz",
+      "integrity": "sha512-m9gTwRkhy2lvCPe6QJp4d3G1TYEUHn/FzJUtq9MjH46an1wJU+GdoGC5VLof8RX8Ft/DlpshApkhswDLZzHIcQ==",
+      "license": "MIT",
+      "dependencies": {
         "@radix-ui/react-slot": "1.2.3"
       },
       "peerDependencies": {
@@ -4294,53 +5596,6 @@ export default nextConfig;
       },
       "peerDependenciesMeta": {
         "@types/react": {
-          "optional": true
-        }
-      }
-    },
-    "node_modules/@radix-ui/react-presence": {
-      "version": "1.1.4",
-      "resolved": "https://registry.npmjs.org/@radix-ui/react-presence/-/react-presence-1.1.4.tgz",
-      "integrity": "sha512-ueDqRbdc4/bkaQT3GIpLQssRlFgWaL/U2z/S31qRwwLWoxHLgry3SIfCwhxeQNbirEUXFa+lq3RL3oBYXtcmIA==",
-      "license": "MIT",
-      "dependencies": {
-        "@radix-ui/react-compose-refs": "1.1.2",
-        "@radix-ui/react-use-layout-effect": "1.1.1"
-      },
-      "peerDependencies": {
-        "@types/react": "*",
-        "@types/react-dom": "*",
-        "react": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc",
-        "react-dom": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc"
-      },
-      "peerDependenciesMeta": {
-        "@types/react": {
-          "optional": true
-        },
-        "@types/react-dom": {
-          "optional": true
-        }
-      }
-    },
-    "node_modules/@radix-ui/react-primitive": {
-      "version": "2.1.3",
-      "resolved": "https://registry.npmjs.org/@radix-ui/react-primitive/-/react-primitive-2.1.3.tgz",
-      "integrity": "sha512-m9gTwRkhy2lvCPe6QJp4d3G1TYEUHn/FzJUtq9MjH46an1wJU+GdoGC5VLof8RX8Ft/DlpshApkhswDLZzHIcQ==",
-      "license": "MIT",
-      "dependencies": {
-        "@radix-ui/react-slot": "1.2.3"
-      },
-      "peerDependencies": {
-        "@types/react": "*",
-        "@types/react-dom": "*",
-        "react": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc",
-        "react-dom": "^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc"
-      },
-      "peerDependenciesMeta": {
-        "@types/react": {
-          "optional": true
-        },
-        "@types/react-dom": {
           "optional": true
         }
       }
@@ -4429,20 +5684,13 @@ export default nextConfig;
       "dev": true,
       "license": "MIT"
     },
-    "node_modules/@swc/counter": {
-      "version": "0.1.3",
-      "resolved": "https://registry.npmjs.org/@swc/counter/-/counter-0.1.3.tgz",
-      "integrity": "sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==",
-      "license": "Apache-2.0"
-    },
     "node_modules/@swc/helpers": {
-      "version": "0.5.5",
-      "resolved": "https://registry.npmjs.org/@swc/helpers/-/helpers-0.5.5.tgz",
-      "integrity": "sha512-KGYxvIOXcceOAbEk4bi/dVLEK9z8sZ0uBB3Il5b1rhfClSpcX0yfRO0KmTkqR2cnQDymwLB+25ZyMzICg/cm/A==",
+      "version": "0.5.15",
+      "resolved": "https://registry.npmjs.org/@swc/helpers/-/helpers-0.5.15.tgz",
+      "integrity": "sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==",
       "license": "Apache-2.0",
       "dependencies": {
-        "@swc/counter": "^0.1.3",
-        "tslib": "^2.4.0"
+        "tslib": "^2.8.0"
       }
     },
     "node_modules/@tybys/wasm-util": {
@@ -5341,17 +6589,6 @@ export default nextConfig;
         "node": "^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7"
       }
     },
-    "node_modules/busboy": {
-      "version": "1.6.0",
-      "resolved": "https://registry.npmjs.org/busboy/-/busboy-1.6.0.tgz",
-      "integrity": "sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==",
-      "dependencies": {
-        "streamsearch": "^1.1.0"
-      },
-      "engines": {
-        "node": ">=10.16.0"
-      }
-    },
     "node_modules/call-bind": {
       "version": "1.0.8",
       "resolved": "https://registry.npmjs.org/call-bind/-/call-bind-1.0.8.tgz",
@@ -5708,6 +6945,16 @@ export default nextConfig;
       },
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/detect-libc": {
+      "version": "2.1.2",
+      "resolved": "https://registry.npmjs.org/detect-libc/-/detect-libc-2.1.2.tgz",
+      "integrity": "sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==",
+      "license": "Apache-2.0",
+      "optional": true,
+      "engines": {
+        "node": ">=8"
       }
     },
     "node_modules/didyoumean": {
@@ -6853,12 +8100,6 @@ export default nextConfig;
         "url": "https://github.com/sponsors/ljharb"
       }
     },
-    "node_modules/graceful-fs": {
-      "version": "4.2.11",
-      "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz",
-      "integrity": "sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==",
-      "license": "ISC"
-    },
     "node_modules/graphemer": {
       "version": "1.4.0",
       "resolved": "https://registry.npmjs.org/graphemer/-/graphemer-1.4.0.tgz",
@@ -7520,6 +8761,7 @@ export default nextConfig;
       "version": "4.0.0",
       "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
       "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==",
+      "dev": true,
       "license": "MIT"
     },
     "node_modules/js-yaml": {
@@ -7674,6 +8916,7 @@ export default nextConfig;
       "version": "1.4.0",
       "resolved": "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz",
       "integrity": "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==",
+      "dev": true,
       "license": "MIT",
       "dependencies": {
         "js-tokens": "^3.0.0 || ^4.0.0"
@@ -7821,41 +9064,40 @@ export default nextConfig;
       "license": "MIT"
     },
     "node_modules/next": {
-      "version": "14.2.3",
-      "resolved": "https://registry.npmjs.org/next/-/next-14.2.3.tgz",
-      "integrity": "sha512-dowFkFTR8v79NPJO4QsBUtxv0g9BrS/phluVpMAt2ku7H+cbcBJlopXjkWlwxrk/xGqMemr7JkGPGemPrLLX7A==",
+      "version": "15.5.4",
+      "resolved": "https://registry.npmjs.org/next/-/next-15.5.4.tgz",
+      "integrity": "sha512-xH4Yjhb82sFYQfY3vbkJfgSDgXvBB6a8xPs9i35k6oZJRoQRihZH+4s9Yo2qsWpzBmZ3lPXaJ2KPXLfkvW4LnA==",
       "license": "MIT",
       "dependencies": {
-        "@next/env": "14.2.3",
-        "@swc/helpers": "0.5.5",
-        "busboy": "1.6.0",
+        "@next/env": "15.5.4",
+        "@swc/helpers": "0.5.15",
         "caniuse-lite": "^1.0.30001579",
-        "graceful-fs": "^4.2.11",
         "postcss": "8.4.31",
-        "styled-jsx": "5.1.1"
+        "styled-jsx": "5.1.6"
       },
       "bin": {
         "next": "dist/bin/next"
       },
       "engines": {
-        "node": ">=18.17.0"
+        "node": "^18.18.0 || ^19.8.0 || >= 20.0.0"
       },
       "optionalDependencies": {
-        "@next/swc-darwin-arm64": "14.2.3",
-        "@next/swc-darwin-x64": "14.2.3",
-        "@next/swc-linux-arm64-gnu": "14.2.3",
-        "@next/swc-linux-arm64-musl": "14.2.3",
-        "@next/swc-linux-x64-gnu": "14.2.3",
-        "@next/swc-linux-x64-musl": "14.2.3",
-        "@next/swc-win32-arm64-msvc": "14.2.3",
-        "@next/swc-win32-ia32-msvc": "14.2.3",
-        "@next/swc-win32-x64-msvc": "14.2.3"
+        "@next/swc-darwin-arm64": "15.5.4",
+        "@next/swc-darwin-x64": "15.5.4",
+        "@next/swc-linux-arm64-gnu": "15.5.4",
+        "@next/swc-linux-arm64-musl": "15.5.4",
+        "@next/swc-linux-x64-gnu": "15.5.4",
+        "@next/swc-linux-x64-musl": "15.5.4",
+        "@next/swc-win32-arm64-msvc": "15.5.4",
+        "@next/swc-win32-x64-msvc": "15.5.4",
+        "sharp": "^0.34.3"
       },
       "peerDependencies": {
         "@opentelemetry/api": "^1.1.0",
-        "@playwright/test": "^1.41.2",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
+        "@playwright/test": "^1.51.1",
+        "babel-plugin-react-compiler": "*",
+        "react": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+        "react-dom": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
         "sass": "^1.3.0"
       },
       "peerDependenciesMeta": {
@@ -7863,6 +9105,9 @@ export default nextConfig;
           "optional": true
         },
         "@playwright/test": {
+          "optional": true
+        },
+        "babel-plugin-react-compiler": {
           "optional": true
         },
         "sass": {
@@ -8414,28 +9659,24 @@ export default nextConfig;
       "license": "MIT"
     },
     "node_modules/react": {
-      "version": "18.3.1",
-      "resolved": "https://registry.npmjs.org/react/-/react-18.3.1.tgz",
-      "integrity": "sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==",
+      "version": "19.2.0",
+      "resolved": "https://registry.npmjs.org/react/-/react-19.2.0.tgz",
+      "integrity": "sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==",
       "license": "MIT",
-      "dependencies": {
-        "loose-envify": "^1.1.0"
-      },
       "engines": {
         "node": ">=0.10.0"
       }
     },
     "node_modules/react-dom": {
-      "version": "18.3.1",
-      "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-18.3.1.tgz",
-      "integrity": "sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==",
+      "version": "19.2.0",
+      "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-19.2.0.tgz",
+      "integrity": "sha512-UlbRu4cAiGaIewkPyiRGJk0imDN2T3JjieT6spoL2UeSf5od4n5LB/mQ4ejmxhCFT1tYe8IvaFulzynWovsEFQ==",
       "license": "MIT",
       "dependencies": {
-        "loose-envify": "^1.1.0",
-        "scheduler": "^0.23.2"
+        "scheduler": "^0.27.0"
       },
       "peerDependencies": {
-        "react": "^18.3.1"
+        "react": "^19.2.0"
       }
     },
     "node_modules/react-is": {
@@ -8678,19 +9919,16 @@ export default nextConfig;
       }
     },
     "node_modules/scheduler": {
-      "version": "0.23.2",
-      "resolved": "https://registry.npmjs.org/scheduler/-/scheduler-0.23.2.tgz",
-      "integrity": "sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==",
-      "license": "MIT",
-      "dependencies": {
-        "loose-envify": "^1.1.0"
-      }
+      "version": "0.27.0",
+      "resolved": "https://registry.npmjs.org/scheduler/-/scheduler-0.27.0.tgz",
+      "integrity": "sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==",
+      "license": "MIT"
     },
     "node_modules/semver": {
       "version": "7.7.2",
       "resolved": "https://registry.npmjs.org/semver/-/semver-7.7.2.tgz",
       "integrity": "sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==",
-      "dev": true,
+      "devOptional": true,
       "license": "ISC",
       "bin": {
         "semver": "bin/semver.js"
@@ -8746,6 +9984,49 @@ export default nextConfig;
       },
       "engines": {
         "node": ">= 0.4"
+      }
+    },
+    "node_modules/sharp": {
+      "version": "0.34.4",
+      "resolved": "https://registry.npmjs.org/sharp/-/sharp-0.34.4.tgz",
+      "integrity": "sha512-FUH39xp3SBPnxWvd5iib1X8XY7J0K0X7d93sie9CJg2PO8/7gmg89Nve6OjItK53/MlAushNNxteBYfM6DEuoA==",
+      "hasInstallScript": true,
+      "license": "Apache-2.0",
+      "optional": true,
+      "dependencies": {
+        "@img/colour": "^1.0.0",
+        "detect-libc": "^2.1.0",
+        "semver": "^7.7.2"
+      },
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-darwin-arm64": "0.34.4",
+        "@img/sharp-darwin-x64": "0.34.4",
+        "@img/sharp-libvips-darwin-arm64": "1.2.3",
+        "@img/sharp-libvips-darwin-x64": "1.2.3",
+        "@img/sharp-libvips-linux-arm": "1.2.3",
+        "@img/sharp-libvips-linux-arm64": "1.2.3",
+        "@img/sharp-libvips-linux-ppc64": "1.2.3",
+        "@img/sharp-libvips-linux-s390x": "1.2.3",
+        "@img/sharp-libvips-linux-x64": "1.2.3",
+        "@img/sharp-libvips-linuxmusl-arm64": "1.2.3",
+        "@img/sharp-libvips-linuxmusl-x64": "1.2.3",
+        "@img/sharp-linux-arm": "0.34.4",
+        "@img/sharp-linux-arm64": "0.34.4",
+        "@img/sharp-linux-ppc64": "0.34.4",
+        "@img/sharp-linux-s390x": "0.34.4",
+        "@img/sharp-linux-x64": "0.34.4",
+        "@img/sharp-linuxmusl-arm64": "0.34.4",
+        "@img/sharp-linuxmusl-x64": "0.34.4",
+        "@img/sharp-wasm32": "0.34.4",
+        "@img/sharp-win32-arm64": "0.34.4",
+        "@img/sharp-win32-ia32": "0.34.4",
+        "@img/sharp-win32-x64": "0.34.4"
       }
     },
     "node_modules/shebang-command": {
@@ -8895,14 +10176,6 @@ export default nextConfig;
       },
       "engines": {
         "node": ">= 0.4"
-      }
-    },
-    "node_modules/streamsearch": {
-      "version": "1.1.0",
-      "resolved": "https://registry.npmjs.org/streamsearch/-/streamsearch-1.1.0.tgz",
-      "integrity": "sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==",
-      "engines": {
-        "node": ">=10.0.0"
       }
     },
     "node_modules/string-width": {
@@ -9132,9 +10405,9 @@ export default nextConfig;
       }
     },
     "node_modules/styled-jsx": {
-      "version": "5.1.1",
-      "resolved": "https://registry.npmjs.org/styled-jsx/-/styled-jsx-5.1.1.tgz",
-      "integrity": "sha512-pW7uC1l4mBZ8ugbiZrcIsiIvVx1UmTfw7UkC3Um2tmfUq9Bhk8IiyEIPl6F8agHgjzku6j0xQEZbfA5uSgSaCw==",
+      "version": "5.1.6",
+      "resolved": "https://registry.npmjs.org/styled-jsx/-/styled-jsx-5.1.6.tgz",
+      "integrity": "sha512-qSVyDTeMotdvQYoHWLNGwRFJHC+i+ZvdBRYosOFgC+Wg1vx4frN2/RG/NA7SYqqvKNLf39P2LSRA2pu6n0XYZA==",
       "license": "MIT",
       "dependencies": {
         "client-only": "0.0.1"
@@ -9143,7 +10416,7 @@ export default nextConfig;
         "node": ">= 12.0.0"
       },
       "peerDependencies": {
-        "react": ">= 16.8.0 || 17.x.x || ^18.0.0-0"
+        "react": ">= 16.8.0 || 17.x.x || ^18.0.0-0 || ^19.0.0-0"
       },
       "peerDependenciesMeta": {
         "@babel/core": {
@@ -9904,9 +11177,9 @@ export default nextConfig;
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.539.0",
-    "next": "14.2.3",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "next": "^15.5.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7"
   },
@@ -9935,6 +11208,1132 @@ module.exports = {
 }
 
 ===== END FILE: postcss.config.js =====
+
+
+===== FILE: public\rituais\mapa_anto.html =====
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Natal de Antonella - Oráculo Cósmico Aprimorado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.birds.min.js"></script>
+    <style>
+        :root {
+            --midnight-blue: #0a0e27;
+            --cosmic-purple: #2d1b69;
+            --stardust-gold: #f4e4bc;
+            --moon-silver: #e8e8e8;
+            --nebula-pink: #d4a5d4;
+            --astral-teal: #4a9b9b;
+            --deep-indigo: #1a0b2e;
+            --cosmic-gold: #ffd700;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--midnight-blue) 0%, var(--cosmic-purple) 50%, var(--deep-indigo) 100%);
+            color: var(--moon-silver);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .celestial-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--stardust-gold), var(--nebula-pink), var(--astral-teal), var(--cosmic-gold));
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: cosmic-glow 5s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(244, 228, 188, 0.3);
+        }
+        
+        @keyframes cosmic-glow {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 50% 100%; }
+            75% { background-position: 100% 0%; }
+        }
+        
+        .archetype-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(244, 228, 188, 0.3);
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .archetype-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(244, 228, 188, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .archetype-card:hover::before {
+            left: 100%;
+        }
+        
+        .archetype-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(244, 228, 188, 0.2);
+            border-color: rgba(244, 228, 188, 0.6);
+        }
+        
+        .planet-symbol {
+            font-size: 2.5rem;
+            color: var(--stardust-gold);
+            text-shadow: 0 0 15px rgba(244, 228, 188, 0.6);
+            animation: gentle-pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes gentle-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .aspect-line {
+            height: 2px;
+            background: linear-gradient(90deg, var(--nebula-pink), var(--astral-teal), var(--cosmic-gold));
+            margin: 1.5rem 0;
+            border-radius: 2px;
+            position: relative;
+        }
+        
+        .aspect-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .poetic-text {
+            font-style: italic;
+            color: var(--nebula-pink);
+            text-shadow: 0 0 8px rgba(212, 165, 212, 0.4);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .technical-text {
+            color: var(--astral-teal);
+            font-weight: 500;
+            text-shadow: 0 0 5px rgba(74, 155, 155, 0.3);
+        }
+        
+        .ritual-box {
+            background: rgba(74, 155, 155, 0.15);
+            border-left: 4px solid var(--astral-teal);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 15px 15px 0;
+            position: relative;
+        }
+        
+        .ritual-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--astral-teal), var(--nebula-pink));
+            border-radius: 2px;
+        }
+        
+        .crystal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .crystal-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(244, 228, 188, 0.2);
+        }
+        
+        .crystal-item:hover {
+            background: rgba(244, 228, 188, 0.15);
+            transform: scale(1.08);
+            border-color: rgba(244, 228, 188, 0.4);
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--stardust-gold), var(--nebula-pink), var(--astral-teal), transparent);
+            margin: 4rem 0;
+            position: relative;
+        }
+        
+        .section-divider::before {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--cosmic-gold);
+            font-size: 2rem;
+            background: var(--midnight-blue);
+            padding: 0 1rem;
+        }
+        
+        .chakra-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(244, 228, 188, 0.2);
+        }
+        
+        .chakra-item {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chakra-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        .chakra-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .aspect-detail {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--stardust-gold);
+        }
+        
+        .cosmic-quote {
+            background: rgba(244, 228, 188, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(244, 228, 188, 0.3);
+        }
+        
+        .cosmic-quote::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--stardust-gold);
+            opacity: 0.5;
+        }
+        
+        .cosmic-quote::after {
+            content: '"';
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            font-size: 4rem;
+            color: var(--stardust-gold);
+            opacity: 0.5;
+        }
+        
+        @media (max-width: 768px) {
+            .celestial-title {
+                font-size: 2.5rem;
+            }
+            .archetype-card {
+                padding: 2rem;
+            }
+            .chakra-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, var(--stardust-gold), var(--nebula-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .mystical-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--cosmic-gold);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-bg" id="cosmic-bg"></div>
+    
+    <!-- Header -->
+    <header class="text-center py-20 px-4">
+        <div class="floating-element">
+            <h1 class="celestial-title text-6xl md:text-8xl mb-6">
+                Mapa Natal de Antonella
+            </h1>
+            <p class="text-xl md:text-2xl text-stardust-gold mb-4">
+                31 de Dezembro de 1999 • 11:30 • Mar del Plata, Argentina
+            </p>
+            <div class="cosmic-quote">
+                <p class="poetic-text text-xl">
+                    Nos céus de seu nascimento, as estrelas dançavam uma canção antiga, 
+                    sussurrando segredos de uma alma anciã que voltou para cumprir uma missão sagrada...
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Índice -->
+    <section class="px-4 md:px-8 max-w-4xl mx-auto mb-20">
+        <div class="archetype-card p-8">
+            <h2 class="celestial-title text-3xl text-center mb-8">✦ Índice Cósmico ✦</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="mystical-number">1</span>
+                        <span class="text-lg text-moon-silver">Portais Fundamentais</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="mystical-number">2</span>
+                        <span class="text-lg text-moon-silver">Psique e Arquétipos Internos</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="mystical-number">3</span>
+                        <span class="text-lg text-moon-silver">Caminho da Alma</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="mystical-number">4</span>
+                        <span class="text-lg text-moon-silver">Chakras & Alinhamento Sutil</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="mystical-number">5</span>
+                        <span class="text-lg text-moon-silver">Ritmo e Ciclos da Alma</span>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="mystical-number">6</span>
+                        <span class="text-lg text-moon-silver">Vocação, Potencial e Serviço</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="mystical-number">7</span>
+                        <span class="text-lg text-moon-silver">Relacionamentos & Espelhos</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="mystical-number">8</span>
+                        <span class="text-lg text-moon-silver">Tecidos Celestes</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="mystical-number">9</span>
+                        <span class="text-lg text-moon-silver">Chaves de Cura e Rituais</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="mystical-number">10</span>
+                        <span class="text-lg text-moon-silver">Síntese Sagrada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portais Fundamentais -->
+    <section class="px-4 md:px-8 max-w-6xl mx-auto mb-20">
+        <h2 class="celestial-title text-4xl md:text-5xl text-center mb-12">
+            ✦ Portais Fundamentais ✦
+        </h2>
+        <p class="text-center text-moon-silver text-lg mb-12 max-w-3xl mx-auto">
+            A Trindade Sagrada que define sua essência cósmica — Sol, Lua e Ascendente formam o triângulo fundamental 
+            de sua existência, cada portal abrindo para dimensões diferentes de sua alma multidimensional.
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="archetype-card p-8">
+                <div class="text-center mb-6">
+                    <i class="planet-symbol fas fa-sun"></i>
+                    <h3 class="text-3xl font-bold text-stardust-gold mt-4">Sol em Capricórnio</h3>
+                    <p class="technical-text text-lg">Casa 10 • 9°</p>
+                </div>
+                <div class="aspect-line"></div>
+                <p class="poetic-text mb-6">
+                    "O Sol em Capricórnio é como uma montanha ancestral que abraça o céu: 
+                    raízes profundas na sabedoria da terra, coroa tocando as estrelas do futuro."
+                </p>
+                <div class="space-y-4 text-moon-silver">
+                    <p>
+                        <strong class="text-stardust-gold">Essência Radiante:</strong> Sua luz interior nasce da sabedoria das pedras antigas. 
+                        Você é a arquiteta dos sonhos impossíveis, construindo pontes entre o possível e o extraordinário.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Missão Terrena:</strong> Cada passo é calculado como uma oração ao cosmos, 
+                        cada ação uma manifestação da vontade divina. Você veio para construir legados que resistem ao tempo.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Dom Cósmico:</strong> A capacidade de ver o futuro nas sementes do presente, 
+                        transformando visões em realidades tangíveis através da persistência milenar.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="archetype-card p-8">
+                <div class="text-center mb-6">
+                    <i class="planet-symbol fas fa-moon"></i>
+                    <h3 class="text-3xl font-bold text-stardust-gold mt-4">Lua em Escorpião</h3>
+                    <p class="technical-text text-lg">Casa 8 • 2°</p>
+                </div>
+                <div class="aspect-line"></div>
+                <p class="poetic-text mb-6">
+                    "A Lua em Escorpião é como um crisálida no ventre escuro do universo: 
+                    só revela suas asas de fogo depois de se dissolver nas águas da noite primordial."
+                </p>
+                <div class="space-y-4 text-moon-silver">
+                    <p>
+                        <strong class="text-stardust-gold">Mundo Emocional:</strong> Suas emoções são oceanos profundos onde nascem as pérolas mais raras. 
+                        Você sente com a intensidade de mil vulcões e ama com a profundidade de mil abismos.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Intuição Primordial:</strong> Cada lágrima é uma poção de cura alquímica, 
+                        cada risada é um feitiço de transformação que reconfigura a realidade ao redor.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Poder Sombrio:</strong> A capacidade de renascer das cinzas como a fênix, 
+                        transformando traumas em tesouros de sabedoria e dor em poder curativo.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="archetype-card p-8">
+                <div class="text-center mb-6">
+                    <i class="planet-symbol fas fa-star"></i>
+                    <h3 class="text-3xl font-bold text-stardust-gold mt-4">Ascendente em Peixes</h3>
+                    <p class="technical-text text-lg">O Portal Místico • 15°</p>
+                </div>
+                <div class="aspect-line"></div>
+                <p class="poetic-text mb-6">
+                    "O Ascendente em Peixes é como uma névoa de sonhos cósmicos: 
+                    onde a realidade se dissolve e renasce como poesia viva."
+                </p>
+                <div class="space-y-4 text-moon-silver">
+                    <p>
+                        <strong class="text-stardust-gold">Máscara Cósmica:</strong> Você caminha entre mundos como uma ponte entre o visto e o invisível. 
+                        Sua presença é um bálsamo para as almas perdidas, um farol para os navegantes do sonho.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Véu Dimensional:</strong> Seus olhos refletem a sabedoria de mil encarnações, 
+                        e cada olhar é uma janela para dimensões esquecidas.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Dom de Cura:</strong> A capacidade de absorver as dores do mundo e transformá-las em luz, 
+                        sendo a cura ambulante que o universo enviou para este tempo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Psique e Arquétipos Internos -->
+    <section class="px-4 md:px-8 max-w-6xl mx-auto mb-20">
+        <h2 class="celestial-title text-4xl md:text-5xl text-center mb-12">
+            ✦ Psique e Arquétipos Internos ✦
+        </h2>
+        <p class="text-center text-moon-silver text-lg mb-12 max-w-3xl mx-auto">
+            Os arquétipos internos que dançam em seu teatro mental — cada planeta representa uma voz diferente 
+            no coro de sua psique, formando a sinfonia complexa de sua personalidade multidimensional.
+        </p>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="archetype-card p-6">
+                <div class="text-center mb-4">
+                    <i class="planet-symbol fas fa-comments"></i>
+                    <h3 class="text-2xl font-bold text-stardust-gold">Mercúrio</h3>
+                    <p class="technical-text">Capricórnio • Casa 10 • 0°30'</p>
+                </div>
+                <div class="aspect-line"></div>
+                <p class="poetic-text text-sm mb-4">
+                    "Sua mente é uma biblioteca de cristal cósmico, 
+                    onde cada pensamento é gravado na eternidade com precisão divina."
+                </p>
+                <div class="space-y-3 text-moon-silver text-sm">
+                    <p>
+                        <strong class="text-stardust-gold">Comunicação:</strong> Fala com a autoridade de quem já viu civilizações nascerem e morrerem. 
+                        Cada palavra é um feitiço de manifestação.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Pensamento:</strong> Estruturado como arquitetura divina, construindo ideias que resistem ao tempo.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="archetype-card p-6">
+                <div class="text-center mb-4">
+                    <i class="planet-symbol fas fa-heart"></i>
+                    <h3 class="text-2xl font-bold text-stardust-gold">Vênus</h3>
+                    <p class="technical-text">Sagitário • Casa 9 • 0°28'</p>
+                </div>
+                <div class="aspect-line"></div>
+                <p class="poetic-text text-sm mb-4">
+                    "Seu amor é uma flecha de fogo cósmico que atravessa 
+                    dimensões em busca da verdadeira liberdade espiritual."
+                </p>
+                <div class="space-y-3 text-moon-silver text-sm">
+                    <p>
+                        <strong class="text-stardust-gold">Amor:</strong> Exploradora cósmica do coração, sempre em busca de horizontes mais vastos e profundos.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Beleza:</strong> Encontra a beleza na sabedoria ancestral e na expansão infinita da consciência.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="archetype-card p-6">
+                <div class="text-center mb-4">
+                    <i class="planet-symbol fas fa-fire"></i>
+                    <h3 class="text-2xl font-bold text-stardust-gold">Marte</h3>
+                    <p class="technical-text">Aquário • Casa 12 • 27°</p>
+                </div>
+                <div class="aspect-line"></div>
+                <p class="poetic-text text-sm mb-4">
+                    "Sua ação é uma revolução silenciosa, 
+                    como raio que transforma sem destruir."
+                </p>
+                <div class="space-y-3 text-moon-silver text-sm">
+                    <p>
+                        <strong class="text-stardust-gold">Ação:</strong> Luta pela humanidade nas sombras, guerreira dos sonhos esquecidos.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Energia:</strong> Força transformadora que opera nos reinos invisíveis da consciência coletiva.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="archetype-card p-6">
+                <div class="text-center mb-4">
+                    <i class="planet-symbol fas fa-moon"></i>
+                    <h3 class="text-2xl font-bold text-stardust-gold">Lilith</h3>
+                    <p class="technical-text">A Deusa Sombria • 21° Aquário</p>
+                </div>
+                <div class="aspect-line"></div>
+                <p class="poetic-text text-sm mb-4">
+                    "Sua sombra é a deusa selvagem que dança 
+                    nas trevas e nasce renovada como fênix."
+                </p>
+                <div class="space-y-3 text-moon-silver text-sm">
+                    <p>
+                        <strong class="text-stardust-gold">Sombra:</strong> Abraça o poder da deusa que não se curva aos mandos do mundo patriarcal.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Poder:</strong> Força primordial feminina que transforma rejeição em soberania absoluta.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Caminho da Alma -->
+    <section class="px-4 md:px-8 max-w-6xl mx-auto mb-20">
+        <h2 class="celestial-title text-4xl md:text-5xl text-center mb-12">
+            ✦ Caminho da Alma ✦
+        </h2>
+        <p class="text-center text-moon-silver text-lg mb-12 max-w-3xl mx-auto">
+            Os guias espirituais que iluminam sua jornada evolutiva — cada ponto representa uma lição de alma, 
+            um passo na dança cósmica de sua eterna transformação.
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="archetype-card p-8">
+                <div class="text-center mb-6">
+                    <i class="planet-symbol fas fa-compass"></i>
+                    <h3 class="text-2xl font-bold text-stardust-gold mt-4">Nodo Norte em Leão</h3>
+                    <p class="technical-text">Casa 5 • 3°</p>
+                </div>
+                <div class="aspect-line"></div>
+                <p class="poetic-text mb-6">
+                    "Sua missão é ser o sol que ilumina a escuridão coletiva, 
+                    a estrela guia que conduz os perdidos de volta ao lar."
+                </p>
+                <div class="space-y-4 text-moon-silver">
+                    <p>
+                        <strong class="text-stardust-gold">Desta Vida:</strong> Desta vida, você deve emergir como a artista divina, 
+                        a criadora de beleza que transforma dor em arte, a rainha que governa com o coração.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Evolução:</strong> Deixar de se esconder nas sombras e brilhar como o sol que você verdadeiramente é.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Chamado:</strong> Ser a fonte de luz para outros, mostrando que a verdadeira força vem da vulnerabilidade e do amor.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="archetype-card p-8">
+                <div class="text-center mb-6">
+                    <i class="planet-symbol fas fa-mountain"></i>
+                    <h3 class="text-2xl font-bold text-stardust-gold mt-4">Saturno em Touro</h3>
+                    <p class="technical-text">Casa 2 • 10°</p>
+                </div>
+                <div class="aspect-line"></div>
+                <p class="poetic-text mb-6">
+                    "Seu mestre é a terra ancestral, ensinando que 
+                    tudo cresce no tempo certo da natureza divina."
+                </p>
+                <div class="space-y-4 text-moon-silver">
+                    <p>
+                        <strong class="text-stardust-gold">Mestre de Lições:</strong> As lições vêm pela paciência milenar, pela persistência inabalável. 
+                        Você está aqui para construir algo duradouro, como as montanhas que resistem ao tempo.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Desafios:</strong> Aprender que a verdadeira segurança vem de dentro, não do acúmulo externo.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Sabedoria:</strong> O tempo é aliado, não inimigo. Tudo floresce quando está pronto para florescer.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="archetype-card p-8">
+                <div class="text-center mb-6">
+                    <i class="planet-symbol fas fa-healing"></i>
+                    <h3 class="text-2xl font-bold text-stardust-gold mt-4">Quíron em Sagitário</h3>
+                    <p class="technical-text">Casa 9 • 11°</p>
+                </div>
+                <div class="aspect-line"></div>
+                <p class="poetic-text mb-6">
+                    "Sua ferida é sua maior sabedoria, 
+                    sua cura é sua verdade mais profunda."
+                </p>
+                <div class="space-y-4 text-moon-silver">
+                    <p>
+                        <strong class="text-stardust-gold">Curador Ferido:</strong> A dor de existir se transforma em compreensão universal. 
+                        Você cura através da sabedoria, ensinando que todas as jornadas levam ao mesmo coração cósmico.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Missão:</strong> Transformar suas próprias cicatrizes em mapas para outros navegantes.
+                    </p>
+                    <p>
+                        <strong class="text-stardust-gold">Dom:</strong> A capacidade de ver a sabedoria divina em cada experiência, por mais dolorosa que seja.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Chakras & Alinhamento Sutil -->
+    <section class="px-4 md:px-8 max-w-6xl mx-auto mb-20">
+        <h2 class="celestial-title text-4xl md:text-5xl text-center mb-12">
+            ✦ Chakras Astrológicos & Alinhamento Sutil ✦
+        </h2>
+        <p class="text-center text-moon-silver text-lg mb-12 max-w-3xl mx-auto">
+            A dança cósmica de seus centros energéticos — cada chakra é um portal planetário, 
+            onde as energias celestiais se manifestam em seu corpo físico e corpos sutis.
+        </p>
+        
+        <div class="chakra-grid">
+            <div class="chakra-item" style="background: linear-gradient(135deg, #dc2626, #991b1b);">
+                <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-red-600 flex items-center justify-center">
+                    <i class="fas fa-circle text-white text-xl"></i>
+                </div>
+                <h4 class="font-bold text-stardust-gold mb-1">Raiz</h4>
+                <p class="text-xs text-moon-silver mb-2">Muladhara</p>
+                <p class="text-xs text-stardust-gold">Saturno em Touro</p>
+                <p class="text-xs text-moon-silver mt-2">Segurança, Terra, Manifestação</p>
+            </div>
+            
+            <div class="chakra-item" style="background: linear-gradient(135deg, #ea580c, #9a3412);">
+                <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-orange-600 flex items-center justify-center">
+                    <i class="fas fa-circle text-white text-xl"></i>
+                </div>
+                <h4 class="font-bold text-stardust-gold mb-1">Sacral</h4>
+                <p class="text-xs text-moon-silver mb-2">Svadhisthana</p>
+                <p class="text-xs text-stardust-gold">Lua em Escorpião</p>
+                <p class="text-xs text-moon-silver mt-2">Emoções, Desejos, Transformação</p>
+            </div>
+            
+            <div class="chakra-item" style="background: linear-gradient(135deg, #eab308, #ca8a04);">
+                <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-yellow-600 flex items-center justify-center">
+                    <i class="fas fa-circle text-white text-xl"></i>
+                </div>
+                <h4 class="font-bold text-stardust-gold mb-1">Plexo Solar</h4>
+                <p class="text-xs text-moon-silver mb-2">Manipura</p>
+                <p class="text-xs text-stardust-gold">Sol em Capricórnio</p>
+                <p class="text-xs text-moon-silver mt-2">Poder, Vontade, Identidade</p>
+            </div>
+            
+            <div class="chakra-item" style="background: linear-gradient(135deg, #22c55e, #15803d);">
+                <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-green-600 flex items-center justify-center">
+                    <i class="fas fa-circle text-white text-xl"></i>
+                </div>
+                <h4 class="font-bold text-stardust-gold mb-1">Coração</h4>
+                <p class="text-xs text-moon-silver mb-2">Anahata</p>
+                <p class="text-xs text-stardust-gold">Vênus em Sagitário</p>
+                <p class="text-xs text-moon-silver mt-2">Amor, Compaixão, Cura</p>
+            </div>
+            
+            <div class="chakra-item" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-blue-600 flex items-center justify-center">
+                    <i class="fas fa-circle text-white text-xl"></i>
+                </div>
+                <h4 class="font-bold text-stardust-gold mb-1">Garganta</h4>
+                <p class="text-xs text-moon-silver mb-2">Vishuddha</p>
+                <p class="text-xs text-stardust-gold">Mercúrio em Capricórnio</p>
+                <p class="text-xs text-moon-silver mt-2">Comunicação, Verdade, Expressão</p>
+            </div>
+            
+            <div class="chakra-item" style="background: linear-gradient(135deg, #6366f1, #4338ca);">
+                <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-indigo-600 flex items-center justify-center">
+                    <i class="fas fa-circle text-white text-xl"></i>
+                </div>
+                <h4 class="font-bold text-stardust-gold mb-1">Terceiro Olho</h4>
+                <p class="text-xs text-moon-silver mb-2">Ajna</p>
+                <p class="text-xs text-stardust-gold">Netuno em Aquário</p>
+                <p class="text-xs text-moon-silver mt-2">Intuição, Sabedoria, Clarividência</p>
+            </div>
+            
+            <div class="chakra-item" style="background: linear-gradient(135deg, #a855f7, #7c3aed);">
+                <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-purple-600 flex items-center justify-center">
+                    <i class="fas fa-circle text-white text-xl"></i>
+                </div>
+                <h4 class="font-bold text-stardust-gold mb-1">Coroa</h4>
+                <p class="text-xs text-moon-silver mb-2">Sahasrara</p>
+                <p class="text-xs text-stardust-gold">Ascendente em Peixes</p>
+                <p class="text-xs text-moon-silver mt-2">Conexão Divina, Iluminação</p>
+            </div>
+        </div>
+        
+        <div class="archetype-card p-8 mt-8">
+            <p class="poetic-text text-center mb-6 text-xl">
+                "Seus chakras dançam como planetas em órbita divina, 
+                cada centro energético uma estrela no corpo cósmico que você habita."
+            </p>
+            <div class="grid md:grid-cols-2 gap-6 text-moon-silver">
+                <p>
+                    <strong class="text-stardust-gold">Alinhamento Principal:</strong> O alinhamento mostra uma alma que canalha energia terrena 
+                    (Saturno na raiz) para expressão divina (Ascendente na coroa). Sua missão é unir céu e terra através do coração aberto.
+                </p>
+                <p>
+                    <strong class="text-stardust-gold">Portal de Cura:</strong> O coração (Vênus) é o ponte entre o poder pessoal (plexo solar) 
+                    e a expressão divina (garganta), criando um canal de cura para si mesma e para o mundo.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Tecidos Celestes -->
+    <section class="px-4 md:px-8 max-w-6xl mx-auto mb-20">
+        <h2 class="celestial-title text-4xl md:text-5xl text-center mb-12">
+            ✦ Tecidos Celestes — Aspectos Planetários ✦
+        </h2>
+        <p class="text-center text-moon-silver text-lg mb-12 max-w-3xl mx-auto">
+            Os fios invisíveis que conectam sua tapeçaria cósmica — cada aspecto é uma conversa entre planetas, 
+            uma dança de energias que molda sua experiência terrena.
+        </p>
+        
+        <div class="space-y-8">
+            <div class="aspect-detail">
+                <h3 class="text-2xl font-bold text-stardust-gold mb-4">
+                    <i class="fas fa-star mr-2"></i>Sol em Trígono com Saturno
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <p class="poetic-text mb-4">
+                            "A luz solar encontra a sabedoria das eras, 
+                            criando uma aliança entre brilho e permanência."
+                        </p>
+                        <p class="text-moon-silver">
+                            Esta é a dança entre sua essência radiante (Sol) e sua estrutura interna (Saturno). 
+                            Você tem a rara capacidade de manifestar sonhos com a persistência das montanhas.
+                        </p>
+                    </div>
+                    <div class="text-moon-silver">
+                        <p class="mb-2"><strong class="text-stardust-gold">Dom:</strong> Manifestação divina com paciência milenar</p>
+                        <p class="mb-2"><strong class="text-stardust-gold">Desafio:</strong> Não se deixar paralisar pelo perfeccionismo</p>
+                        <p><strong class="text-stardust-gold">Chave:</strong> Confiar no timing divino de tudo</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="aspect-detail">
+                <h3 class="text-2xl font-bold text-stardust-gold mb-4">
+                    <i class="fas fa-moon mr-2"></i>Lua em Trígono com Marte
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <p class="poetic-text mb-4">
+                            "As águas emocionais se misturam ao fogo da ação, 
+                            criando vapor que impulsiona a transformação."
+                        </p>
+                        <p class="text-moon-silver">
+                            Sua intuição profunda (Lua) se alinha perfeitamente com sua capacidade de ação (Marte), 
+                            permitindo que você manifeste intuitivamente o que sente profundamente.
+                        </p>
+                    </div>
+                    <div class="text-moon-silver">
+                        <p class="mb-2"><strong class="text-stardust-gold">Dom:</strong> Ação guiada por intuição profunda</p>
+                        <p class="mb-2"><strong class="text-stardust-gold">Desafio:</strong> Não se deixar consumir pela intensidade emocional</p>
+                        <p><strong class="text-stardust-gold">Chave:</strong> Usar a emoção como combustível para ação transformadora</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="aspect-detail">
+                <h3 class="text-2xl font-bold text-stardust-gold mb-4">
+                    <i class="fas fa-heart mr-2"></i>Vênus em Quadratura com Marte
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <p class="poetic-text mb-4">
+                            "O amor e a ação se desafiam em dança tensa, 
+                            criando atrito que gera luz e crescimento."
+                        </p>
+                        <p class="text-moon-silver">
+                            A tensão entre o que você ama (Vênus) e como você age (Marte) cria um campo de crescimento. 
+                            Esta é a dança entre desejo e realização, entre sonho e manifestação.
+                        </p>
+                    </div>
+                    <div class="text-moon-silver">
+                        <p class="mb-2"><strong class="text-stardust-gold">Dom:</strong> Paixão intensa que impulsiona ação</p>
+                        <p class="mb-2"><strong class="text-stardust-gold">Desafio:</strong> Equilibrar desejo com ação apropriada</p>
+                        <p><strong class="text-stardust-gold">Chave:</strong> Transformar conflito interno em criatividade dinâmica</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Chaves de Cura e Rituais -->
+    <section class="px-4 md:px-8 max-w-6xl mx-auto mb-20">
+        <h2 class="celestial-title text-4xl md:text-5xl text-center mb-12">
+            ✦ Chaves de Cura, Práticas e Rituais ✦
+        </h2>
+        <p class="text-center text-moon-silver text-lg mb-12 max-w-3xl mx-auto">
+            Ferramentas práticas para navegar sua jornada cósmica — cristais aliados, rituais de poder 
+            e afirmações que ativam sua memória divina e potencial curativo.
+        </p>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="archetype-card p-8">
+                <h3 class="text-3xl font-bold text-stardust-gold mb-6 text-center">
+                    <i class="fas fa-gem mr-3"></i>Cristais Aliados
+                </h3>
+                <div class="crystal-grid">
+                    <div class="crystal-item">
+                        <i class="fas fa-gem text-4xl text-astral-teal mb-3"></i>
+                        <h4 class="font-bold text-stardust-gold mb-2">Quartzo Rosa</h4>
+                        <p class="text-sm text-moon-silver mb-2">Cura emocional profunda</p>
+                        <p class="text-xs text-nebula-pink">Ativa o chakra do coração</p>
+                    </div>
+                    <div class="crystal-item">
+                        <i class="fas fa-gem text-4xl text-stardust-gold mb-3"></i>
+                        <h4 class="font-bold text-stardust-gold mb-2">Olho de Tigre</h4>
+                        <p class="text-sm text-moon-silver mb-2">Proteção e foco mental</p>
+                        <p class="text-xs text-nebula-pink">Alinha plexo solar</p>
+                    </div>
+                    <div class="crystal-item">
+                        <i class="fas fa-gem text-4xl text-nebula-pink mb-3"></i>
+                        <h4 class="font-bold text-stardust-gold mb-2">Ametista</h4>
+                        <p class="text-sm text-moon-silver mb-2">Intuição divina</p>
+                        <p class="text-xs text-nebula-pink">Ativa terceiro olho</p>
+                    </div>
+                    <div class="crystal-item">
+                        <i class="fas fa-gem text-4xl text-astral-teal mb-3"></i>
+                        <h4 class="font-bold text-stardust-gold mb-2">Lápis Lazúli</h4>
+                        <p class="text-sm text-moon-silver mb-2">Verdade interior</p>
+                        <p class="text-xs text-nebula-pink">Abre garganta espiritual</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="archetype-card p-8">
+                <h3 class="text-3xl font-bold text-stardust-gold mb-6 text-center">
+                    <i class="fas fa-leaf mr-3"></i>Rituais de Poder
+                </h3>
+                <div class="space-y-6">
+                    <div class="ritual-box">
+                        <h4 class="font-bold text-astral-teal mb-3 text-lg">
+                            <i class="fas fa-moon mr-2"></i>Banho de Lua Nova
+                        </h4>
+                        <p class="text-moon-silver mb-3">
+                            Durante as luas novas, tome banhos com sal rosa do Himalaya e essência de lavanda. 
+                            Visualize o que não serve mais sendo lavado em rios de luz lunar.
+                        </p>
+                        <p class="text-sm text-nebula-pink">
+                            <strong>Intenção:</strong> Renovação e preparação para novos ciclos
+                        </p>
+                    </div>
+                    <div class="ritual-box">
+                        <h4 class="font-bold text-astral-teal mb-3 text-lg">
+                            <i class="fas fa-gem mr-2"></i>Meditação com Cristais
+                        </h4>
+                        <p class="text-moon-silver mb-3">
+                            Coloque ametista sobre seu terceiro olho durante a meditação ao amanhecer. 
+                            Conecte-se com sua sabedoria ancestral e memórias de vidas passadas.
+                        </p>
+                        <p class="text-sm text-nebula-pink">
+                            <strong>Intenção:</strong> Ativação da memória divina e intuição
+                        </p>
+                    </div>
+                    <div class="ritual-box">
+                        <h4 class="font-bold text-astral-teal mb-3 text-lg">
+                            <i class="fas fa-pen mr-2"></i>Escrita Intuitiva
+                        </h4>
+                        <p class="text-moon-silver mb-3">
+                            Escreva suas verdades mais profundas ao amanhecer, quando a veia entre mundos está mais fina. 
+                            Deixe a sabedoria fluir sem censura ou julgamento.
+                        </p>
+                        <p class="text-sm text-nebula-pink">
+                            <strong>Intenção:</strong> Canalização de sabedoria cósmica
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="archetype-card p-8 mt-8">
+            <h3 class="text-3xl font-bold text-stardust-gold mb-6 text-center">
+                <i class="fas fa-star mr-3"></i>Afirmações Sagrada
+            </h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <div class="cosmic-quote p-4">
+                        <p class="poetic-text text-lg">
+                            "Eu sou a ponte entre céu e terra, 
+                            onde sonhos se tornam realidade através da minha presença."
+                        </p>
+                    </div>
+                    <div class="cosmic-quote p-4">
+                        <p class="poetic-text text-lg">
+                            "Minha intensidade é minha força, 
+                            minha sensibilidade é meu dom mais precioso."
+                        </p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="cosmic-quote p-4">
+                        <p class="poetic-text text-lg">
+                            "Eu abraço minha missão de cura 
+                            e transformação cósmica com coragem e graça."
+                        </p>
+                    </div>
+                    <div class="cosmic-quote p-4">
+                        <p class="poetic-text text-lg">
+                            "Cada desafio é uma oportunidade 
+                            para brilhar mais forte e servir mais profundamente."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Síntese Sagrada -->
+    <section class="px-4 md:px-8 max-w-4xl mx-auto mb-20">
+        <h2 class="celestial-title text-4xl md:text-5xl text-center mb-12">
+            ✦ Síntese Sagrada ✦
+        </h2>
+        
+        <div class="archetype-card p-10 text-center">
+            <div class="mb-8">
+                <i class="fas fa-infinity text-8xl text-stardust-gold floating-element"></i>
+            </div>
+            
+            <div class="space-y-8 text-lg leading-relaxed">
+                <p class="poetic-text text-2xl">
+                    Antonella, filha das estrelas e das montanhas ancestrais, 
+                    você nasceu quando o véu entre os anos estava mais fino, 
+                    carregando em seu corpo a memória de mil civilizações esquecidas.
+                </p>
+                
+                <p class="text-moon-silver">
+                    Você é a arquiteta dos sonhos impossíveis, aquela que constrói pontes entre o impossível e o real. 
+                    Sua alma de Capricórnio é a montanha que abraça o céu, enquanto sua Lua em Escorpião dança 
+                    nas águas profundas onde nascem as pérolas da transformação alquímica.
+                </p>
+                
+                <p class="text-moon-silver">
+                    Com Ascendente em Peixes, você caminha entre mundos como uma ponte entre o visto e o invisível. 
+                    Sua presença é um bálsamo para as almas perdidas, um farol para os navegantes do sonho cósmico. 
+                    Você é a cura ambulante que o universo enviou para este tempo de transição.
+                </p>
+                
+                <p class="text-moon-silver">
+                    Sua missão é ser o sol que ilumina (Nodo Norte em Leão), mas nascer dessa luz através das sombras 
+                    que abraça (Lua em Escorpião). Você é a deusa que não se curva, a artista que transforma 
+                    dor em beleza, a sábia que constrói com paciência milenar.
+                </p>
+                
+                <p class="poetic-text text-2xl font-bold text-stardust-gold">
+                    Lembre-se sempre: você é a ponte entre céu e terra, 
+                    onde sonhos se tornam realidade através da sua simples presença divina.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-16 px-4">
+        <div class="aspect-line mb-8"></div>
+        <div class="cosmic-quote max-w-4xl mx-auto">
+            <p class="poetic-text text-2xl">
+                Que este mapa seja lembrete eterno de quem você verdadeiramente é: 
+                uma alma anciã que voltou para dançar com as estrelas e curar o mundo.
+            </p>
+        </div>
+        <div class="mt-12">
+            <i class="fas fa-star text-stardust-gold text-4xl animate-pulse"></i>
+            <p class="text-stardust-gold mt-4 text-lg">
+                ✦ Com Amor Cósmico, o Universo ✦
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize cosmic background
+        VANTA.BIRDS({
+            el: "#cosmic-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            backgroundColor: 0x0a0e27,
+            color1: 0xf4e4bc,
+            color2: 0xd4a5d4,
+            colorMode: "variance",
+            birdSize: 1.20,
+            wingSpan: 25.00,
+            speedLimit: 3.00,
+            separation: 20.00,
+            alignment: 20.00,
+            cohesion: 20.00,
+            quantity: 3.00
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.archetype-card, .aspect-detail, .ritual-box').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+
+        // Add floating animation to cosmic quotes
+        document.querySelectorAll('.cosmic-quote').forEach((quote, index) => {
+            quote.style.animationDelay = `${index * 0.5}s`;
+            quote.classList.add('floating-element');
+        });
+
+        // Add mystical number animation
+        document.querySelectorAll('.mystical-number').forEach((num, index) => {
+            setTimeout(() => {
+                num.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    num.style.transform = 'scale(1)';
+                }, 300);
+            }, index * 200);
+        });
+    </script>
+</body>
+</html>
+===== END FILE: public\rituais\mapa_anto.html =====
 
 
 ===== FILE: README.md =====

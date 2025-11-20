@@ -1,299 +1,300 @@
-// app/livros/um-lugar-entre-mundos/page.tsx
+import React from "react";
+import type { Metadata } from "next";
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Sparkles, BookOpen, Feather, ArrowRight, Star, ShieldCheck, Cpu } from "lucide-react";
+import { MysticCard } from "@/components/ui/MysticCard";
+import { GlowButton } from "@/components/ui/GlowButton";
+import { Section } from "@/components/ui/Section";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { HotmartButton } from "@/components/ui/HotmartButton";
-import { HOTMART_URL_STANDARD, HOTMART_URL_CONSCIOUS } from "@/lib/links";
 
-// --- Metadata da página ---
-export const metadata = {
-  title: "Um Lugar entre Mundos — Samadhi: O Despertar de Sofia",
-  description:
-    "Ficção mística inspirada em vivências reais com espiritualidade, medicina da floresta e geometria sagrada.",
+export const metadata: Metadata = {
+  title: "Um Lugar Entre Mundos | Marroc",
+  description: "Uma obra iniciática que funde Xamanismo, RPG e Tecnologia. Não apenas leia. Desperte.",
+  openGraph: {
+    images: [{ url: "/capa-ulm.png", width: 1200, height: 630, alt: "Capa do Livro Um Lugar Entre Mundos" }],
+  },
 };
 
-// --- Blocos auxiliares (fora do componente principal) --
-function ImpactoSection() {
-  return (
-    <section className="container pb-6" aria-labelledby="impacto-title">
-      <Card className="bg-white/5 border-white/10">
-        <CardHeader>
-          <h2 id="impacto-title" className="font-display text-3xl md:text-4xl">
-            Impacto & Partilha
-          </h2>
-        </CardHeader>
-        <CardContent className="text-paper/80 leading-relaxed">
-          Parte de cada venda sustenta a aldeia indígena que inspirou esta obra.
-          Nossa contribuição é trimestral e transparente — você participa da preservação
-          cultural, do cuidado com a floresta.
-        </CardContent>
-      </Card>
-    </section>
-  );
-}
+// Links do seu Dump
+const LINKS = {
+  hotmartStandard: "https://pay.hotmart.com/M101238238O?off=ur3sdp6i", // Valor Simbólico
+  hotmartConscious: "https://pay.hotmart.com/M101238238O?off=p1uhfzib", // Valor Consciente
+};
 
-function AutorSection() {
+export default function LandingPageLivro() {
   return (
-    <section
-      className="container py-10"
-      aria-labelledby="autor-title"
-      itemScope
-      itemType="https://schema.org/Person"
-    >
-      <h2 id="autor-title" className="font-display text-3xl md:text-4xl mb-6">
-        Sobre o Autor
-      </h2>
-
-      <div className="grid md:grid-cols-[220px,1fr] gap-6 md:gap-10 items-start">
-        <Image
-          src="/txai marroc.png"
-          alt="Foto do autor Marcio Rocha"
-          width={220}
-          height={280}
-          className="rounded-2xl object-cover border border-white/10"
-          itemProp="image"
-        />
-        <Card className="bg-white/5 border-white/10">
-          <CardContent className="p-6 text-paper/80 leading-relaxed">
-            <p itemProp="description">
-              Meu nome é <span itemProp="name">Marcio Rocha</span>. Esta obra nasceu da minha própria
-              jornada, tecida por vivências com espiritualidade, medicina da floresta, geometria
-              sagrada, rituais e encontros de silêncio. Escrevi <em>Samadhi</em> como um portal de cura — um
-              convite para quem sente o chamado.
+    <main className="bg-[#050505] text-paper selection:bg-gold selection:text-black overflow-x-hidden">
+      
+      {/* --- 1. HERO SECTION: O CHAMADO --- */}
+      <section className="relative min-h-[90vh] flex items-center justify-center py-20 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-[url('/bg-forest.jpg')] opacity-20 bg-cover bg-center mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/80 to-[#050505]" />
+        
+        <div className="container relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+          <div className="order-2 lg:order-1 space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 border border-gold/30 rounded-full bg-gold/5">
+              <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+              <span className="text-xs font-mono text-gold tracking-widest uppercase">Artefato Digital Disponível</span>
+            </div>
+            
+            <h1 className="font-display text-5xl md:text-7xl leading-[1.1] text-white">
+              O Código da <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-yellow-200 to-gold">Transcendência</span>
+            </h1>
+            
+            <p className="text-lg text-white/70 leading-relaxed max-w-xl border-l-2 border-gold/50 pl-6">
+              Uma jornada iniciática disfarçada de ficção. Descubra o elo perdido entre os rituais ancestrais da floresta e o futuro digital da consciência.
             </p>
-            <p className="mt-4">
-              Todo o conteúdo do livro é <strong>vivido, visto ou ouvido</strong>. Os cenários, personagens,
-              cerimônias e acontecimentos foram experienciados ou registrados a partir de relatos,
-              como parte de um caminho real de pesquisa e presença.
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-    </section>
-  );
-}
 
-function CreditosIA() {
-  return (
-    <section className="container pb-16" aria-labelledby="creditos-title">
-      <h2 id="creditos-title" className="font-display text-2xl mb-2">
-        Créditos
-      </h2>
-      <p className="text-sm text-paper/60 max-w-3xl leading-relaxed">
-        Este projeto utilizou ferramentas de IA no processo de{" "}
-        <em>contextualização, organização e edição técnica</em> do conteúdo e do site. Toda a ideia-base,
-        cenários, personagens e descrições de cenas e cerimônias são de autoria de Marcio Rocha;
-        a IA auxiliou apenas na articulação e na experiência de leitura.{" "}
-        <strong>O livro é integralmente composto por conteúdos vividos, vistos ou ouvidos</strong> pelo autor.
-      </p>
-    </section>
-  );
-}
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <GlowButton href="#oferta" variant="gold">
+                Adquirir o Grimório
+              </GlowButton>
+              <button className="px-8 py-4 text-sm font-mono text-white/60 hover:text-white transition flex items-center gap-2 group">
+                Ler o Capítulo Zero <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </div>
 
-// --- Página principal ---
-export default function LivroPage() {
-  return (
-    <main className="bg-ritual text-paper">
-      {/* HERO */}
-      <section className="relative overflow-hidden">
-        <Image
-          src="/bg-forest.jpg"
-          alt=""
-          fill
-          className="object-cover opacity-40 -z-10"
-          priority
-        />
-        <div className="container py-16 md:py-24">
-          <div className="grid md:grid-cols-[320px,1fr] gap-8 md:gap-12 items-center">
+          <div className="order-1 lg:order-2 flex justify-center relative">
+            {/* Aura atrás do livro */}
+            <div className="absolute inset-0 bg-gold/20 blur-[100px] rounded-full transform scale-75" />
             <Image
               src="/capa-ulm.png"
-              width={320}
-              height={440}
-              alt="Capa do livro Um Lugar Entre Mundos"
-              className="rounded-2xl shadow-ritual object-cover"
+              alt="Capa do Livro Um Lugar Entre Mundos"
+              width={400}
+              height={600}
+              className="relative z-10 rounded shadow-2xl shadow-black rotate-3 hover:rotate-0 transition-all duration-700"
               priority
             />
-            <div>
-              <h1 className="font-display text-4xl md:text-6xl">Um Lugar Entre Mundos</h1>
-              <p className="mt-2 text-lg text-paper/80">
-                Samadhi — O Despertar de Sofia
+          </div>
+        </div>
+      </section>
+
+      {/* --- 2. O PROBLEMA: A DESCONEXÃO --- */}
+      <section className="py-24 bg-black relative">
+        <div className="container max-w-3xl text-center space-y-8">
+          <h2 className="font-display text-3xl md:text-4xl text-white">
+            Você sente que a realidade está... <span className="italic text-white/50">incompleta?</span>
+          </h2>
+          <p className="text-white/70 text-lg leading-relaxed">
+            Vivemos cercados por tecnologia, mas desconectados da magia. O mundo moderno nos transformou em NPCs de nossa própria história. A busca por sentido se perdeu no ruído do feed. 
+          </p>
+          <p className="text-gold text-xl font-display">
+            E se houvesse um código oculto, um ritual esquecido capaz de reescrever sua percepção?
+          </p>
+        </div>
+      </section>
+
+      {/* --- 3. A SOLUÇÃO: OS PILARES DO LIVRO --- */}
+      <Section className="bg-[#080808] border-y border-white/5">
+        <div className="container">
+          <div className="grid md:grid-cols-3 gap-8">
+            <MysticCard>
+              <Sparkles className="text-gold mb-4 w-8 h-8" />
+              <h3 className="font-display text-2xl mb-3 text-white">Misticismo Real</h3>
+              <p className="text-white/60 text-sm">
+                Inspirado em vivências reais com medicina da floresta e geometria sagrada. Não é apenas fantasia, é memória.
               </p>
-              <ul className="mt-6 space-y-2 text-paper/80">
-                <li>• Uma jornada mística entre mundos para despertar o seu poder interior.</li>
-                <li>• Inspirada em vivências reais com espiritualidade e medicina da floresta.</li>
-                <li>• PDF com acesso imediato, em qualquer dispositivo.</li>
-                <li>• Parte do valor é destinada à aldeia indígena que inspirou a história.</li>
-              </ul>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild>
-                  <a href={HOTMART_URL_STANDARD} target="_blank" rel="noreferrer">
-                    Comprar (R$ 22,20)
-                  </a>
-                </Button>
-                <Button asChild>
-                  <a href={HOTMART_URL_CONSCIOUS} target="_blank" rel="noreferrer">
-                    Valor consciente (R$ 33,30)
-                  </a>
-                </Button>
-              </div>
+            </MysticCard>
+
+            <MysticCard>
+              <Cpu className="text-tech-cyan mb-4 w-8 h-8" />
+              <h3 className="font-display text-2xl mb-3 text-white">Tecnologia Sutil</h3>
+              <p className="text-white/60 text-sm">
+                A compreensão de que o código e a consciência operam sob as mesmas leis. Uma ficção para a era das máquinas.
+              </p>
+            </MysticCard>
+
+            <MysticCard>
+              <BookOpen className="text-white mb-4 w-8 h-8" />
+              <h3 className="font-display text-2xl mb-3 text-white">Jornada RPG</h3>
+              <p className="text-white/60 text-sm">
+                Você não é um leitor passivo. A narrativa funciona como um ritual de iniciação onde você ganha XP espiritual.
+              </p>
+            </MysticCard>
+          </div>
+        </div>
+      </Section>
+
+      {/* --- 4. SINOPSE IMERSIVA --- */}
+      <section className="py-24 container grid md:grid-cols-2 gap-16 items-center">
+        <div className="relative h-[500px] w-full hidden md:block rounded-lg overflow-hidden">
+           {/* Placeholder visual ou outra arte do livro */}
+           <Image src="/bg-forest.jpg" alt="Floresta Mística" fill className="object-cover opacity-60 grayscale hover:grayscale-0 transition duration-700" />
+        </div>
+        <div className="space-y-6">
+          <h2 className="font-display text-4xl text-white">A Jornada de Sofia</h2>
+          <p className="text-white/80 leading-relaxed">
+            Em <em>Samadhi — O Despertar de Sofia</em>, acompanhamos uma mulher que atravessa um portal entre mundos. O que começa como uma fuga da realidade torna-se uma espiral de autodescoberta.
+          </p>
+          <p className="text-white/80 leading-relaxed">
+            Misturando ficção mística e experiências reais, a narrativa revela ensinamentos sobre espiritualidade, cura e geometria sagrada.
+          </p>
+          
+          <div className="pt-6 border-t border-white/10">
+            <h4 className="font-mono text-gold text-xs uppercase tracking-widest mb-4">Elementos Chave</h4>
+            <div className="flex flex-wrap gap-3">
+              {["Espiritualidade", "Cura Ancestral", "Geometria Sagrada", "Realismo Mágico"].map(tag => (
+                <span key={tag} className="px-3 py-1 border border-white/20 rounded text-xs text-white/60 hover:border-gold hover:text-gold transition cursor-default">
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* SOBRE / COPY */}
-      <section className="container py-14">
-        <h2 className="font-display text-3xl md:text-4xl">Sobre o livro</h2>
-        <div className="mt-4 text-paper/80 space-y-4 max-w-3xl">
-          <p>
-            Em <em>Samadhi — O Despertar de Sofia</em>, acompanhamos a jornada de Sofia por portais
-            entre mundos, numa espiral de autodescoberta. A narrativa, inspirada em vivências reais,
-            entrelaça espiritualidade, cura, geometria sagrada e medicina da floresta.
-          </p>
-          <p>
-            É uma leitura ritualística: cada capítulo convida a um estado de presença e à
-            lembrança da sabedoria que habita em nós.
-          </p>
-        </div>
-
-        {/* Temas */}
-        <div className="mt-8 grid sm:grid-cols-2 md:grid-cols-4 gap-3">
-          {["Espiritualidade", "Cura & Ritual", "Geometria Sagrada", "Medicina da Floresta"].map((t) => (
-            <div
-              key={t}
-              className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-center text-paper/80"
-            >
-              {t}
-            </div>
-          ))}
+      {/* --- 5. PROVA SOCIAL --- */}
+      <section className="py-24 bg-[#0a0a0a]">
+        <div className="container">
+          <h2 className="font-display text-3xl text-center mb-12 text-white">Ecos dos Leitores</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { text: "Cada página ressoou como um espelho da minha busca espiritual. Uma leitura que vibra.", author: "Leitor Anônimo" },
+              { text: "Ficção, sabedoria indígena e geometria sagrada. Finalmente um livro que une esses mundos.", author: "Carla S." },
+              { text: "Saber que parte da venda apoia a aldeia deu um sentido real à compra. Recomendo.", author: "Paulo R." }
+            ].map((review, i) => (
+              <div key={i} className="p-6 bg-white/5 rounded border border-white/5 italic text-white/70">
+                "{review.text}"
+                <div className="mt-4 font-display text-gold not-italic text-sm">— {review.author}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* IMPACTO / PARTILHA */}
-      <ImpactoSection />
-
-      {/* AUTOR */}
-      <AutorSection />
-
-      {/* DEPOIMENTOS */}
-      <section className="container py-14">
-        <h2 className="font-display text-3xl md:text-4xl text-center mb-8">
-          Depoimentos de leitores
-        </h2>
-        <div className="grid md:grid-cols-3 gap-4">
-          {[
-            {
-              t: "“Cada página ressoou como um espelho da minha busca espiritual.”",
-              a: "Leitor Anônimo",
-            },
-            {
-              t: "“Ficção, sabedoria indígena e geometria sagrada — leitura transformadora.”",
-              a: "Carla S.",
-            },
-            {
-              t: "“Apoiar a aldeia deu ainda mais sentido à experiência.”",
-              a: "Paulo R.",
-            },
-          ].map((d, i) => (
-            <Card key={i} className="bg-white/5 border-white/10">
-              <CardContent className="pt-6">
-                <p className="italic text-paper/80">{d.t}</p>
-                <p className="mt-3 text-sm text-paper/70">— {d.a}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* PREÇOS */}
-      <section id="precos" className="container pb-6">
-        <h2 className="font-display text-3xl md:text-4xl text-center mb-8">
-          Escolha seu valor
-        </h2>
-        <div className="grid md:grid-cols-2 gap-4">
-          <Card className="bg-white/5 border-white/10">
-            <CardContent className="pt-6 text-center">
-              <h3 className="font-display text-xl">Valor Simbólico</h3>
-              <div className="text-4xl font-bold text-green-400 my-3">R$ 22,20</div>
-              <p className="text-sm text-paper/80 mb-4">
-                Ideal para quem sente o chamado e deseja iniciar a jornada.
-              </p>
-              <Button asChild>
-                <a href={HOTMART_URL_STANDARD} target="_blank" rel="noreferrer">
-                  Comprar Agora
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/5 border-white/10">
-            <CardContent className="pt-6 text-center">
-              <h3 className="font-display text-xl">Valor Consciente</h3>
-              <div className="text-4xl font-bold text-green-400 my-3">R$ 33,30</div>
-              <p className="text-sm text-paper/80 mb-4">
-                Para ampliar o impacto social e apoiar ainda mais a aldeia.
-              </p>
-              <Button variant="outline" asChild>
-                <a href={HOTMART_URL_CONSCIOUS} target="_blank" rel="noreferrer">
-                  Comprar com Amor
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* GARANTIA */}
-      <section className="container pb-10">
-        <Card className="bg-white/5 border-white/10">
-          <CardContent className="py-8 text-center">
-            <h2 className="font-display text-2xl mb-2">Garantia incondicional de 7 dias</h2>
-            <p className="text-paper/80 max-w-2xl mx-auto">
-              Se por qualquer razão você sentir que este livro não ressoou com você, devolvemos o valor em até 7 dias — sem perguntas.
+      {/* --- 6. IMPACTO SOCIAL (Diferencial) --- */}
+      <section className="py-16 border-y border-white/10 bg-forest/10">
+        <div className="container flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-2xl">
+            <h3 className="font-display text-2xl text-white mb-2">Impacto & Partilha</h3>
+            <p className="text-white/70 text-sm">
+              Este livro não é apenas papel ou pixels. Parte de cada venda sustenta a aldeia indígena que inspirou esta obra. Sua leitura preserva a cultura e protege a floresta.
             </p>
-          </CardContent>
-        </Card>
+          </div>
+          <div className="flex gap-4 text-white/40">
+             <ShieldCheck size={48} strokeWidth={1} />
+          </div>
+        </div>
       </section>
 
-      {/* FAQ */}
-      <section className="container pb-10">
-        <h2 className="font-display text-3xl md:text-4xl mb-4">Perguntas Frequentes</h2>
-        <Accordion type="single" collapsible>
-          <AccordionItem value="faq1">
-            <AccordionTrigger>Para quem é este livro?</AccordionTrigger>
-            <AccordionContent>
-              Para quem busca autoconhecimento, conexão com a natureza e inspiração para transformar a própria vida.
+      {/* --- 7. O AUTOR --- */}
+      <section className="py-24 container max-w-4xl">
+        <div className="flex flex-col md:flex-row items-center gap-10">
+          <Image
+            src="/autor.png"
+            alt="Marroc"
+            width={200}
+            height={200}
+            className="rounded-full border border-gold/50 grayscale hover:grayscale-0 transition duration-500"
+          />
+          <div className="space-y-4 text-center md:text-left">
+            <h2 className="font-display text-3xl text-white">O Artífice: Marroc</h2>
+            <p className="text-white/70 leading-relaxed">
+              Escritor, músico e explorador de fronteiras. Navega pelos limiares onde o código binário encontra o ritmo do tambor xamânico. 
+              Toda a ideia-base, cenários e cerimônias descritos no livro são frutos de vivências reais.
+            </p>
+            <p className="text-xs text-white/40 font-mono">
+              SYSTEM.AUTHOR_ID: MARCIO_ROCHA
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* --- 8. PRICING / OFERTA (Conversion) --- */}
+      <section id="oferta" className="py-24 relative overflow-hidden">
+        {/* Glow effect */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[120px]" />
+
+        <div className="container relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-4xl md:text-5xl text-white mb-4">Escolha seu Artefato</h2>
+            <p className="text-white/60">Acesso imediato. Formato PDF Universal.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            
+            {/* Card 1: Standard */}
+            <div className="relative border border-white/10 bg-black/60 p-8 rounded-2xl hover:border-white/30 transition-all">
+              <h3 className="font-mono text-white/50 text-sm mb-2">ACESSO PADRÃO</h3>
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-sm text-gold">R$</span>
+                <span className="text-5xl font-display text-white">22,20</span>
+              </div>
+              <ul className="space-y-3 mb-8 text-sm text-white/70">
+                <li className="flex items-center gap-2"><Feather size={14} /> Arquivo PDF Completo</li>
+                <li className="flex items-center gap-2"><Feather size={14} /> Acesso Vitalício</li>
+                <li className="flex items-center gap-2"><Feather size={14} /> Apoio à Aldeia (Básico)</li>
+              </ul>
+              <GlowButton href={LINKS.hotmartStandard} target="_blank" className="w-full bg-white/10 hover:bg-white hover:text-black text-white border-none">
+                Comprar Agora
+              </GlowButton>
+            </div>
+
+            {/* Card 2: Conscious (Gold) */}
+            <div className="relative border border-gold/40 bg-[#1a1500]/40 p-8 rounded-2xl transform md:-translate-y-4 shadow-[0_0_30px_-10px_rgba(199,169,75,0.2)]">
+              <div className="absolute top-0 right-0 bg-gold text-black text-xs font-bold px-3 py-1 rounded-bl">RECOMENDADO</div>
+              <h3 className="font-mono text-gold text-sm mb-2">VALOR CONSCIENTE</h3>
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-sm text-gold">R$</span>
+                <span className="text-5xl font-display text-gold">33,30</span>
+              </div>
+              <ul className="space-y-3 mb-8 text-sm text-white/80">
+                <li className="flex items-center gap-2 text-gold"><Star size={14} /> Maior Impacto Social</li>
+                <li className="flex items-center gap-2"><Feather size={14} /> Arquivo PDF Completo</li>
+                <li className="flex items-center gap-2"><Feather size={14} /> Energia de Troca Elevada</li>
+              </ul>
+              <GlowButton href={LINKS.hotmartConscious} target="_blank" className="w-full" variant="gold">
+                Comprar com Amor
+              </GlowButton>
+              <p className="text-xs text-center mt-4 text-white/40">
+                A diferença vai integralmente para projetos na aldeia.
+              </p>
+            </div>
+
+          </div>
+
+          {/* Garantia */}
+          <div className="mt-12 text-center">
+            <p className="text-white/50 text-sm flex items-center justify-center gap-2">
+              <ShieldCheck size={16} /> Garantia incondicional de 7 dias. Risco zero.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* --- 9. FAQ --- */}
+      <section className="py-16 container max-w-2xl">
+        <h2 className="font-display text-2xl text-white mb-8 text-center">Perguntas Frequentes</h2>
+        <Accordion type="single" collapsible className="w-full space-y-2">
+          <AccordionItem value="item-1" className="border-white/10">
+            <AccordionTrigger className="text-white hover:text-gold hover:no-underline">Como recebo o livro?</AccordionTrigger>
+            <AccordionContent className="text-white/70">
+              Imediatamente após a confirmação do pagamento, você receberá um e-mail da Hotmart com o link para baixar o PDF.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="faq2">
-            <AccordionTrigger>Como funciona a garantia?</AccordionTrigger>
-            <AccordionContent>
-              Em até 7 dias após a compra você pode solicitar reembolso total, sem burocracia.
+          <AccordionItem value="item-2" className="border-white/10">
+            <AccordionTrigger className="text-white hover:text-gold hover:no-underline">O que é o Valor Consciente?</AccordionTrigger>
+            <AccordionContent className="text-white/70">
+              É uma oportunidade de contribuir com um valor maior (R$ 33,30) para fortalecer o impacto social do projeto junto à aldeia indígena. O livro é o mesmo, a energia da troca é que muda.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="faq3">
-            <AccordionTrigger>O que é o valor consciente?</AccordionTrigger>
-            <AccordionContent>
-              Uma contribuição maior para fortalecer o impacto social do projeto na aldeia.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="faq4">
-            <AccordionTrigger>Como acesso o livro?</AccordionTrigger>
-            <AccordionContent>
-              Após a confirmação na Hotmart, você recebe o link de download por e-mail e mantém acesso vitalício.
+          <AccordionItem value="item-3" className="border-white/10">
+            <AccordionTrigger className="text-white hover:text-gold hover:no-underline">Preciso de um e-reader (Kindle)?</AccordionTrigger>
+            <AccordionContent className="text-white/70">
+              Não. O formato é PDF universal, legível em qualquer celular, tablet ou computador.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
       </section>
 
-      {/* CRÉDITOS (IA) */}
-      <CreditosIA />
     </main>
   );
 }

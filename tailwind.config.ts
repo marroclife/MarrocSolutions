@@ -43,6 +43,17 @@ const config: Config = {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
+			colors: {
+ 			 	// ... suas cores existentes (ritual, gold, etc)
+  				'tech-cyan': '#00F0FF', // Adicione esta cor para o toque "Cyber/Místico"
+			},
+			backgroundImage: {
+  				'void-gradient': 'radial-gradient(circle at center, #1a1a1a 0%, #000000 100%)',
+			},
+			dropShadow: {
+  				'glow': '0 0 10px rgba(199, 169, 75, 0.5)', // Glow dourado
+  				'tech-glow': '0 0 10px rgba(0, 240, 255, 0.5)', // Glow ciano
+			},
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
