@@ -1,241 +1,269 @@
-// app/rituais/page.tsx
+import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Telescope, Layers, Leaf, Atom, Calendar, MessageCircle, ArrowLeft, User, Lock, CheckCircle2 } from "lucide-react";
+import { MysticCard } from "@/components/ui/MysticCard";
+import { GlowButton } from "@/components/ui/GlowButton";
+import { Section } from "@/components/ui/Section";
 
 export const metadata: Metadata = {
-  title: "Rituais de Reconexão",
-  description:
-    "Terapias holísticas para relembrar quem você é: Astrologia Viva, Tarot + Runas, Reiki e Terapias Energéticas, Sistema Arcturiano.",
+  title: "Rituais de Reconexão | Marroc",
+  description: "Terapias holísticas para relembrar quem você é: Astrologia Viva, Tarot, Reiki e Sistema Arcturiano.",
 };
 
-const WHATS =
-  "https://wa.me/5521992669980?text=Olá,%20quero%20agendar%20uma%20sessão%20de%20Rituais%20de%20Reconexão.";
-const CALENDLY =
-  "https://calendly.com/SEU_USUARIO/rituais"; // troque quando tiver o link
+const WHATS = "https://wa.me/5521992669980?text=Olá,%20quero%20agendar%20uma%20sessão%20de%20Rituais%20de%20Reconexão.";
+const CALENDLY = "https://calendly.com/SEU_USUARIO/rituais"; 
 
-type Ritual = {
-  icon: string;
-  title: string;
-  desc: string;
-  bullets?: string[];
-};
-
-const RITUAIS: Ritual[] = [
+// Dados atualizados com ícones Lucide para consistência visual
+const RITUAIS = [
   {
-    icon: "🔭",
+    icon: <Telescope className="w-8 h-8 text-emerald-400" />,
     title: "Astrologia Viva",
-    desc:
-      "Mais do que mapas, espelhos cósmicos. A leitura astral torna-se uma ativação: revela potenciais, padrões e portais.",
+    desc: "Mais do que mapas, espelhos cósmicos. A leitura astral torna-se uma ativação: revela potenciais, padrões e portais.",
     bullets: [
-      "Consulta individual com abordagem profunda e intuitiva",
-      "Direcionamentos para fases da vida e propósitos",
-      "Rituais de alinhamento para integração",
+      "Leitura intuitiva do Mapa Natal",
+      "Trânsitos e Ciclos atuais",
+      "Rituais de alinhamento planetário",
     ],
   },
   {
-    icon: "🃏",
-    title: "Tarot + Runas Nórdicas",
-    desc:
-      "O Tarot como tecnologia ancestral: traduz o invisível em orientação prática. Espelhos ativos para decisões com clareza e coragem.",
+    icon: <Layers className="w-8 h-8 text-purple-400" />,
+    title: "Tarot + Runas",
+    desc: "Tecnologia ancestral. Traduz o invisível em orientação prática. Espelhos ativos para decisões com clareza.",
     bullets: [
-      "Leitura oracular com foco em escolhas presentes",
-      "Mapeamento de padrões e possibilidades",
-      "Ato ritual para selar o movimento",
+      "Tiragem de Mandala Astrológica",
+      "Mapeamento de caminhos",
+      "Ato ritual para selar escolhas",
     ],
   },
   {
-    icon: "🌿",
-    title: "Reiki e Terapias Energéticas",
-    desc:
-      "O corpo fala, mas o campo grita em silêncio. Reiki Usui e canalizações energéticas para desbloqueio e harmonização.",
+    icon: <Leaf className="w-8 h-8 text-green-400" />,
+    title: "Reiki & Energia",
+    desc: "O corpo fala, mas o campo grita. Reiki Usui e canalizações para desbloqueio e harmonização dos chakras.",
     bullets: [
-      "Equilíbrio de chakras e limpeza do campo",
-      "Envio de energia à distância quando necessário",
+      "Alinhamento de Chakras",
+      "Limpeza de campo áurico",
       "Reconexão do fluxo vital",
     ],
   },
   {
-    icon: "🛸",
-    title: "Sistema Arcturiano de Cura Multidimensional",
-    desc:
-      "Para quem sente o chamado das estrelas. Terapia vibracional canalizada com os Arcturianos para expansão de consciência.",
+    icon: <Atom className="w-8 h-8 text-cyan-400" />,
+    title: "Cura Arcturiana",
+    desc: "Para quem sente o chamado das estrelas. Terapia vibracional multidimensional para expansão de consciência.",
     bullets: [
-      "Limpeza de registros kármicos e reprogramação do campo",
-      "Trabalho sutil, profundo e transformador",
-      "Integração com práticas de ancoragem",
+      "Limpeza de registros kármicos",
+      "Reprogramação celular",
+      "Geometria sagrada avançada",
     ],
   },
 ];
 
 export default function RituaisPage() {
   return (
-    <main className="bg-[#0b0b0b] text-paper">
-      {/* HERO */}
-      <section className="relative border-b border-white/10">
-        <div className="container mx-auto max-w-6xl px-4 py-16 md:py-20">
-          <h1 className="font-display text-4xl leading-tight md:text-6xl">
-            Rituais de Reconexão — terapias holísticas para relembrar quem você é.
+    <main className="min-h-screen bg-[#020502] text-paper selection:bg-emerald-500 selection:text-white overflow-x-hidden font-sans">
+      
+      {/* --- BACKGROUND FX (ILUMINAÇÃO ESMERALDA) --- */}
+      <div className="fixed inset-0 pointer-events-none">
+        {/* Spot de luz Verde no topo */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(16,185,129,0.15),rgba(0,0,0,0))]" />
+        {/* Spot secundário inferior */}
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-emerald-900/10 blur-[100px]" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.png')] opacity-[0.04] mix-blend-overlay" />
+      </div>
+
+      {/* --- NAV VOLTAR --- */}
+      <nav className="absolute top-0 left-0 w-full p-6 z-50">
+        <Link 
+          href="/" 
+          className="inline-flex items-center gap-2 text-xs font-mono text-emerald-300/70 hover:text-emerald-300 transition uppercase tracking-widest bg-black/40 px-3 py-1 rounded-full border border-emerald-500/20"
+        >
+          <ArrowLeft size={14} /> Voltar ao Nexus
+        </Link>
+      </nav>
+
+      {/* --- 1. HERO: O TEMPLO --- */}
+      <section className="relative min-h-[85vh] flex flex-col justify-center items-center text-center px-6 pt-20">
+        
+        <div className="relative mb-8 animate-in fade-in zoom-in duration-1000">
+           <div className="absolute inset-0 bg-emerald-600 blur-[100px] opacity-20 rounded-full"></div>
+           <div className="relative w-32 h-32 border border-emerald-500/30 rounded-full flex items-center justify-center bg-black/20 backdrop-blur-sm">
+              <div className="w-24 h-24 border border-emerald-400/50 rounded-full flex items-center justify-center animate-pulse-slow">
+                 <Leaf className="w-10 h-10 text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.8)]" />
+              </div>
+           </div>
+        </div>
+
+        <div className="relative z-10 max-w-4xl space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+          
+          <div className="inline-flex items-center gap-3 px-4 py-2 border border-emerald-500/30 rounded-full bg-emerald-500/10 backdrop-blur-md">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span className="text-xs font-mono text-emerald-200 tracking-widest uppercase">
+              Sessões Online & Presenciais
+            </span>
+          </div>
+
+          <h1 className="font-display text-5xl md:text-7xl text-white tracking-tight leading-[1.1] drop-shadow-xl">
+            Rituais de <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-green-200 to-teal-400">Reconexão</span>
           </h1>
-          <p className="mt-4 max-w-2xl text-lg text-white/70">
-            Neste espaço, a jornada é para dentro. O mistério encontra o método. A ciência sutil encontra o espírito.
-            Cada sessão é um chamado à tua essência.
+
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
+            O mistério encontra o método. <br/>
+            Um espaço seguro para relembrar quem você é através da ciência sutil e das tecnologias ancestrais.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={WHATS}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-primary rounded-full px-5 py-2"
+          <div className="pt-8 flex flex-col sm:flex-row justify-center gap-6">
+            <a 
+                href={WHATS}
+                target="_blank"
+                className="bg-emerald-600 text-white hover:bg-emerald-500 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] relative inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-widest transition-all duration-300 rounded-sm"
             >
-              Agendar pelo WhatsApp
+                Agendar Sessão
             </a>
-            <a
-              href={CALENDLY}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-outline rounded-full px-5 py-2"
+            <Link 
+              href="#terapias"
+              className="px-8 py-4 border border-white/10 hover:bg-white/5 text-white/80 text-sm font-mono tracking-widest uppercase rounded transition flex items-center justify-center gap-3"
             >
-              Ver disponibilidade (Calendly)
-            </a>
+              Conhecer Métodos
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* GRID DE RITUAIS */}
-      <section className="container mx-auto max-w-6xl px-4 py-16">
-        <div className="mb-8">
-          <h2 className="font-display text-3xl md:text-4xl">As terapias</h2>
-          <p className="mt-2 text-white/60">
-            Escolha o caminho que te chama. Todas as sessões podem ser online ou presenciais (sob consulta).
-          </p>
+      {/* --- 2. AS TERAPIAS (GRID) --- */}
+      <section id="terapias" className="py-24 container">
+        <div className="text-center mb-16">
+          <h2 className="font-display text-4xl text-white mb-4">Caminhos de Cura</h2>
+          <p className="text-emerald-200/50">Escolha a chave que abre sua próxima porta.</p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2">
-          {RITUAIS.map((r, i) => (
-            <article
-              key={r.title}
-              className="card group translate-y-2 animate-fadeUp border-white/10 bg-white/5 p-5 transition-all duration-500 hover:border-white/20"
-              style={{ animationDelay: `${80 * i}ms` }}
-            >
-              <div className="mb-4 flex items-center gap-3">
-                <div className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 text-xl">{r.icon}</div>
-                <h3 className="font-display text-2xl">{r.title}</h3>
+        <div className="grid md:grid-cols-2 gap-6">
+          {RITUAIS.map((ritual, i) => (
+            <MysticCard key={i} className="border-emerald-500/20 hover:border-emerald-400/50 hover:bg-emerald-900/10 transition-all group">
+              <div className="flex items-start justify-between mb-6">
+                <div className="p-3 bg-emerald-500/10 rounded-full border border-emerald-500/20 group-hover:scale-110 transition-transform duration-500">
+                    {ritual.icon}
+                </div>
               </div>
-              <p className="text-white/80">{r.desc}</p>
+              
+              <h3 className="text-2xl font-display text-white mb-3 group-hover:text-emerald-300 transition-colors">
+                {ritual.title}
+              </h3>
+              
+              <p className="text-gray-400 leading-relaxed mb-6">
+                {ritual.desc}
+              </p>
 
-              {r.bullets?.length ? (
-                <ul className="mt-4 list-disc space-y-1 pl-5 text-white/70">
-                  {r.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-              ) : null}
-
-              <div className="mt-6 flex gap-3">
-                <a href={WHATS} target="_blank" rel="noreferrer" className="btn btn-outline rounded-full px-4 py-1.5">
-                  Falar agora
-                </a>
-                <a href={CALENDLY} target="_blank" rel="noreferrer" className="btn btn-primary rounded-full px-4 py-1.5">
-                  Agendar sessão
+              <div className="space-y-2 pt-4 border-t border-emerald-500/10">
+                {ritual.bullets?.map((bullet, idx) => (
+                  <div key={idx} className="flex items-start gap-3 text-sm text-gray-300/80">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
+                    <span>{bullet}</span>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-8">
+                <a 
+                    href={WHATS} 
+                    target="_blank"
+                    className="text-xs font-bold text-emerald-400 uppercase tracking-widest hover:text-white transition flex items-center gap-2"
+                >
+                    Saber mais <ArrowLeft className="rotate-180 w-4 h-4" />
                 </a>
               </div>
-            </article>
+            </MysticCard>
           ))}
         </div>
       </section>
 
-      {/* SOBRE O FACILITADOR */}
-      <section className="container mx-auto max-w-6xl px-4 pb-16">
-        <div className="card border-white/10 bg-white/5 p-6 md:p-8">
-          <h2 className="font-display text-3xl md:text-4xl">🧙‍♂️ Sobre o facilitador</h2>
-          <div className="mt-4 space-y-4 text-white/75">
-            <p>Me chamo <strong>Marroc</strong>.</p>
-            <p>
-              Sou massoterapeuta desde 2021, iniciado no Reiki Usui, e caminho entre o som e o silêncio.
+      {/* --- 3. O FACILITADOR --- */}
+      <Section className="border-y border-emerald-900/30 bg-emerald-950/10">
+        <div className="container grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative h-[500px] rounded-2xl overflow-hidden border border-emerald-500/20 grayscale hover:grayscale-0 transition-all duration-1000 group">
+                 {/* Substitua pelo path real da sua foto de terapeuta se tiver uma diferente, ou use a padrão */}
+                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10 opacity-60" />
+                 {/* Placeholder visual caso a imagem não carregue ou para efeito */}
+                 <div className="absolute inset-0 bg-[url('/astro.png')] bg-cover bg-center" />
+                 
+                 <div className="absolute bottom-8 left-8 z-20">
+                    <p className="text-emerald-400 font-mono text-xs tracking-widest mb-2">TERAPEUTA HOLÍSTICO</p>
+                    <h3 className="text-3xl font-display text-white">Marroc</h3>
+                 </div>
+            </div>
+
+            <div className="space-y-6">
+                <h2 className="font-display text-3xl md:text-4xl text-white">
+                    A Visão do Terapeuta
+                </h2>
+                <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
+                    <p>
+                        Não é curar. É te lembrar quem você é, para que a tua própria energia faça o resto.
+                    </p>
+                    <p>
+                        Sou iniciado no <strong>Reiki Usui</strong> e caminho entre o som e o silêncio. 
+                        Minha abordagem integra a precisão da astrologia com a sensibilidade da leitura de campo.
+                    </p>
+                    <p>
+                        Não entrego respostas prontas. Eu abro caminhos. 
+                        Cada consulta é um rito, e cada rito é um chamado ao seu centro.
+                    </p>
+                </div>
+                <div className="pt-4 flex gap-4">
+                    <Link 
+                        href="/sobre"
+                        className="text-emerald-400 border-b border-emerald-500/30 pb-1 hover:text-white hover:border-white transition"
+                    >
+                        Ler biografia completa
+                    </Link>
+                </div>
+            </div>
+        </div>
+      </Section>
+
+      {/* --- 4. ÁREA DO CLIENTE (LOGIN) --- */}
+      <section className="py-24 container max-w-4xl">
+        <MysticCard className="border-gold/30 bg-gradient-to-br from-black to-[#1a1500]">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8 p-4">
+                <div className="space-y-4 text-center md:text-left">
+                    <div className="inline-flex items-center gap-2 text-gold text-xs font-bold tracking-widest uppercase border border-gold/20 px-3 py-1 rounded-full">
+                        <Lock size={12} /> Acesso Restrito
+                    </div>
+                    <h3 className="font-display text-3xl text-white">Área do Iniciado</h3>
+                    <p className="text-gray-400 max-w-md">
+                        Se você já passou por um atendimento, acesse aqui seus materiais: Mapa Astral Digital, Gravações e Resumos de Tarot.
+                    </p>
+                </div>
+                
+                <div className="flex-shrink-0">
+                    <GlowButton href="/rituais/rituaisclient" variant="gold" className="w-full md:w-auto">
+                        Acessar Materiais
+                    </GlowButton>
+                </div>
+            </div>
+        </MysticCard>
+      </section>
+
+      {/* --- 5. FOOTER CTA --- */}
+      <section className="py-20 text-center border-t border-white/5">
+        <div className="container max-w-2xl space-y-8">
+            <MessageCircle className="w-12 h-12 text-emerald-500 mx-auto" />
+            <h2 className="font-display text-3xl md:text-4xl text-white">
+                Pronto para começar?
+            </h2>
+            <p className="text-gray-400">
+                Agende uma conversa inicial pelo WhatsApp para entendermos qual terapia é a ideal para o seu momento.
             </p>
-            <p>
-              Integro terapias como Reiki ritualizado, Tarot com Runas Nórdicas, Astrologia intuitiva, Cura Multidimensional Arcturiana, e Sound Healing com frequências específicas.
-            </p>
-            <p>
-              Cada sessão é um campo preparado — onde símbolos, energias e música se alinham para te reconectar com tua própria força.
-            </p>
-            <p>
-              Não entrego respostas prontas. Eu abro caminhos para que você lembre quem é.
-            </p>
-          </div>
-          <div className="mt-6">
-            <Link
-              href="/sobre"
-              className="btn btn-outline rounded-full px-5 py-2"
+            <a 
+                href={WHATS}
+                target="_blank"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-bold rounded hover:bg-emerald-400 hover:scale-105 transition-all duration-300"
             >
-              Ler mais sobre o facilitador
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* COMO FUNCIONA */}
-      <section className="container mx-auto max-w-6xl px-4 pb-16">
-        <div className="card border-white/10 bg-white/5 p-6 md:p-8">
-          <h2 className="font-display text-3xl md:text-4xl">Como funciona</h2>
-          <div className="mt-3 grid gap-6 md:grid-cols-3">
-            <p className="text-white/75">
-              <span className="font-semibold">Online ou presencial</span> (sob consulta). Indicado conforme a necessidade
-              do momento e logística.
-            </p>
-            <p className="text-white/75">
-              <span className="font-semibold">Preparação ritual</span>: altar, intenção, silêncio e escuta. Você não entra
-              em uma consulta — você entra em um portal.
-            </p>
-            <p className="text-white/75">
-              <span className="font-semibold">Pós-sessão</span>: orientações e práticas de integração podem ser sugeridas
-              conforme o caso.
-            </p>
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a href={WHATS} target="_blank" rel="noreferrer" className="btn btn-primary rounded-full px-5 py-2">
-              Quero conversar
+                CHAMAR NO WHATSAPP
             </a>
-            <a href={CALENDLY} target="_blank" rel="noreferrer" className="btn btn-outline rounded-full px-5 py-2">
-              Ver agenda
-            </a>
-            <Link href="/sobre" className="btn btn-ghost rounded-full px-5 py-2">
-              Sobre o facilitador
-            </Link>
-          </div>
-        </div>
-      </section> 
-      
-      {/* Área de Clientes CORRIGIDA */}
-      <section className="container mx-auto max-w-6xl px-4 pb-16">
-        <div className="card border-white/10 bg-white/5 p-6 md:p-8">
-          <h2 className="font-display text-3xl md:text-4xl">Área de Clientes</h2>
-          <div className="mt-3">
-            <p className="text-white/75">
-              <span className="font-semibold">Acesse aqui para abrir seu mapa natal,</span> resumos de Tarot e Runas, gravações de sessões e mais.
-            </p>
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/rituais/rituaisclient" className="btn btn-primary rounded-full px-5 py-2">
-              ACESSAR
-            </Link>
-            <Link href="/sobre" className="btn btn-ghost rounded-full px-5 py-2">
-              Sobre o facilitador
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* NOTA DE TRANSPARÊNCIA */}
-      <section className="container mx-auto max-w-6xl px-4 pb-16">
-        <p className="text-xs text-white/45">
-          Nota: ferramentas de IA podem ser usadas como apoio à comunicação e organização. A condução terapêutica é humana,
-          presencial e intuitiva — enraizada em práticas ancestrais e formação contínua.
-        </p>
-      </section>
     </main>
   );
 }

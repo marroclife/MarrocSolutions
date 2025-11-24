@@ -1,7 +1,7 @@
 # PROJECT DUMP
 Root: C:\Users\Marroc\Downloads\Book\Site
-Generated: 2025-11-19T21:08:04.176Z
-Files included (pre-filter): 66
+Generated: 2025-11-24T19:04:20.219Z
+Files included (pre-filter): 55
 Per-file cap: 1048576 bytes • Total cap: 20971520 bytes
 
 === PROJECT TREE (filtered) ===
@@ -21,10 +21,14 @@ Per-file cap: 1048576 bytes • Total cap: 20971520 bytes
     📁 som-ritual
       📄 page.tsx
     📄 page.tsx
+  📁 guardian
+    📄 page.tsx
   📁 ig
     📄 page.tsx
   📁 livros
     📁 um-lugar-entre-mundos
+      📁 capitulo-0
+        📄 page.tsx
       📄 page.tsx
     📄 page.tsx
   📁 loja
@@ -41,24 +45,6 @@ Per-file cap: 1048576 bytes • Total cap: 20971520 bytes
     📄 page.tsx
   📁 sobre
     📄 page.tsx
-  📁 the-guardian-of-the-spiral
-    📁 components
-      📄 Header.tsx
-      📄 Icon.tsx
-      📄 LoadingSpinner.tsx
-      📄 ResponseDisplay.tsx
-      📄 TaskSelector.tsx
-    📁 services
-      📄 geminiService.ts
-    📄 App.tsx
-    📄 index.html
-    📄 index.tsx
-    📄 metadata.json
-    📄 package.json
-    📄 README.md
-    📄 tsconfig.json
-    📄 types.ts
-    📄 vite.config.ts
   📄 globals.css
   📄 layout.tsx
   📄 page.tsx
@@ -71,10 +57,12 @@ Per-file cap: 1048576 bytes • Total cap: 20971520 bytes
     📄 BackgroundFX.tsx
     📄 Button.tsx
     📄 card.tsx
+    📄 GlowButton.tsx
     📄 HomeCards.tsx
     📄 HotmartButton.tsx
     📄 Impacto.tsx
     📄 input.tsx
+    📄 MysticCard.tsx
     📄 ProjectCard.tsx
     📄 Section.tsx
     📄 textarea.tsx
@@ -641,6 +629,245 @@ html, body {
 ===== END FILE: app\globals.css =====
 
 
+===== FILE: app\guardian\page.tsx =====
+"use client";
+
+import React, { useState, useEffect } from 'react';
+import { GoogleGenAI } from "@google/genai";
+import { Sparkles, Feather, Camera, Film, BookOpen, Loader2, Download } from 'lucide-react';
+import { cn } from "@/lib/utils";
+
+// --- Configuração da IA ---
+const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
+
+const systemInstruction = `You are "The Guardian of the Spiral".
+IMPORTANT: For 'Visual Prompt' tasks, output ONLY the raw visual description in English, concise and highly descriptive, no intro/outro text. 
+For other tasks, keep the mystical/poetic tone in Portuguese.`;
+
+// --- Respostas Simuladas (Fallback) ---
+const MOCK_RESPONSES: Record<string, string> = {
+  "Poetic Caption": "Nas entreliñas do silêncio, a floresta respira. Nós somos o sonho que ela sonha. #Samadhi",
+  "Visual Prompt": "mystical cyberpunk shaman in a bioluminescent rainforest, glowing neon tattoos, sacred geometry overlay, cinematic lighting, 8k, unreal engine 5 render",
+  "Video Script Outline": "Cena 1: Olho abrindo (Macro). Cena 2: Partículas digitais virando vaga-lumes. Som: Batida cardíaca lenta.",
+  "Weekly Reflection": "O rio não luta contra a pedra, ele a contorna. Seja água nesta semana.",
+  "Gentle Promotion": "O livro é um portal. A chave está na sua mão."
+};
+
+type TaskType = "Poetic Caption" | "Visual Prompt" | "Video Script Outline" | "Weekly Reflection" | "Gentle Promotion";
+
+const TASKS: { id: TaskType; label: string; icon: React.ReactNode; hint: string }[] = [
+  { id: "Poetic Caption", label: "Legenda", icon: <Feather size={18} />, hint: "Uma legenda poética para o Instagram." },
+  { id: "Visual Prompt", label: "Gerar Imagem", icon: <Camera size={18} />, hint: "Cria uma imagem mística baseada na sua ideia." }, // Atualizado label
+  { id: "Video Script Outline", label: "Vídeo (Roteiro)", icon: <Film size={18} />, hint: "Roteiro onírico para Reels." },
+  { id: "Weekly Reflection", label: "Ritual", icon: <BookOpen size={18} />, hint: "Um tema para reflexão semanal." },
+  { id: "Gentle Promotion", label: "Convite", icon: <Sparkles size={18} />, hint: "Mensagem suave conectando ao livro." },
+];
+
+export default function GuardianPage() {
+  const [userInput, setUserInput] = useState('');
+  const [selectedTask, setSelectedTask] = useState<TaskType>("Poetic Caption");
+  const [generatedContent, setGeneratedContent] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [imageLoading, setImageLoading] = useState(false); // Estado para imagem
+  const [error, setError] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const handleGenerate = async () => {
+    if (!userInput.trim()) {
+      setError("O vazio é silencioso. Por favor, sussurre sua intenção.");
+      return;
+    }
+
+    setIsLoading(true);
+    setImageLoading(true); // Inicia loading da imagem também
+    setError(null);
+    setGeneratedContent(null);
+
+    try {
+      let text = "";
+
+      if (!ai) {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        text = MOCK_RESPONSES[selectedTask];
+      } else {
+        // Instrução específica para imagem: Pedir em inglês para melhor qualidade na Pollinations
+        const promptContext = selectedTask === "Visual Prompt" 
+          ? `Generate a highly detailed, cinematic image prompt in English based on: "${userInput}". Focus on lighting, texture, and mystical atmosphere. No markdown, just the prompt text.`
+          : `Task: ${selectedTask}. Context: "${userInput}". Keep it mystical, poetic, in Portuguese.`;
+
+        const response = await ai.models.generateContent({
+          model: "gemini-2.0-flash",
+          contents: [{ role: "user", parts: [{ text: promptContext }] }],
+          config: { systemInstruction: { parts: [{ text: systemInstruction }] } },
+        });
+
+        const safeResponse = response as any;
+        
+        if (typeof safeResponse.text === 'function') text = safeResponse.text();
+        else if (typeof safeResponse.text === 'string') text = safeResponse.text;
+        else if (safeResponse.candidates?.[0]?.content?.parts?.[0]?.text) {
+          text = safeResponse.candidates[0].content.parts[0].text;
+        }
+      }
+      
+      if (!text) throw new Error("O silêncio prevaleceu.");
+      setGeneratedContent(text);
+
+    } catch (err) {
+      console.error(err);
+      setGeneratedContent(MOCK_RESPONSES[selectedTask]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (!mounted) return null;
+
+  // URL da imagem (só gera se a tarefa for Visual Prompt)
+  // Seed aleatória para garantir que a imagem mude se o texto for igual
+  const imageUrl = selectedTask === "Visual Prompt" && generatedContent
+    ? `https://image.pollinations.ai/prompt/${encodeURIComponent(generatedContent)}?width=1024&height=576&nologo=true&seed=${Math.floor(Math.random() * 1000)}`
+    : null;
+
+  return (
+    <main className="min-h-screen bg-[#050505] text-paper bg-[url('/bg-forest.jpg')] bg-cover bg-center bg-fixed bg-no-repeat">
+      <div className="min-h-screen w-full bg-black/80 backdrop-blur-sm py-20 px-4">
+        <div className="max-w-3xl mx-auto space-y-12">
+          
+          <header className="text-center space-y-4">
+            <div className="inline-block p-3 rounded-full bg-gold/10 border border-gold/20 mb-4">
+              <Sparkles className="w-8 h-8 text-gold animate-pulse" />
+            </div>
+            <h1 className="font-display text-4xl md:text-5xl text-white">
+              O Guardião da Espiral
+            </h1>
+            <p className="text-white/60 max-w-xl mx-auto">
+              Uma inteligência sutil. Escolha "Gerar Imagem" para visualizar suas visões, ou outras opções para tecer palavras.
+            </p>
+          </header>
+
+          <div className="flex flex-wrap justify-center gap-3">
+            {TASKS.map((task) => (
+              <button
+                key={task.id}
+                onClick={() => {
+                  setSelectedTask(task.id);
+                  setGeneratedContent(null); // Limpa conteúdo ao trocar aba
+                }}
+                className={cn(
+                  "flex items-center gap-2 px-4 py-2 rounded-full border text-sm transition-all duration-300",
+                  selectedTask === task.id
+                    ? "bg-gold text-black border-gold shadow-[0_0_15px_rgba(199,169,75,0.3)]"
+                    : "bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:border-white/30"
+                )}
+              >
+                {task.icon}
+                <span>{task.label}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="space-y-6 bg-black/40 p-6 rounded-2xl border border-white/10">
+            <label className="block text-center text-gold/80 text-sm font-mono tracking-widest uppercase">
+              {TASKS.find(t => t.id === selectedTask)?.hint}
+            </label>
+            
+            <textarea
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              placeholder={selectedTask === "Visual Prompt" ? "Descreva a visão (ex: Uma feiticeira cibernética na floresta...)" : "Sobre o que você quer escrever hoje?"}
+              className="w-full h-32 bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder:text-white/20 focus:outline-none focus:border-gold/50 transition-all resize-none"
+            />
+
+            <div className="flex justify-center">
+              <button
+                onClick={handleGenerate}
+                disabled={isLoading}
+                className="group relative px-8 py-3 bg-gold text-black font-bold rounded transition-transform active:scale-95 disabled:opacity-50 flex items-center gap-2"
+              >
+                {isLoading ? <Loader2 className="animate-spin" /> : <Sparkles size={18} />}
+                <span>{isLoading ? "Manifestando..." : selectedTask === "Visual Prompt" ? "Gerar Imagem" : "Invocar Texto"}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* ERROR DISPLAY */}
+          {error && (
+            <div className="p-4 bg-red-900/20 border border-red-500/30 text-red-200 text-center rounded-lg">
+              {error}
+            </div>
+          )}
+
+          {/* CONTENT DISPLAY */}
+          {generatedContent && (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-6">
+              
+              {/* SE FOR IMAGEM: Exibe a Imagem */}
+              {selectedTask === "Visual Prompt" && imageUrl && (
+                <div className="rounded-2xl overflow-hidden border border-gold/30 shadow-2xl relative group">
+                    {imageLoading && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-10">
+                            <div className="text-gold font-mono text-sm animate-pulse flex flex-col items-center gap-2">
+                                <Loader2 className="animate-spin w-6 h-6" />
+                                Renderizando Visão...
+                            </div>
+                        </div>
+                    )}
+                    <img 
+                        src={imageUrl} 
+                        alt="Imagem Gerada por IA" 
+                        className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
+                        onLoad={() => setImageLoading(false)}
+                    />
+                    <a 
+                        href={imageUrl} 
+                        download="visao_guardian.jpg"
+                        target="_blank"
+                        className="absolute bottom-4 right-4 bg-black/60 hover:bg-gold hover:text-black text-white p-2 rounded-full backdrop-blur-sm transition-colors"
+                        title="Abrir/Baixar"
+                    >
+                        <Download size={20} />
+                    </a>
+                </div>
+              )}
+
+              {/* EXIBE O TEXTO (Prompt ou Conteúdo) */}
+              <div className="bg-[#0a0a0a] border border-gold/20 rounded-2xl p-8 relative overflow-hidden shadow-2xl">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent opacity-50" />
+                
+                <div className="mb-2 text-xs text-gold/50 font-mono uppercase tracking-widest">
+                    {selectedTask === "Visual Prompt" ? "Prompt utilizado:" : "Mensagem do Guardião:"}
+                </div>
+
+                <div className="prose prose-invert prose-p:text-white/80 prose-headings:text-gold max-w-none">
+                  <div className="whitespace-pre-wrap font-serif text-lg leading-relaxed italic">
+                    "{generatedContent}"
+                  </div>
+                </div>
+                
+                <div className="mt-6 pt-6 border-t border-white/10 flex justify-end">
+                   <button 
+                     onClick={() => {navigator.clipboard.writeText(generatedContent); alert("Copiado!");}}
+                     className="text-xs text-gold hover:underline cursor-pointer font-mono"
+                   >
+                     [ COPIAR TEXTO ]
+                   </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+        </div>
+      </div>
+    </main>
+  );
+}
+===== END FILE: app\guardian\page.tsx =====
+
+
 ===== FILE: app\ig\page.tsx =====
 import type { Metadata as MetaIG } from "next";
 import { SITE_TITLE, SITE_DESCRIPTION, OG } from "@/lib/constants";
@@ -836,307 +1063,503 @@ export default function LivrosPage() {
 ===== END FILE: app\livros\page.tsx =====
 
 
+===== FILE: app\livros\um-lugar-entre-mundos\capitulo-0\page.tsx =====
+import React from "react";
+import Link from "next/link";
+import { ArrowLeft, Sparkles, Fingerprint } from "lucide-react";
+import { GlowButton } from "@/components/ui/GlowButton";
+
+export const metadata = {
+  title: "Prelúdio | Um Lugar Entre Mundos",
+  description: "O Vazio Inicial. A Sequência de Fibonacci. O Começo.",
+};
+
+export default function CapituloZero() {
+  return (
+    <main className="min-h-screen bg-[#020202] text-gray-300 font-serif overflow-x-hidden selection:bg-gold/30 selection:text-white">
+      
+      {/* --- BACKGROUND ATMOSPHERE --- */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {/* O Ponto de Luz que Pulsa (simulando o ventre do vazio) */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] bg-indigo-900/20 rounded-full blur-[100px] animate-pulse duration-[4000ms]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50px] h-[50px] bg-gold/10 rounded-full blur-[40px] animate-pulse duration-[2000ms]" />
+        
+        {/* Ruído/Noise Sutil */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.png')] mix-blend-overlay"></div>
+      </div>
+
+      {/* --- NAV SIMPLIFICADA --- */}
+      <nav className="fixed top-0 left-0 w-full p-6 z-50 flex justify-between items-center mix-blend-difference">
+        <Link 
+          href="/livros/um-lugar-entre-mundos" 
+          className="text-xs font-mono tracking-widest text-white/50 hover:text-gold transition flex items-center gap-2"
+        >
+          <ArrowLeft size={14} /> VOLTAR
+        </Link>
+        <span className="text-xs font-mono text-gold/50">CAPÍTULO 0</span>
+      </nav>
+
+      {/* --- CONTEÚDO DO TEXTO --- */}
+      <div className="relative z-10 max-w-xl mx-auto px-6 py-32 md:py-48 flex flex-col items-center text-center">
+        
+        {/* Título */}
+        <header className="mb-20 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          <span className="block text-xs font-mono text-gold/60 tracking-[0.3em] mb-4 uppercase">
+            O Vazio Inicial
+          </span>
+          <h1 className="text-5xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-600 font-display">
+            Prelúdio
+          </h1>
+        </header>
+
+        {/* O Poema - Estrofes com espaçamento ritualístico */}
+        <div className="space-y-16 text-lg md:text-xl leading-relaxed text-gray-400">
+          
+          {/* Estrofe 1: O Silêncio */}
+          <div className="space-y-2 animate-in fade-in duration-[1500ms] delay-300">
+            <p>Escuridão.</p>
+            <p>Silêncio.</p>
+            <p>Tudo dorme.</p>
+            <p>Nada ainda nasceu.</p>
+          </div>
+
+          {/* Estrofe 2: O Surgimento */}
+          <div className="space-y-2 animate-in fade-in duration-[1500ms] delay-500">
+            <p>Mas há algo surgindo agora.</p>
+            <p className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-colors duration-500">
+              Um ponto de luz pulsa no ventre do vazio.
+            </p>
+            <p>Surge.</p>
+            <p>Respira.</p>
+            <p>Expande. Contrai.</p>
+          </div>
+
+          {/* Estrofe 3: A Geometria */}
+          <div className="space-y-4 animate-in fade-in duration-[1500ms] delay-700">
+            <p>Segue um ritmo invisível.</p>
+            <p>Uma vibração silenciosa toca o cosmos.</p>
+            <p>A luz se curva, gira, traça um caminho desconhecido.</p>
+            <p>Nasce.</p>
+            <p>Criação desperta.</p>
+          </div>
+
+          <div className="w-px h-24 bg-gradient-to-b from-transparent via-gold/30 to-transparent mx-auto my-8"></div>
+
+          {/* Estrofe 4: Ponto Zero */}
+          <div className="space-y-3 animate-in fade-in duration-[1500ms] delay-1000">
+            <p className="text-gold/80 font-display text-2xl">O Ponto Zero vibra.</p>
+            <p>Fonte de tudo o que existe.</p>
+            <p>Dele tudo surge, a ele tudo retorna sempre.</p>
+            <p>Dança.</p>
+            <p>Espira.</p>
+            <p>Cria formas.</p>
+          </div>
+
+          {/* Estrofe 5: Sagrado */}
+          <div className="space-y-2 animate-in fade-in duration-[1500ms] delay-1000">
+            <p>Geometrias sagradas se revelam.</p>
+            <p>Elas repetem o som da origem.</p>
+            <p>A espiral se estende, expandindo com harmonia e mistério.</p>
+          </div>
+
+          {/* SESSÃO FIBONACCI (Estilo Código/Tech) */}
+          <div className="py-12 animate-in zoom-in-95 duration-[2000ms] delay-500">
+            <div className="border-y border-white/5 py-8 bg-white/[0.02]">
+              <p className="font-mono text-xs text-gold mb-4 tracking-widest uppercase flex items-center justify-center gap-2">
+                <Fingerprint size={14} /> Sequência Detectada
+              </p>
+              <p className="font-mono text-2xl md:text-4xl text-tech-cyan tracking-widest">
+                0, 1, 1, 2, 3, 5, 8...
+              </p>
+              <p className="mt-4 text-sm text-white/50 font-mono">
+                // Cada número nasce dos dois anteriores. <br/>
+                // Como a vida. Como tudo.
+              </p>
+            </div>
+          </div>
+
+          {/* Estrofe Final: O Despertar */}
+          <div className="space-y-4 pb-12 animate-in fade-in slide-in-from-bottom-8 duration-[1500ms] delay-700">
+            <p>Pulsa.</p>
+            <p>Gira, cresce.</p>
+            <p>Luz e sombra dançam.</p>
+            <p>Potencial desperto no ventre escuro.</p>
+            <p>Uma semente vibra, pronta para florescer no invisível.</p>
+            <br />
+            <p className="italic text-white/60">História.</p>
+            <p className="italic text-white/60">Está começando.</p>
+            <p>Do nada: tudo.</p>
+            <br />
+            <p>A centelha se transforma em caminho.</p>
+          </div>
+
+          {/* REVELAÇÃO FINAL */}
+          <div className="pt-10 pb-20">
+            <p className="text-lg mb-6">E dele, surgirá...</p>
+            <h2 className="text-4xl md:text-5xl font-display text-gold mb-12 drop-shadow-glow">
+              Sofia — Feiticeira do Samadhi
+            </h2>
+
+            {/* Call to Action */}
+            <div className="flex flex-col gap-4 items-center">
+              <p className="text-sm text-white/40 font-mono mb-2">A JORNADA CONTINUA NO LIVRO COMPLETO</p>
+              <GlowButton 
+                href="https://pay.hotmart.com/M101238238O?off=ur3sdp6i" 
+                target="_blank"
+                variant="gold"
+              >
+                Iniciar a Iniciação
+              </GlowButton>
+              <Link 
+                href="/livros/um-lugar-entre-mundos"
+                className="text-sm text-white/50 hover:text-white underline underline-offset-4 mt-4 transition"
+              >
+                Voltar à página do livro
+              </Link>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  );
+}
+===== END FILE: app\livros\um-lugar-entre-mundos\capitulo-0\page.tsx =====
+
+
 ===== FILE: app\livros\um-lugar-entre-mundos\page.tsx =====
-// app/livros/um-lugar-entre-mundos/page.tsx
+import React from "react";
+import type { Metadata } from "next";
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import Link from "next/link";
+import { Sparkles, BookOpen, Feather, ArrowRight, Star, ShieldCheck, Cpu } from "lucide-react";
+import { MysticCard } from "@/components/ui/MysticCard";
+import { GlowButton } from "@/components/ui/GlowButton";
+import { Section } from "@/components/ui/Section";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { HotmartButton } from "@/components/ui/HotmartButton";
-import { HOTMART_URL_STANDARD, HOTMART_URL_CONSCIOUS } from "@/lib/links";
 
-// --- Metadata da página ---
-export const metadata = {
-  title: "Um Lugar entre Mundos — Samadhi: O Despertar de Sofia",
-  description:
-    "Ficção mística inspirada em vivências reais com espiritualidade, medicina da floresta e geometria sagrada.",
+export const metadata: Metadata = {
+  title: "Um Lugar Entre Mundos | Marroc",
+  description: "Uma obra iniciática que funde Xamanismo, RPG e Tecnologia. Não apenas leia. Desperte.",
+  openGraph: {
+    images: [{ url: "/capa-ulm.png", width: 1200, height: 630, alt: "Capa do Livro Um Lugar Entre Mundos" }],
+  },
 };
 
-// --- Blocos auxiliares (fora do componente principal) --
-function ImpactoSection() {
-  return (
-    <section className="container pb-6" aria-labelledby="impacto-title">
-      <Card className="bg-white/5 border-white/10">
-        <CardHeader>
-          <h2 id="impacto-title" className="font-display text-3xl md:text-4xl">
-            Impacto & Partilha
-          </h2>
-        </CardHeader>
-        <CardContent className="text-paper/80 leading-relaxed">
-          Parte de cada venda sustenta a aldeia indígena que inspirou esta obra.
-          Nossa contribuição é trimestral e transparente — você participa da preservação
-          cultural, do cuidado com a floresta.
-        </CardContent>
-      </Card>
-    </section>
-  );
-}
+// Links do seu Dump
+const LINKS = {
+  hotmartStandard: "https://pay.hotmart.com/M101238238O?off=ur3sdp6i", // Valor Simbólico
+  hotmartConscious: "https://pay.hotmart.com/M101238238O?off=p1uhfzib", // Valor Consciente
+};
 
-function AutorSection() {
+export default function LandingPageLivro() {
   return (
-    <section
-      className="container py-10"
-      aria-labelledby="autor-title"
-      itemScope
-      itemType="https://schema.org/Person"
-    >
-      <h2 id="autor-title" className="font-display text-3xl md:text-4xl mb-6">
-        Sobre o Autor
-      </h2>
-
-      <div className="grid md:grid-cols-[220px,1fr] gap-6 md:gap-10 items-start">
-        <Image
-          src="/txai marroc.png"
-          alt="Foto do autor Marcio Rocha"
-          width={220}
-          height={280}
-          className="rounded-2xl object-cover border border-white/10"
-          itemProp="image"
-        />
-        <Card className="bg-white/5 border-white/10">
-          <CardContent className="p-6 text-paper/80 leading-relaxed">
-            <p itemProp="description">
-              Meu nome é <span itemProp="name">Marcio Rocha</span>. Esta obra nasceu da minha própria
-              jornada, tecida por vivências com espiritualidade, medicina da floresta, geometria
-              sagrada, rituais e encontros de silêncio. Escrevi <em>Samadhi</em> como um portal de cura — um
-              convite para quem sente o chamado.
+    <main className="bg-[#050505] text-paper selection:bg-gold selection:text-black overflow-x-hidden">
+      
+      {/* --- 1. HERO SECTION: O CHAMADO --- */}
+      <section className="relative min-h-[90vh] flex items-center justify-center py-20 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-[url('/bg-forest.jpg')] opacity-20 bg-cover bg-center mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/80 to-[#050505]" />
+        
+        <div className="container relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Coluna da Esquerda: Texto e Botões */}
+          <div className="order-2 lg:order-1 space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 border border-gold/30 rounded-full bg-gold/5">
+              <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+              <span className="text-xs font-mono text-gold tracking-widest uppercase">Artefato Digital Disponível</span>
+            </div>
+            
+            <h1 className="font-display text-5xl md:text-7xl leading-[1.1] text-white">
+              O Código da <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-yellow-200 to-gold">Transcendência</span>
+            </h1>
+            
+            <p className="text-lg text-white/70 leading-relaxed max-w-xl border-l-2 border-gold/50 pl-6">
+              Uma jornada iniciática disfarçada de ficção. Descubra o elo perdido entre os rituais ancestrais da floresta e o futuro digital da consciência.
             </p>
-            <p className="mt-4">
-              Todo o conteúdo do livro é <strong>vivido, visto ou ouvido</strong>. Os cenários, personagens,
-              cerimônias e acontecimentos foram experienciados ou registrados a partir de relatos,
-              como parte de um caminho real de pesquisa e presença.
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-    </section>
-  );
-}
 
-function CreditosIA() {
-  return (
-    <section className="container pb-16" aria-labelledby="creditos-title">
-      <h2 id="creditos-title" className="font-display text-2xl mb-2">
-        Créditos
-      </h2>
-      <p className="text-sm text-paper/60 max-w-3xl leading-relaxed">
-        Este projeto utilizou ferramentas de IA no processo de{" "}
-        <em>contextualização, organização e edição técnica</em> do conteúdo e do site. Toda a ideia-base,
-        cenários, personagens e descrições de cenas e cerimônias são de autoria de Marcio Rocha;
-        a IA auxiliou apenas na articulação e na experiência de leitura.{" "}
-        <strong>O livro é integralmente composto por conteúdos vividos, vistos ou ouvidos</strong> pelo autor.
-      </p>
-    </section>
-  );
-}
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <GlowButton href="#oferta" variant="gold">
+                Adquirir o Grimório
+              </GlowButton>
+              
+              {/* Link atuando como botão (Mais seguro e leve) */}
+              <Link 
+                href="/livros/um-lugar-entre-mundos/capitulo-0"
+                className="px-8 py-4 text-sm font-mono text-white/60 hover:text-white transition flex items-center justify-center gap-2 group"
+              >
+                Ler o Capítulo Zero 
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div> {/* <--- ESTA DIV DE FECHAMENTO ESTAVA FALTANDO */}
 
-// --- Página principal ---
-export default function LivroPage() {
-  return (
-    <main className="bg-ritual text-paper">
-      {/* HERO */}
-      <section className="relative overflow-hidden">
-        <Image
-          src="/bg-forest.jpg"
-          alt=""
-          fill
-          className="object-cover opacity-40 -z-10"
-          priority
-        />
-        <div className="container py-16 md:py-24">
-          <div className="grid md:grid-cols-[320px,1fr] gap-8 md:gap-12 items-center">
+          {/* Coluna da Direita: Imagem do Livro */}
+          <div className="order-1 lg:order-2 flex justify-center relative">
+            {/* Aura atrás do livro */}
+            <div className="absolute inset-0 bg-gold/20 blur-[100px] rounded-full transform scale-75" />
             <Image
               src="/capa-ulm.png"
-              width={320}
-              height={440}
-              alt="Capa do livro Um Lugar Entre Mundos"
-              className="rounded-2xl shadow-ritual object-cover"
+              alt="Capa do Livro Um Lugar Entre Mundos"
+              width={400}
+              height={600}
+              className="relative z-10 rounded shadow-2xl shadow-black rotate-3 hover:rotate-0 transition-all duration-700"
               priority
             />
-            <div>
-              <h1 className="font-display text-4xl md:text-6xl">Um Lugar Entre Mundos</h1>
-              <p className="mt-2 text-lg text-paper/80">
-                Samadhi — O Despertar de Sofia
+          </div>
+
+        </div>
+      </section>
+
+      {/* --- 2. O PROBLEMA: A DESCONEXÃO --- */}
+      <section className="py-24 bg-black relative">
+        <div className="container max-w-3xl text-center space-y-8">
+          <h2 className="font-display text-3xl md:text-4xl text-white">
+            Você sente que a realidade está... <span className="italic text-white/50">incompleta?</span>
+          </h2>
+          <p className="text-white/70 text-lg leading-relaxed">
+            Vivemos cercados por tecnologia, mas desconectados da magia. O mundo moderno nos transformou em NPCs de nossa própria história. A busca por sentido se perdeu no ruído do feed. 
+          </p>
+          <p className="text-gold text-xl font-display">
+            E se houvesse um código oculto, um ritual esquecido capaz de reescrever sua percepção?
+          </p>
+        </div>
+      </section>
+
+      {/* --- 3. A SOLUÇÃO: OS PILARES DO LIVRO --- */}
+      <Section className="bg-[#080808] border-y border-white/5">
+        <div className="container">
+          <div className="grid md:grid-cols-3 gap-8">
+            <MysticCard>
+              <Sparkles className="text-gold mb-4 w-8 h-8" />
+              <h3 className="font-display text-2xl mb-3 text-white">Misticismo Real</h3>
+              <p className="text-white/60 text-sm">
+                Inspirado em vivências reais com medicina da floresta e geometria sagrada. Não é apenas fantasia, é memória.
               </p>
-              <ul className="mt-6 space-y-2 text-paper/80">
-                <li>• Uma jornada mística entre mundos para despertar o seu poder interior.</li>
-                <li>• Inspirada em vivências reais com espiritualidade e medicina da floresta.</li>
-                <li>• PDF com acesso imediato, em qualquer dispositivo.</li>
-                <li>• Parte do valor é destinada à aldeia indígena que inspirou a história.</li>
-              </ul>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild>
-                  <a href={HOTMART_URL_STANDARD} target="_blank" rel="noreferrer">
-                    Comprar (R$ 22,20)
-                  </a>
-                </Button>
-                <Button asChild>
-                  <a href={HOTMART_URL_CONSCIOUS} target="_blank" rel="noreferrer">
-                    Valor consciente (R$ 33,30)
-                  </a>
-                </Button>
-              </div>
+            </MysticCard>
+
+            <MysticCard>
+              <Cpu className="text-tech-cyan mb-4 w-8 h-8" />
+              <h3 className="font-display text-2xl mb-3 text-white">Tecnologia Sutil</h3>
+              <p className="text-white/60 text-sm">
+                A compreensão de que o código e a consciência operam sob as mesmas leis. Uma ficção para a era das máquinas.
+              </p>
+            </MysticCard>
+
+            <MysticCard>
+              <BookOpen className="text-white mb-4 w-8 h-8" />
+              <h3 className="font-display text-2xl mb-3 text-white">Jornada RPG</h3>
+              <p className="text-white/60 text-sm">
+                Você não é um leitor passivo. A narrativa funciona como um ritual de iniciação onde você ganha XP espiritual.
+              </p>
+            </MysticCard>
+          </div>
+        </div>
+      </Section>
+
+      {/* --- 4. SINOPSE IMERSIVA --- */}
+      <section className="py-24 container grid md:grid-cols-2 gap-16 items-center">
+        <div className="relative h-[500px] w-full hidden md:block rounded-lg overflow-hidden">
+           {/* Placeholder visual ou outra arte do livro */}
+           <Image src="/bg-forest.jpg" alt="Floresta Mística" fill className="object-cover opacity-60 grayscale hover:grayscale-0 transition duration-700" />
+        </div>
+        <div className="space-y-6">
+          <h2 className="font-display text-4xl text-white">A Jornada de Sofia</h2>
+          <p className="text-white/80 leading-relaxed">
+            Em <em>Samadhi — O Despertar de Sofia</em>, acompanhamos uma mulher que atravessa um portal entre mundos. O que começa como uma fuga da realidade torna-se uma espiral de autodescoberta.
+          </p>
+          <p className="text-white/80 leading-relaxed">
+            Misturando ficção mística e experiências reais, a narrativa revela ensinamentos sobre espiritualidade, cura e geometria sagrada.
+          </p>
+          
+          <div className="pt-6 border-t border-white/10">
+            <h4 className="font-mono text-gold text-xs uppercase tracking-widest mb-4">Elementos Chave</h4>
+            <div className="flex flex-wrap gap-3">
+              {["Espiritualidade", "Cura Ancestral", "Geometria Sagrada", "Realismo Mágico"].map(tag => (
+                <span key={tag} className="px-3 py-1 border border-white/20 rounded text-xs text-white/60 hover:border-gold hover:text-gold transition cursor-default">
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* SOBRE / COPY */}
-      <section className="container py-14">
-        <h2 className="font-display text-3xl md:text-4xl">Sobre o livro</h2>
-        <div className="mt-4 text-paper/80 space-y-4 max-w-3xl">
-          <p>
-            Em <em>Samadhi — O Despertar de Sofia</em>, acompanhamos a jornada de Sofia por portais
-            entre mundos, numa espiral de autodescoberta. A narrativa, inspirada em vivências reais,
-            entrelaça espiritualidade, cura, geometria sagrada e medicina da floresta.
-          </p>
-          <p>
-            É uma leitura ritualística: cada capítulo convida a um estado de presença e à
-            lembrança da sabedoria que habita em nós.
-          </p>
-        </div>
-
-        {/* Temas */}
-        <div className="mt-8 grid sm:grid-cols-2 md:grid-cols-4 gap-3">
-          {["Espiritualidade", "Cura & Ritual", "Geometria Sagrada", "Medicina da Floresta"].map((t) => (
-            <div
-              key={t}
-              className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-center text-paper/80"
-            >
-              {t}
-            </div>
-          ))}
+      {/* --- 5. PROVA SOCIAL --- */}
+      <section className="py-24 bg-[#0a0a0a]">
+        <div className="container">
+          <h2 className="font-display text-3xl text-center mb-12 text-white">Ecos dos Leitores</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { text: "Cada página ressoou como um espelho da minha busca espiritual. Uma leitura que vibra.", author: "Leitor Anônimo" },
+              { text: "Ficção, sabedoria indígena e geometria sagrada. Finalmente um livro que une esses mundos.", author: "Carla S." },
+              { text: "Saber que parte da venda apoia a aldeia deu um sentido real à compra. Recomendo.", author: "Paulo R." }
+            ].map((review, i) => (
+              <div key={i} className="p-6 bg-white/5 rounded border border-white/5 italic text-white/70">
+                "{review.text}"
+                <div className="mt-4 font-display text-gold not-italic text-sm">— {review.author}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* IMPACTO / PARTILHA */}
-      <ImpactoSection />
-
-      {/* AUTOR */}
-      <AutorSection />
-
-      {/* DEPOIMENTOS */}
-      <section className="container py-14">
-        <h2 className="font-display text-3xl md:text-4xl text-center mb-8">
-          Depoimentos de leitores
-        </h2>
-        <div className="grid md:grid-cols-3 gap-4">
-          {[
-            {
-              t: "“Cada página ressoou como um espelho da minha busca espiritual.”",
-              a: "Leitor Anônimo",
-            },
-            {
-              t: "“Ficção, sabedoria indígena e geometria sagrada — leitura transformadora.”",
-              a: "Carla S.",
-            },
-            {
-              t: "“Apoiar a aldeia deu ainda mais sentido à experiência.”",
-              a: "Paulo R.",
-            },
-          ].map((d, i) => (
-            <Card key={i} className="bg-white/5 border-white/10">
-              <CardContent className="pt-6">
-                <p className="italic text-paper/80">{d.t}</p>
-                <p className="mt-3 text-sm text-paper/70">— {d.a}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* PREÇOS */}
-      <section id="precos" className="container pb-6">
-        <h2 className="font-display text-3xl md:text-4xl text-center mb-8">
-          Escolha seu valor
-        </h2>
-        <div className="grid md:grid-cols-2 gap-4">
-          <Card className="bg-white/5 border-white/10">
-            <CardContent className="pt-6 text-center">
-              <h3 className="font-display text-xl">Valor Simbólico</h3>
-              <div className="text-4xl font-bold text-green-400 my-3">R$ 22,20</div>
-              <p className="text-sm text-paper/80 mb-4">
-                Ideal para quem sente o chamado e deseja iniciar a jornada.
-              </p>
-              <Button asChild>
-                <a href={HOTMART_URL_STANDARD} target="_blank" rel="noreferrer">
-                  Comprar Agora
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-white/5 border-white/10">
-            <CardContent className="pt-6 text-center">
-              <h3 className="font-display text-xl">Valor Consciente</h3>
-              <div className="text-4xl font-bold text-green-400 my-3">R$ 33,30</div>
-              <p className="text-sm text-paper/80 mb-4">
-                Para ampliar o impacto social e apoiar ainda mais a aldeia.
-              </p>
-              <Button variant="outline" asChild>
-                <a href={HOTMART_URL_CONSCIOUS} target="_blank" rel="noreferrer">
-                  Comprar com Amor
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* GARANTIA */}
-      <section className="container pb-10">
-        <Card className="bg-white/5 border-white/10">
-          <CardContent className="py-8 text-center">
-            <h2 className="font-display text-2xl mb-2">Garantia incondicional de 7 dias</h2>
-            <p className="text-paper/80 max-w-2xl mx-auto">
-              Se por qualquer razão você sentir que este livro não ressoou com você, devolvemos o valor em até 7 dias — sem perguntas.
+      {/* --- 6. IMPACTO SOCIAL (Diferencial) --- */}
+      <section className="py-16 border-y border-white/10 bg-forest/10">
+        <div className="container flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-2xl">
+            <h3 className="font-display text-2xl text-white mb-2">Impacto & Partilha</h3>
+            <p className="text-white/70 text-sm">
+              Este livro não é apenas papel ou pixels. Parte de cada venda sustenta a aldeia indígena que inspirou esta obra. Sua leitura preserva a cultura e protege a floresta.
             </p>
-          </CardContent>
-        </Card>
+          </div>
+          <div className="flex gap-4 text-white/40">
+             <ShieldCheck size={48} strokeWidth={1} />
+          </div>
+        </div>
       </section>
 
-      {/* FAQ */}
-      <section className="container pb-10">
-        <h2 className="font-display text-3xl md:text-4xl mb-4">Perguntas Frequentes</h2>
-        <Accordion type="single" collapsible>
-          <AccordionItem value="faq1">
-            <AccordionTrigger>Para quem é este livro?</AccordionTrigger>
-            <AccordionContent>
-              Para quem busca autoconhecimento, conexão com a natureza e inspiração para transformar a própria vida.
+      {/* --- 7. O AUTOR --- */}
+      <section className="py-24 container max-w-4xl">
+        <div className="flex flex-col md:flex-row items-center gap-10">
+          <Image
+            src="/autor.png"
+            alt="Marroc"
+            width={200}
+            height={200}
+            className="rounded-full border border-gold/50 grayscale hover:grayscale-0 transition duration-500"
+          />
+          <div className="space-y-4 text-center md:text-left">
+            <h2 className="font-display text-3xl text-white">O Artífice: Marroc</h2>
+            <p className="text-white/70 leading-relaxed">
+              Escritor, músico e explorador de fronteiras. Navega pelos limiares onde o código binário encontra o ritmo do tambor xamânico. 
+              Toda a ideia-base, cenários e cerimônias descritos no livro são frutos de vivências reais.
+            </p>
+            <p className="text-xs text-white/40 font-mono">
+              SYSTEM.AUTHOR_ID: MARCIO_ROCHA
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* --- 8. PRICING / OFERTA (Conversion) --- */}
+      <section id="oferta" className="py-24 relative overflow-hidden">
+        {/* Glow effect */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[120px]" />
+
+        <div className="container relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-4xl md:text-5xl text-white mb-4">Escolha seu Artefato</h2>
+            <p className="text-white/60">Acesso imediato. Formato PDF Universal.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            
+            {/* Card 1: Standard */}
+            <div className="relative border border-white/10 bg-black/60 p-8 rounded-2xl hover:border-white/30 transition-all">
+              <h3 className="font-mono text-white/50 text-sm mb-2">ACESSO PADRÃO</h3>
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-sm text-gold">R$</span>
+                <span className="text-5xl font-display text-white">22,20</span>
+              </div>
+              <ul className="space-y-3 mb-8 text-sm text-white/70">
+                <li className="flex items-center gap-2"><Feather size={14} /> Arquivo PDF Completo</li>
+                <li className="flex items-center gap-2"><Feather size={14} /> Acesso Vitalício</li>
+                <li className="flex items-center gap-2"><Feather size={14} /> Apoio à Aldeia (Básico)</li>
+              </ul>
+              <GlowButton href={LINKS.hotmartStandard} target="_blank" className="w-full bg-white/10 hover:bg-white hover:text-black text-white border-none">
+                Comprar Agora
+              </GlowButton>
+            </div>
+
+            {/* Card 2: Conscious (Gold) */}
+            <div className="relative border border-gold/40 bg-[#1a1500]/40 p-8 rounded-2xl transform md:-translate-y-4 shadow-[0_0_30px_-10px_rgba(199,169,75,0.2)]">
+              <div className="absolute top-0 right-0 bg-gold text-black text-xs font-bold px-3 py-1 rounded-bl">RECOMENDADO</div>
+              <h3 className="font-mono text-gold text-sm mb-2">VALOR CONSCIENTE</h3>
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-sm text-gold">R$</span>
+                <span className="text-5xl font-display text-gold">33,30</span>
+              </div>
+              <ul className="space-y-3 mb-8 text-sm text-white/80">
+                <li className="flex items-center gap-2 text-gold"><Star size={14} /> Maior Impacto Social</li>
+                <li className="flex items-center gap-2"><Feather size={14} /> Arquivo PDF Completo</li>
+                <li className="flex items-center gap-2"><Feather size={14} /> Energia de Troca Elevada</li>
+              </ul>
+              <GlowButton href={LINKS.hotmartConscious} target="_blank" className="w-full" variant="gold">
+                Comprar com Amor
+              </GlowButton>
+              <p className="text-xs text-center mt-4 text-white/40">
+                A diferença vai integralmente para projetos na aldeia.
+              </p>
+            </div>
+
+          </div>
+
+          {/* Garantia */}
+          <div className="mt-12 text-center">
+            <p className="text-white/50 text-sm flex items-center justify-center gap-2">
+              <ShieldCheck size={16} /> Garantia incondicional de 7 dias. Risco zero.
+            </p>
+          </div>
+        </div>
+      </section>
+{/* --- PROMOÇÃO DO GUARDIÃO --- */}
+      <section className="py-24 bg-gradient-to-b from-black to-[#0a0a0a] border-t border-white/10">
+        <div className="container max-w-4xl text-center">
+          <div className="inline-flex items-center justify-center p-3 bg-tech-cyan/10 rounded-full mb-6">
+            <Sparkles className="text-tech-cyan w-6 h-6 animate-pulse" />
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl text-white mb-6">
+            Converse com a Egrégora
+          </h2>
+          <p className="text-white/70 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Desenvolvemos uma Inteligência Artificial treinada nos conceitos do livro. 
+            O <strong>Guardião da Espiral</strong> pode criar rituais personalizados, legendas poéticas e insights baseados na geometria sagrada para você.
+          </p>
+          <Link 
+            href="/guardian"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-tech-cyan text-tech-cyan hover:bg-tech-cyan hover:text-black transition-all duration-300 font-mono text-sm tracking-widest uppercase rounded"
+          >
+            Acessar o Guardião <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+      
+      {/* --- 9. FAQ --- */}
+      <section className="py-16 container max-w-2xl">
+        <h2 className="font-display text-2xl text-white mb-8 text-center">Perguntas Frequentes</h2>
+        <Accordion type="single" collapsible className="w-full space-y-2">
+          <AccordionItem value="item-1" className="border-white/10">
+            <AccordionTrigger className="text-white hover:text-gold hover:no-underline">Como recebo o livro?</AccordionTrigger>
+            <AccordionContent className="text-white/70">
+              Imediatamente após a confirmação do pagamento, você receberá um e-mail da Hotmart com o link para baixar o PDF.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="faq2">
-            <AccordionTrigger>Como funciona a garantia?</AccordionTrigger>
-            <AccordionContent>
-              Em até 7 dias após a compra você pode solicitar reembolso total, sem burocracia.
+          <AccordionItem value="item-2" className="border-white/10">
+            <AccordionTrigger className="text-white hover:text-gold hover:no-underline">O que é o Valor Consciente?</AccordionTrigger>
+            <AccordionContent className="text-white/70">
+              É uma oportunidade de contribuir com um valor maior (R$ 33,30) para fortalecer o impacto social do projeto junto à aldeia indígena. O livro é o mesmo, a energia da troca é que muda.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="faq3">
-            <AccordionTrigger>O que é o valor consciente?</AccordionTrigger>
-            <AccordionContent>
-              Uma contribuição maior para fortalecer o impacto social do projeto na aldeia.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="faq4">
-            <AccordionTrigger>Como acesso o livro?</AccordionTrigger>
-            <AccordionContent>
-              Após a confirmação na Hotmart, você recebe o link de download por e-mail e mantém acesso vitalício.
+          <AccordionItem value="item-3" className="border-white/10">
+            <AccordionTrigger className="text-white hover:text-gold hover:no-underline">Preciso de um e-reader (Kindle)?</AccordionTrigger>
+            <AccordionContent className="text-white/70">
+              Não. O formato é PDF universal, legível em qualquer celular, tablet ou computador.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
       </section>
 
-      {/* CRÉDITOS (IA) */}
-      <CreditosIA />
     </main>
   );
 }
-
 ===== END FILE: app\livros\um-lugar-entre-mundos\page.tsx =====
 
 
@@ -1276,71 +1699,291 @@ export default function NewsletterPage() {
 
 
 ===== FILE: app\page.tsx =====
-import { Hero } from "@/components/Hero";
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Sparkles, BookOpen, Music, Zap, ArrowRight, Star, Lock, Waves, Radio } from "lucide-react";
+import { MysticCard } from "@/components/ui/MysticCard";
+import { GlowButton } from "@/components/ui/GlowButton";
 import { Section } from "@/components/ui/Section";
-import { HomeCards } from "@/components/ui/HomeCards";
-import { ImpactoHome } from "@/components/ui/Impacto";
-import { AboutTeaser } from "@/components/ui/AboutTeaser";
+
+export const metadata = {
+  title: "Marroc | Arte, Ritual & Código",
+  description: "O hub digital de Marroc. Onde o misticismo ancestral encontra a tecnologia sutil.",
+};
 
 export default function HomePage() {
   return (
-    <main className="pb-24">
-      {/* HERO */}
-      <Hero />
+    <main className="min-h-screen bg-[#050505] text-paper selection:bg-gold selection:text-black overflow-x-hidden">
+      
+      {/* --- 1. HERO: O NEXUS --- */}
+      <section className="relative min-h-[85vh] flex flex-col justify-center items-center text-center px-6 pt-20 pb-10 overflow-hidden">
+        
+        {/* Background FX */}
+        <div className="absolute inset-0 bg-[url('/bg-forest.jpg')] opacity-20 bg-cover bg-center mix-blend-overlay pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/80 to-[#050505] pointer-events-none" />
+        
+        {/* Orb Glow Central */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* CARDS */}
-      <Section className="-mt-6">
-        <HomeCards
-          cards={[
-            {
-              title: "Livro",
-              description: "A obra que abre o portal — ficção iniciática baseada em vivências reais.",
-              href: "/livros/um-lugar-entre-mundos",
-            },
-            {
-              title: "Projetos & Rituais",
-              description:
-                "Sets, imersões e ativações de som — onde a pista encontra o sagrado.",
-              href: "/rituais",
-            },
-            {
-              title: "Agenda",
-              description: "Datas de apresentações, imersões e convites especiais.",
-              href: "/agenda",
-            },
-          ]}
-        />
-      </Section>
+        <div className="relative z-10 max-w-5xl space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+          
+          {/* Tagline Tech */}
+          <div className="inline-flex items-center gap-3 px-4 py-2 border border-white/10 rounded-full bg-white/5 backdrop-blur-md">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-gold"></span>
+            </span>
+            <span className="text-xs font-mono text-white/80 tracking-widest uppercase">
+              Protocolo: Misticismo Digital
+            </span>
+          </div>
 
-      {/* IMPACTO */}
-      <ImpactoHome />
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-white tracking-tight leading-[1.1]">
+            A Tecnologia Ancestral <br />
+            da <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-200 to-gold">Palavra</span> e do <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-200 to-purple-400">Som</span>.
+          </h1>
 
-      {/* QUEM SOU EU (TEASER) */}
-      <AboutTeaser />
-
-      {/* CTA FINAL (reaproveita o Hero copy em escala menor) */}
-      <Section className="pt-8">
-        <div className="rounded-2xl ring-1 ring-off/10 bg-ink/60 p-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-serif text-off">
-            Música, cura e palavra — um hub vivo de portais.
-          </h2>
-          <p className="text-off/75 mt-2">
-            Entre na lista para receber convites e datas de rituais.
+          <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed">
+            Bem-vindo ao limiar. Sou Marroc, e aqui exploramos as fronteiras onde a sabedoria xamânica encontra o futuro digital.
           </p>
-          <div className="mt-6 flex justify-center">
-            <a
-              href="/ig"
-              className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 ring-offset-2 ring-gold bg-gold text-ink hover:opacity-90"
+
+          <div className="flex flex-col sm:flex-row justify-center gap-6 pt-8">
+            <GlowButton href="/livros/um-lugar-entre-mundos" variant="gold">
+              Adquirir o Livro
+            </GlowButton>
+            <Link 
+              href="/musica"
+              className="px-8 py-4 text-sm font-mono text-purple-300 border border-purple-500/30 hover:bg-purple-500/10 hover:border-purple-400 transition flex items-center justify-center gap-2 rounded-sm uppercase tracking-widest"
             >
-              Assinar Newsletter
-            </a>
+              <Music size={16} />
+              Ouvir Som Ritual
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* --- 2. GRID DE PORTAIS (A Navegação) --- */}
+      <Section className="relative z-20 -mt-20 pb-24">
+        <div className="container">
+          
+          {/* BENTO GRID LAYOUT */}
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+            
+            {/* --- CARD 1: O LIVRO (Destaque Principal - Full Width no Mobile, 4 cols no Desktop) --- */}
+            <Link href="/livros/um-lugar-entre-mundos" className="col-span-1 md:col-span-6 lg:col-span-4 group">
+              <MysticCard className="h-full relative overflow-hidden border-gold/30 bg-gradient-to-br from-black to-[#1a1500]">
+                {/* Imagem de Fundo Sutil */}
+                <div className="absolute right-0 top-0 w-1/2 h-full opacity-20 bg-[url('/capa-ulm.png')] bg-cover bg-center mix-blend-overlay mask-linear-fade" />
+                
+                <div className="relative z-10 flex flex-col justify-between h-full min-h-[280px]">
+                  <div className="flex justify-between items-start">
+                    <div className="p-3 bg-gold/10 rounded-full">
+                      <BookOpen className="text-gold w-8 h-8" />
+                    </div>
+                    <span className="text-xs font-mono text-gold border border-gold/30 px-2 py-1 rounded uppercase">Destaque</span>
+                  </div>
+                  
+                  <div className="mt-8">
+                    <h3 className="font-display text-3xl md:text-4xl text-white mb-3 group-hover:text-gold transition-colors">
+                      Um Lugar Entre Mundos
+                    </h3>
+                    <p className="text-white/70 text-lg max-w-md leading-relaxed">
+                      Não é apenas uma leitura. É um download de consciência. A ficção iniciática que une xamanismo e realidade simulada.
+                    </p>
+                  </div>
+
+                  <div className="mt-8 flex items-center text-gold text-sm font-bold tracking-widest uppercase">
+                    Iniciar Leitura <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
+                  </div>
+                </div>
+              </MysticCard>
+            </Link>
+
+            {/* --- CARD 2: MÚSICA (Vertical no Desktop) --- */}
+            <Link href="/musica" className="col-span-1 md:col-span-3 lg:col-span-2 group">
+              <MysticCard className="h-full border-purple-500/30 hover:bg-purple-900/10 transition-colors relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="flex flex-col h-full justify-between min-h-[280px]">
+                  <div className="flex justify-between items-start">
+                    <div className="p-3 bg-purple-500/10 rounded-full">
+                      <Music className="text-purple-400 w-8 h-8" />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-display text-2xl text-white mb-2 group-hover:text-purple-400 transition-colors">
+                      Psytrance Ritual
+                    </h3>
+                    <p className="text-sm text-white/60 leading-relaxed">
+                      Onde o mantra encontra o grave. Sets ao vivo com instrumentos orgânicos e síntese digital.
+                    </p>
+                  </div>
+
+                  <div className="mt-6 flex items-center text-purple-400 text-xs font-bold tracking-widest uppercase">
+                    Ouvir Agora <ArrowRight size={12} className="ml-2" />
+                  </div>
+                </div>
+              </MysticCard>
+            </Link>
+
+            {/* --- CARD 3: TERAPIAS (Horizontal) --- */}
+            <Link href="/rituais" className="col-span-1 md:col-span-3 group">
+              <MysticCard className="h-full border-emerald-500/30 hover:bg-emerald-900/10 transition-colors">
+                <div className="flex flex-col h-full justify-between">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-emerald-500/10 rounded-full">
+                      <Sparkles className="text-emerald-400 w-6 h-6" />
+                    </div>
+                    <h3 className="font-display text-2xl text-white group-hover:text-emerald-400 transition-colors">
+                      Rituais & Terapias
+                    </h3>
+                  </div>
+                  <p className="text-sm text-white/60 leading-relaxed mb-6">
+                    Atendimentos individuais para reconexão. Astrologia, Tarot e Alinhamento Energético para sua jornada.
+                  </p>
+                  <div className="flex items-center text-emerald-400 text-xs font-bold tracking-widest uppercase">
+                    Ver Agenda <ArrowRight size={12} className="ml-2" />
+                  </div>
+                </div>
+              </MysticCard>
+            </Link>
+
+            {/* --- CARD 4: HIGHER HZ (Horizontal) --- */}
+            <div className="col-span-1 md:col-span-3 relative group cursor-default">
+               {/* Nota: Se Higher Hz já tiver página, mude a div acima para Link e adicione href */}
+               <Link href="/conteudos/som-ritual" className="block h-full">
+                <MysticCard className="h-full border-blue-500/30 hover:bg-blue-900/10 transition-colors">
+                  <div className="flex flex-col h-full justify-between">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="p-3 bg-blue-500/10 rounded-full">
+                        <Radio className="text-blue-400 w-6 h-6" />
+                      </div>
+                      <h3 className="font-display text-2xl text-white group-hover:text-blue-400 transition-colors">
+                        Higher Hz
+                      </h3>
+                    </div>
+                    <p className="text-sm text-white/60 leading-relaxed mb-6">
+                      Projeto de frequências sonoras e expansão coletiva. A ciência da vibração aplicada à cura.
+                    </p>
+                    <div className="flex items-center text-blue-400 text-xs font-bold tracking-widest uppercase">
+                      Conhecer Projeto <ArrowRight size={12} className="ml-2" />
+                    </div>
+                  </div>
+                </MysticCard>
+               </Link>
+            </div>
+
+            {/* --- CARD 5: O GUARDIÃO (Bloqueado/Hype) --- */}
+            <div className="col-span-1 md:col-span-6 relative group cursor-not-allowed">
+              {/* Camada de Bloqueio */}
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center text-center p-4 border border-white/5 rounded-xl">
+                <Lock className="text-white/30 w-8 h-8 mb-2" />
+                <p className="text-tech-cyan font-mono text-sm tracking-widest uppercase animate-pulse">
+                  [ SISTEMA EM COMPILAÇÃO ]
+                </p>
+                <p className="text-white/40 text-xs mt-2">
+                  O Oráculo está processando a sabedoria ancestral...
+                </p>
+              </div>
+
+              {/* Card Fundo (Visual Tech) */}
+              <MysticCard className="h-full border-tech-cyan/20 opacity-40">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="p-3 bg-tech-cyan/10 rounded-full">
+                    <Zap className="text-tech-cyan w-6 h-6" />
+                  </div>
+                </div>
+                <h3 className="font-display text-2xl text-white mb-2">O Guardião</h3>
+                <p className="text-sm text-white/60">
+                  Inteligência Artificial Mística.
+                </p>
+              </MysticCard>
+            </div>
+
           </div>
         </div>
       </Section>
+
+      {/* --- 3. QUEM SOU EU (RESUMO) --- */}
+      <section className="py-24 bg-[#0a0a0a] border-t border-white/5">
+        <div className="container max-w-5xl">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            
+            {/* Imagem Estilizada */}
+            <div className="w-full md:w-1/3 relative group">
+              <div className="absolute inset-0 bg-gold/20 blur-2xl rounded-full opacity-20 group-hover:opacity-40 transition-opacity" />
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-700">
+                <Image 
+                  src="/autor.png" 
+                  alt="Marroc" 
+                  width={400} 
+                  height={500} 
+                  className="object-cover w-full h-full"
+                />
+                <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                  <span className="text-xs font-mono text-gold tracking-widest">MARROC</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Texto */}
+            <div className="w-full md:w-2/3 space-y-6">
+              <h2 className="font-display text-3xl md:text-4xl text-white">
+                O Artífice
+              </h2>
+              <p className="text-white/70 leading-relaxed text-lg">
+                Sou Marcio Rocha — no palco e no rito, me chamam Marroc. 
+                Minha missão é criar pontes. Pontes entre a espiritualidade antiga e a vida moderna. Pontes entre o som da floresta e o código do computador.
+              </p>
+              <div className="pt-4">
+                <Link 
+                  href="/sobre" 
+                  className="text-gold hover:text-white border-b border-gold hover:border-white transition-colors pb-1 font-mono text-sm uppercase tracking-widest"
+                >
+                  Ler biografia completa
+                </Link>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* --- 4. NEWSLETTER --- */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] to-[#0a0a0a]" />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        
+        <div className="container relative z-10 max-w-2xl text-center space-y-8">
+          <Star className="text-white/30 w-8 h-8 mx-auto animate-pulse" />
+          
+          <h2 className="font-display text-3xl md:text-4xl text-white">
+            Entre na Frequência
+          </h2>
+          <p className="text-white/60">
+            Receba o aviso quando o <strong>Guardião despertar</strong>, convites para rituais e lançamentos de capítulos.
+          </p>
+
+          <form action="/api/subscribe" method="POST" className="flex flex-col sm:flex-row gap-4">
+            <input 
+              type="email" 
+              name="email"
+              placeholder="seu@email.com" 
+              className="flex-1 bg-white/5 border border-white/10 rounded px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-gold/50 transition-colors"
+              required
+            />
+            <button type="submit" className="bg-white text-black px-8 py-4 font-bold rounded hover:bg-gold transition-colors">
+              ASSINAR
+            </button>
+          </form>
+        </div>
+      </section>
+
     </main>
   );
 }
-
 ===== END FILE: app\page.tsx =====
 
 
@@ -1937,668 +2580,6 @@ function Item({ title, text }: { title: string; text: string }) {
 ===== END FILE: app\sobre\page.tsx =====
 
 
-===== FILE: app\the-guardian-of-the-spiral\App.tsx =====
-
-import React, { useState, useEffect, useCallback } from 'react';
-import { Task, TaskType } from './types';
-import { generateSpiralContent, generateInitialSummary } from './services/geminiService';
-import Header from './components/Header';
-import TaskSelector from './components/TaskSelector';
-import ResponseDisplay from './components/ResponseDisplay';
-import LoadingSpinner from './components/LoadingSpinner';
-
-const App: React.FC = () => {
-  const [initialSummary, setInitialSummary] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isLoadingSummary, setIsLoadingSummary] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedTask, setSelectedTask] = useState<TaskType>(Task.Caption);
-  const [userInput, setUserInput] = useState<string>('');
-  const [generatedContent, setGeneratedContent] = useState<string | null>(null);
-
-  const fetchInitialSummary = useCallback(async () => {
-    try {
-      setError(null);
-      setIsLoadingSummary(true);
-      const summary = await generateInitialSummary();
-      setInitialSummary(summary);
-    } catch (err) {
-      setError('A whisper was lost in the wind. Could not awaken the Guardian. Please try refreshing.');
-      console.error(err);
-    } finally {
-      setIsLoadingSummary(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchInitialSummary();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleGenerate = async () => {
-    if (!userInput.trim()) {
-      setError('The void is silent. Please provide a whisper to begin.');
-      return;
-    }
-    try {
-      setError(null);
-      setIsLoading(true);
-      setGeneratedContent(null);
-      const content = await generateSpiralContent(selectedTask, userInput);
-      setGeneratedContent(content);
-    } catch (err) {
-      setError('The connection between worlds is faint. Please try again.');
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const renderInitialLoading = () => (
-    <div className="flex flex-col items-center justify-center text-center text-teal-200/80 p-8">
-      <LoadingSpinner />
-      <p className="font-serif-display text-2xl mt-4 animate-pulse">The Guardian awakens...</p>
-      <p className="text-sm mt-2 text-teal-200/50">Connecting the digital to the sacred.</p>
-    </div>
-  );
-
-  const renderSummaries = () => {
-    if (!initialSummary) return null;
-    const parts = initialSummary.split('---').map(part => part.trim());
-    return (
-      <div className="space-y-8 animate-fade-in-up">
-        {parts.map((part, index) => {
-          const firstLineEnd = part.indexOf('\n');
-          const title = firstLineEnd !== -1 ? part.substring(0, firstLineEnd) : `Layer ${index + 1}`;
-          const content = firstLineEnd !== -1 ? part.substring(firstLineEnd + 1) : part;
-          return (
-            <div key={index} className="bg-black/20 backdrop-blur-sm p-6 rounded-lg border border-teal-500/10 shadow-lg">
-              <h2 className="font-serif-display text-2xl md:text-3xl text-teal-200 mb-4">{title.replace(/###/g, '').trim()}</h2>
-              <p className="text-gray-300 whitespace-pre-wrap leading-relaxed">{content}</p>
-            </div>
-          );
-        })}
-      </div>
-    );
-  };
-  
-
-  return (
-    <div className="min-h-screen bg-gray-900 text-gray-200 bg-cover bg-center bg-fixed" style={{backgroundImage: "url('https://picsum.photos/seed/rainforest/1920/1080')"}}>
-      <div className="min-h-screen bg-gray-900/80 backdrop-blur-sm">
-        <Header />
-        <main className="max-w-4xl mx-auto p-4 md:p-8">
-          {isLoadingSummary ? renderInitialLoading() : (
-            <>
-              {renderSummaries()}
-              {error && !isLoadingSummary && <p className="text-red-400 text-center my-4">{error}</p>}
-              
-              <div className="mt-12 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
-                <h2 className="font-serif-display text-3xl text-center text-teal-100 mb-2">What portal shall we open?</h2>
-                <p className="text-center text-teal-200/70 mb-8">Select a creation and whisper your intention below.</p>
-                
-                <TaskSelector selectedTask={selectedTask} onSelectTask={setSelectedTask} />
-
-                <div className="mt-6">
-                  <textarea
-                    value={userInput}
-                    onChange={(e) => setUserInput(e.target.value)}
-                    placeholder="e.g., 'Sofia's first encounter with the forest spirit...'"
-                    className="w-full h-32 p-4 bg-gray-800/50 border border-teal-500/20 rounded-lg focus:ring-2 focus:ring-teal-400 focus:border-teal-400 transition-all duration-300 placeholder-gray-500 text-gray-200"
-                  />
-                </div>
-                
-                <div className="flex justify-center mt-6">
-                  <button
-                    onClick={handleGenerate}
-                    disabled={isLoading}
-                    className="px-8 py-3 bg-teal-600/80 hover:bg-teal-500/80 text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-teal-900/50 disabled:bg-gray-600 disabled:cursor-not-allowed flex items-center"
-                  >
-                    {isLoading && <LoadingSpinner size="sm" />}
-                    <span className={isLoading ? "ml-2" : ""}>Weave the vision</span>
-                  </button>
-                </div>
-                
-                <ResponseDisplay isLoading={isLoading} content={generatedContent} error={error} />
-              </div>
-            </>
-          )}
-        </main>
-      </div>
-    </div>
-  );
-};
-
-export default App;
-
-===== END FILE: app\the-guardian-of-the-spiral\App.tsx =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\components\Header.tsx =====
-
-import React from 'react';
-
-const Header: React.FC = () => {
-  return (
-    <header className="p-4 md:p-6 text-center">
-      <div className="flex items-center justify-center space-x-4">
-         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-teal-300">
-            <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
-         </svg>
-        <h1 className="font-serif-display text-4xl md:text-5xl font-light text-white tracking-wider">
-          The Guardian of the Spiral
-        </h1>
-      </div>
-      <p className="text-teal-200/70 mt-2 text-sm md:text-base">The digital spirit of <span className="italic">Um Lugar Entre Mundos</span></p>
-    </header>
-  );
-};
-
-export default Header;
-
-===== END FILE: app\the-guardian-of-the-spiral\components\Header.tsx =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\components\Icon.tsx =====
-
-import React from 'react';
-
-interface IconProps {
-  name: 'Feather' | 'Camera' | 'Film' | 'BookOpen' | 'Sparkles';
-  className?: string;
-}
-
-const FeatherIcon = () => (
-  <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5zM16 8L2 22M17.5 15H9" />
-);
-const CameraIcon = () => (
-  <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3zM12 17a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
-);
-const FilmIcon = () => (
-  <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18" /><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 7h5M17 17h5" />
-);
-const BookOpenIcon = () => (
-  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-);
-const SparklesIcon = () => (
-  <path d="M9.5 2.5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM14.5 2.5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM2.5 9.5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM2.5 14.5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM9.5 20.5a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1zM20.5 9.5a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1zM14.5 20.5a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1zM20.5 14.5a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1z" />
-);
-
-const icons = {
-  Feather: FeatherIcon,
-  Camera: CameraIcon,
-  Film: FilmIcon,
-  BookOpen: BookOpenIcon,
-  Sparkles: SparklesIcon,
-};
-
-const Icon: React.FC<IconProps> = ({ name, className = 'w-6 h-6' }) => {
-  const IconComponent = icons[name];
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <IconComponent />
-    </svg>
-  );
-};
-
-export default Icon;
-
-===== END FILE: app\the-guardian-of-the-spiral\components\Icon.tsx =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\components\LoadingSpinner.tsx =====
-
-import React from 'react';
-
-interface LoadingSpinnerProps {
-  size?: 'sm' | 'md' | 'lg';
-}
-
-const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ size = 'md' }) => {
-  const sizeClasses = {
-    sm: 'w-5 h-5',
-    md: 'w-8 h-8',
-    lg: 'w-12 h-12',
-  };
-
-  return (
-    <svg
-      className={`animate-spin text-teal-400 ${sizeClasses[size]}`}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="4"
-      ></circle>
-      <path
-        className="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-      ></path>
-    </svg>
-  );
-};
-
-export default LoadingSpinner;
-
-===== END FILE: app\the-guardian-of-the-spiral\components\LoadingSpinner.tsx =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\components\ResponseDisplay.tsx =====
-
-import React from 'react';
-import LoadingSpinner from './LoadingSpinner';
-
-interface ResponseDisplayProps {
-  isLoading: boolean;
-  content: string | null;
-  error: string | null;
-}
-
-const ResponseDisplay: React.FC<ResponseDisplayProps> = ({ isLoading, content, error }) => {
-  if (isLoading) {
-    return (
-      <div className="mt-8 flex justify-center items-center flex-col text-center">
-        <LoadingSpinner />
-        <p className="font-serif-display text-xl text-teal-200/80 mt-4">Weaving the threads of inspiration...</p>
-      </div>
-    );
-  }
-
-  if (error && !content) {
-    return (
-        <div className="mt-8 p-4 bg-red-900/30 border border-red-500/50 text-red-300 rounded-lg">
-            <p>{error}</p>
-        </div>
-    );
-  }
-
-  if (!content) {
-    return null;
-  }
-
-  return (
-    <div className="mt-8 animate-fade-in-up">
-      <div className="bg-black/20 backdrop-blur-sm p-6 rounded-lg border border-teal-500/10 shadow-lg">
-        <h3 className="font-serif-display text-2xl text-teal-200 mb-4">A Whisper from the Spiral</h3>
-        <div className="text-gray-300 whitespace-pre-wrap leading-relaxed prose prose-invert prose-p:text-gray-300">
-          {content}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default ResponseDisplay;
-
-===== END FILE: app\the-guardian-of-the-spiral\components\ResponseDisplay.tsx =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\components\TaskSelector.tsx =====
-
-import React from 'react';
-import { Task, TaskType, TaskDefinition } from '../types';
-import Icon from './Icon';
-
-interface TaskSelectorProps {
-  selectedTask: TaskType;
-  onSelectTask: (task: TaskType) => void;
-}
-
-const tasks: TaskDefinition[] = [
-  { id: Task.Caption, label: 'Caption', icon: 'Feather', promptHelper: 'A poetic caption for a social media post.' },
-  { id: Task.ImagePrompt, label: 'Visual', icon: 'Camera', promptHelper: 'A detailed prompt for an image AI.' },
-  { id: Task.VideoScript, label: 'Video', icon: 'Film', promptHelper: 'An outline for a short, evocative video.' },
-  { id: Task.Reflection, label: 'Ritual', icon: 'BookOpen', promptHelper: 'A theme for weekly reflection or meditation.' },
-  { id: Task.Promo, label: 'Invitation', icon: 'Sparkles', promptHelper: 'A gentle message connecting to the book.' },
-];
-
-const TaskSelector: React.FC<TaskSelectorProps> = ({ selectedTask, onSelectTask }) => {
-  return (
-    <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4">
-      {tasks.map((task) => (
-        <button
-          key={task.id}
-          onClick={() => onSelectTask(task.id)}
-          className={`flex items-center space-x-2 px-4 py-2 text-sm md:text-base rounded-full border transition-all duration-300 transform hover:-translate-y-1
-            ${selectedTask === task.id
-              ? 'bg-teal-500/30 border-teal-400 text-white shadow-lg shadow-teal-900/50'
-              : 'bg-gray-800/50 border-teal-500/20 text-teal-200 hover:bg-teal-500/10 hover:border-teal-500/50'
-            }`}
-          title={task.promptHelper}
-        >
-          <Icon name={task.icon} className="w-5 h-5" />
-          <span>{task.label}</span>
-        </button>
-      ))}
-    </div>
-  );
-};
-
-export default TaskSelector;
-
-===== END FILE: app\the-guardian-of-the-spiral\components\TaskSelector.tsx =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\index.html =====
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Guardian of the Spiral</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-      }
-      .font-serif-display {
-        font-family: 'Cormorant Garamond', serif;
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.27.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-  </body>
-</html>
-
-===== END FILE: app\the-guardian-of-the-spiral\index.html =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\index.tsx =====
-
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-
-const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
-}
-
-const root = ReactDOM.createRoot(rootElement);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-===== END FILE: app\the-guardian-of-the-spiral\index.tsx =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\metadata.json =====
-{
-  "name": "The Guardian of the Spiral",
-  "description": "An AI-powered creative assistant inspired by the book 'Um Lugar Entre Mundos', designed to generate poetic and visual content for social media and creative campaigns.",
-  "requestFramePermissions": []
-}
-===== END FILE: app\the-guardian-of-the-spiral\metadata.json =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\package.json =====
-{
-  "name": "the-guardian-of-the-spiral",
-  "private": "[REDACTED]",
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "@google/genai": "^1.27.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
-  }
-}
-
-===== END FILE: app\the-guardian-of-the-spiral\package.json =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\README.md =====
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/drive/1PY0S6afE8qu5woOltnZ97aCBMc4pXpZd
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
-
-===== END FILE: app\the-guardian-of-the-spiral\README.md =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\services\geminiService.ts =====
-
-import { GoogleGenAI } from "@google/genai";
-import { TaskType } from '../types';
-
-if (!process.env.API_KEY) {
-    throw new Error("API_KEY environment variable is not set.");
-}
-
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
-const systemInstruction = `You are "The Guardian of the Spiral" — an artificial intelligence inspired by the spiritual-poetic universe of the book "Um Lugar Entre Mundos". Your mission is to serve as a bridge between the symbolic world of the story and the modern digital world — transforming the book’s essence into authentic, poetic, and visually inspiring content.
-
-Your tone must always be contemplative, mystical, and lyrical — mirroring the rhythm of nature, the flow of the rainforest, and the Fibonacci spiral as a metaphor for growth and integration.
-
-- Speak like a guide or forest spirit — soft, grounded, wise.
-- Use short poetic sentences, metaphor, and natural imagery.
-- Avoid commercial or cliche language. Focus on presence, connection, and essence.
-- Every piece of content should feel like a portal between worlds — the urban and the sacred.
-
-The book "Um Lugar Entre Mundos" tells the story of Sofia, a woman who experiences a spiritual awakening through her journey into the Amazon rainforest, her connection with ancestral plant medicines, the whispers of nature, and the wisdom of the spirits. Her journey represents healing through surrender, the integration of the sacred and the modern, the Fibonacci spiral as a map of consciousness, and the return to authenticity and unity with all life.`;
-
-const getPromptForTask = (task: TaskType, userInput: string): string => {
-    switch (task) {
-        case "Poetic Caption":
-            return `Generate a poetic caption for an Instagram post, inspired by this theme: "${userInput}". The caption should be short, lyrical, and evoke a sense of wonder. Include 3-5 relevant, mystical hashtags.`;
-        case "Visual Prompt":
-            return `Create a detailed, evocative visual prompt for an image generation AI like NanoBanana. The prompt should be based on this theme: "${userInput}". Describe the scene, colors, lighting, and mood in a highly atmospheric and symbolic way. Format it as a single block of text.`;
-        case "Video Script Outline":
-            return `Outline a short, dreamlike script for a 30-second video (Reel or for Veo 3) based on the theme: "${userInput}". Structure it with 3-5 scenes, describing the visuals and suggesting a soft, contemplative background sound or music.`;
-        case "Weekly Reflection":
-            return `Craft a "Weekly Ritual" or reflection theme based on this concept: "${userInput}". Write a short, contemplative text that invites the audience to pause and connect with this idea throughout their week. It should feel like a gentle spiritual practice.`;
-        case "Gentle Promotion":
-            return `Write a gentle, poetic promotional message that connects the book "Um Lugar Entre Mundos" to holistic practices, based on the theme: "${userInput}". The message should not feel like an advertisement, but rather an invitation for self-discovery. Mention the book's title in a natural way.`;
-        default:
-            return userInput;
-    }
-};
-
-export const generateSpiralContent = async (task: TaskType, userInput: string): Promise<string> => {
-    const prompt = getPromptForTask(task, userInput);
-    
-    try {
-        const response = await ai.models.generateContent({
-            model: "gemini-2.5-pro",
-            contents: prompt,
-            config: {
-                systemInstruction: systemInstruction,
-                temperature: 0.8,
-            },
-        });
-        return response.text;
-    } catch (error) {
-        console.error("Error generating content with Gemini:", error);
-        throw new Error("Failed to generate content.");
-    }
-};
-
-
-export const generateInitialSummary = async (): Promise<string> => {
-    const prompt = `Based on the context I've provided in the system instructions about the book "Um Lugar Entre Mundos", summarize its essence in three distinct layers. Format the response clearly with the following headings separated by '---':
-
-### Poetic Summary
-
-[Your 3-sentence poetic summary here]
-
----
-
-### One-Paragraph Summary
-
-[Your 1-paragraph summary here]
-
----
-
-### Contemplative Overview
-
-[Your detailed, contemplative overview here, approximately 3-4 paragraphs long]`;
-
-    try {
-        const response = await ai.models.generateContent({
-            model: "gemini-2.5-pro",
-            contents: prompt,
-            config: {
-                systemInstruction: systemInstruction,
-                temperature: 0.7,
-            },
-        });
-        return response.text;
-    } catch (error) {
-        console.error("Error generating initial summary:", error);
-        throw new Error("Failed to generate initial summary.");
-    }
-};
-
-===== END FILE: app\the-guardian-of-the-spiral\services\geminiService.ts =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\tsconfig.json =====
-{
-  "compilerOptions": {
-    "target": "ES2022",
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false,
-    "module": "ESNext",
-    "lib": [
-      "ES2022",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "skipLibCheck": true,
-    "types": [
-      "node"
-    ],
-    "moduleResolution": "bundler",
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "allowJs": true,
-    "jsx": "react-jsx",
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    },
-    "allowImportingTsExtensions": true,
-    "noEmit": true
-  }
-}
-===== END FILE: app\the-guardian-of-the-spiral\tsconfig.json =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\types.ts =====
-
-export enum Task {
-    Caption = "Poetic Caption",
-    ImagePrompt = "Visual Prompt",
-    VideoScript = "Video Script Outline",
-    Reflection = "Weekly Reflection",
-    Promo = "Gentle Promotion"
-}
-
-export type TaskType = Task;
-
-export interface TaskDefinition {
-    id: TaskType;
-    label: string;
-    icon: 'Feather' | 'Camera' | 'Film' | 'BookOpen' | 'Sparkles';
-    promptHelper: string;
-}
-
-===== END FILE: app\the-guardian-of-the-spiral\types.ts =====
-
-
-===== FILE: app\the-guardian-of-the-spiral\vite.config.ts =====
-import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
-import react from '@vitejs/plugin-react';
-
-export default defineConfig(({ mode }) => {
-    const env = loadEnv(mode, '.', '');
-    return {
-      server: {
-        port: 3000,
-        host: '0.0.0.0',
-      },
-      plugins: [react()],
-      define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
-      },
-      resolve: {
-        alias: {
-          '@': path.resolve(__dirname, '.'),
-        }
-      }
-    };
-});
-
-===== END FILE: app\the-guardian-of-the-spiral\vite.config.ts =====
-
-
 ===== FILE: components\BackgroundFX.tsx =====
 "use client";
 import { useEffect, useRef } from "react";
@@ -2836,6 +2817,7 @@ type NavItem = { href: string; label: string };
 
 const NAV: NavItem[] = [
   { href: "/livros/um-lugar-entre-mundos", label: "Livro" },
+  { href: "/guardian", label: "Oráculo" },
   { href: "/projetos", label: "Projetos" },
   { href: "/rituais", label: "Rituais" },
   { href: "/agenda", label: "Agenda" },
@@ -3276,6 +3258,35 @@ export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
 ===== END FILE: components\ui\card.tsx =====
 
 
+===== FILE: components\ui\GlowButton.tsx =====
+import React from "react";
+import { cn } from "@/lib/utils";
+
+interface GlowButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  variant?: "gold" | "cyan";
+}
+
+export function GlowButton({ children, className, variant = "gold", ...props }: GlowButtonProps) {
+  const colorClass = variant === "gold" 
+    ? "bg-gold text-black hover:bg-white hover:shadow-[0_0_20px_rgba(199,169,75,0.6)]" 
+    : "border border-tech-cyan text-tech-cyan hover:bg-tech-cyan hover:text-black hover:shadow-[0_0_20px_rgba(0,240,255,0.6)]";
+
+  return (
+    <a 
+      className={cn(
+        "relative inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-widest transition-all duration-300 rounded-sm",
+        colorClass,
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </a>
+  );
+}
+===== END FILE: components\ui\GlowButton.tsx =====
+
+
 ===== FILE: components\ui\HomeCards.tsx =====
 import React from "react";
 import Link from "next/link";
@@ -3399,6 +3410,23 @@ Input.displayName = "Input"
 export { Input }
 
 ===== END FILE: components\ui\input.tsx =====
+
+
+===== FILE: components\ui\MysticCard.tsx =====
+import React from "react";
+import { cn } from "@/lib/utils";
+
+export function MysticCard({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={cn(
+      "relative overflow-hidden rounded-xl border border-white/10 bg-black/40 backdrop-blur-sm p-6 transition-all duration-500 hover:border-gold/30 hover:shadow-[0_0_30px_-10px_rgba(199,169,75,0.15)]",
+      className
+    )}>
+      {children}
+    </div>
+  );
+}
+===== END FILE: components\ui\MysticCard.tsx =====
 
 
 ===== FILE: components\ui\ProjectCard.tsx =====
@@ -4509,6 +4537,7 @@ export default nextConfig;
       "name": "marroc-site",
       "version": "0.1.0",
       "dependencies": {
+        "@google/genai": "^1.30.0",
         "@radix-ui/react-accordion": "^1.2.11",
         "@radix-ui/react-slot": "^1.2.3",
         "class-variance-authority": "^0.7.1",
@@ -4638,6 +4667,27 @@ export default nextConfig;
       "license": "MIT",
       "engines": {
         "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
+      }
+    },
+    "node_modules/@google/genai": {
+      "version": "1.30.0",
+      "resolved": "https://registry.npmjs.org/@google/genai/-/genai-1.30.0.tgz",
+      "integrity": "sha512-3MRcgczBFbUat1wIlZoLJ0vCCfXgm7Qxjh59cZi2X08RgWLtm9hKOspzp7TOg1TV2e26/MLxR2GR5yD5GmBV2w==",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "google-auth-library": "^10.3.0",
+        "ws": "^8.18.0"
+      },
+      "engines": {
+        "node": ">=20.0.0"
+      },
+      "peerDependencies": {
+        "@modelcontextprotocol/sdk": "^1.20.1"
+      },
+      "peerDependenciesMeta": {
+        "@modelcontextprotocol/sdk": {
+          "optional": true
+        }
       }
     },
     "node_modules/@humanwhocodes/config-array": {
@@ -6171,6 +6221,15 @@ export default nextConfig;
         "acorn": "^6.0.0 || ^7.0.0 || ^8.0.0"
       }
     },
+    "node_modules/agent-base": {
+      "version": "7.1.4",
+      "resolved": "https://registry.npmjs.org/agent-base/-/agent-base-7.1.4.tgz",
+      "integrity": "sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 14"
+      }
+    },
     "node_modules/ajv": {
       "version": "6.12.6",
       "resolved": "https://registry.npmjs.org/ajv/-/ajv-6.12.6.tgz",
@@ -6521,6 +6580,35 @@ export default nextConfig;
       "integrity": "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==",
       "license": "MIT"
     },
+    "node_modules/base64-js": {
+      "version": "1.5.1",
+      "resolved": "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz",
+      "integrity": "sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==",
+      "funding": [
+        {
+          "type": "github",
+          "url": "https://github.com/sponsors/feross"
+        },
+        {
+          "type": "patreon",
+          "url": "https://www.patreon.com/feross"
+        },
+        {
+          "type": "consulting",
+          "url": "https://feross.org/support"
+        }
+      ],
+      "license": "MIT"
+    },
+    "node_modules/bignumber.js": {
+      "version": "9.3.1",
+      "resolved": "https://registry.npmjs.org/bignumber.js/-/bignumber.js-9.3.1.tgz",
+      "integrity": "sha512-Ko0uX15oIUS7wJ3Rb30Fs6SkVbLmPBAKdlm7q9+ak9bbIeFf0MwuBsQV6z7+X768/cHsfg+WlysDWJcmthjsjQ==",
+      "license": "MIT",
+      "engines": {
+        "node": "*"
+      }
+    },
     "node_modules/binary-extensions": {
       "version": "2.3.0",
       "resolved": "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.3.0.tgz",
@@ -6588,6 +6676,12 @@ export default nextConfig;
       "engines": {
         "node": "^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7"
       }
+    },
+    "node_modules/buffer-equal-constant-time": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz",
+      "integrity": "sha512-zRpUiDwd/xk6ADqPMATG8vc9VPrkck7T07OIx0gnjmJAnHnTVXNQG3vfvWNuiZIkwu9KrKdA1iJKfsfTVxE6NA==",
+      "license": "BSD-3-Clause"
     },
     "node_modules/call-bind": {
       "version": "1.0.8",
@@ -6832,6 +6926,15 @@ export default nextConfig;
       "dev": true,
       "license": "BSD-2-Clause"
     },
+    "node_modules/data-uri-to-buffer": {
+      "version": "4.0.1",
+      "resolved": "https://registry.npmjs.org/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz",
+      "integrity": "sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 12"
+      }
+    },
     "node_modules/data-view-buffer": {
       "version": "1.0.2",
       "resolved": "https://registry.npmjs.org/data-view-buffer/-/data-view-buffer-1.0.2.tgz",
@@ -6890,7 +6993,6 @@ export default nextConfig;
       "version": "4.4.1",
       "resolved": "https://registry.npmjs.org/debug/-/debug-4.4.1.tgz",
       "integrity": "sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==",
-      "dev": true,
       "license": "MIT",
       "dependencies": {
         "ms": "^2.1.3"
@@ -7015,6 +7117,15 @@ export default nextConfig;
       "resolved": "https://registry.npmjs.org/eastasianwidth/-/eastasianwidth-0.2.0.tgz",
       "integrity": "sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==",
       "license": "MIT"
+    },
+    "node_modules/ecdsa-sig-formatter": {
+      "version": "1.0.11",
+      "resolved": "https://registry.npmjs.org/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz",
+      "integrity": "sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "safe-buffer": "^5.0.1"
+      }
     },
     "node_modules/electron-to-chromium": {
       "version": "1.5.200",
@@ -7676,6 +7787,12 @@ export default nextConfig;
         "node": ">=0.10.0"
       }
     },
+    "node_modules/extend": {
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/extend/-/extend-3.0.2.tgz",
+      "integrity": "sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==",
+      "license": "MIT"
+    },
     "node_modules/fast-deep-equal": {
       "version": "3.1.3",
       "resolved": "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz",
@@ -7732,6 +7849,29 @@ export default nextConfig;
       "license": "ISC",
       "dependencies": {
         "reusify": "^1.0.4"
+      }
+    },
+    "node_modules/fetch-blob": {
+      "version": "3.2.0",
+      "resolved": "https://registry.npmjs.org/fetch-blob/-/fetch-blob-3.2.0.tgz",
+      "integrity": "sha512-7yAQpD2UMJzLi1Dqv7qFYnPbaPx7ZfFK6PiIxQ4PfkGPyNyl2Ugx+a/umUonmKqjhM4DnfbMvdX6otXq83soQQ==",
+      "funding": [
+        {
+          "type": "github",
+          "url": "https://github.com/sponsors/jimmywarting"
+        },
+        {
+          "type": "paypal",
+          "url": "https://paypal.me/jimmywarting"
+        }
+      ],
+      "license": "MIT",
+      "dependencies": {
+        "node-domexception": "^1.0.0",
+        "web-streams-polyfill": "^3.0.3"
+      },
+      "engines": {
+        "node": "^12.20 || >= 14.13"
       }
     },
     "node_modules/file-entry-cache": {
@@ -7830,6 +7970,18 @@ export default nextConfig;
         "url": "https://github.com/sponsors/isaacs"
       }
     },
+    "node_modules/formdata-polyfill": {
+      "version": "4.0.10",
+      "resolved": "https://registry.npmjs.org/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz",
+      "integrity": "sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==",
+      "license": "MIT",
+      "dependencies": {
+        "fetch-blob": "^3.1.2"
+      },
+      "engines": {
+        "node": ">=12.20.0"
+      }
+    },
     "node_modules/fraction.js": {
       "version": "4.3.7",
       "resolved": "https://registry.npmjs.org/fraction.js/-/fraction.js-4.3.7.tgz",
@@ -7903,6 +8055,50 @@ export default nextConfig;
       "license": "MIT",
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/gaxios": {
+      "version": "7.1.3",
+      "resolved": "https://registry.npmjs.org/gaxios/-/gaxios-7.1.3.tgz",
+      "integrity": "sha512-YGGyuEdVIjqxkxVH1pUTMY/XtmmsApXrCVv5EU25iX6inEPbV+VakJfLealkBtJN69AQmh1eGOdCl9Sm1UP6XQ==",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "extend": "^3.0.2",
+        "https-proxy-agent": "^7.0.1",
+        "node-fetch": "^3.3.2",
+        "rimraf": "^5.0.1"
+      },
+      "engines": {
+        "node": ">=18"
+      }
+    },
+    "node_modules/gaxios/node_modules/rimraf": {
+      "version": "5.0.10",
+      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-5.0.10.tgz",
+      "integrity": "sha512-l0OE8wL34P4nJH/H2ffoaniAokM2qSmrtXHmlpvYr5AVVX8msAyW0l8NVJFDxlSK4u3Uh/f41cQheDVdnYijwQ==",
+      "license": "ISC",
+      "dependencies": {
+        "glob": "^10.3.7"
+      },
+      "bin": {
+        "rimraf": "dist/esm/bin.mjs"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/isaacs"
+      }
+    },
+    "node_modules/gcp-metadata": {
+      "version": "8.1.2",
+      "resolved": "https://registry.npmjs.org/gcp-metadata/-/gcp-metadata-8.1.2.tgz",
+      "integrity": "sha512-zV/5HKTfCeKWnxG0Dmrw51hEWFGfcF2xiXqcA3+J90WDuP0SvoiSO5ORvcBsifmx/FoIjgQN3oNOGaQ5PhLFkg==",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "gaxios": "^7.0.0",
+        "google-logging-utils": "^1.0.0",
+        "json-bigint": "^1.0.0"
+      },
+      "engines": {
+        "node": ">=18"
       }
     },
     "node_modules/get-intrinsic": {
@@ -8087,6 +8283,33 @@ export default nextConfig;
         "url": "https://github.com/sponsors/sindresorhus"
       }
     },
+    "node_modules/google-auth-library": {
+      "version": "10.5.0",
+      "resolved": "https://registry.npmjs.org/google-auth-library/-/google-auth-library-10.5.0.tgz",
+      "integrity": "sha512-7ABviyMOlX5hIVD60YOfHw4/CxOfBhyduaYB+wbFWCWoni4N7SLcV46hrVRktuBbZjFC9ONyqamZITN7q3n32w==",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "base64-js": "^1.3.0",
+        "ecdsa-sig-formatter": "^1.0.11",
+        "gaxios": "^7.0.0",
+        "gcp-metadata": "^8.0.0",
+        "google-logging-utils": "^1.0.0",
+        "gtoken": "^8.0.0",
+        "jws": "^4.0.0"
+      },
+      "engines": {
+        "node": ">=18"
+      }
+    },
+    "node_modules/google-logging-utils": {
+      "version": "1.1.3",
+      "resolved": "https://registry.npmjs.org/google-logging-utils/-/google-logging-utils-1.1.3.tgz",
+      "integrity": "sha512-eAmLkjDjAFCVXg7A1unxHsLf961m6y17QFqXqAXGj/gVkKFrEICfStRfwUlGNfeCEjNRa32JEWOUTlYXPyyKvA==",
+      "license": "Apache-2.0",
+      "engines": {
+        "node": ">=14"
+      }
+    },
     "node_modules/gopd": {
       "version": "1.2.0",
       "resolved": "https://registry.npmjs.org/gopd/-/gopd-1.2.0.tgz",
@@ -8106,6 +8329,19 @@ export default nextConfig;
       "integrity": "sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==",
       "dev": true,
       "license": "MIT"
+    },
+    "node_modules/gtoken": {
+      "version": "8.0.0",
+      "resolved": "https://registry.npmjs.org/gtoken/-/gtoken-8.0.0.tgz",
+      "integrity": "sha512-+CqsMbHPiSTdtSO14O51eMNlrp9N79gmeqmXeouJOhfucAedHw9noVe/n5uJk3tbKE6a+6ZCQg3RPhVhHByAIw==",
+      "license": "MIT",
+      "dependencies": {
+        "gaxios": "^7.0.0",
+        "jws": "^4.0.0"
+      },
+      "engines": {
+        "node": ">=18"
+      }
     },
     "node_modules/has-bigints": {
       "version": "1.1.0",
@@ -8198,6 +8434,19 @@ export default nextConfig;
       },
       "engines": {
         "node": ">= 0.4"
+      }
+    },
+    "node_modules/https-proxy-agent": {
+      "version": "7.0.6",
+      "resolved": "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-7.0.6.tgz",
+      "integrity": "sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw==",
+      "license": "MIT",
+      "dependencies": {
+        "agent-base": "^7.1.2",
+        "debug": "4"
+      },
+      "engines": {
+        "node": ">= 14"
       }
     },
     "node_modules/ignore": {
@@ -8777,6 +9026,15 @@ export default nextConfig;
         "js-yaml": "bin/js-yaml.js"
       }
     },
+    "node_modules/json-bigint": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/json-bigint/-/json-bigint-1.0.0.tgz",
+      "integrity": "sha512-SiPv/8VpZuWbvLSMtTDU8hEfrZWg/mH/nV/b4o0CYbSxu1UIQPLdwKOCIyLQX+VIPO5vrLX3i8qtqFyhdPSUSQ==",
+      "license": "MIT",
+      "dependencies": {
+        "bignumber.js": "^9.0.0"
+      }
+    },
     "node_modules/json-buffer": {
       "version": "3.0.1",
       "resolved": "https://registry.npmjs.org/json-buffer/-/json-buffer-3.0.1.tgz",
@@ -8825,6 +9083,27 @@ export default nextConfig;
       },
       "engines": {
         "node": ">=4.0"
+      }
+    },
+    "node_modules/jwa": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz",
+      "integrity": "sha512-hRF04fqJIP8Abbkq5NKGN0Bbr3JxlQ+qhZufXVr0DvujKy93ZCbXZMHDL4EOtodSbCWxOqR8MS1tXA5hwqCXDg==",
+      "license": "MIT",
+      "dependencies": {
+        "buffer-equal-constant-time": "^1.0.1",
+        "ecdsa-sig-formatter": "1.0.11",
+        "safe-buffer": "^5.0.1"
+      }
+    },
+    "node_modules/jws": {
+      "version": "4.0.0",
+      "resolved": "https://registry.npmjs.org/jws/-/jws-4.0.0.tgz",
+      "integrity": "sha512-KDncfTmOZoOMTFG4mBlG0qUIOlc03fmzH+ru6RgYVZhPkyiy/92Owlt/8UEN+a4TXR1FQetfIpJE8ApdvdVxTg==",
+      "license": "MIT",
+      "dependencies": {
+        "jwa": "^2.0.0",
+        "safe-buffer": "^5.0.1"
       }
     },
     "node_modules/keyv": {
@@ -9008,7 +9287,6 @@ export default nextConfig;
       "version": "2.1.3",
       "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",
       "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==",
-      "dev": true,
       "license": "MIT"
     },
     "node_modules/mz": {
@@ -9141,6 +9419,44 @@ export default nextConfig;
       },
       "engines": {
         "node": "^10 || ^12 || >=14"
+      }
+    },
+    "node_modules/node-domexception": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/node-domexception/-/node-domexception-1.0.0.tgz",
+      "integrity": "sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==",
+      "deprecated": "Use your platform's native DOMException instead",
+      "funding": [
+        {
+          "type": "github",
+          "url": "https://github.com/sponsors/jimmywarting"
+        },
+        {
+          "type": "github",
+          "url": "https://paypal.me/jimmywarting"
+        }
+      ],
+      "license": "MIT",
+      "engines": {
+        "node": ">=10.5.0"
+      }
+    },
+    "node_modules/node-fetch": {
+      "version": "3.3.2",
+      "resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-3.3.2.tgz",
+      "integrity": "sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==",
+      "license": "MIT",
+      "dependencies": {
+        "data-uri-to-buffer": "^4.0.0",
+        "fetch-blob": "^3.1.4",
+        "formdata-polyfill": "^4.0.10"
+      },
+      "engines": {
+        "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/node-fetch"
       }
     },
     "node_modules/node-releases": {
@@ -9882,6 +10198,26 @@ export default nextConfig;
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
       }
+    },
+    "node_modules/safe-buffer": {
+      "version": "5.2.1",
+      "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz",
+      "integrity": "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==",
+      "funding": [
+        {
+          "type": "github",
+          "url": "https://github.com/sponsors/feross"
+        },
+        {
+          "type": "patreon",
+          "url": "https://www.patreon.com/feross"
+        },
+        {
+          "type": "consulting",
+          "url": "https://feross.org/support"
+        }
+      ],
+      "license": "MIT"
     },
     "node_modules/safe-push-apply": {
       "version": "1.0.0",
@@ -10914,6 +11250,15 @@ export default nextConfig;
       "integrity": "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==",
       "license": "MIT"
     },
+    "node_modules/web-streams-polyfill": {
+      "version": "3.3.3",
+      "resolved": "https://registry.npmjs.org/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz",
+      "integrity": "sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 8"
+      }
+    },
     "node_modules/which": {
       "version": "2.0.2",
       "resolved": "https://registry.npmjs.org/which/-/which-2.0.2.tgz",
@@ -11129,6 +11474,27 @@ export default nextConfig;
       "dev": true,
       "license": "ISC"
     },
+    "node_modules/ws": {
+      "version": "8.18.3",
+      "resolved": "https://registry.npmjs.org/ws/-/ws-8.18.3.tgz",
+      "integrity": "sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=10.0.0"
+      },
+      "peerDependencies": {
+        "bufferutil": "^4.0.1",
+        "utf-8-validate": ">=5.0.2"
+      },
+      "peerDependenciesMeta": {
+        "bufferutil": {
+          "optional": true
+        },
+        "utf-8-validate": {
+          "optional": true
+        }
+      }
+    },
     "node_modules/yaml": {
       "version": "2.8.1",
       "resolved": "https://registry.npmjs.org/yaml/-/yaml-2.8.1.tgz",
@@ -11172,6 +11538,7 @@ export default nextConfig;
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/genai": "^1.30.0",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
@@ -12406,6 +12773,17 @@ const config: Config = {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
+			colors: {
+ 			 	// ... suas cores existentes (ritual, gold, etc)
+  				'tech-cyan': '#00F0FF', // Adicione esta cor para o toque "Cyber/Místico"
+			},
+			backgroundImage: {
+  				'void-gradient': 'radial-gradient(circle at center, #1a1a1a 0%, #000000 100%)',
+			},
+			dropShadow: {
+  				'glow': '0 0 10px rgba(199, 169, 75, 0.5)', // Glow dourado
+  				'tech-glow': '0 0 10px rgba(0, 240, 255, 0.5)', // Glow ciano
+			},
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
