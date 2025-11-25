@@ -5,10 +5,13 @@ import { GoogleGenAI } from "@google/genai";
 import { Sparkles, Feather, Camera, Film, BookOpen, Loader2, Download, ArrowRight, RefreshCw, Image as ImageIcon, Copy, AlertTriangle } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
-// --- 1. CONFIGURAÇÃO DA API ---
-const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
+
+// Mude de:
+const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+
+// Para (cole sua chave AIza... entre aspas):
+const apiKey = "AIzaSyDtPV-JI9Et31Yks6I3W9mKPBlszNN_P44";
 // --- 2. O CÉREBRO DO GUARDIÃO (Prompt Mestre V2.0) ---
 const systemInstruction = `
 ### IDENTITY & PRIME DIRECTIVE
