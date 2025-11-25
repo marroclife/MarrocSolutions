@@ -153,6 +153,13 @@ ${isContinuity ? "MODE: CONTINUITY (Transform the provided text into the request
   const imageUrl = selectedTask === "Visual Prompt" && generatedContent
     ? `https://image.pollinations.ai/prompt/${encodeURIComponent(generatedContent)}?width=1024&height=576&nologo=true&seed=${Math.floor(Math.random() * 1000)}`
     : null;
+// ... código anterior
+export default function GuardianPage() {
+  // ... hooks
+
+  console.log("API Key Check:", process.env.NEXT_PUBLIC_GEMINI_API_KEY ? "Carregada" : "Ausente");
+
+  // ... restante do código
 
   return (
     <main className="min-h-screen bg-[#050505] text-paper bg-[url('/bg-forest.jpg')] bg-cover bg-center bg-fixed bg-no-repeat font-sans selection:bg-gold selection:text-black">
