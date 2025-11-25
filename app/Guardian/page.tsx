@@ -51,6 +51,9 @@ const TASKS: { id: TaskType; label: string; icon: React.ReactNode; hint: string 
 ];
 
 export default function GuardianPage() {
+  // --- DEBUG: Verificação da Chave no Console ---
+  console.log("Status da API Key:", apiKey ? "Carregada com sucesso" : "AUSENTE / NÃO CONFIGURADA");
+
   const [userInput, setUserInput] = useState('');
   const [selectedTask, setSelectedTask] = useState<TaskType>("Poetic Caption");
   const [generatedContent, setGeneratedContent] = useState<string | null>(null);
@@ -82,7 +85,7 @@ export default function GuardianPage() {
     try {
       // CHECK DE SEGURANÇA REAL: Se não tiver API, para aqui.
       if (!ai) {
-        throw new Error("Erro de Conexão: Chave da API não configurada no servidor.");
+        throw new Error("Erro de Conexão: Chave da API não configurada no servidor (Vercel).");
       }
 
       // Lógica de Continuidade vs Nova Geração
@@ -153,13 +156,6 @@ ${isContinuity ? "MODE: CONTINUITY (Transform the provided text into the request
   const imageUrl = selectedTask === "Visual Prompt" && generatedContent
     ? `https://image.pollinations.ai/prompt/${encodeURIComponent(generatedContent)}?width=1024&height=576&nologo=true&seed=${Math.floor(Math.random() * 1000)}`
     : null;
-// ... código anterior
-export default function GuardianPage() {
-  // ... hooks
-
-  console.log("API Key Check:", process.env.NEXT_PUBLIC_GEMINI_API_KEY ? "Carregada" : "Ausente");
-
-  // ... restante do código
 
   return (
     <main className="min-h-screen bg-[#050505] text-paper bg-[url('/bg-forest.jpg')] bg-cover bg-center bg-fixed bg-no-repeat font-sans selection:bg-gold selection:text-black">
