@@ -151,17 +151,32 @@ export default function SerenaLayout() {
                 
                 {/* Visual Side */}
                 <div className="relative order-2 lg:order-1 flex justify-center">
-                  <div className="absolute inset-0 bg-earth-gold/10 blur-[60px] rounded-full" />
-                  <div className="relative aspect-square w-64 md:w-80 rounded-full border border-earth-gold/20 flex items-center justify-center bg-cosmic-800/50 backdrop-blur-sm">
-                      <div className="text-center">
-                          <span className="block text-5xl md:text-7xl text-white/10 font-playfair">KIN</span>
-                          <span className="block text-4xl text-earth-gold mt-2 font-playfair">176</span>
-                          <div className="mt-4 px-4 py-1 bg-earth-gold/20 rounded-full inline-block">
-                            <span className="text-[10px] uppercase tracking-widest text-earth-gold">Portal de Ativação Galáctica</span>
-                          </div>
-                      </div>
-                  </div>
-                </div>
+    {/* Brilho de fundo (Mantido) */}
+    <div className="absolute inset-0 bg-earth-gold/10 blur-[60px] rounded-full" />
+
+    {/* O Container Circular */}
+    <div className="relative aspect-square w-64 md:w-80 rounded-full border border-earth-gold/20 flex flex-col items-center justify-center bg-cosmic-800/50 backdrop-blur-sm p-4 group">
+        
+        {/* A Imagem do Oráculo */}
+        {/* Adicionei uma transição suave para dar um efeito premium ao passar o mouse */}
+        <div className="relative w-full h-full flex items-center justify-center p-4">
+            <img 
+                src="/images/kin176.png" 
+                alt="Oráculo Kin 176" 
+                className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(184,134,11,0.3)] group-hover:drop-shadow-[0_0_25px_rgba(184,134,11,0.5)] transition-all duration-500"
+            />
+        </div>
+
+        {/* O Badge de Portal */}
+        {/* Posicionado na base interna do círculo para não tapar o oráculo */}
+        <div className="absolute bottom-6 px-4 py-1 bg-earth-gold/10 border border-earth-gold/30 rounded-full backdrop-blur-md">
+            <span className="text-[10px] md:text-xs uppercase tracking-widest text-earth-gold font-medium">
+                Portal de Ativação Galáctica
+            </span>
+        </div>
+
+    </div>
+</div>
 
                 {/* Text Side */}
                 <div className="order-1 lg:order-2">
