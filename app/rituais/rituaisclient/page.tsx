@@ -50,7 +50,7 @@ export default function RituaisClientPage() {
             {/* Seção Mapa Natal - Anto */}
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-white/[0.08] transition duration-300">
                 <div>
-                    <h2 className="text-xl font-bold mb-1 text-white">📊 Mapa Natal - Anto</h2>
+                    <h2 className="text-xl font-bold mb-1 text-white">Análise: Antonela Carreiras</h2>
                     <p className="text-white/50 text-sm">
                         Visualização clássica do mapa astral.
                     </p>
