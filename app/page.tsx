@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Sparkles, BookOpen, Music, Zap, ArrowRight, Star, Lock, Waves, Radio } from "lucide-react";
+import { Sparkles, BookOpen, Music, Zap, ArrowRight, Star, Lock, Waves, Radio, Monitor, Code } from "lucide-react";
 import { MysticCard } from "@/components/ui/MysticCard";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { Section } from "@/components/ui/Section";
@@ -127,10 +127,40 @@ export default function HomePage() {
               </MysticCard>
             </Link>
 
+            {/* --- CARD NOVO: MARROC SOLUTIONS --- */}
+            <Link href="/marrocsolutions" className="col-span-1 md:col-span-3 group">
+              <MysticCard className="h-full border-blue-500/30 hover:bg-blue-900/10 transition-colors relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="flex flex-col h-full justify-between min-h-[220px]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 bg-blue-500/10 rounded-full">
+                        <Monitor className="text-blue-400 w-6 h-6" />
+                      </div>
+                      <h3 className="font-display text-2xl text-white group-hover:text-blue-400 transition-colors">
+                        Marroc Solutions
+                      </h3>
+                    </div>
+                    <div className="p-1.5 bg-blue-500/20 rounded border border-blue-500/30">
+                        <Code className="text-blue-400 w-4 h-4" />
+                    </div>
+                  </div>
+                  
+                  <p className="text-sm text-white/60 leading-relaxed mb-6">
+                    A divisão de tecnologia. Criação de sites de alta performance, automação com IA e design minimalista.
+                  </p>
+                  <div className="flex items-center text-blue-400 text-xs font-bold tracking-widest uppercase">
+                    Acessar Agência <ArrowRight size={12} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </MysticCard>
+            </Link>
+
             {/* --- CARD 3: TERAPIAS (Horizontal) --- */}
             <Link href="/rituais" className="col-span-1 md:col-span-3 group">
               <MysticCard className="h-full border-emerald-500/30 hover:bg-emerald-900/10 transition-colors">
-                <div className="flex flex-col h-full justify-between">
+                <div className="flex flex-col h-full justify-between min-h-[220px]">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="p-3 bg-emerald-500/10 rounded-full">
                       <Sparkles className="text-emerald-400 w-6 h-6" />
@@ -149,24 +179,25 @@ export default function HomePage() {
               </MysticCard>
             </Link>
 
-            {/* --- CARD 4: HIGHER HZ (Horizontal) --- */}
-            <div className="col-span-1 md:col-span-3 relative group cursor-default">
-               {/* Nota: Se Higher Hz já tiver página, mude a div acima para Link e adicione href */}
+            {/* --- CARD 4: HIGHER HZ (Expandido para Full Width) --- */}
+            <div className="col-span-1 md:col-span-6 relative group cursor-default">
                <Link href="/higher-hz" className="block h-full">
                 <MysticCard className="h-full border-blue-500/30 hover:bg-blue-900/10 transition-colors">
-                  <div className="flex flex-col h-full justify-between">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="p-3 bg-blue-500/10 rounded-full">
-                        <Radio className="text-blue-400 w-6 h-6" />
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 h-full">
+                    <div className="flex flex-col justify-center">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="p-3 bg-blue-500/10 rounded-full">
+                          <Radio className="text-blue-400 w-6 h-6" />
+                        </div>
+                        <h3 className="font-display text-2xl text-white group-hover:text-blue-400 transition-colors">
+                          Higher Hz
+                        </h3>
                       </div>
-                      <h3 className="font-display text-2xl text-white group-hover:text-blue-400 transition-colors">
-                        Higher Hz
-                      </h3>
+                      <p className="text-sm text-white/60 leading-relaxed max-w-xl">
+                        Projeto de frequências sonoras e expansão coletiva. A ciência da vibração aplicada à cura.
+                      </p>
                     </div>
-                    <p className="text-sm text-white/60 leading-relaxed mb-6">
-                      Projeto de frequências sonoras e expansão coletiva. A ciência da vibração aplicada à cura.
-                    </p>
-                    <div className="flex items-center text-blue-400 text-xs font-bold tracking-widest uppercase">
+                    <div className="flex items-center text-blue-400 text-xs font-bold tracking-widest uppercase whitespace-nowrap">
                       Conhecer Projeto <ArrowRight size={12} className="ml-2" />
                     </div>
                   </div>
@@ -178,7 +209,7 @@ export default function HomePage() {
             <div className="col-span-1 md:col-span-6 relative group cursor-not-allowed">
               {/* Camada de Bloqueio */}
               <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center text-center p-4 border border-white/5 rounded-xl">
-                <Lock className="text-white/30 w-8 h-8 mb-2" />
+                <Lock className="text-tech-cyan/50 w-8 h-8 mb-2" />
                 <p className="text-tech-cyan font-mono text-sm tracking-widest uppercase animate-pulse">
                   [ SISTEMA EM COMPILAÇÃO ]
                 </p>
