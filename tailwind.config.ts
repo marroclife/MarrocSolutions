@@ -5,7 +5,8 @@ const config: Config = {
     darkMode: "class",
     content: [
     "./app/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}"
+    "./components/**/*.{ts,tsx}",
+    "./rituais/**/*.{ts,tsx}"
   ],
   theme: {
   	extend: {
@@ -29,6 +30,15 @@ const config: Config = {
                 wood: '#8b5a2b', // Acoustic Wood hint
                 cream: '#f0e6d2', // Off-white text
             },
+
+            // Tamires Analysis Theme (Sanctuary)
+            moss: {
+                900: '#151e1c', // Deep Moss/Slate
+                800: '#1c2624',
+            },
+            silk: '#e8e4dc',
+            'gold-rose': '#e6b8a2',
+            'refined-gold': '#d4af37',
 
             // Shadcn UI Colors
   			background: 'hsl(var(--background))',
@@ -86,7 +96,8 @@ const config: Config = {
   		fontFamily: {
   			display: ['var(--font-display)'],
   			body: ['var(--font-body)'],
-            playfair: ['"Playfair Display"', 'serif'], // Added for the analysis
+            playfair: ['"Playfair Display"', 'serif'],
+            montserrat: ['Montserrat', 'sans-serif'],
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
