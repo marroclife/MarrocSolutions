@@ -1,10 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
-
 import { EB_Garamond, Inter } from "next/font/google";
-import { SITE_TITLE, SITE_DESC, OG_DEFAULT } from "@/lib/site";
-// import BackgroundFX from "@/components/BackgroundFX"; // ← descomente se for usar o fundo vivo
 import Header from "@/components/site/Header";
 
 const display = EB_Garamond({
@@ -12,54 +9,68 @@ const display = EB_Garamond({
   subsets: ["latin"],
   variable: "--font-display",
 });
+
 const body = Inter({
   subsets: ["latin"],
   variable: "--font-body",
 });
 
+// --- METADATA DO PORTAL (Atualizada para "Portal Marroc") ---
 export const metadata: Metadata = {
+  metadataBase: new URL("https://marroc.xyz"),
+  
   title: {
-    default: SITE_TITLE ?? "Marroc — Hub Vivo",
-    template: "%s — Marroc",
+    default: "Marroc | Arte, Tecnologia & Misticismo",
+    template: "%s | Marroc",
   },
+  
   description:
-    SITE_DESC ?? "Livros, imersões, música e rituais. Arte e espiritualidade integradas.",
-  metadataBase: new URL("https://example.com"),
+    "Um portal de experiências imersivas. Do Psytrance ritualístico (Marroc) à literatura iniciática (Um Lugar Entre Mundos), do código ao sagrado. Explore a interseção entre o futuro digital e a sabedoria ancestral.",
+
   openGraph: {
     type: "website",
-    title: SITE_TITLE ?? "Marroc — Hub Vivo",
+    title: "Marroc | Onde o Código Encontra o Sagrado",
     description:
-      SITE_DESC ?? "Livros, imersões, música e rituais. Arte e espiritualidade integradas.",
-    url: "https://example.com",
-    images: OG_DEFAULT
-      ? [{ url: OG_DEFAULT, width: 1200, height: 630, alt: "Marroc — Live Psytrance Ritualístico" }]
-      : undefined,
+      "Música, Livros e Tecnologia. Um ecossistema criativo para expandir a percepção.",
+    url: "https://marroc.xyz",
+    siteName: "Marroc Portal",
+    locale: "pt_BR",
+    images: [
+      {
+        url: "/banner-portal.png", // Certifique-se de ter essa imagem em public/
+        width: 1200,
+        height: 630,
+        alt: "Portal Marroc - Arte e Tecnologia",
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: SITE_TITLE ?? "Marroc — Hub Vivo",
+    title: "Marroc | Arte, Tecnologia & Misticismo",
     description:
-      SITE_DESC ?? "Livros, imersões, música e rituais. Arte e espiritualidade integradas.",
-    images: OG_DEFAULT ? [OG_DEFAULT] : undefined,
+      "Do Psytrance ritualístico à literatura iniciática. Explore o portal.",
+    images: ["/banner-portal.png"],
   },
+
   icons: { shortcut: "/favicon.ico" },
   themeColor: "#0b0b0b",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning className="scroll-smooth">
       <body
         className={`${display.variable} ${body.variable} font-body antialiased bg-[#0b0b0b] text-paper`}
       >
-        {/* <BackgroundFX /> */}
-
-        {/* Header unificado (mobile-first + hambúrguer) */}
+        {/* Header unificado */}
         <Header />
 
-        <main className="min-h-[calc(100vh-8rem)]">{children}</main>
+        <main className="min-h-[calc(100vh-8rem)]">
+          {children}
+        </main>
 
-        <footer className="border-t border-white/10">
+        <footer className="border-t border-white/10 bg-[#050505]">
           <div className="container px-4 py-10 text-sm text-paper/70">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <p>© {new Date().getFullYear()} Marroc / Higher Hz — todos os direitos reservados.</p>
@@ -69,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   href="https://instagram.com/marroc.life"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
                 >
                   Instagram
                 </a>
@@ -76,10 +88,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   href="https://wa.me/5521992669980"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
                 >
                   WhatsApp
                 </a>
-                <a href="/newsletter">Newsletter</a>
+                <a href="/newsletter" className="hover:text-white transition-colors">Newsletter</a>
               </div>
 
               <p className="max-w-xl text-xs text-paper/50">
