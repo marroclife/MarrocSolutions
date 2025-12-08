@@ -165,7 +165,7 @@ const TamiresLayout: React.FC = () => {
                         <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-[40px] animate-pulse"></div>
                         <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border border-blue-300/30 bg-moss-900 flex items-center justify-center overflow-hidden shadow-2xl group-hover:border-blue-300/50 transition-colors duration-500">
                              {/* Image set to kin15.png */}
-                            <img src="kin15.png" alt="Kin 15" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                            <img src="/images/kin15.png" alt="Kin 15" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
                             <div className="absolute inset-4 border border-white/5 rounded-full border-dashed animate-[spin_10s_linear_infinite] pointer-events-none"></div>
                         </div>
                     </div>
