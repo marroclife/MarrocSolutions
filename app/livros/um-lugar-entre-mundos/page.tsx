@@ -138,7 +138,7 @@ export default function LandingPageLivro() {
       <section className="py-24 container grid md:grid-cols-2 gap-16 items-center">
         <div className="relative h-[500px] w-full hidden md:block rounded-lg overflow-hidden">
            {/* Placeholder visual ou outra arte do livro */}
-           <Image src="/bg-forest.jpg" alt="Floresta Mística" fill className="object-cover opacity-60 grayscale hover:grayscale-0 transition duration-700" />
+           <Image src="/bg-forest.png" alt="Floresta Mística" fill className="object-cover opacity-60 grayscale hover:grayscale-0 transition duration-700" />
         </div>
         <div className="space-y-6">
           <h2 className="font-display text-4xl text-white">A Jornada de Sofia</h2>
