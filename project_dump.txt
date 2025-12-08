@@ -1,6 +1,6 @@
 # PROJECT DUMP
 Root: C:\Users\Marroc\Downloads\Book\Site\project_dump.txt
-Generated: 2025-12-05T14:27:20.899Z
+Generated: 2025-12-08T16:40:26.302Z
 Files included (pre-filter): 0
 Per-file cap: 1048576 bytes • Total cap: 20971520 bytes
 

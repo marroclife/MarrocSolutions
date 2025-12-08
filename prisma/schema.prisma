@@ -1,0 +1,18 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Aqui criamos a tabela para guardar os leitores
+model Lead {
+  id        String   @id @default(uuid()) // ID único automático
+  name      String
+  email     String   // O email do leitor
+  createdAt DateTime @default(now())      // Data que ele se cadastrou
+}

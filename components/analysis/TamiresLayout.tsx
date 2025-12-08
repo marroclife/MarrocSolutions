@@ -144,49 +144,109 @@ const TamiresLayout: React.FC = () => {
         {/* 4. Galactic Identity (Kin) */}
         <section className="bg-gradient-to-br from-white/[0.02] to-transparent p-6 md:p-12 rounded-sm border border-gold-rose/5 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-gold-rose/5 blur-[80px] rounded-full pointer-events-none"></div>
+            
             <div className="text-center mb-12">
                 <h2 className="font-serif text-4xl md:text-5xl text-silk mb-2">Identidade Galáctica</h2>
-                <span className="text-xs uppercase tracking-widest text-refined-gold">Sincronário Maia • 13 Luas</span>
+                <span className="text-xs uppercase tracking-widest text-refined-gold">A Assinatura no Tempo • Sincronário Maia</span>
             </div>
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                <div className="w-full lg:w-1/2 flex justify-center">
+
+            {/* Intro Text */}
+            <div className="max-w-3xl mx-auto text-center mb-16">
+                <p className="text-silk/80 font-light leading-relaxed text-sm md:text-base">
+                    Enquanto a Astrologia desenha seu mapa espacial, o Sincronário das 13 Luas revela a frequência do tempo no dia da sua chegada. Você carrega o selo da Visão Planetária, desafiada a encontrar estabilidade em um mundo de mudanças.
+                </p>
+            </div>
+
+            <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20 mb-16">
+                
+                {/* Left Side: Image Visualization */}
+                <div className="w-full lg:w-1/2 flex justify-center sticky top-24">
                     <div className="relative group">
                         <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-[40px] animate-pulse"></div>
                         <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border border-blue-300/30 bg-moss-900 flex items-center justify-center overflow-hidden shadow-2xl group-hover:border-blue-300/50 transition-colors duration-500">
                              {/* Image set to kin15.png */}
-                            <img src="/images/kin15.png" alt="Kin 15" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                            <img src="kin15.png" alt="Kin 15" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
                             <div className="absolute inset-4 border border-white/5 rounded-full border-dashed animate-[spin_10s_linear_infinite] pointer-events-none"></div>
                         </div>
                     </div>
                 </div>
-                <div className="w-full lg:w-1/2 text-left space-y-8">
+
+                {/* Right Side: Content */}
+                <div className="w-full lg:w-1/2 text-left space-y-10">
                     <div>
-                        <h3 className="text-2xl md:text-3xl font-serif text-silk mb-2">Águia Lunar Azul</h3>
-                        <p className="text-blue-300 text-sm font-medium mb-4">Selo Men (Águia) / Tom Lunar (2)</p>
-                        <p className="text-silk/70 leading-relaxed font-light text-sm md:text-base">
-                            Tamires, sua assinatura galáctica é a da <strong className="text-silk font-normal">Visionária</strong>. A Águia representa o poder da Mente Superior. O Tom "Lunar" define sua missão como um eterno balanço: estabilizar mente e emoções.
+                        <h3 className="text-3xl font-serif text-silk mb-2">Kin 15: Águia Lunar Azul</h3>
+                        <p className="text-blue-300 text-sm font-medium mb-6 uppercase tracking-wider">Selo Men • Tom Lunar (2)</p>
+                        
+                        <p className="text-silk/80 leading-relaxed font-light text-sm md:text-base mb-4">
+                            Tamires, sua assinatura galáctica é a da <strong className="text-silk font-normal">Visionária</strong>. A Águia representa o poder da Mente Superior. Você tem o dom natural de "sobrevoar" as situações. Enquanto a maioria se perde nos detalhes pequenos e nos dramas cotidianos, você consegue ver o quadro completo, o futuro e as consequências a longo prazo.
                         </p>
-                        <p className="text-silk/60 text-xs mt-2 italic border-l-2 border-blue-400/30 pl-3">"Polarizo com o fim de criar, estabilizando a mente. Selo a saída da visão com o tom lunar do desafio."</p>
+                        <p className="text-silk/80 leading-relaxed font-light text-sm md:text-base">
+                            O Tom "Lunar" (Tom 2) define sua missão como um eterno balanço. Você vive na polaridade. Seu desafio de vida é estabilizar sua mente e suas emoções para que sua visão não fique turva. Você veio para identificar obstáculos e superá-los através da criatividade.
+                        </p>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-white/[0.03] p-4 rounded border-l-2 border-blue-400/30">
-                            <span className="block text-[10px] uppercase tracking-widest text-blue-300 mb-1">Guia</span>
-                            <p className="text-silk/90 text-sm font-serif">Mão Lunar Azul</p>
-                        </div>
-                        <div className="bg-white/[0.03] p-4 rounded border-l-2 border-yellow-500/30">
-                            <span className="block text-[10px] uppercase tracking-widest text-yellow-500 mb-1">Apoio</span>
-                            <p className="text-silk text-sm font-serif">Semente Lunar Amarela</p>
-                        </div>
-                        <div className="bg-white/[0.03] p-4 rounded border-l-2 border-red-500/30">
-                            <span className="block text-[10px] uppercase tracking-widest text-red-400 mb-1">Desafio</span>
-                            <p className="text-silk text-sm font-serif">Serpente Lunar Vermelha</p>
-                        </div>
-                        <div className="bg-white/[0.03] p-4 rounded border-l-2 border-white/30">
-                            <span className="block text-[10px] uppercase tracking-widest text-white/60 mb-1">Oculto</span>
-                            <p className="text-silk text-sm font-serif">Enlaçador de Mundos</p>
-                        </div>
+
+                    {/* Mantra Box */}
+                    <div className="border-l-2 border-refined-gold/40 pl-8 py-4 bg-white/[0.02] rounded-r-sm">
+                        <span className="text-[10px] uppercase tracking-widest text-refined-gold mb-2 block">Mantra de Poder</span>
+                        <p className="font-serif italic text-silk/90 text-sm md:text-base leading-loose">
+                            "Polarizo com o fim de criar<br/>
+                            Estabilizando a mente<br/>
+                            Selo a saída da visão<br/>
+                            Com o tom lunar do desafio<br/>
+                            Eu sou guiado pelo poder da realização"
+                        </p>
                     </div>
                 </div>
+            </div>
+
+            {/* Oracle Grid (Full Detail) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+                {/* Guide Power */}
+                <div className="bg-white/[0.03] p-8 rounded border-l-2 border-blue-400/30 hover:bg-white/[0.05] transition-colors">
+                    <span className="block text-[10px] uppercase tracking-widest text-blue-300 mb-3">Poder Guia</span>
+                    <h4 className="text-silk font-serif text-xl mb-3">Mão Lunar Azul</h4>
+                    <p className="text-silk/70 text-sm leading-relaxed font-light">
+                        Aqui está o segredo da sua produtividade. Você não é guiada apenas pela teoria, mas pela Mão. Sua visão de Águia só se acalma quando você coloca a "mão na massa". Você precisa construir, curar ou realizar algo tangível para se sentir plena. A beleza (Vênus) precisa ser palpável.
+                    </p>
+                </div>
+
+                {/* Support Power */}
+                <div className="bg-white/[0.03] p-8 rounded border-l-2 border-yellow-500/30 hover:bg-white/[0.05] transition-colors">
+                    <span className="block text-[10px] uppercase tracking-widest text-yellow-500 mb-3">Poder de Apoio</span>
+                    <h4 className="text-silk font-serif text-xl mb-3">Semente Lunar Amarela</h4>
+                    <p className="text-silk/70 text-sm leading-relaxed font-light">
+                        Seu suporte é o florescimento e a paciência. Assim como uma semente sabe o tempo certo de brotar, você tem uma sabedoria inata sobre os "tempos" das coisas (reforçando seu Sol em Touro).
+                    </p>
+                </div>
+
+                {/* Challenge Power */}
+                <div className="bg-white/[0.03] p-8 rounded border-l-2 border-red-500/30 hover:bg-white/[0.05] transition-colors">
+                    <span className="block text-[10px] uppercase tracking-widest text-red-400 mb-3">Poder do Desafio (Antípoda)</span>
+                    <h4 className="text-silk font-serif text-xl mb-3">Serpente Lunar Vermelha</h4>
+                    <p className="text-silk/70 text-sm leading-relaxed font-light">
+                        Seu grande aprendizado é lidar com o instinto e o corpo físico. A Águia quer voar alto na mente, mas a Serpente te puxa para o chão, para a paixão e para a sobrevivência. O equilíbrio entre o intelectual e o visceral é a sua grande tarefa.
+                    </p>
+                </div>
+
+                {/* Hidden Power */}
+                <div className="bg-white/[0.03] p-8 rounded border-l-2 border-white/30 hover:bg-white/[0.05] transition-colors">
+                    <span className="block text-[10px] uppercase tracking-widest text-white/60 mb-3">Poder Oculto</span>
+                    <h4 className="text-silk font-serif text-xl mb-3">Enlaçador de Mundos Cristal</h4>
+                    <p className="text-silk/70 text-sm leading-relaxed font-light">
+                        No seu subconsciente, reside uma capacidade mística de conectar dimensões. Você tem o dom oculto de fechar ciclos e fazer pontes entre pessoas ou mundos diferentes.
+                    </p>
+                </div>
+            </div>
+
+            {/* Wavespell Section */}
+            <div className="mt-16 pt-12 border-t border-gold-rose/10 text-center">
+                <div className="inline-block p-3 rounded-full bg-white/5 mb-4">
+                     <Sparkles className="w-6 h-6 text-refined-gold animate-pulse" />
+                </div>
+                <h3 className="font-serif text-2xl md:text-3xl text-silk mb-4">A Onda Encantada do Mago Branco</h3>
+                <p className="text-silk/70 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-light">
+                    Você pertence à tribo do Mago. Isso significa que, no final das contas, todo o seu esforço de visão e estabilidade serve a um propósito maior: O Encantamento e a Receptividade. Você estabiliza a realidade (Águia) para trazer magia (Mago) ao mundo.
+                </p>
             </div>
         </section>
 
