@@ -143,7 +143,7 @@ export default function HomePage() {
                     Atendimentos individuais para reconexão. Astrologia, Tarot e Alinhamento Energético para sua jornada.
                   </p>
                   <div className="flex items-center text-emerald-400 text-xs font-bold tracking-widest uppercase">
-                    Ver Agenda <ArrowRight size={12} className="ml-2" />
+                    Ver Serviços <ArrowRight size={12} className="ml-2" />
                   </div>
                 </div>
               </MysticCard>
