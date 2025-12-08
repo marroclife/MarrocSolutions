@@ -1,10 +1,8 @@
-// src/app/api/leads/route.ts
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma"; // <--- Importamos do nosso arquivo inteligente
 
 export async function POST(request: Request) {
+    
   try {
     const body = await request.json();
     const { name, email } = body;

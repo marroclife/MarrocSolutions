@@ -27,29 +27,22 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-/* 
-  OBS: Como este arquivo agora usa "use client", 
-  mova este objeto metadata para o seu arquivo page.tsx ou layout.tsx pai.
-  
-  export const metadata: Metadata = {
-    title: "Um Lugar Entre Mundos | Marroc",
-    description: "Uma obra iniciática que funde Xamanismo, RPG e Tecnologia...",
-    openGraph: {
-      images: [{ url: "/capa-ulm.png", width: 1200, height: 630, alt: "Capa do Livro" }],
-    },
-  };
-*/
-
 // Links do seu Dump
 const LINKS = {
   hotmartStandard: "https://pay.hotmart.com/M101238238O?off=ur3sdp6i", // Valor Simbólico
   hotmartConscious: "https://pay.hotmart.com/M101238238O?off=p1uhfzib", // Valor Consciente
 };
 
-// --- COMPONENTE DO MODAL (LEAD MAGNET) ---
+// --- COMPONENTE DO MODAL (LEAD MAGNET + BANCO DE DADOS) ---
 const ChapterZeroModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  
+  // Estado para guardar os dados do formulário
+  const [formData, setFormData] = useState({
+    name: "",
+    email: ""
+  });
 
   if (!isOpen) return null;
 
@@ -57,12 +50,33 @@ const ChapterZeroModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulação de envio para CRM/API
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Redireciona para o capítulo zero
-    router.push("/livros/um-lugar-entre-mundos/capitulo-0");
-    onClose();
+    try {
+      // 1. Envia os dados para a API interna que criamos
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao conectar com a egrégora.");
+      }
+
+      console.log("Lead salvo com sucesso!");
+
+      // 2. Aguarda um pouco para feedback visual
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // 3. Redireciona para o capítulo
+      router.push("/livros/um-lugar-entre-mundos/capitulo-0");
+      onClose();
+
+    } catch (error) {
+      console.error("Erro no cadastro:", error);
+      alert("Houve uma instabilidade no sinal. Por favor, tente novamente.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -90,7 +104,7 @@ const ChapterZeroModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gold/10 text-gold mb-2">
               <Lock size={20} />
             </div>
-            <h3 className="font-display text-2xl text-white">Portal da Iniciação</h3>
+            <h3 className="font-display text-2xl text-white">Inicie a Iniciação</h3>
             <p className="text-white/60 text-sm">
               O Capítulo Zero é um portal. Identifique-se para quebrar o selo digital e acessar a leitura.
             </p>
@@ -104,6 +118,8 @@ const ChapterZeroModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
                 <input 
                   type="text" 
                   required 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
                   placeholder="Como quer ser chamado(a)?"
                   className="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-10 pr-4 text-white focus:border-gold/50 focus:outline-none focus:ring-1 focus:ring-gold/20 transition-all placeholder:text-white/20"
                 />
@@ -117,6 +133,8 @@ const ChapterZeroModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
                 <input 
                   type="email" 
                   required 
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
                   placeholder="seu@email.com"
                   className="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-10 pr-4 text-white focus:border-gold/50 focus:outline-none focus:ring-1 focus:ring-gold/20 transition-all placeholder:text-white/20"
                 />
@@ -193,7 +211,7 @@ export default function LandingPageLivro() {
                 Adquirir o Livro
               </GlowButton>
               
-              {/* BOTÃO SECUNDÁRIO COM MODAL (Não é mais Link direto) */}
+              {/* BOTÃO SECUNDÁRIO COM MODAL */}
               <button 
                 onClick={() => setIsModalOpen(true)}
                 className="px-8 py-4 text-sm font-mono text-white/60 hover:text-white transition flex items-center justify-center gap-2 group border border-transparent hover:border-white/10 rounded cursor-pointer"
