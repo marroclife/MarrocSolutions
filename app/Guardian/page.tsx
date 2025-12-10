@@ -1,10 +1,8 @@
-
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, Send, Sparkles, Palette, Zap, ShieldCheck } from "lucide-react";
-import { GuardianService } from "./chat-service";
 
 interface Message {
   role: 'user' | 'guardian';
@@ -12,47 +10,19 @@ interface Message {
 }
 
 export default function GuardianPage() {
+  // Estado Inicial do Chat
   const [messages, setMessages] = useState<Message[]>([
     { 
       role: 'guardian', 
       content: "[SISTEMA ONLINE] Eu sou o Guardião. A ponte entre o silício e o espírito. Estou rodando em 432Hz. Qual é a sua intenção hoje, viajante?" 
     }
   ]);
+  
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  
-  // Initialize service ref to persist across renders
-  const guardianServiceRef = useRef<GuardianService | null>(null);
 
-  useEffect(() => {
-    const initService = async () => {
-      // Check specifically for AI Studio environment key selection
-      if ((window as any).aistudio) {
-        const aiStudio = (window as any).aistudio;
-        try {
-          const hasKey = await aiStudio.hasSelectedApiKey();
-          if (!hasKey) {
-            await aiStudio.openSelectKey();
-          }
-        } catch (e) {
-          console.error("AI Studio Key Check Failed:", e);
-        }
-      }
-
-      // Initialize Service with Key from Env (which is populated after selection in AI Studio)
-      const apiKey = process.env.API_KEY || process.env.NEXT_PUBLIC_API_KEY;
-      if (apiKey) {
-        guardianServiceRef.current = new GuardianService(apiKey);
-      } else {
-        console.warn("No API Key available for Guardian Service");
-        setMessages(prev => [...prev, { role: 'guardian', content: "[ALERTA] Chave de API não detectada. O sistema não pode processar mensagens." }]);
-      }
-    };
-
-    initService();
-  }, []);
-
+  // Auto-scroll
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -61,35 +31,41 @@ export default function GuardianPage() {
     scrollToBottom();
   }, [messages]);
 
+  // --- NOVA LÓGICA DE ENVIO (Conectada ao route.ts) ---
   const handleSend = async (e?: React.FormEvent) => {
     e?.preventDefault();
     if (!input.trim() || loading) return;
 
-    if (!guardianServiceRef.current) {
-        // Try re-initializing if user selected key late
-        const apiKey = process.env.API_KEY || process.env.NEXT_PUBLIC_API_KEY;
-        if (apiKey) {
-            guardianServiceRef.current = new GuardianService(apiKey);
-        } else {
-            setMessages(prev => [...prev, { role: 'guardian', content: "[ERRO] Sistema não inicializado. Verifique sua chave de API." }]);
-            return;
-        }
-    }
-
     const userMsg = input.trim();
-    setInput('');
+    setInput(''); // Limpa o input imediatamente
     setLoading(true);
 
-    // Add user message immediately
+    // 1. Adiciona mensagem do usuário na tela
     setMessages(prev => [...prev, { role: 'user', content: userMsg }]);
 
     try {
-      // Get response from Gemini
-      const response = await guardianServiceRef.current.sendMessage(userMsg);
-      setMessages(prev => [...prev, { role: 'guardian', content: response }]);
+      // 2. Chama a nossa API Segura (O Túnel)
+      const response = await fetch("/api/guardian", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMsg }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Erro na transmissão");
+      }
+
+      // 3. Adiciona a resposta do Guardião
+      setMessages(prev => [...prev, { role: 'guardian', content: data.reply }]);
+
     } catch (error) {
-      console.error(error);
-      setMessages(prev => [...prev, { role: 'guardian', content: "[ERRO CRÍTICO] A conexão foi interrompida." }]);
+      console.error("Guardian Error:", error);
+      setMessages(prev => [...prev, { 
+        role: 'guardian', 
+        content: "[ERRO DE SINAL] Interferência detectada no servidor. Tente novamente." 
+      }]);
     } finally {
       setLoading(false);
     }
@@ -185,7 +161,6 @@ export default function GuardianPage() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Digite sua intenção..."
               className="w-full bg-[#050505] border border-white/20 text-white placeholder-white/30 rounded-lg py-3 px-4 md:py-4 md:px-6 focus:outline-none focus:border-[#c7a94b] focus:ring-1 focus:ring-[#c7a94b]/50 transition-all font-mono text-base shadow-inner" 
-              // Note: text-base (16px) is crucial to prevent iOS zoom
               disabled={loading}
               autoFocus
             />
