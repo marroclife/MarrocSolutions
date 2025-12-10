@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useCallback, useRef } from 'react';
@@ -206,14 +207,14 @@ export default function DesignerPage() {
   return (
     <div className="marroc-designer min-h-screen bg-[#050505] text-[#00ffff] font-mono">
       <DesignerStyles />
-      <div className="p-4 md:p-8 flex flex-col max-w-7xl mx-auto pb-24">
+      <div className="p-2 md:p-8 flex flex-col max-w-7xl mx-auto pb-24">
         {/* Header */}
-        <header className="mb-12 border-b border-[#00ffff] pb-4 flex justify-between items-end">
+        <header className="mb-8 md:mb-12 border-b border-[#00ffff] pb-4 flex flex-col md:flex-row justify-between md:items-end gap-2">
           <div>
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tighter neon-text mb-1">
+            <h1 className="text-2xl md:text-5xl font-bold tracking-tighter neon-text mb-1">
               MARROC <span className="text-xs md:text-lg font-normal opacity-70 align-top">DESIGN ENGINE v1.0</span>
             </h1>
-            <p className="text-xs text-[#008888]">
+            <p className="text-[10px] md:text-xs text-[#008888]">
               // TECHNO-SHAMANISM AESTHETIC INTEGRATION
             </p>
           </div>
@@ -240,7 +241,7 @@ export default function DesignerPage() {
                   value={concept}
                   onChange={(e) => setConcept(e.target.value)}
                   placeholder="e.g. Cyberpunk Ganesh in Neon Rain..."
-                  className="w-full bg-[#050505] border border-[#004444] p-4 text-[#00ffff] placeholder-[#004444] focus:outline-none focus:border-[#00ffff] focus:shadow-[0_0_10px_#00ffff40] transition-all text-lg font-mono"
+                  className="w-full bg-[#050505] border border-[#004444] p-4 text-[#00ffff] placeholder-[#004444] focus:outline-none focus:border-[#00ffff] focus:shadow-[0_0_10px_#00ffff40] transition-all text-base md:text-lg font-mono"
                   autoComplete="off"
                   disabled={appState === AppState.GENERATING}
                 />
@@ -249,8 +250,8 @@ export default function DesignerPage() {
                 type="submit"
                 disabled={appState === AppState.GENERATING || !concept.trim()}
                 className={`
-                  px-8 py-4 font-bold tracking-widest uppercase border border-[#00ffff]
-                  transition-all duration-300 md:w-64
+                  w-full md:w-64 px-8 py-4 font-bold tracking-widest uppercase border border-[#00ffff]
+                  transition-all duration-300 
                   ${appState === AppState.GENERATING 
                     ? 'bg-[#002222] text-[#004444] cursor-not-allowed' 
                     : 'bg-[#00ffff] text-black hover:bg-[#ccffff] hover:shadow-[0_0_20px_#00ffff]'
@@ -272,7 +273,7 @@ export default function DesignerPage() {
 
         {/* Error Display */}
         {appState === AppState.ERROR && (
-          <div className="border border-red-500 bg-red-900/10 p-4 mb-8 text-red-400 font-mono text-center">
+          <div className="border border-red-500 bg-red-900/10 p-4 mb-8 text-red-400 font-mono text-center text-sm">
             {error}
           </div>
         )}
@@ -283,8 +284,8 @@ export default function DesignerPage() {
             
             {/* Analysis Section */}
             <div className="mb-12 border-l-2 border-[#00ffff] pl-4 py-2 bg-gradient-to-r from-[#00ffff05] to-transparent">
-              <h2 className="text-sm font-bold text-[#008888] mb-2 uppercase tracking-wider">// Concept Analysis</h2>
-              <p className="text-lg md:text-xl text-[#ccffff] leading-relaxed max-w-4xl">
+              <h2 className="text-xs md:text-sm font-bold text-[#008888] mb-2 uppercase tracking-wider">// Concept Analysis</h2>
+              <p className="text-sm md:text-xl text-[#ccffff] leading-relaxed max-w-4xl">
                 {specs.analysis}
               </p>
             </div>
@@ -320,7 +321,7 @@ export default function DesignerPage() {
               />
             </div>
             
-            <div className="mt-12 text-center text-[#004444] text-xs uppercase tracking-[0.2em]">
+            <div className="mt-12 text-center text-[#004444] text-[10px] md:text-xs uppercase tracking-[0.2em]">
               // OUTPUT_COMPLETE // READY_FOR_ENHANCEMENT
             </div>
           </main>
@@ -333,7 +334,7 @@ export default function DesignerPage() {
               <div className="text-6xl md:text-9xl font-bold border-4 border-[#004444] p-8 inline-block rotate-45 transform">
                 M
               </div>
-              <div className="mt-8 text-[#00ffff] tracking-[1em] text-xs">AWAITING INPUT</div>
+              <div className="mt-8 text-[#00ffff] tracking-[1em] text-[10px] md:text-xs">AWAITING INPUT</div>
             </div>
           </div>
         )}
@@ -341,23 +342,23 @@ export default function DesignerPage() {
         {/* Post Processing Unit - Always Available */}
         <section id="processing-unit" className="border-t border-[#004444] pt-8 mt-auto">
           <div className="flex items-center gap-4 mb-6">
-            <h2 className="text-2xl font-bold tracking-tighter text-white">
+            <h2 className="text-xl md:text-2xl font-bold tracking-tighter text-white">
               POST-PROCESSING UNIT <span className="text-[#00ffff]">_v2</span>
             </h2>
             <span className="bg-[#002222] text-[#00ffff] text-[10px] px-2 py-1 border border-[#004444]">
-                GEMINI-3-PRO-IMAGE // ENABLED
+                GEMINI-3-PRO
             </span>
           </div>
 
           {!activeSource ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border border-dashed border-[#004444] bg-[#0a0a0a] p-12 rounded-sm">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 border border-dashed border-[#004444] bg-[#0a0a0a] p-6 md:p-12 rounded-sm">
               <div className="flex flex-col items-center justify-center text-center space-y-4">
-                  <p className="text-[#008888] font-bold">OPTION A: GENERATE DESIGN</p>
+                  <p className="text-[#008888] font-bold text-sm">OPTION A: GENERATE DESIGN</p>
                   <p className="text-xs text-[#004444]">Enter a concept above and select a generated card to enhance.</p>
               </div>
               
-              <div className="flex flex-col items-center justify-center text-center space-y-4 border-l border-[#004444] pl-8">
-                  <p className="text-[#00ffff] font-bold">OPTION B: UPLOAD ASSET</p>
+              <div className="flex flex-col items-center justify-center text-center space-y-4 border-t md:border-t-0 md:border-l border-[#004444] pt-4 md:pt-0 md:pl-8">
+                  <p className="text-[#00ffff] font-bold text-sm">OPTION B: UPLOAD ASSET</p>
                   <button 
                     onClick={() => fileInputRef.current?.click()}
                     className="px-6 py-3 border border-[#00ffff] text-[#00ffff] hover:bg-[#00ffff10] transition-colors text-xs font-bold uppercase tracking-widest"
@@ -375,17 +376,17 @@ export default function DesignerPage() {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 border border-[#004444] bg-[#0a0a0a] p-6 relative overflow-hidden animate-in fade-in duration-500">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 border border-[#004444] bg-[#0a0a0a] p-4 md:p-6 relative overflow-hidden animate-in fade-in duration-500">
               {/* Background Grid Decoration */}
               <div className="absolute inset-0 opacity-10 pointer-events-none" 
                     style={{backgroundImage: 'linear-gradient(#00ffff 1px, transparent 1px), linear-gradient(90deg, #00ffff 1px, transparent 1px)', backgroundSize: '40px 40px'}}>
               </div>
 
               {/* Controls */}
-              <div className="relative z-10 flex flex-col justify-center space-y-6">
+              <div className="relative z-10 flex flex-col justify-center space-y-6 order-2 lg:order-1">
                 <div>
                   <div className="flex justify-between items-center mb-2">
-                    <h3 className="text-[#00ffff] font-bold">TARGET_SOURCE: <span className="text-white">{activeSource}</span></h3>
+                    <h3 className="text-[#00ffff] font-bold text-xs md:text-sm">TARGET_SOURCE: <span className="text-white">{activeSource}</span></h3>
                     <button 
                       onClick={() => {
                         setUploadedImage(null);
@@ -399,7 +400,7 @@ export default function DesignerPage() {
 
                   {/* Preview Thumbnail for Context */}
                   {activeImageUrl && (
-                    <div className="w-24 h-24 mb-4 border border-[#004444]">
+                    <div className="w-16 h-16 md:w-24 md:h-24 mb-4 border border-[#004444]">
                         <img src={activeImageUrl} alt="Source" className="w-full h-full object-cover opacity-50" />
                     </div>
                   )}
@@ -411,7 +412,7 @@ export default function DesignerPage() {
                       className="flex items-center justify-between p-4 border border-[#00ffff] bg-[#001111] hover:bg-[#00ffff20] transition-all group"
                     >
                       <div className="text-left">
-                        <div className="font-bold text-[#00ffff]">ENHANCE RESOLUTION (4K)</div>
+                        <div className="font-bold text-[#00ffff] text-sm md:text-base">ENHANCE RESOLUTION (4K)</div>
                         <div className="text-[10px] text-gray-400">UPSCALING // DETAIL_INJECTION // SHARPEN</div>
                       </div>
                       <span className="text-xl group-hover:scale-125 transition-transform">✨</span>
@@ -423,7 +424,7 @@ export default function DesignerPage() {
                       className="flex items-center justify-between p-4 border border-[#00ffff] bg-[#001111] hover:bg-[#00ffff20] transition-all group"
                     >
                         <div className="text-left">
-                        <div className="font-bold text-[#00ffff]">REMOVE BACKGROUND</div>
+                        <div className="font-bold text-[#00ffff] text-sm md:text-base">REMOVE BACKGROUND</div>
                         <div className="text-[10px] text-gray-400">ISOLATION // ALPHA_SIMULATION // CLEAN_CUT</div>
                       </div>
                       <span className="text-xl group-hover:scale-125 transition-transform">✂️</span>
@@ -432,14 +433,14 @@ export default function DesignerPage() {
                 </div>
 
                 <div className="text-[10px] text-[#008888]">
-                  NOTE: HIGH-FIDELITY PROCESSING REQUIRES ADDITIONAL COMPUTATIONAL CREDITS (PAID API KEY).
+                  NOTE: HIGH-FIDELITY PROCESSING REQUIRES ADDITIONAL COMPUTATIONAL CREDITS.
                   <br />
                   <a href="https://ai.google.dev/gemini-api/docs/billing" target="_blank" rel="noreferrer" className="underline hover:text-[#00ffff]">VIEW BILLING DOCS</a>
                 </div>
               </div>
 
               {/* Viewport */}
-              <div className="relative z-10 aspect-square bg-[#000505] border border-[#004444] flex items-center justify-center overflow-hidden">
+              <div className="relative z-10 aspect-square bg-[#000505] border border-[#004444] flex items-center justify-center overflow-hidden order-1 lg:order-2">
                 {procState.status === 'IDLE' && activeImageUrl && (
                     <img src={activeImageUrl} alt="Original" className="w-full h-full object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500" />
                 )}

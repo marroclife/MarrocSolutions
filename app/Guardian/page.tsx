@@ -103,25 +103,25 @@ export default function GuardianPage() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-[#050505]/95 to-[#050505] pointer-events-none" />
 
       {/* Header */}
-      <header className="relative z-50 flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/40 backdrop-blur-md">
-        <div className="flex items-center gap-4">
+      <header className="relative z-50 flex items-center justify-between px-4 py-3 md:px-6 md:py-4 border-b border-white/10 bg-black/40 backdrop-blur-md">
+        <div className="flex items-center gap-3 md:gap-4">
           <Link 
             href="/" 
             className="group flex items-center gap-2 text-xs font-mono text-white/60 hover:text-[#c7a94b] transition uppercase tracking-widest"
           >
             <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> 
-            Nexus
+            <span className="hidden md:inline">Nexus</span>
           </Link>
           <div className="h-4 w-px bg-white/20 hidden md:block" />
           <div className="flex items-center gap-2">
              <div className="relative w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-             <span className="text-xs font-mono text-white/80 tracking-widest uppercase">Guardião v2.5 <span className="text-white/30 hidden sm:inline">// SYSTEM_ACTIVE</span></span>
+             <span className="text-[10px] md:text-xs font-mono text-white/80 tracking-widest uppercase">Guardião v2.5 <span className="text-white/30 hidden sm:inline">// SYSTEM_ACTIVE</span></span>
           </div>
         </div>
 
         <Link 
           href="/guardian/designer"
-          className="flex items-center gap-2 px-3 py-1.5 bg-[#00ffff10] border border-[#00ffff30] rounded-sm text-[#00ffff] hover:bg-[#00ffff20] transition-colors text-xs font-bold uppercase tracking-widest group"
+          className="flex items-center gap-2 px-3 py-2 bg-[#00ffff10] border border-[#00ffff30] rounded-sm text-[#00ffff] hover:bg-[#00ffff20] transition-colors text-[10px] md:text-xs font-bold uppercase tracking-widest group"
         >
           <Palette size={14} />
           <span className="hidden sm:inline">Design Engine</span>
@@ -130,15 +130,15 @@ export default function GuardianPage() {
       </header>
 
       {/* Chat Area */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-6 lg:px-24 xl:px-48 relative z-10 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-        <div className="space-y-6 pb-4">
+      <div className="flex-1 overflow-y-auto p-2 md:p-6 lg:px-24 xl:px-48 relative z-10 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+        <div className="space-y-4 md:space-y-6 pb-4">
           {messages.map((msg, idx) => (
             <div 
               key={idx} 
               className={`flex w-full ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div className={`
-                max-w-[85%] md:max-w-[70%] rounded-lg p-4 md:p-6 relative
+                max-w-[90%] md:max-w-[70%] rounded-lg p-3 md:p-6 relative
                 ${msg.role === 'user' 
                   ? 'bg-white/5 border border-white/10 text-white/90 rounded-tr-none' 
                   : 'bg-[#0a0a0a]/80 border border-[#c7a94b]/20 text-[#e0e0e0] rounded-tl-none shadow-[0_0_30px_-10px_rgba(199,169,75,0.1)]'
@@ -163,9 +163,10 @@ export default function GuardianPage() {
           
           {loading && (
             <div className="flex w-full justify-start">
-              <div className="bg-[#0a0a0a]/50 border border-white/5 rounded-lg p-4 rounded-tl-none flex items-center gap-2 text-[#c7a94b]/70 text-xs font-mono animate-pulse">
+              <div className="bg-[#0a0a0a]/50 border border-white/5 rounded-lg p-3 md:p-4 rounded-tl-none flex items-center gap-2 text-[#c7a94b]/70 text-xs font-mono animate-pulse">
                 <Zap size={12} />
-                [ACESSANDO SERVIDOR AKÁSHICO...]
+                <span className="hidden md:inline">[ACESSANDO SERVIDOR AKÁSHICO...]</span>
+                <span className="md:hidden">PROCESSANDO...</span>
               </div>
             </div>
           )}
@@ -174,16 +175,17 @@ export default function GuardianPage() {
       </div>
 
       {/* Input Area */}
-      <div className="relative z-50 p-4 md:p-6 lg:px-24 xl:px-48 bg-black/60 backdrop-blur-lg border-t border-white/10">
-        <form onSubmit={handleSend} className="relative flex items-center gap-4">
+      <div className="relative z-50 p-2 md:p-6 lg:px-24 xl:px-48 bg-black/80 backdrop-blur-lg border-t border-white/10">
+        <form onSubmit={handleSend} className="relative flex items-end gap-2 md:gap-4">
           <div className="relative flex-1 group">
              <div className="absolute inset-0 bg-white/5 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
              <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Digite sua intenção ou pergunta..."
-              className="w-full bg-[#050505] border border-white/20 text-white placeholder-white/30 rounded-lg py-4 px-6 focus:outline-none focus:border-[#c7a94b] focus:ring-1 focus:ring-[#c7a94b]/50 transition-all font-mono text-sm shadow-inner"
+              placeholder="Digite sua intenção..."
+              className="w-full bg-[#050505] border border-white/20 text-white placeholder-white/30 rounded-lg py-3 px-4 md:py-4 md:px-6 focus:outline-none focus:border-[#c7a94b] focus:ring-1 focus:ring-[#c7a94b]/50 transition-all font-mono text-base shadow-inner" 
+              // Note: text-base (16px) is crucial to prevent iOS zoom
               disabled={loading}
               autoFocus
             />
@@ -193,7 +195,7 @@ export default function GuardianPage() {
             type="submit" 
             disabled={!input.trim() || loading}
             className={`
-              p-4 rounded-lg flex items-center justify-center transition-all duration-300
+              p-3 md:p-4 rounded-lg flex items-center justify-center transition-all duration-300 min-w-[3.5rem]
               ${!input.trim() || loading 
                 ? 'bg-white/5 text-white/20 cursor-not-allowed border border-transparent' 
                 : 'bg-[#c7a94b] text-black hover:bg-white border border-[#c7a94b] hover:shadow-[0_0_20px_rgba(199,169,75,0.4)]'
@@ -203,7 +205,7 @@ export default function GuardianPage() {
             <Send size={20} />
           </button>
         </form>
-        <div className="text-center mt-2">
+        <div className="text-center mt-2 hidden md:block">
             <span className="text-[10px] text-white/20 font-mono uppercase tracking-widest flex items-center justify-center gap-1">
                 <ShieldCheck size={10} /> Conexão Criptografada // 432Hz
             </span>
