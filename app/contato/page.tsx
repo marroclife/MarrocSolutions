@@ -15,19 +15,7 @@ async function submitContact(formData: FormData) {
   console.log("Sinal recebido:", { name, email, message });
 
   // ⚠️ PRISMA: Descomente as linhas abaixo quando tiver sua tabela criada
-  /*
-  await prisma.contact.create({
-    data: {
-      name,
-      email,
-      message,
-      createdAt: new Date(),
-    },
-  });
-  */
-
-  // Opcional: Redirecionar após sucesso
-  // redirect("/contato?success=true");
+ 
 }
 
 export default function ContatoPage() {
