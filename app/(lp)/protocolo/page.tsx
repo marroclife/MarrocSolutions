@@ -28,13 +28,35 @@ export default function ProtocoloPage() {
         Sua empresa está perdida no ruído digital. O <span className="text-emerald-400">Tecnoxamanismo</span> é a fusão de Design Ritualístico e Automação via IA para líderes que buscam mais do que cliques: buscam reverência.
       </p>
 
-      {/* --- VSL / IMAGEM (Placeholder) --- */}
-      <div className="w-full aspect-video bg-neutral-900 border border-neutral-800 rounded-lg flex items-center justify-center mb-12 relative overflow-hidden group">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
-        {/* Aqui viria um vídeo curto ou uma imagem estática poderosa do "Guardião" */}
-        <div className="z-20 text-neutral-500 flex flex-col items-center gap-4">
-            <Cpu className="w-16 h-16 text-emerald-900 group-hover:text-emerald-500 transition-colors duration-500" />
-            <span className="uppercase tracking-widest text-sm">Visualização do Protocolo</span>
+      {/* --- VSL / IMAGEM (O Núcleo Digital) --- */}
+      <div className="w-full aspect-video bg-neutral-950 border border-emerald-900/30 rounded-lg flex items-center justify-center mb-12 relative overflow-hidden group">
+        
+        {/* Background Grid animado */}
+        <div className="absolute inset-0 opacity-20" 
+             style={{ 
+                 backgroundImage: 'linear-gradient(#10b981 1px, transparent 1px), linear-gradient(to right, #10b981 1px, transparent 1px)', 
+                 backgroundSize: '40px 40px',
+                 maskImage: 'radial-gradient(circle at center, black, transparent 80%)'
+             }} 
+        />
+
+        {/* Círculos Pulsantes (O "Coração" da IA) */}
+        <div className="relative z-10 flex items-center justify-center">
+            <div className="absolute w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute w-40 h-40 border border-emerald-500/30 rounded-full animate-[spin_10s_linear_infinite]" />
+            <div className="absolute w-32 h-32 border border-cyan-500/30 rounded-full animate-[spin_5s_linear_infinite_reverse]" />
+            
+            {/* Ícone Central */}
+            <div className="bg-neutral-900 p-6 rounded-full border border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+                <Cpu className="w-12 h-12 text-emerald-400" />
+            </div>
+        </div>
+
+        {/* Texto de Status */}
+        <div className="absolute bottom-6 left-0 right-0 text-center">
+            <span className="text-xs font-mono text-emerald-500/70 tracking-[0.2em] animate-pulse">
+                AGUARDANDO UPLOAD DE CONSCIÊNCIA...
+            </span>
         </div>
       </div>
 
