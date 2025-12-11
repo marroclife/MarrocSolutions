@@ -60,6 +60,38 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning className="scroll-smooth">
+      <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              tailwind.config = {
+                theme: {
+                  extend: {
+                    fontFamily: {
+                      sans: ['var(--font-body)', 'sans-serif'],
+                      serif: ['var(--font-display)', 'serif'],
+                    },
+                    colors: {
+                      paper: '#e4e4e7',
+                      gold: {
+                        400: '#fbbf24',
+                        500: '#f59e0b',
+                        600: '#d97706',
+                        900: '#78350f',
+                      },
+                      mystic: {
+                        900: '#0a0a0a', // Deep black/zinc
+                        800: '#18181b', // Card bg
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${display.variable} ${body.variable} font-body antialiased bg-[#0b0b0b] text-paper`}
       >

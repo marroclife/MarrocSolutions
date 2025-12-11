@@ -14,7 +14,7 @@ const NAV: NavItem[] = [
   { href: "/projetos", label: "Projetos" },
   { href: "/rituais", label: "Rituais" },
   { href: "/agenda", label: "Agenda" },
-  { href: "/conteudos", label: "Conteúdos" },
+  { href: "/conteudos", label: "Artigos" },
   { href: "/sobre", label: "Sobre" },
   { href: "/contato", label: "Contato" },
 ];

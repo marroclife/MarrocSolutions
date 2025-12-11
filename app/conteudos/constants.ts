@@ -6,7 +6,7 @@ export const NAV_LINKS: NavItem[] = [
   { label: 'Projetos', path: '/projetos' },
   { label: 'Rituais', path: '/rituais' },
   { label: 'Agenda', path: '/agenda' },
-  { label: 'Conteúdos', path: '/conteudos' }, // This is our target
+  { label: 'Artigos', path: '/conteudos' }, // This is our target
   { label: 'Sobre', path: '/sobre' },
   { label: 'Contato', path: '/contato' },
   { label: 'Apoiar', path: '/apoiar', highlight: true },
