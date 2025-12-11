@@ -1,4 +1,4 @@
-import { NavItem, Article } from './types';
+import { NavItem, Article } from '@/components/types';
 
 export const NAV_LINKS: NavItem[] = [
   { label: 'Livro', path: '/livro' },
