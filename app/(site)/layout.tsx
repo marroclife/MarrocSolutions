@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { Playfair_Display, Inter } from "next/font/google";
 import Header from "@/components/site/Header";
 
