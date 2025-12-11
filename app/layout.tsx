@@ -1,11 +1,11 @@
-// app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
-import { EB_Garamond, Inter } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import Header from "@/components/site/Header";
 
-const display = EB_Garamond({
-  weight: "400",
+// Atualizado para Playfair Display para alinhar com a estética "Misticismo Digital" dos novos artigos
+const display = Playfair_Display({
+  weight: ["400", "600", "700", "800"], // Pesos adicionados para hierarquia visual
   subsets: ["latin"],
   variable: "--font-display",
 });
