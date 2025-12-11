@@ -1,4 +1,4 @@
-import { NavItem, Article } from '../../components/types';
+import { NavItem, Article } from './types';
 
 export const NAV_LINKS: NavItem[] = [
   { label: 'Livro', path: '/livro' },
@@ -6,7 +6,7 @@ export const NAV_LINKS: NavItem[] = [
   { label: 'Projetos', path: '/projetos' },
   { label: 'Rituais', path: '/rituais' },
   { label: 'Agenda', path: '/agenda' },
-  { label: 'Artigos', path: '/conteudos' }, // This is our target
+  { label: 'Conteúdos', path: '/conteudos' }, // This is our target
   { label: 'Sobre', path: '/sobre' },
   { label: 'Contato', path: '/contato' },
   { label: 'Apoiar', path: '/apoiar', highlight: true },
@@ -215,7 +215,7 @@ Tasya vidya bhavetsarva, Ganeshasya prasadatah</div>
       <h3>O Stotram no ritual sonoro</h3>
       <p>No Marroc, o hino pode ser acoplado a bases eletrônicas mantendo métrica e vibração originais, expandindo‑o para um campo coletivo. Em um Live Set ritualístico, o Ganesha Stotram age como <em>chave vibracional</em>, abrindo o portal para que toda a experiência sonora transcorra sem bloqueios.</p>
     `,
-    imageUrl: '/Ganesha-cyber.png', // Reference to the local file we'll use
+    imageUrl: 'https://images.unsplash.com/photo-1597825686520-47b85e0501be?q=80&w=2070&auto=format&fit=crop', // Flowers/Offering/Abstract
     publishDate: '2025-01-10',
     tags: ['Mantra', 'Sânscrito', 'Tradição'],
     readTime: '6 min'
