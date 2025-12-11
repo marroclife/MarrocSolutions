@@ -215,7 +215,7 @@ Tasya vidya bhavetsarva, Ganeshasya prasadatah</div>
       <h3>O Stotram no ritual sonoro</h3>
       <p>No Marroc, o hino pode ser acoplado a bases eletrônicas mantendo métrica e vibração originais, expandindo‑o para um campo coletivo. Em um Live Set ritualístico, o Ganesha Stotram age como <em>chave vibracional</em>, abrindo o portal para que toda a experiência sonora transcorra sem bloqueios.</p>
     `,
-    imageUrl: '/ganesha-cyber.png', // Reference to the local file we'll use
+    imageUrl: '/Ganesha-cyber.png', // Reference to the local file we'll use
     publishDate: '2025-01-10',
     tags: ['Mantra', 'Sânscrito', 'Tradição'],
     readTime: '6 min'
