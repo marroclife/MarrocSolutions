@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShareButton } from '../../../components/ShareButton';
+import { ShareButton } from '../../../../components/ShareButton';
 import { ArrowLeft, Calendar, Music2, Waves } from 'lucide-react';
 import Link from 'next/link';
 

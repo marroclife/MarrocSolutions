@@ -1,7 +1,7 @@
 import React from 'react';
 import { ARTICLES } from '../constants';
-import { Article } from '../../../components/types';
-import { ShareButton } from '../../../components/ShareButton';
+import { Article } from '../../../../components/types';
+import { ShareButton } from '../../../../components/ShareButton';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';

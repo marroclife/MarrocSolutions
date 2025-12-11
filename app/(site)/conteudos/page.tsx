@@ -1,6 +1,6 @@
 import React from 'react';
 import { ARTICLES } from './constants';
-import { Article } from '../../components/types';
+import { Article } from '../../../components/types';
 import { ArrowRight, Clock, Tag } from 'lucide-react';
 import Link from 'next/link';
 

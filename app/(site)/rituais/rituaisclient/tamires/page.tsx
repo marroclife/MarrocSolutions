@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Lock, Sparkles } from 'lucide-react';
-import TamiresLayout from '../../../../components/analysis/TamiresLayout';
+import TamiresLayout from '../../../../../components/analysis/TamiresLayout';
 
 const TamiresAnalysisPage: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
