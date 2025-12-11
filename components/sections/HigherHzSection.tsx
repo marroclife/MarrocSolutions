@@ -1,9 +1,8 @@
 import React from "react";
-import { Sparkles, Hexagon, PlayCircle } from "lucide-react";
+import Link from "next/link"; // Importando Link
+import { Sparkles, Hexagon, PlayCircle, ArrowRight } from "lucide-react";
 
 export function HigherHzSection() {
-  // ⚠️ IMPORTANTE: COLOQUE AQUI O ID REAL DO ÁLBUM DO HIGHER HZ
-  // Exemplo: se o link for open.spotify.com/album/XYZ123, coloque "XYZ123"
   const ALBUM_ID = "21V0dAGNJiJKarYgLOzqhQ";
 
   return (
@@ -62,6 +61,16 @@ export function HigherHzSection() {
                   <span className="block text-xs text-gray-500 uppercase">Tecnologia</span>
                   <span className="text-white font-medium">Suno / Udio / Ableton</span>
                </div>
+            </div>
+
+            {/* Link para a página interna Higher Hz */}
+            <div className="pt-4 flex justify-end lg:justify-start">
+              <Link 
+                href="/higher-hz"
+                className="group inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 font-bold uppercase tracking-wider text-sm transition-colors"
+              >
+                Entrar na Frequência <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </div>
 

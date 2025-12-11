@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link"; // Importando Link
 import { Terminal, Cpu, Globe, ArrowRight, ShieldCheck } from "lucide-react";
 
 export function SolutionsSection() {
@@ -29,9 +30,13 @@ export function SolutionsSection() {
             </p>
           </div>
 
-          <a href="/contato" className="group flex items-center gap-2 text-white border-b border-white/30 pb-1 hover:border-cyan-400 hover:text-cyan-400 transition-all">
-            Iniciar Projeto <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
-          </a>
+          {/* Link para a página interna Solutions */}
+          <Link 
+            href="/marrocsolutions" 
+            className="group flex items-center gap-2 text-white border-b border-white/30 pb-1 hover:border-cyan-400 hover:text-cyan-400 transition-all"
+          >
+            Conhecer a Divisão <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
+          </Link>
         </div>
 
         {/* Grid de Serviços (A Proposta de Valor) */}
@@ -68,7 +73,7 @@ export function SolutionsSection() {
           </div>
         </div>
 
-        {/* Feature: O Oráculo de Performance (Versão Visual) */}
+        {/* Feature: O Oráculo de Performance */}
         <div className="rounded-3xl bg-gradient-to-r from-[#0a0a0a] to-[#111] border border-white/10 p-8 md:p-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
           

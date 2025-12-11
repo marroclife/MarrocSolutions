@@ -1,9 +1,8 @@
 import React from "react";
-import { Mic2, Music2, Calendar } from "lucide-react";
+import Link from "next/link"; // Importando Link do Next.js
+import { Mic2, Music2, Calendar, ArrowRight } from "lucide-react";
 
 export function MarrocSection() {
-  // ⚠️ IMPORTANTE: COLOQUE AQUI O ID REAL DO ARTISTA OU PLAYLIST DO MARROC
-  // Exemplo: se o link for open.spotify.com/artist/12345, coloque "12345"
   const SPOTIFY_ID = "74vMSJj7Vy2CzAo1U3x9YY";
 
   return (
@@ -38,22 +37,33 @@ export function MarrocSection() {
               </p>
               <p>
                 Não é apenas um set, é uma cerimônia. O palco se torna um altar onde sintetizadores desenham a atmosfera, 
-                enquanto flautas e tambores ancoram o ritual na terra. Uma jornada desenhada para induzir o transe e elevar a frequência coletiva.
+                enquanto flautas e tambores ancoram o ritual na terra.
               </p>
             </div>
 
-            <div className="flex gap-4 pt-4">
-               <a href="/agenda" className="px-8 py-3 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition flex items-center gap-2">
+            {/* BOTÕES DE AÇÃO */}
+            <div className="flex flex-wrap gap-4 pt-4">
+               {/* Link para a página interna de Música */}
+               <Link 
+                 href="/musica" 
+                 className="px-6 py-3 border border-white/30 text-white font-bold rounded-full hover:bg-white hover:text-black transition flex items-center gap-2"
+               >
+                 Explorar o Som <ArrowRight size={18} />
+               </Link>
+
+               {/* Link para Agenda */}
+               <Link 
+                 href="/agenda" 
+                 className="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition flex items-center gap-2"
+               >
                  <Calendar size={18} /> Ver Agenda
-               </a>
+               </Link>
             </div>
           </div>
 
           {/* Player Spotify */}
           <div className="w-full">
             <div className="rounded-xl overflow-hidden shadow-[0_0_50px_-10px_rgba(168,85,247,0.3)] border border-white/10 relative bg-black">
-              {/* O iframe do Spotify */}
-              {/* Se for Perfil de Artista, mantenha 'artist'. Se for Playlist, mude para 'playlist' na URL abaixo */}
               <iframe 
                 style={{borderRadius: '12px'}} 
                 src={`https://open.spotify.com/embed/artist/${SPOTIFY_ID}?utm_source=generator&theme=0`} 

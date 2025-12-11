@@ -194,7 +194,7 @@ export default function HomePage() {
                         </h3>
                       </div>
                       <p className="text-sm text-white/60 leading-relaxed max-w-xl">
-                        Projeto de frequências sonoras e expansão coletiva. A ciência da vibração aplicada à cura.
+                       Um ecossistema vibracional com IA que ancora músicas e frequências de cura. A união da tecnologia com a ciência da vibração para a expansão da consciência.
                       </p>
                     </div>
                     <div className="flex items-center text-blue-400 text-xs font-bold tracking-widest uppercase whitespace-nowrap">

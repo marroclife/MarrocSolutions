@@ -91,6 +91,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
+        <style>{`
+          /* Correção Global para textos com gradiente (bg-clip-text) */
+          /* Evita que fontes itálicas sejam cortadas no final da palavra */
+          .bg-clip-text {
+            padding-bottom: 0.1em;
+            padding-right: 0.2em;
+          }
+        `}</style>
       </head>
       <body
         className={`${display.variable} ${body.variable} font-body antialiased bg-[#0b0b0b] text-paper`}
