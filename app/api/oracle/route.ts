@@ -7,112 +7,116 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-export const maxDuration = 60; // Timeout maior para leitura de sites
+export const maxDuration = 60; // Timeout estendido para leitura profunda
 
 export async function POST(req: Request) {
   try {
     const { url, email } = await req.json();
 
-    // 1. Validação
     if (!url || !email) {
-      return NextResponse.json({ error: 'URL e E-mail são obrigatórios para a invocação.' }, { status: 400 });
+      return NextResponse.json({ error: 'URL e E-mail são obrigatórios.' }, { status: 400 });
     }
 
-    // 2. Rate Limit via Cookie (Bloqueio de 24h)
+    // --- 1. Rate Limit (Opcional - Comente para testes) ---
     const cookieStore = await cookies();
     const lastOracleUse = cookieStore.get('oracle_cooldown');
     
-    // ATENÇÃO: Para testes, você pode comentar este bloco if
-    if (lastOracleUse) {
-      return NextResponse.json({ 
-        error: 'O Oráculo precisa recarregar sua energia. Você já fez uma leitura nas últimas 24h.' 
-      }, { status: 429 });
-    }
+    // if (lastOracleUse) {
+    //   return NextResponse.json({ error: 'O Oráculo precisa recarregar. Tente novamente em 24h.' }, { status: 429 });
+    // }
 
-    // 3. Disparo para n8n (Fire-and-Forget para não travar a UI)
-    // Envia o lead imediatamente. Não usamos await para não somar ao tempo de loading.
+    // --- 2. Disparo para n8n (Fire-and-forget) ---
     if (process.env.N8N_ORACLE_WEBHOOK) {
         fetch(process.env.N8N_ORACLE_WEBHOOK, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ url, email, timestamp: new Date().toISOString() }),
-        }).catch(err => console.error("Erro silencioso no Webhook n8n:", err));
+        }).catch(err => console.error("Erro Webhook n8n:", err));
     }
 
-    // 4. Raspagem Simples (Scraping)
+    // --- 3. A Nova Visão (Jina AI Reader) ---
+    // Usamos o prefixo 'https://r.jina.ai/' para converter o site em Markdown limpo para LLMs
     const targetUrl = url.startsWith('http') ? url : `https://${url}`;
-    let siteText = "";
+    const jinaUrl = `https://r.jina.ai/${targetUrl}`;
     
+    let siteContent = "";
+
     try {
-      const siteRes = await fetch(targetUrl, { 
+      const siteRes = await fetch(jinaUrl, {
         headers: { 
-            'User-Agent': 'Mozilla/5.0 (compatible; MarrocBot/1.0; +https://marroc.xyz)' 
-        },
-        next: { revalidate: 0 } // Sem cache
+            'User-Agent': 'MarrocSolutions/1.0',
+            'X-Return-Format': 'markdown' 
+        }
       });
+
+      if (!siteRes.ok) throw new Error("Falha na leitura do site");
       
-      if (!siteRes.ok) throw new Error("Falha ao acessar site");
+      const rawText = await siteRes.text();
       
-      const html = await siteRes.text();
-      
-      // Limpeza brutal para economizar tokens e focar no conteúdo
-      siteText = html
-        .replace(/<script[^>]*>([\s\S]*?)<\/script>/gi, "")
-        .replace(/<style[^>]*>([\s\S]*?)<\/style>/gi, "")
-        .replace(/<[^>]+>/g, " ") // Remove tags HTML
-        .replace(/\s+/g, " ")     // Remove espaços extras
-        .slice(0, 12000);         // Limita caracteres (aprox 3k tokens)
-        
+      // Cortamos para garantir que cabe no contexto (aprox 12k caracteres é seguro e suficiente)
+      siteContent = rawText.slice(0, 12000);
+
+      // Verificação de Segurança: Se o site vier vazio
+      if (siteContent.length < 200) {
+        throw new Error("Conteúdo insuficiente para análise");
+      }
+
     } catch (error) {
-      return NextResponse.json({ error: 'Não consegui acessar essa dimensão digital. Verifique a URL (o site pode ter bloqueios de bot).' }, { status: 400 });
+      console.error("Scraping Error:", error);
+      return NextResponse.json({ 
+        result: "🚫 **Bloqueio no Sinal Digital**\n\nO Guardião tentou acessar seu site, mas encontrou um escudo (firewall ou erro de servidor) que impede a leitura externa.\n\nIsso, por si só, é um diagnóstico: seu site pode estar invisível para ferramentas de busca.\n\n**Recomendação:** Agende uma auditoria manual conosco." 
+      });
     }
 
-    // 5. Invocação da IA (Persona Hacker Místico)
+    // --- 4. A Invocação (Prompt Anti-Alucinação) ---
     const completion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
         {
           role: "system",
-          content: `Você é o Oráculo do Marroc.xyz, um Arquiteto de Soluções Digitais e Hacker Místico.
+          content: `Você é o Oráculo da Marroc Solutions. Sua análise deve ser baseada ESTRITAMENTE no conteúdo fornecido.
+          
+          🚫 PROIBIDO ALUCINAR: Se o texto fornecido não tiver informações suficientes, diga isso. Não invente menus ou textos que não existem.
           
           SUA MISSÃO:
-          Fazer uma "Leitura Fria" (Cold Reading) impiedosa mas construtiva do site fornecido.
-          Você deve misturar terminologia técnica (UX, SEO, Performance) com metáforas esotéricas/místicas.
+          1. Identifique o NICHO do site com base no texto.
+          2. Critique a Copywriting (Textos de Venda) e a Clareza da Oferta.
+          3. Aponte falhas técnicas implícitas (ex: se o texto é confuso, a UX provavelmente também é).
 
           TOM DE VOZ:
-          Enigmático, direto, profissional e levemente "Dark/Cyberpunk".
-          Não seja genérico. Encontre falhas reais ou oportunidades perdidas no texto fornecido.
-          
-          ESTRUTURA DA RESPOSTA (Use Markdown simples):
-          1. **A Aura (Impressão Inicial):** O que o site transmite em 3 segundos? Está confuso? Está genérico?
-          2. **O Bloqueio (Problemas):** Cite 2 pontos onde o "fluxo de energia" (conversão/vendas) está vazando.
-          3. **O Veredito:** Uma frase de impacto final sobre o potencial desperdiçado.
+          "Cyberpunk Místico". Profissional, direto, mas usando termos como "Frequência", "Sinal", "Código", "Egrégora".
+          Seja duro na queda. O objetivo é mostrar que o site atual é fraco para vender a consultoria.
 
-          IMPORTANTE:
-          - Não dê a solução técnica completa (ex: "instale o plugin X"). Diga O QUE está errado, não COMO corrigir. Gere curiosidade para a consultoria.
-          - Finalize dizendo: "O Guardião recomenda uma intervenção arquitetônica."`
+          ESTRUTURA DA RESPOSTA (Markdown):
+          1. **A Assinatura (O que o site diz ser):** Resuma o que você entendeu do negócio em 1 frase.
+          2. **Ruído no Sinal (Problemas Reais):** Cite 2 problemas específicos encontrados no TEXTO (ex: "Não há chamada para ação clara", "O texto sobre 'Sobre Nós' é genérico").
+          3. **O Veredito:** Uma frase final sobre o potencial desperdiçado.
+          `
         },
         {
           role: "user",
-          content: `Analise a alma digital deste site: ${targetUrl}. \n\n CONTEÚDO EXTRAÍDO: \n ${siteText}`
+          content: `URL Alvo: ${targetUrl}
+          
+          Conteúdo Extraído (Markdown):
+          ---
+          ${siteContent}
+          ---
+          
+          Faça a análise agora.`
         }
       ],
-      temperature: 0.7,
+      temperature: 0.5, // Baixei a temperatura para ser mais analítico e menos criativo
     });
 
     const diagnosis = completion.choices[0].message.content;
 
-    // Define Cookie
     const response = NextResponse.json({ result: diagnosis });
-    response.cookies.set('oracle_cooldown', 'true', { 
-        maxAge: 60 * 60 * 24, // 1 dia
-        httpOnly: true 
-    });
+    // response.cookies.set('oracle_cooldown', 'true', { maxAge: 86400, httpOnly: true }); // Comentado para testes
     
     return response;
 
   } catch (error) {
-    console.error("Erro no Oráculo:", error);
-    return NextResponse.json({ error: 'Interferência crítica no sinal. Tente novamente mais tarde.' }, { status: 500 });
+    console.error("Erro Geral:", error);
+    return NextResponse.json({ error: 'Erro interno na matriz.' }, { status: 500 });
   }
 }
