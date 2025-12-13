@@ -1,8 +1,17 @@
 'use client';
 
 import React, { useState, useEffect, ReactNode } from 'react';
-import { Menu, X, Hexagon, ArrowRight, Globe, Zap, MessageSquare, Map, Database, Search, PenTool, Rocket, Clock, DollarSign, UserCheck, ShieldCheck, Quote, ArrowLeft } from 'lucide-react';
+import { Menu, X, Hexagon, ArrowRight, Globe, Zap, MessageSquare, Map, Database, Search, PenTool, Rocket, Clock, DollarSign, UserCheck, ShieldCheck, Quote, ArrowLeft, Terminal, Cpu, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+// --- LÓGICA DO ORÁCULO (INTEGRADA) ---
+const LOADING_STEPS = [
+  "Estabelecendo conexão com o Guardião...",
+  "Rastreando a assinatura digital...",
+  "Decodificando a estrutura do HTML...",
+  "Lendo a aura de conversão...",
+  "Compilando o diagnóstico final..."
+];
 
 // --- UI Components ---
 
@@ -220,8 +229,8 @@ const Hero: React.FC = () => {
               <Button href="#contato" icon>
                 Quero meu site
               </Button>
-              <Button variant="outline" href="#servicos">
-                Ver soluções
+              <Button variant="outline" href="#oracle-section">
+                Testar Oráculo IA
               </Button>
             </div>
             
@@ -270,6 +279,54 @@ const About: React.FC = () => {
 };
 
 const Services: React.FC = () => {
+  
+  // --- ESTADO DO ORÁCULO NESTA PÁGINA ---
+  const [url, setUrl] = useState("");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [loadingMsgIndex, setLoadingMsgIndex] = useState(0);
+  const [result, setResult] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (loading) {
+      interval = setInterval(() => {
+        setLoadingMsgIndex((prev) => (prev + 1) % LOADING_STEPS.length);
+      }, 2500);
+    } else {
+      setLoadingMsgIndex(0);
+    }
+    return () => clearInterval(interval);
+  }, [loading]);
+
+  const handleAudit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!url || !email) return;
+
+    setLoading(true);
+    setError(null);
+    setResult(null);
+
+    try {
+      const res = await fetch("/api/oracle", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, email }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || "Erro desconhecido.");
+
+      setResult(data.result);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const secondaryServices = [
     {
       icon: <MessageSquare className="w-6 h-6" />,
@@ -349,6 +406,136 @@ const Services: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* --- O ORÁCULO DE PERFORMANCE (Feature Integrada) --- */}
+      <div id="oracle-section" className="mt-20 rounded-3xl bg-gradient-to-r from-[#0a0a0a] to-[#111] border border-white/10 p-8 md:p-12 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+          
+          <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="flex items-center gap-2 text-cyan-400 mb-2">
+                <Terminal size={16} />
+                <span className="text-xs font-mono uppercase">System Check</span>
+              </div>
+              <h3 className="text-3xl font-serif text-white mb-4">
+                Sua marca está pronta para o futuro?
+              </h3>
+              <p className="text-gray-400 mb-8">
+                O Oráculo analisa a "alma digital" do seu site atual em busca de falhas de performance 
+                e oportunidades de inovação com IA.
+              </p>
+              
+              <form onSubmit={handleAudit} className="space-y-4">
+                <div>
+                  <input 
+                    type="text" 
+                    placeholder="Seu site (ex: marroc.xyz)" 
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                    className="bg-black/50 border border-white/20 text-white px-4 py-3 rounded-lg w-full focus:outline-none focus:border-cyan-500 font-mono text-sm"
+                    required
+                  />
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <input 
+                    type="email" 
+                    placeholder="Seu melhor e-mail" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="bg-black/50 border border-white/20 text-white px-4 py-3 rounded-lg w-full focus:outline-none focus:border-cyan-500 font-mono text-sm"
+                    required
+                  />
+                  <button 
+                    type="submit"
+                    disabled={loading}
+                    className="bg-cyan-600 hover:bg-cyan-500 text-white font-bold px-6 py-3 rounded-lg transition-colors whitespace-nowrap flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {loading ? <Loader2 className="animate-spin w-4 h-4" /> : <Zap className="w-4 h-4" />}
+                    {loading ? "Lendo..." : "Analisar Agora"}
+                  </button>
+                </div>
+                
+                {loading && (
+                    <p className="text-xs text-cyan-400 font-mono animate-pulse mt-2">
+                        {`> ${LOADING_STEPS[loadingMsgIndex]}`}
+                    </p>
+                )}
+
+                {error && (
+                    <p className="text-xs text-red-400 font-mono mt-2 bg-red-900/20 p-2 rounded">
+                        {`> ERRO: ${error}`}
+                    </p>
+                )}
+              </form>
+              <p className="text-[10px] text-gray-500 mt-2">* Diagnóstico gratuito preliminar via GPT-4o.</p>
+            </div>
+
+            {/* Visual Abstracto de Código */}
+            <div className="hidden md:block font-mono text-xs text-green-500/50 bg-black/50 p-6 rounded-lg border border-white/5 leading-loose select-none h-full min-h-[250px] relative overflow-hidden">
+                <p>{`> Initiating protocol Marroc_v1...`}</p>
+                <p>{`> Connecting to Neural Node...`}</p>
+                <p>{`> Target: ${url || "undefined"}`}</p>
+                <p>{`> User: ${email || "undefined"}`}</p>
+                <p className="text-white/20">--------------------------------</p>
+                {loading ? (
+                    <div className="text-cyan-400 animate-pulse">
+                        <p>{`> READING_SOURCE_CODE...`}</p>
+                        <p>{`> DETECTING_PATTERNS...`}</p>
+                    </div>
+                ) : (
+                    <div className="text-gray-600">
+                        <p>{`> Status: AWAITING_INPUT`}</p>
+                        <p>{`> ...`}</p>
+                    </div>
+                )}
+            </div>
+          </div>
+      </div>
+
+      {/* --- MODAL DE RESULTADO --- */}
+      {result && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-[#0a0a0a] border border-cyan-500/30 w-full max-w-2xl rounded-2xl shadow-[0_0_50px_-10px_rgba(6,182,212,0.3)] max-h-[85vh] flex flex-col relative overflow-hidden">
+            
+            <div className="p-6 border-b border-white/10 flex justify-between items-center bg-[#0a0a0a] z-10">
+              <div className="flex items-center gap-2">
+                 <Terminal className="text-cyan-400 w-5 h-5" />
+                 <h3 className="text-xl font-bold text-white">Diagnóstico do Oráculo</h3>
+              </div>
+              <button 
+                onClick={() => setResult(null)}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="p-6 overflow-y-auto custom-scrollbar">
+              <div className="prose prose-invert prose-cyan max-w-none">
+                <div className="whitespace-pre-line text-gray-300 leading-relaxed font-light text-sm md:text-base">
+                  {result}
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6 border-t border-white/10 bg-[#0f0f0f] z-10">
+              <p className="text-sm text-gray-400 mb-4 text-center">
+                Este foi apenas um vislumbre. Para reescrever sua arquitetura digital:
+              </p>
+              <a 
+                href={`https://wa.me/5521992669980?text=Ol%C3%A1%2C%20o%20Or%C3%A1culo%20analisou%20meu%20site%20(${url})%20e%20quero%20aprofundar.`}
+                target="_blank"
+                rel="noreferrer"
+                className="block w-full text-center bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-4 rounded-lg transition-all shadow-lg shadow-cyan-900/20"
+              >
+                Agendar Consultoria Técnica
+              </a>
+            </div>
+
+          </div>
+        </div>
+      )}
+
     </Section>
   );
 };
@@ -488,7 +675,7 @@ const Footer: React.FC = () => {
         </p>
         
         <div className="flex justify-center">
-          <Button href="https://wa.me/5521992669980?text=Olá,%20quero%20agendar%20uma%20sessão%20de%20Rituais%20de%20Reconexão" className="px-10 py-4 text-lg" icon>
+          <Button href="https://wa.me/5521992669980?text=Olá,%20visitei%20a%20Marroc%20Solutions%20e%20quero%20um%20projeto." className="px-10 py-4 text-lg" icon>
             Quero meu site agora
           </Button>
         </div>
@@ -518,9 +705,7 @@ export default function MarrocSolutionsPage() {
         <Process />
         <WhyChooseUs />
         <Testimonials />
-        <div className="pb-20">
-          {/* Spacing before footer */}
-        </div>
+        <div className="pb-20"></div>
       </main>
       <Footer />
     </div>
