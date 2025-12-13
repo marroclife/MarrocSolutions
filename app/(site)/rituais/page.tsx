@@ -71,15 +71,7 @@ export default function RituaisPage() {
         <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.png')] opacity-[0.04] mix-blend-overlay" />
       </div>
 
-      {/* --- NAV VOLTAR --- */}
-      <nav className="absolute top-0 left-0 w-full p-6 z-50">
-        <Link 
-          href="/" 
-          className="inline-flex items-center gap-2 text-xs font-mono text-emerald-300/70 hover:text-emerald-300 transition uppercase tracking-widest bg-black/40 px-3 py-1 rounded-full border border-emerald-500/20"
-        >
-          <ArrowLeft size={14} /> Voltar ao Nexus
-        </Link>
-      </nav>
+      
 
       {/* --- 1. HERO: O TEMPLO --- */}
       <section className="relative min-h-[85vh] flex flex-col justify-center items-center text-center px-6 pt-20">
