@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Hexagon, Zap, Activity, Code, Music } from "lucide-react";
+import { ArrowRight, Hexagon, Zap, Activity, Code, Music, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function HomePage() {
@@ -12,32 +12,44 @@ export default function HomePage() {
     <main className="min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-cyan-500 selection:text-black">
       
       {/* --- DOBRA 1: O DISTRIBUIDOR DE FREQUÊNCIA --- */}
-      <section className="relative h-screen w-full flex flex-col md:flex-row overflow-hidden">
+      <section className="relative w-full flex flex-col md:flex-row md:h-screen">
         
+        {/* [[ MOBILE HEADER ]] - Aparece apenas em telas pequenas */}
+        <div className="md:hidden pt-24 pb-8 px-6 text-center bg-[#050505] z-20 relative">
+            <h1 className="font-display text-3xl tracking-tighter leading-none mb-2 text-white">
+              DOMINAMOS A <br/> FREQUÊNCIA
+            </h1>
+            <p className="font-mono text-[10px] text-gray-500 uppercase tracking-[0.3em]">
+              Hertz & Bits Ecosystem
+            </p>
+        </div>
+
         {/* LADO ESQUERDO: SOLUTIONS (Tech) */}
         <Link 
           href="/marrocsolutions"
-          className="relative flex-1 group md:h-full border-b md:border-b-0 md:border-r border-white/10 overflow-hidden cursor-pointer"
+          className="relative w-full md:flex-1 group min-h-[50vh] md:h-full border-b md:border-b-0 md:border-r border-white/10 overflow-hidden cursor-pointer"
           onMouseEnter={() => setHoveredSide("left")}
           onMouseLeave={() => setHoveredSide(null)}
         >
-          {/* Background Tech (Video ou Imagem) */}
+          {/* Background Tech */}
           <div className={`absolute inset-0 bg-[url('/bg-tech-grid.jpg')] bg-cover bg-center transition-all duration-700 ${hoveredSide === 'left' ? 'scale-105 opacity-40' : 'opacity-20 grayscale'}`} />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-90" />
           
-          <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 transition-transform duration-500 group-hover:translate-x-2">
+          <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 py-12 transition-transform duration-500 md:group-hover:translate-x-2">
             <div className="flex items-center gap-2 text-cyan-400 mb-4">
               <Hexagon size={20} />
               <span className="font-mono text-xs tracking-widest uppercase">Para Negócios</span>
             </div>
-            <h2 className="font-display text-5xl md:text-7xl leading-none mb-2 group-hover:text-cyan-400 transition-colors">
+            <h2 className="font-display text-4xl md:text-7xl leading-none mb-2 md:group-hover:text-cyan-400 transition-colors">
               MARROC <br/> SOLUTIONS
             </h2>
             <p className="font-mono text-gray-400 text-sm md:text-base max-w-sm mt-4 border-l border-cyan-500/30 pl-4">
               Arquitetura Digital & Alta Performance. <br/>
               Otimize o código da sua empresa.
             </p>
-            <div className="mt-8 flex items-center gap-2 text-sm font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0">
+            
+            {/* Botão Mobile (Sempre visível) / Desktop (Hover) */}
+            <div className="mt-8 flex items-center gap-2 text-sm font-bold uppercase tracking-widest md:opacity-0 md:group-hover:opacity-100 transition-opacity transform md:translate-y-4 md:group-hover:translate-y-0 text-cyan-400 md:text-white">
               Acessar Consultoria <ArrowRight size={16} />
             </div>
           </div>
@@ -45,70 +57,68 @@ export default function HomePage() {
 
         {/* LADO DIREITO: LABS (Arte) */}
         <div 
-          className="relative flex-1 group md:h-full overflow-hidden cursor-default"
+          className="relative w-full md:flex-1 group min-h-[50vh] md:h-full overflow-hidden cursor-default"
           onMouseEnter={() => setHoveredSide("right")}
           onMouseLeave={() => setHoveredSide(null)}
         >
-          {/* Background Art (Video ou Imagem) */}
+          {/* Background Art */}
           <div className={`absolute inset-0 bg-[url('/bg-art-fluid.jpg')] bg-cover bg-center transition-all duration-700 ${hoveredSide === 'right' ? 'scale-105 opacity-50' : 'opacity-20'}`} />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-90" />
 
-          <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 items-end text-right transition-transform duration-500 group-hover:-translate-x-2">
-            <div className="flex items-center gap-2 text-purple-400 mb-4">
-              <span className="font-mono text-xs tracking-widest uppercase">Para a Mente</span>
-              <Zap size={20} />
+          <div className="relative z-10 h-full flex flex-col justify-center md:items-end md:text-right px-6 md:px-16 py-12 transition-transform duration-500 md:group-hover:-translate-x-2">
+            <div className="flex items-center md:justify-end gap-2 text-purple-400 mb-4">
+              <span className="font-mono text-xs tracking-widest uppercase md:order-1">Para a Mente</span>
+              <Zap size={20} className="md:order-2"/>
             </div>
-            <h2 className="font-display text-5xl md:text-7xl leading-none mb-2 group-hover:text-purple-400 transition-colors">
+            <h2 className="font-display text-4xl md:text-7xl leading-none mb-2 md:group-hover:text-purple-400 transition-colors">
               MARROC <br/> LABS
             </h2>
-            <p className="font-mono text-gray-400 text-sm md:text-base max-w-sm mt-4 border-r border-purple-500/30 pr-4">
+            <p className="font-mono text-gray-400 text-sm md:text-base max-w-sm mt-4 md:border-r border-l md:border-l-0 border-purple-500/30 pl-4 md:pl-0 md:pr-4">
               Ecossistema de Arte & Frequência. <br/>
               Música IA, Rituais e Livros.
             </p>
             
-            {/* Sub-menu interno para o lado artístico */}
-            <div className="mt-8 flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0">
-               <Link href="/higher-hz" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-purple-500 hover:text-black text-xs font-mono uppercase transition">
+            {/* Sub-menu Mobile (Grid) / Desktop (Flex Hover) */}
+            <div className="mt-8 grid grid-cols-2 md:flex gap-3 md:gap-4 md:opacity-0 md:group-hover:opacity-100 transition-opacity transform md:translate-y-4 md:group-hover:translate-y-0">
+               <Link href="/higher-hz" className="px-4 py-3 md:py-2 text-center border border-purple-500/50 rounded hover:bg-purple-500 hover:text-black text-xs font-mono uppercase transition">
                  Higher Hz
                </Link>
-               <Link href="/musica" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-purple-500 hover:text-black text-xs font-mono uppercase transition">
+               <Link href="/musica" className="px-4 py-3 md:py-2 text-center border border-purple-500/50 rounded hover:bg-purple-500 hover:text-black text-xs font-mono uppercase transition">
                  Live Ritual
                </Link>
-                {/* NOVO BOTÃO AQUI 👇 */}
-               <Link href="/rituais" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-emerald-500 hover:border-emerald-500 hover:text-black text-xs font-mono uppercase transition text-emerald-400/80">
-                Terapias
+               <Link href="/rituais" className="col-span-2 md:col-auto px-4 py-3 md:py-2 text-center border border-purple-500/50 rounded hover:bg-emerald-500 hover:border-emerald-500 hover:text-black text-xs font-mono uppercase transition text-emerald-400/80">
+                 Terapias
                </Link>
             </div>
           </div>
         </div>
 
-        {/* ELEMENTO CENTRAL (O Hub) */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20 flex flex-col items-center">
+        {/* [[ DESKTOP HUB ]] - Elemento Central Absoluto (Escondido no Mobile) */}
+        <div className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20 flex-col items-center">
            <div className={`transition-all duration-700 ${hoveredSide ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}>
-              <h1 className="text-center font-display text-4xl md:text-6xl tracking-tighter leading-none mb-2 mix-blend-difference">
+              <h1 className="text-center font-display text-6xl tracking-tighter leading-none mb-2 mix-blend-difference">
                 DOMINAMOS A <br/> FREQUÊNCIA
               </h1>
               <p className="text-center font-mono text-xs text-gray-500 uppercase tracking-[0.3em]">
                 Hertz & Bits Ecosystem
               </p>
            </div>
-           {/* Aqui entraria a Animação da Onda (Placeholder) */}
            <div className="w-px h-24 bg-gradient-to-b from-transparent via-white/20 to-transparent mt-8"></div>
         </div>
 
       </section>
 
       {/* --- DOBRA 2: A PONTE (Copy B2B) --- */}
-      <section className="py-24 px-6 border-t border-white/5 bg-[#080808]">
+      <section className="py-20 px-6 border-t border-white/5 bg-[#080808]">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h3 className="font-mono text-cyan-500 text-sm uppercase tracking-widest">
+          <h3 className="font-mono text-cyan-500 text-xs md:text-sm uppercase tracking-widest">
             // O Algoritmo da Criação
           </h3>
           <p className="font-display text-2xl md:text-4xl leading-relaxed text-gray-200">
             "Por que uma consultoria de tecnologia produz música psicodélica? <br/>
             Porque <span className="text-white border-b border-cyan-500">Complexidade</span> é a nossa linguagem."
           </p>
-          <div className="grid md:grid-cols-2 gap-12 text-left mt-12 font-mono text-sm text-gray-400">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 text-left mt-12 font-mono text-sm text-gray-400 leading-relaxed">
             <p>
               O mesmo código que gera frequências de cura e orquestra experiências imersivas no palco é a base da inteligência que aplicamos no seu negócio.
             </p>
@@ -139,50 +149,46 @@ export default function HomePage() {
           </div>
 
           {/* Card 2: HIGHER HZ */}
-<div className="group p-8 rounded-none border border-white/5 hover:border-purple-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
-  <Activity className="text-purple-400 mb-6 w-10 h-10" />
-  
-  {/* Nova Tag: Mais alinhada com o conceito de Arquétipos */}
-  <span className="block font-mono text-xs text-purple-600 mb-2">AI AUDIO / ARCHETYPES</span>
-  
-  <h3 className="font-display text-3xl text-white mb-4">Higher Hz</h3>
-  
-  <ul className="space-y-2 font-mono text-xs text-gray-400 mb-8">
-    {/* Bullets atualizados para a realidade do projeto */}
-    <li>&gt; IA + Intenção Humana</li>
-    <li>&gt; 22 Arcanos (Tarot Musical)</li>
-    <li>&gt; Letras Codificadas</li>
-  </ul>
-  
-  <Link href="/higher-hz" className="block w-full py-3 text-center border border-white/10 hover:border-purple-500 hover:text-purple-400 text-gray-400 font-bold uppercase tracking-widest text-xs transition-colors">
-    Ouvir os Arcanos
-  </Link>
-</div>
+          <div className="group p-8 rounded-none border border-white/5 hover:border-purple-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
+            <Activity className="text-purple-400 mb-6 w-10 h-10" />
+            
+            <span className="block font-mono text-xs text-purple-600 mb-2">AI AUDIO / ARCHETYPES</span>
+            
+            <h3 className="font-display text-3xl text-white mb-4">Higher Hz</h3>
+            
+            <ul className="space-y-2 font-mono text-xs text-gray-400 mb-8">
+              <li>&gt; IA + Intenção Humana</li>
+              <li>&gt; 22 Arcanos (Tarot Musical)</li>
+              <li>&gt; Letras Codificadas</li>
+            </ul>
+            
+            <Link href="/higher-hz" className="block w-full py-3 text-center border border-white/10 hover:border-purple-500 hover:text-purple-400 text-gray-400 font-bold uppercase tracking-widest text-xs transition-colors">
+              Ouvir os Arcanos
+            </Link>
+          </div>
 
           {/* Card 3: LIVE & RITUALS */}
-<div className="group p-8 rounded-none border border-white/5 hover:border-pink-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
-  {/* Mudei o ícone para 'Sparkles' ou 'Activity' se preferir, ou mantenha Music */}
-  <Music className="text-pink-400 mb-6 w-10 h-10" />
-  
-  <span className="block font-mono text-xs text-pink-600 mb-2">EXPERIENCE / HUMAN</span>
-  <h3 className="font-display text-3xl text-white mb-4">Live & Rituais</h3>
-  
-  <ul className="space-y-2 font-mono text-xs text-gray-400 mb-8">
-    <li>&gt; Psytrance & Performance</li>
-    {/* Adicionei este bullet 👇 */}
-    <li className="text-emerald-400/80">&gt; Atendimentos Terapêuticos</li>
-    <li>&gt; Imersão Audiovisual</li>
-  </ul>
-  
-  <div className="flex gap-2">
-      <Link href="/musica" className="flex-1 py-3 text-center border border-white/10 hover:border-pink-500 hover:text-pink-400 text-gray-400 font-bold uppercase tracking-widest text-[10px] transition-colors">
-        O Show
-      </Link>
-      <Link href="/rituais" className="flex-1 py-3 text-center border border-white/10 hover:border-emerald-500 hover:text-emerald-400 text-gray-400 font-bold uppercase tracking-widest text-[10px] transition-colors">
-        A Cura
-      </Link>
-  </div>
-</div>
+          <div className="group p-8 rounded-none border border-white/5 hover:border-pink-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
+            <Music className="text-pink-400 mb-6 w-10 h-10" />
+            
+            <span className="block font-mono text-xs text-pink-600 mb-2">EXPERIENCE / HUMAN</span>
+            <h3 className="font-display text-3xl text-white mb-4">Live & Rituais</h3>
+            
+            <ul className="space-y-2 font-mono text-xs text-gray-400 mb-8">
+              <li>&gt; Psytrance & Performance</li>
+              <li className="text-emerald-400/80">&gt; Atendimentos Terapêuticos</li>
+              <li>&gt; Imersão Audiovisual</li>
+            </ul>
+            
+            <div className="flex gap-2">
+                <Link href="/musica" className="flex-1 py-3 text-center border border-white/10 hover:border-pink-500 hover:text-pink-400 text-gray-400 font-bold uppercase tracking-widest text-[10px] transition-colors">
+                  O Show
+                </Link>
+                <Link href="/rituais" className="flex-1 py-3 text-center border border-white/10 hover:border-emerald-500 hover:text-emerald-400 text-gray-400 font-bold uppercase tracking-widest text-[10px] transition-colors">
+                  A Cura
+                </Link>
+            </div>
+          </div>
 
         </div>
       </section>
