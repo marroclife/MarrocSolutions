@@ -1,59 +1,72 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Syne, JetBrains_Mono, Inter, Playfair_Display } from "next/font/google";
 import Header from "@/components/site/Header";
 
-// Atualizado para Playfair Display para alinhar com a estética "Misticismo Digital" dos novos artigos
-const display = Playfair_Display({
-  weight: ["400", "600", "700", "800"], // Pesos adicionados para hierarquia visual
-  subsets: ["latin"],
-  variable: "--font-display",
+// --- NOVAS FONTES DO BLUEPRINT V2.0 ---
+
+// 1. Syne: Para Títulos e Headlines (Vibe Futurista/Artística)
+const syne = Syne({ 
+  subsets: ["latin"], 
+  variable: "--font-display" 
 });
 
-const body = Inter({
+// 2. JetBrains Mono: Para Dados, Tech e "Códigos" (Vibe Terminal)
+const mono = JetBrains_Mono({ 
+  subsets: ["latin"], 
+  variable: "--font-mono" 
+});
+
+// 3. Inter: Para corpo de texto (Leitura Limpa)
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
 });
 
-// --- METADATA DO PORTAL (Atualizada para "Portal Marroc") ---
+// 4. Playfair: Mantida como secundária para o contexto do Livro/Astrologia
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
+
+// --- METADATA ---
 export const metadata: Metadata = {
   metadataBase: new URL("https://marroc.xyz"),
   
   title: {
-    default: "Marroc | Arte, Tecnologia & Misticismo",
+    default: "Marroc | Hertz & Bits Ecosystem",
     template: "%s | Marroc",
   },
   
   description:
-    "Um portal de experiências imersivas. Do Psytrance ritualístico (Marroc) à literatura iniciática (Um Lugar Entre Mundos), do código ao sagrado. Explore a interseção entre o futuro digital e a sabedoria ancestral.",
+    "Um ecossistema de inovação e alta performance. Da Arquitetura de Software (Solutions) à Engenharia Sonora (Higher Hz). Dominamos a frequência.",
 
   openGraph: {
     type: "website",
-    title: "Marroc | Onde o Código Encontra o Sagrado",
+    title: "Marroc | Hertz & Bits Ecosystem",
     description:
-      "Música, Livros e Tecnologia. Um ecossistema criativo para expandir a percepção.",
+      "Tecnologia com Alma. Consultoria B2B, AI Audio e Rituais.",
     url: "https://marroc.xyz",
     siteName: "Marroc Portal",
     locale: "pt_BR",
     images: [
       {
-        url: "/banner-portal.png", // Certifique-se de ter essa imagem em public/
+        url: "/banner-portal.png", 
         width: 1200,
         height: 630,
-        alt: "Portal Marroc - Arte e Tecnologia",
+        alt: "Marroc - Hertz & Bits",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Marroc | Arte, Tecnologia & Misticismo",
-    description:
-      "Do Psytrance ritualístico à literatura iniciática. Explore o portal.",
+    title: "Marroc | Hertz & Bits Ecosystem",
+    description: "Dominamos a frequência. Soluções Digitais e Arte Sonora.",
     images: ["/banner-portal.png"],
   },
 
   icons: { shortcut: "/favicon.ico" },
-  themeColor: "#0b0b0b",
+  themeColor: "#050505", // Atualizado para o Preto Profundo
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -69,7 +82,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   extend: {
                     fontFamily: {
                       sans: ['var(--font-body)', 'sans-serif'],
-                      serif: ['var(--font-display)', 'serif'],
+                      display: ['var(--font-display)', 'sans-serif'], // Syne
+                      mono: ['var(--font-mono)', 'monospace'],       // JetBrains
+                      serif: ['var(--font-serif)', 'serif'],         // Playfair
                     },
                     colors: {
                       paper: '#e4e4e7',
@@ -80,8 +95,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         900: '#78350f',
                       },
                       mystic: {
-                        900: '#0a0a0a', // Deep black/zinc
-                        800: '#18181b', // Card bg
+                        900: '#0a0a0a', 
+                        800: '#18181b',
                       }
                     }
                   }
@@ -91,16 +106,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <style>{`
-          /* Correção Global para textos com gradiente (bg-clip-text) */
-          /* Evita que fontes itálicas sejam cortadas no final da palavra */
+          /* Correção Global para textos com gradiente */
           .bg-clip-text {
             padding-bottom: 0.1em;
             padding-right: 0.2em;
           }
+          /* Ajuste de seleção para a nova identidade */
+          ::selection {
+            background-color: #06b6d4; /* Cyan */
+            color: #000;
+          }
         `}</style>
       </head>
       <body
-        className={`${display.variable} ${body.variable} font-body antialiased bg-[#0b0b0b] text-paper`}
+        className={`${syne.variable} ${mono.variable} ${inter.variable} ${playfair.variable} font-body antialiased bg-[#050505] text-paper`}
       >
         {/* Header unificado */}
         <Header />
@@ -110,9 +129,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
 
         <footer className="border-t border-white/10 bg-[#050505]">
-          <div className="container px-4 py-10 text-sm text-paper/70">
+          <div className="container px-4 py-10 text-sm text-paper/70 font-mono">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <p>© {new Date().getFullYear()} Marroc / Higher Hz — todos os direitos reservados.</p>
+              <p>MARROC ECOSYSTEM © {new Date().getFullYear()}</p>
 
               <div className="flex gap-4">
                 <a
@@ -121,7 +140,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
                 >
-                  Instagram
+                  INSTAGRAM
                 </a>
                 <a
                   href="https://wa.me/5521992669980"
@@ -129,15 +148,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
                 >
-                  WhatsApp
+                  WHATSAPP
                 </a>
-                <a href="/newsletter" className="hover:text-white transition-colors">Newsletter</a>
+                <a href="/newsletter" className="hover:text-white transition-colors">DATA_LOG</a>
               </div>
 
               <p className="max-w-xl text-xs text-paper/50">
-                Nota de transparência: ferramentas de IA foram utilizadas para
-                contextualização/edição. Ideias, personagens, cenas e cerimônias
-                são do autor; o livro resulta de conteúdo vivido, visto ou ouvido.
+                SYSTEM STATUS: <span className="text-green-500">OPERATIONAL</span>
               </p>
             </div>
           </div>
