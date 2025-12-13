@@ -139,19 +139,25 @@ export default function HomePage() {
           </div>
 
           {/* Card 2: HIGHER HZ */}
-          <div className="group p-8 rounded-none border border-white/5 hover:border-purple-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
-            <Activity className="text-purple-400 mb-6 w-10 h-10" />
-            <span className="block font-mono text-xs text-purple-600 mb-2">AI AUDIO / HEALING</span>
-            <h3 className="font-display text-3xl text-white mb-4">Higher Hz</h3>
-            <ul className="space-y-2 font-mono text-xs text-gray-400 mb-8">
-              <li>&gt; Música Gerada por IA</li>
-              <li>&gt; Frequências Binaurais</li>
-              <li>&gt; Design de Som</li>
-            </ul>
-            <Link href="/higher-hz" className="block w-full py-3 text-center border border-white/10 hover:border-purple-500 hover:text-purple-400 text-gray-400 font-bold uppercase tracking-widest text-xs transition-colors">
-              Ouvir Tecnologia
-            </Link>
-          </div>
+<div className="group p-8 rounded-none border border-white/5 hover:border-purple-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
+  <Activity className="text-purple-400 mb-6 w-10 h-10" />
+  
+  {/* Nova Tag: Mais alinhada com o conceito de Arquétipos */}
+  <span className="block font-mono text-xs text-purple-600 mb-2">AI AUDIO / ARCHETYPES</span>
+  
+  <h3 className="font-display text-3xl text-white mb-4">Higher Hz</h3>
+  
+  <ul className="space-y-2 font-mono text-xs text-gray-400 mb-8">
+    {/* Bullets atualizados para a realidade do projeto */}
+    <li>&gt; IA + Intenção Humana</li>
+    <li>&gt; 22 Arcanos (Tarot Musical)</li>
+    <li>&gt; Letras Codificadas</li>
+  </ul>
+  
+  <Link href="/higher-hz" className="block w-full py-3 text-center border border-white/10 hover:border-purple-500 hover:text-purple-400 text-gray-400 font-bold uppercase tracking-widest text-xs transition-colors">
+    Ouvir os Arcanos
+  </Link>
+</div>
 
           {/* Card 3: LIVE & RITUALS */}
 <div className="group p-8 rounded-none border border-white/5 hover:border-pink-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
