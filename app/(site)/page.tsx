@@ -74,6 +74,10 @@ export default function HomePage() {
                <Link href="/musica" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-purple-500 hover:text-black text-xs font-mono uppercase transition">
                  Live Ritual
                </Link>
+                {/* NOVO BOTÃO AQUI 👇 */}
+               <Link href="/rituais" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-emerald-500 hover:border-emerald-500 hover:text-black text-xs font-mono uppercase transition text-emerald-400/80">
+                Terapias
+               </Link>
             </div>
           </div>
         </div>
@@ -149,20 +153,30 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Card 3: LIVE */}
-          <div className="group p-8 rounded-none border border-white/5 hover:border-pink-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
-            <Music className="text-pink-400 mb-6 w-10 h-10" />
-            <span className="block font-mono text-xs text-pink-600 mb-2">EXPERIENCE / RITUAL</span>
-            <h3 className="font-display text-3xl text-white mb-4">Marroc Live</h3>
-            <ul className="space-y-2 font-mono text-xs text-gray-400 mb-8">
-              <li>&gt; Psytrance & Performance</li>
-              <li>&gt; Imersão Audiovisual</li>
-              <li>&gt; Bookings & Agenda</li>
-            </ul>
-            <Link href="/musica" className="block w-full py-3 text-center border border-white/10 hover:border-pink-500 hover:text-pink-400 text-gray-400 font-bold uppercase tracking-widest text-xs transition-colors">
-              Ver Manifesto
-            </Link>
-          </div>
+          {/* Card 3: LIVE & RITUALS */}
+<div className="group p-8 rounded-none border border-white/5 hover:border-pink-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
+  {/* Mudei o ícone para 'Sparkles' ou 'Activity' se preferir, ou mantenha Music */}
+  <Music className="text-pink-400 mb-6 w-10 h-10" />
+  
+  <span className="block font-mono text-xs text-pink-600 mb-2">EXPERIENCE / HUMAN</span>
+  <h3 className="font-display text-3xl text-white mb-4">Live & Rituais</h3>
+  
+  <ul className="space-y-2 font-mono text-xs text-gray-400 mb-8">
+    <li>&gt; Psytrance & Performance</li>
+    {/* Adicionei este bullet 👇 */}
+    <li className="text-emerald-400/80">&gt; Atendimentos Terapêuticos</li>
+    <li>&gt; Imersão Audiovisual</li>
+  </ul>
+  
+  <div className="flex gap-2">
+      <Link href="/musica" className="flex-1 py-3 text-center border border-white/10 hover:border-pink-500 hover:text-pink-400 text-gray-400 font-bold uppercase tracking-widest text-[10px] transition-colors">
+        O Show
+      </Link>
+      <Link href="/rituais" className="flex-1 py-3 text-center border border-white/10 hover:border-emerald-500 hover:text-emerald-400 text-gray-400 font-bold uppercase tracking-widest text-[10px] transition-colors">
+        A Cura
+      </Link>
+  </div>
+</div>
 
         </div>
       </section>
