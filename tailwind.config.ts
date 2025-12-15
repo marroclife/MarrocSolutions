@@ -11,38 +11,44 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
-            // Base Site Colors
-  			forest: '#0E3B2E',
-  			ritual: '#0B0B0B',
-  			gold: '#C7A94B',
-  			paper: '#F6F5F2',
-            'tech-cyan': '#00F0FF', // Fixed: flattened from nested object
+            // --- NOVA IDENTIDADE (MATRIX / NEON) ---
+            'neon-green': '#00FF94', // O Verde do seu Instagram
+            'deep-emerald': '#064e3b', // Fundo verde escuro
+            
+            // HACK DE MIGRAÇÃO: 
+            // Redefinimos 'tech-cyan' para ser Verde Neon.
+            // Assim, componentes antigos ficam verdes automaticamente.
+            'tech-cyan': '#00FF94', 
 
-            // Cosmic Acoustic Theme (Serena Analysis)
+            // --- CORES BASE DO SITE ---
+  			forest: '#0E3B2E',
+  			ritual: '#050505', // Preto Absoluto
+  			gold: '#C7A94B',
+  			paper: '#E0E0E0',  // Texto Prata/Branco
+
+            // --- TEMAS ESPECÍFICOS (SERENA / TAMIRES) ---
             cosmic: {
-                900: '#0f0e13', // Deep Night
-                800: '#15121e', // Vinyl
+                900: '#0f0e13', 
+                800: '#15121e', 
                 700: '#1e1a2b',
             },
             earth: {
-                gold: '#c6a87c', // Aged Gold
-                copper: '#e27d60', // Terracotta/Copper
-                wood: '#8b5a2b', // Acoustic Wood hint
-                cream: '#f0e6d2', // Off-white text
+                gold: '#c6a87c', 
+                copper: '#e27d60', 
+                wood: '#8b5a2b', 
+                cream: '#f0e6d2', 
             },
-
-            // Tamires Analysis Theme (Sanctuary)
             moss: {
-                900: '#151e1c', // Deep Moss/Slate
+                900: '#151e1c', 
                 800: '#1c2624',
             },
             silk: '#e8e4dc',
             'gold-rose': '#e6b8a2',
             'refined-gold': '#d4af37',
 
-            // Shadcn UI Colors
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
+            // --- SHADCN UI (OVERRIDE DARK) ---
+  			background: '#050505', 
+  			foreground: '#E0E0E0', 
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -88,7 +94,7 @@ const config: Config = {
         },
         dropShadow: {
             'glow': '0 0 10px rgba(199, 169, 75, 0.5)',
-            'tech-glow': '0 0 10px rgba(0, 240, 255, 0.5)',
+            'tech-glow': '0 0 10px rgba(0, 255, 148, 0.5)', // Atualizado para Verde
         },
   		boxShadow: {
   			ritual: '0 10px 30px rgba(199,169,75,0.15)'
@@ -96,8 +102,10 @@ const config: Config = {
   		fontFamily: {
   			display: ['var(--font-display)'],
   			body: ['var(--font-body)'],
-            playfair: ['"Playfair Display"', 'serif'],
-            montserrat: ['Montserrat', 'sans-serif'],
+            mono: ['var(--font-mono)'], // Adicionado Mono
+            serif: ['var(--font-serif)'], 
+            playfair: ['"Playfair Display"', 'serif'], 
+            montserrat: ['Montserrat', 'sans-serif'], 
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

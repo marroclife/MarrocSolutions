@@ -1,27 +1,12 @@
 import type { Metadata } from "next";
 import { Syne, JetBrains_Mono, Inter, Playfair_Display } from "next/font/google";
-import "../globals.css"; // Importante para o Tailwind funcionar
+import "../globals.css"; // Garante os estilos globais
+import { FloatingWhatsapp } from "@/components/ui/FloatingWhatsapp"; // Importa o botão
 
-// Configuração de Fontes (Mesma identidade visual, sem o Header)
-const syne = Syne({ 
-  subsets: ["latin"], 
-  variable: "--font-display" 
-});
-
-const mono = JetBrains_Mono({ 
-  subsets: ["latin"], 
-  variable: "--font-mono" 
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-});
+const syne = Syne({ subsets: ["latin"], variable: "--font-display" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" });
 
 export const metadata: Metadata = {
   title: "Marroc Solutions | Arquitetura Digital B2B",
@@ -53,7 +38,8 @@ export default function B2BLayout({
                     colors: {
                       paper: '#e4e4e7',
                       gold: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 900: '#78350f' },
-                      mystic: { 900: '#0a0a0a', 800: '#18181b' }
+                      mystic: { 900: '#0a0a0a', 800: '#18181b' },
+                      'neon-green': '#00FF94'
                     }
                   }
                 }
@@ -63,18 +49,18 @@ export default function B2BLayout({
         />
         <style>{`
           .bg-clip-text { padding-bottom: 0.1em; padding-right: 0.2em; }
-          ::selection { background-color: #06b6d4; color: #000; }
+          ::selection { background-color: #00FF94; color: #000; }
         `}</style>
       </head>
+      
       <body className={`${syne.variable} ${mono.variable} ${inter.variable} ${playfair.variable} font-body antialiased bg-[#050505] text-paper`}>
-        
-        {/* SEM HEADER GLOBAL AQUI */}
         
         <main className="min-h-screen">
           {children}
         </main>
 
-        {/* SEM FOOTER GLOBAL AQUI (A página Solutions já tem o footer dela) */}
+        {/* O BOTÃO VIVE AQUI 👇 */}
+        <FloatingWhatsapp />
         
       </body>
     </html>

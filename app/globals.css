@@ -2,30 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn         { @apply inline-flex items-center gap-2 rounded-full px-4 py-2; }
-.btn-outline { @apply py-1.5 md:py-2; }
-
-:root {
-  --radius: 14px;
+/* --- COMPATIBILIDADE LEGADO --- */
+.btn { 
+  @apply inline-flex items-center gap-2 rounded-full px-4 py-2; 
 }
-
-html, body {
-  @apply bg-ritual text-paper;
-}
-
-.container {
-  @apply max-w-6xl mx-auto px-4;
-}
-
-/* Buttons */
-.btn {
-  @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 font-medium transition;
+.btn-outline { 
+  @apply py-1.5 md:py-2; 
 }
 .btn-primary {
   @apply bg-gold text-ritual shadow-ritual hover:opacity-90;
-}
-.btn-outline {
-  @apply border border-gold text-gold hover:bg-gold/10;
 }
 .section {
   @apply py-16 md:py-24;
@@ -43,70 +28,41 @@ html, body {
   @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur;
 }
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 220.9 39.3% 11%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-  }
-  .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
+/* --- IDENTIDADE VISUAL NOVA --- */
+:root {
+  --radius: 8px;
+}
+
+html, body {
+  @apply bg-[#050505] text-[#E0E0E0];
+}
+
+/* TEXTO SELECIONADO FICA VERDE NEON */
+::selection {
+  background-color: #00FF94; 
+  color: #000000;
+}
+
+/* SCROLLBAR CUSTOMIZADA */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00FF94; 
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
 }
+
 @keyframes slowFloat {
   0%   { transform: translate3d(0, 0, 0) scale(1); }
   50%  { transform: translate3d(2%, -1%, 0) scale(1.02); }
@@ -117,15 +73,4 @@ html, body {
   to   { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 .animate-fadeUp { animation: fadeUp .6s ease-out both; }
-
-
-@keyframes slowerFloat {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  50%  { transform: translate3d(-2%, 1%, 0) scale(1.03); }
-  100% { transform: translate3d(0, 0, 0) scale(1); }
-}
-
-/* util classes se não estiver usando plugin tailwind */
-.animate-slowFloat   { animation: slowFloat 18s ease-in-out infinite; }
-.animate-slowerFloat { animation: slowerFloat 26s ease-in-out infinite; }
-
+.animate-slowFloat { animation: slowFloat 18s ease-in-out infinite; }
