@@ -1,8 +1,6 @@
+// app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google"; // Ou a fonte que você usa
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Marroc.xyz | Tecnoxamanismo",
@@ -15,8 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-br">
-      <body className={inter.className}>
+    // Removi as fontes daqui para deixar o layout (site) e (b2b) controlarem suas identidades
+    <html lang="pt-br" suppressHydrationWarning className="scroll-smooth">
+      <body className="antialiased bg-[#050505] text-paper">
         {children}
       </body>
     </html>

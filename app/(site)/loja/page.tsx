@@ -1,144 +1,149 @@
-// app/apoiar/page.tsx (ou app/loja/page.tsx)
+// app/(site)/loja/page.tsx
 import React from "react";
 import type { Metadata } from "next";
-// Se tiver a imagem da capa, descomente a linha abaixo
-// import Image from "next/image";
+import Image from "next/image";
 import { Section } from "@/components/ui/Section";
-import { BookOpen, Sparkles, Lock } from "lucide-react";
+import { BookOpen, Sparkles, ShoppingBag, ArrowRight, BrainCircuit, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Loja & Apoio — Marroc",
-  description: "Adquira 'Um Lugar Entre Mundos' e apoie o movimento. Loja completa em 17 de Dezembro.",
+  title: "Arsenal de Artefatos — Marroc",
+  description: "Adquira as obras 'O Eixo da Consciência' e 'Um Lugar Entre Mundos'. Vestuário e objetos de poder na GAJA HAI.",
 };
 
 export default function LojaPage() {
   return (
-    <main className="bg-[#0b0b0b] text-paper min-h-screen">
+    <main className="bg-[#050505] text-paper min-h-screen pb-20">
       
-      {/* SEÇÃO 1: O PRODUTO DESTAQUE (LIVRO) */}
+      {/* CABEÇALHO DA PÁGINA */}
       <Section
         title="Arsenal de Frequência"
-        subtitle="Ferramentas disponíveis para o seu despertar agora."
+        subtitle="Ferramentas narrativas e tecnológicas para o despertar da soberania humana."
         headingLevel="h1"
-        className="py-12 md:py-20"
+        className="pt-24 pb-12"
       >
-        <div className="grid gap-10 md:grid-cols-2 md:items-center bg-[#121212] rounded-3xl p-6 md:p-10 border border-white/10 shadow-2xl">
+        <div className="grid gap-8 lg:grid-cols-2">
           
-          {/* Lado Esquerdo: Capa Visual (Placeholder ou Imagem) */}
-          <div className="relative aspect-[3/4] w-full max-w-[280px] mx-auto md:mx-0 overflow-hidden rounded-xl bg-gradient-to-br from-gray-900 to-black shadow-lg border border-white/10 flex items-center justify-center group">
-             {/* 
-                DICA: Quando tiver a imagem da capa, use assim:
-                <Image src="/capa-livro.jpg" alt="Capa do Livro" fill className="object-cover" />
-             */}
-             <div className="z-10 text-center p-6">
-                <BookOpen className="w-16 h-16 text-amber-200 mx-auto mb-4 opacity-80" />
-                <h3 className="font-display text-2xl text-white">Um Lugar Entre Mundos</h3>
-                <p className="text-sm text-white/50 mt-2">Edição Digital (PDF)</p>
-             </div>
-             
-             {/* Efeito de brilho ao passar o mouse */}
-             <div className="absolute inset-0 bg-amber-200/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          </div>
-
-          {/* Lado Direito: Copy de Venda e Preços */}
-          <div className="space-y-6">
-            <div>
-              <span className="inline-block px-3 py-1 rounded-full bg-amber-200/10 text-amber-200 text-[10px] md:text-xs font-bold tracking-widest uppercase mb-4">
-                Disponível Imediatamente
-              </span>
-              <h2 className="font-display text-3xl md:text-4xl text-white mb-4">
-                Um Lugar Entre Mundos
-              </h2>
-              <p className="text-base md:text-lg text-white/80 leading-relaxed">
-                Não é apenas uma leitura. É um download de consciência. 
-                Uma ficção iniciática que une xamanismo e realidade simulada, 
-                preparando sua mente para o que está por vir.
-              </p>
-            </div>
-
-            {/* Explicação dos Valores */}
-            <div className="space-y-4 border-t border-white/10 pt-6">
-              <p className="text-sm text-white/60 italic">
-                Escolha o valor que ressoa com o seu momento:
-              </p>
+          {/* ARTEFATO 01: O EIXO DA CONSCIÊNCIA (CYAN) */}
+          <div className="relative group bg-[#0a0a0a] rounded-2xl p-6 md:p-8 border border-cyan-500/10 hover:border-cyan-500/30 transition-all duration-500 shadow-xl">
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="relative w-full md:w-40 aspect-[3/4.5] shrink-0 overflow-hidden rounded-sm bg-black border border-white/5">
+                <Image src="/capa-eixo.png" alt="O Eixo da Consciência" fill className="object-contain" />
+              </div>
               
-              <div className="grid gap-4 sm:grid-cols-2">
-                
-                {/* Opção 1: Simbólico (R$ 22,20) */}
-                <div className="rounded-xl border border-white/10 bg-white/5 p-4 hover:border-amber-200/30 transition-colors flex flex-col justify-between">
-                  <div>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-white font-bold text-sm">Valor Simbólico</span>
-                    </div>
-                    <p className="text-2xl font-display text-amber-200">R$ 22,20</p>
-                    <p className="text-xs text-white/50 mt-1 mb-4 leading-snug">
-                      Acessível para todos. Energia de troca básica.
-                    </p>
-                  </div>
-                  <a 
-                    href="https://pay.hotmart.com/M101238238O?off=ur3sdp6i" 
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="block w-full text-center py-3 rounded-lg bg-white/10 text-white text-sm font-bold hover:bg-amber-200 hover:text-black transition-all"
-                  >
-                    Comprar
-                  </a>
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-cyan-400">
+                  <BrainCircuit size={16} />
+                  <span className="font-mono text-[10px] uppercase tracking-widest">Novo Lançamento</span>
                 </div>
-
-                {/* Opção 2: Consciente (R$ 33,30) */}
-                <div className="rounded-xl border border-amber-200/30 bg-amber-200/5 p-4 relative overflow-hidden flex flex-col justify-between">
-                  <div className="absolute top-0 right-0 bg-amber-200 text-black text-[9px] font-bold px-2 py-1 rounded-bl-lg">
-                    APOIO
-                  </div>
-                  <div>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-white font-bold text-sm">Valor Consciente</span>
-                      <Sparkles className="w-4 h-4 text-amber-200" />
+                <h2 className="font-display text-2xl text-white">O Eixo da Consciência</h2>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Como integrar IA e psique humana sem perder a essência. Um download de soberania estratégica.
+                </p>
+                <div className="pt-4 space-y-3">
+                    <p className="text-xs text-cyan-500/70 font-mono uppercase tracking-tighter">Valor de Troca:</p>
+                    <div className="flex items-baseline gap-2">
+                        <span className="text-xs text-white/40">R$</span>
+                        <span className="text-3xl font-display text-white">47,00</span>
                     </div>
-                    <p className="text-2xl font-display text-amber-200">R$ 33,30</p>
-                    <p className="text-xs text-white/50 mt-1 mb-4 leading-snug">
-                      Contribui diretamente para a expansão do projeto.
-                    </p>
-                  </div>
-                  <a 
-                    href="https://pay.hotmart.com/M101238238O?off=p1uhfzib" 
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="block w-full text-center py-3 rounded-lg bg-amber-200 text-black text-sm font-bold hover:scale-105 transition-transform shadow-[0_0_15px_rgba(253,230,138,0.2)]"
-                  >
-                    Contribuir
-                  </a>
+                    <a 
+                      href="https://pay.kiwify.com.br/QhQvSHx" 
+                      target="_blank" 
+                      className="inline-flex items-center justify-center w-full py-4 bg-cyan-600 hover:bg-white text-black font-bold uppercase text-[10px] tracking-widest transition-all"
+                    >
+                      Adquirir via Kiwify <ArrowRight size={14} className="ml-2" />
+                    </a>
                 </div>
-
               </div>
             </div>
           </div>
+
+          {/* ARTEFATO 02: UM LUGAR ENTRE MUNDOS (GOLD) */}
+          <div className="relative group bg-[#0a0a0a] rounded-2xl p-6 md:p-8 border border-gold/10 hover:border-gold/30 transition-all duration-500 shadow-xl">
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="relative w-full md:w-40 aspect-[3/4.5] shrink-0 overflow-hidden rounded-sm bg-black border border-white/5">
+                <Image src="/capa-ulm.png" alt="Um Lugar Entre Mundos" fill className="object-contain" />
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-gold">
+                  <Sparkles size={16} />
+                  <span className="font-mono text-[10px] uppercase tracking-widest">Ficção Iniciática</span>
+                </div>
+                <h2 className="font-display text-2xl text-white">Um Lugar Entre Mundos</h2>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  A jornada de Sofia através do xamanismo e da realidade simulada. Medicina da floresta em palavras.
+                </p>
+                <div className="pt-4">
+                    <p className="text-xs text-gold/70 font-mono uppercase tracking-tighter mb-3">Escolha sua contribuição:</p>
+                    <div className="grid grid-cols-2 gap-3">
+                        <a 
+                            href="https://pay.hotmart.com/M101238238O?off=ur3sdp6i" 
+                            target="_blank"
+                            className="text-center py-3 bg-white/5 hover:bg-white/10 text-white text-[10px] font-bold border border-white/10 uppercase tracking-widest transition-all"
+                        >
+                            Simbólico <br/> <span className="text-gold">R$ 22,20</span>
+                        </a>
+                        <a 
+                            href="https://pay.hotmart.com/M101238238O?off=p1uhfzib" 
+                            target="_blank"
+                            className="text-center py-3 bg-gold/10 hover:bg-gold text-gold hover:text-black text-[10px] font-bold border border-gold/20 uppercase tracking-widest transition-all"
+                        >
+                            Consciente <br/> <span className="font-extrabold text-white group-hover:text-black">R$ 33,30</span>
+                        </a>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </Section>
 
-      {/* SEÇÃO 2: EM BREVE (TEASER 17 DEZ) */}
-      <Section className="pb-20">
-        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#121212] p-8 md:p-12 text-center">
-          {/* Decoração de fundo */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-200/50 to-transparent"></div>
+      {/* SEÇÃO GAJA HAI (DESTAQUE FINAL) */}
+      <Section className="mt-12">
+        <div className="relative overflow-hidden rounded-sm border border-white/5 bg-white/[0.01] p-10 md:p-16 text-center">
+          {/* Efeito de fundo sutil */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(199,169,75,0.03),transparent_70%)] pointer-events-none" />
           
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <div className="flex justify-center mb-6">
-              <div className="bg-white/5 p-4 rounded-full border border-white/10 animate-pulse">
-                <Lock className="w-8 h-8 text-white/50" />
+          <div className="relative z-10 max-w-2xl mx-auto space-y-8">
+            <div className="flex justify-center">
+              <div className="relative w-24 h-24 transition-transform duration-700 hover:scale-110">
+                <Image src="/gaja-logo.png" alt="Gaja Hai" fill className="object-contain" />
               </div>
             </div>
             
-            <h2 className="font-display text-2xl md:text-3xl text-white mb-4">
-              O Portal Abre em <span className="text-amber-200">17 de Dezembro</span>
-            </h2>
-            <p className="text-white/60 text-base md:text-lg mb-8">
-              A Loja completa está sendo ancorada. Em breve, você terá acesso ao <strong>Tarot Higher Hz</strong> e novas ferramentas de expansão.
-            </p>
+            <div className="space-y-4">
+                <div className="flex items-center justify-center gap-2 text-gold/60">
+                    <ShoppingBag size={18} />
+                    <span className="text-[10px] font-mono uppercase tracking-[0.4em]">Vestuário & Artefatos</span>
+                </div>
+                <h2 className="font-display text-4xl md:text-5xl text-white tracking-tighter">
+                    GAJA <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-gold via-white to-gold">HAI</span>
+                </h2>
+                <p className="text-white/50 text-base md:text-lg font-light leading-relaxed">
+                    A materialização da frequência. Explore nossa curadoria de roupas codificadas e objetos de poder.
+                </p>
+            </div>
 
-            <div className="inline-flex items-center gap-2 text-xs md:text-sm text-amber-200/80 border border-amber-200/20 px-4 py-2 rounded-full bg-amber-200/5">
-              <Sparkles className="w-4 h-4" />
-              <span>Faltam poucos dias para a ativação</span>
+            <div className="pt-6">
+                <a 
+                    href="https://store.marroc.xyz" 
+                    target="_blank"
+                    className="inline-flex items-center gap-3 px-12 py-5 bg-white text-black font-bold uppercase tracking-[0.2em] text-xs transition-all hover:bg-gold hover:shadow-[0_0_30px_rgba(199,169,75,0.3)]"
+                >
+                    Entrar na Store <ArrowRight size={16} />
+                </a>
+            </div>
+
+            <div className="flex items-center justify-center gap-6 pt-10 text-white/20 border-t border-white/5">
+                <div className="flex flex-col items-center gap-1">
+                    <ShieldCheck size={20} />
+                    <span className="text-[8px] uppercase font-mono tracking-widest">Segurança Digital</span>
+                </div>
+                <div className="flex flex-col items-center gap-1">
+                    <ShoppingBag size={20} />
+                    <span className="text-[8px] uppercase font-mono tracking-widest">Logística Global</span>
+                </div>
             </div>
           </div>
         </div>

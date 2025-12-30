@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 type NavItem = { href: string; label: string };
 
 const NAV: NavItem[] = [
-  { href: "/livros/um-lugar-entre-mundos", label: "Livro" },
+  { href: "/livros", label: "Livros" }, 
   { href: "/guardian", label: "Oráculo" },
   { href: "/projetos", label: "Projetos" },
   { href: "/rituais", label: "Rituais" },
