@@ -64,6 +64,7 @@ app/(site)/guardian/page.tsx
 app/(site)/higher-hz/page.tsx
 app/(site)/ig/page.tsx
 app/(site)/layout.tsx
+app/(site)/livros/o-eixo-da-consciencia/page.tsx
 app/(site)/livros/page.tsx
 app/(site)/livros/um-lugar-entre-mundos/capitulo-0/page.tsx
 app/(site)/livros/um-lugar-entre-mundos/page.tsx
@@ -3061,35 +3062,6 @@ export default function IGPage() {
 }
 </file>
 
-<file path="app/(site)/livros/page.tsx">
-import Link from "next/link";
-import Image from "next/image";
-import { Section } from "@/components/ui/Section";
-
-export default function LivrosPage() {
-  return (
-    <Section>
-      <div className="container">
-        <h2 className="text-3xl font-bold mb-4">Série — Um Lugar entre Mundos</h2>
-        <div className="grid md:grid-cols-2 gap-6 mt-6">
-          <div className="card p-6 flex gap-6">
-            <Image src="/capa-ulm.png" alt="Capa do livro" width={120} height={160} className="rounded-lg object-cover" />
-            <div>
-              <h3 className="font-display text-2xl">Samadhi — O Despertar de Sofia</h3>
-              <p className="subtle mt-2">Leitura transformadora em PDF. Acesso imediato.</p>
-              <div className="mt-4 flex gap-3">
-                <Link href="/livros/um-lugar-entre-mundos" className="btn btn-primary">Ver página</Link>
-                <a href="https://pay.hotmart.com/" target="_blank" rel="noreferrer" className="btn btn-outline">Comprar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Section>
-  );
-}
-</file>
-
 <file path="app/(site)/livros/um-lugar-entre-mundos/capitulo-0/page.tsx">
 import React from "react";
 import Link from "next/link";
@@ -3274,157 +3246,6 @@ export default function Page() {
       {/* Chamamos o componente visual que contém o Modal e a interatividade */}
       <LandingPageLivro />
     </>
-  );
-}
-</file>
-
-<file path="app/(site)/loja/page.tsx">
-// app/apoiar/page.tsx (ou app/loja/page.tsx)
-import React from "react";
-import type { Metadata } from "next";
-// Se tiver a imagem da capa, descomente a linha abaixo
-// import Image from "next/image";
-import { Section } from "@/components/ui/Section";
-import { BookOpen, Sparkles, Lock } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "Loja & Apoio — Marroc",
-  description: "Adquira 'Um Lugar Entre Mundos' e apoie o movimento. Loja completa em 17 de Dezembro.",
-};
-
-export default function LojaPage() {
-  return (
-    <main className="bg-[#0b0b0b] text-paper min-h-screen">
-      
-      {/* SEÇÃO 1: O PRODUTO DESTAQUE (LIVRO) */}
-      <Section
-        title="Arsenal de Frequência"
-        subtitle="Ferramentas disponíveis para o seu despertar agora."
-        headingLevel="h1"
-        className="py-12 md:py-20"
-      >
-        <div className="grid gap-10 md:grid-cols-2 md:items-center bg-[#121212] rounded-3xl p-6 md:p-10 border border-white/10 shadow-2xl">
-          
-          {/* Lado Esquerdo: Capa Visual (Placeholder ou Imagem) */}
-          <div className="relative aspect-[3/4] w-full max-w-[280px] mx-auto md:mx-0 overflow-hidden rounded-xl bg-gradient-to-br from-gray-900 to-black shadow-lg border border-white/10 flex items-center justify-center group">
-             {/* 
-                DICA: Quando tiver a imagem da capa, use assim:
-                <Image src="/capa-livro.jpg" alt="Capa do Livro" fill className="object-cover" />
-             */}
-             <div className="z-10 text-center p-6">
-                <BookOpen className="w-16 h-16 text-amber-200 mx-auto mb-4 opacity-80" />
-                <h3 className="font-display text-2xl text-white">Um Lugar Entre Mundos</h3>
-                <p className="text-sm text-white/50 mt-2">Edição Digital (PDF)</p>
-             </div>
-             
-             {/* Efeito de brilho ao passar o mouse */}
-             <div className="absolute inset-0 bg-amber-200/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          </div>
-
-          {/* Lado Direito: Copy de Venda e Preços */}
-          <div className="space-y-6">
-            <div>
-              <span className="inline-block px-3 py-1 rounded-full bg-amber-200/10 text-amber-200 text-[10px] md:text-xs font-bold tracking-widest uppercase mb-4">
-                Disponível Imediatamente
-              </span>
-              <h2 className="font-display text-3xl md:text-4xl text-white mb-4">
-                Um Lugar Entre Mundos
-              </h2>
-              <p className="text-base md:text-lg text-white/80 leading-relaxed">
-                Não é apenas uma leitura. É um download de consciência. 
-                Uma ficção iniciática que une xamanismo e realidade simulada, 
-                preparando sua mente para o que está por vir.
-              </p>
-            </div>
-
-            {/* Explicação dos Valores */}
-            <div className="space-y-4 border-t border-white/10 pt-6">
-              <p className="text-sm text-white/60 italic">
-                Escolha o valor que ressoa com o seu momento:
-              </p>
-              
-              <div className="grid gap-4 sm:grid-cols-2">
-                
-                {/* Opção 1: Simbólico (R$ 22,20) */}
-                <div className="rounded-xl border border-white/10 bg-white/5 p-4 hover:border-amber-200/30 transition-colors flex flex-col justify-between">
-                  <div>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-white font-bold text-sm">Valor Simbólico</span>
-                    </div>
-                    <p className="text-2xl font-display text-amber-200">R$ 22,20</p>
-                    <p className="text-xs text-white/50 mt-1 mb-4 leading-snug">
-                      Acessível para todos. Energia de troca básica.
-                    </p>
-                  </div>
-                  <a 
-                    href="https://pay.hotmart.com/M101238238O?off=ur3sdp6i" 
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="block w-full text-center py-3 rounded-lg bg-white/10 text-white text-sm font-bold hover:bg-amber-200 hover:text-black transition-all"
-                  >
-                    Comprar
-                  </a>
-                </div>
-
-                {/* Opção 2: Consciente (R$ 33,30) */}
-                <div className="rounded-xl border border-amber-200/30 bg-amber-200/5 p-4 relative overflow-hidden flex flex-col justify-between">
-                  <div className="absolute top-0 right-0 bg-amber-200 text-black text-[9px] font-bold px-2 py-1 rounded-bl-lg">
-                    APOIO
-                  </div>
-                  <div>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-white font-bold text-sm">Valor Consciente</span>
-                      <Sparkles className="w-4 h-4 text-amber-200" />
-                    </div>
-                    <p className="text-2xl font-display text-amber-200">R$ 33,30</p>
-                    <p className="text-xs text-white/50 mt-1 mb-4 leading-snug">
-                      Contribui diretamente para a expansão do projeto.
-                    </p>
-                  </div>
-                  <a 
-                    href="https://pay.hotmart.com/M101238238O?off=p1uhfzib" 
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="block w-full text-center py-3 rounded-lg bg-amber-200 text-black text-sm font-bold hover:scale-105 transition-transform shadow-[0_0_15px_rgba(253,230,138,0.2)]"
-                  >
-                    Contribuir
-                  </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* SEÇÃO 2: EM BREVE (TEASER 17 DEZ) */}
-      <Section className="pb-20">
-        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#121212] p-8 md:p-12 text-center">
-          {/* Decoração de fundo */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-200/50 to-transparent"></div>
-          
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <div className="flex justify-center mb-6">
-              <div className="bg-white/5 p-4 rounded-full border border-white/10 animate-pulse">
-                <Lock className="w-8 h-8 text-white/50" />
-              </div>
-            </div>
-            
-            <h2 className="font-display text-2xl md:text-3xl text-white mb-4">
-              O Portal Abre em <span className="text-amber-200">17 de Dezembro</span>
-            </h2>
-            <p className="text-white/60 text-base md:text-lg mb-8">
-              A Loja completa está sendo ancorada. Em breve, você terá acesso ao <strong>Tarot Higher Hz</strong> e novas ferramentas de expansão.
-            </p>
-
-            <div className="inline-flex items-center gap-2 text-xs md:text-sm text-amber-200/80 border border-amber-200/20 px-4 py-2 rounded-full bg-amber-200/5">
-              <Sparkles className="w-4 h-4" />
-              <span>Faltam poucos dias para a ativação</span>
-            </div>
-          </div>
-        </div>
-      </Section>
-    </main>
   );
 }
 </file>
@@ -6422,6 +6243,508 @@ export default function MarrocSolutionsPage() {
 }
 </file>
 
+<file path="app/(site)/livros/o-eixo-da-consciencia/page.tsx">
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { 
+  Cpu, 
+  Orbit, 
+  ShieldAlert, 
+  Zap, 
+  ArrowRight, 
+  Terminal, 
+  BookOpen, 
+  CheckCircle2, 
+  Fingerprint
+} from "lucide-react";
+import { MysticCard } from "@/components/ui/MysticCard";
+import { Section } from "@/components/ui/Section";
+
+// Link de Venda Kiwify
+const KIWIFY_LINK = "https://pay.kiwify.com.br/QhQvSHx";
+
+// Componente de Badge Customizado para o Eixo
+const NodeBadge = ({ children }: { children: React.ReactNode }) => (
+  <div className="inline-flex items-center gap-2 px-3 py-1 border border-cyan-500/30 rounded-full bg-cyan-950/10 mb-6">
+    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+    <span className="text-[10px] font-mono text-cyan-400 tracking-widest uppercase">
+      {children}
+    </span>
+  </div>
+);
+
+export default function OEixoDaConscienciaPage() {
+  return (
+    <main className="min-h-screen bg-[#050505] text-paper selection:bg-cyan-500 selection:text-black overflow-x-hidden font-sans">
+      
+      {/* --- 1. HERO: O EIXO --- */}
+      <section className="relative min-h-[90vh] flex items-center justify-center pt-20 pb-12 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(0,255,255,0.08),transparent_70%)]" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay" />
+        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[1px] h-full bg-gradient-to-b from-transparent via-cyan-500/50 to-transparent opacity-30" />
+
+        <div className="container relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8 animate-fade-in-up">
+            <NodeBadge>Manifesto de Consciência Aplicada</NodeBadge>
+            
+            <h1 className="font-display text-5xl md:text-7xl leading-tight text-white tracking-tighter">
+              O EIXO DA <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-200 to-cyan-400 drop-shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                CONSCIÊNCIA
+              </span>
+            </h1>
+            
+            <p className="text-xl text-gray-400 leading-relaxed max-w-xl font-light italic border-l border-cyan-500/30 pl-6">
+              “A inteligência artificial não é consciência.  
+              Ela revela quem permanece humano.”
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <a 
+                href={KIWIFY_LINK}
+                target="_blank"
+                className="group relative inline-flex items-center justify-center px-8 py-4 bg-cyan-600 text-black font-bold uppercase tracking-widest text-sm rounded-sm transition-all hover:bg-white hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]"
+              >
+                Acessar o Livro
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <Link 
+                href="#manifesto"
+                className="px-8 py-4 text-xs font-mono text-cyan-400/60 hover:text-cyan-400 transition flex items-center justify-center gap-2 group border border-cyan-900/30 hover:border-cyan-500/50 rounded-sm"
+              >
+                Ler o Manifesto
+              </Link>
+            </div>
+          </div>
+
+          <div className="relative flex justify-center order-1 lg:order-2">
+            <div className="relative w-[320px] md:w-[400px] aspect-[3/4.5] shadow-[0_0_50px_-10px_rgba(6,182,212,0.3)] group">
+              <Image 
+                src="/capa-eixo.png"
+                alt="Capa O Eixo da Consciência"
+                fill
+                className="object-contain rounded-sm transition-transform duration-700 group-hover:scale-[1.02]"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- 2. MANIFESTO --- */}
+      <section id="manifesto" className="py-32 bg-black border-y border-white/5 relative">
+        <div className="container max-w-4xl">
+          <div className="text-center space-y-12">
+            <h2 className="font-display text-3xl md:text-5xl text-white">
+              Você não é uma máquina de produção.
+            </h2>
+
+            <div className="space-y-8 text-gray-400 text-lg md:text-xl font-light leading-relaxed text-justify">
+              <p>
+                A inteligência artificial não pensa.  
+                Ela processa.
+              </p>
+
+              <p>
+                Consciência é outra coisa.  
+                É presença, intenção e responsabilidade.
+              </p>
+
+              <p>
+                O erro da nossa era não é tecnológico.  
+                É a perda do eixo humano em meio à automação.
+              </p>
+
+              <p className="text-white font-medium text-center py-8 border-y border-cyan-500/10">
+                Você é o eixo.  
+                A inteligência artificial é satélite.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- 3. OS NODES --- */}
+      <Section className="py-32 bg-[#050505]">
+        <div className="container">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <MysticCard>
+              <Terminal className="text-cyan-400 mb-6 w-8 h-8" />
+              <span className="text-[10px] font-mono text-gray-500 mb-2 block tracking-widest">NODE_01</span>
+              <h3 className="font-display text-xl text-white mb-4">O Eixo Invisível</h3>
+              <p className="text-gray-500 text-sm">
+                O humano como centro decisório. A IA como extensão operacional.
+              </p>
+            </MysticCard>
+
+            <MysticCard>
+              <ShieldAlert className="text-cyan-400 mb-6 w-8 h-8" />
+              <span className="text-[10px] font-mono text-gray-500 mb-2 block tracking-widest">NODE_02</span>
+              <h3 className="font-display text-xl text-white mb-4">Ética da Autoria</h3>
+              <p className="text-gray-500 text-sm">
+                Responsabilidade, critério e identidade em sistemas inteligentes.
+              </p>
+            </MysticCard>
+
+            <MysticCard>
+              <Zap className="text-cyan-400 mb-6 w-8 h-8" />
+              <span className="text-[10px] font-mono text-gray-500 mb-2 block tracking-widest">NODE_03</span>
+              <h3 className="font-display text-xl text-white mb-4">Estratégia Viva</h3>
+              <p className="text-gray-500 text-sm">
+                Orquestrar inteligência sem perder presença.
+              </p>
+            </MysticCard>
+
+            <MysticCard>
+              <Orbit className="text-cyan-400 mb-6 w-8 h-8" />
+              <span className="text-[10px] font-mono text-gray-500 mb-2 block tracking-widest">NODE_04</span>
+              <h3 className="font-display text-xl text-white mb-4">Sistema Sustentável</h3>
+              <p className="text-gray-500 text-sm">
+                Convivência consciente entre humano e máquina.
+              </p>
+            </MysticCard>
+
+          </div>
+        </div>
+      </Section>
+
+      {/* --- 4. CITAÇÃO --- */}
+      <section className="py-24 bg-gradient-to-b from-black to-cyan-950/10">
+        <div className="container max-w-3xl text-center">
+          <Fingerprint className="text-cyan-500/40 w-12 h-12 mx-auto mb-8" />
+          <blockquote className="font-display text-2xl md:text-4xl text-gray-200">
+            “Quando o centro é terceirizado,  
+            o sistema cresce — e o humano encolhe.”
+          </blockquote>
+        </div>
+      </section>
+
+      {/* --- 5. ASSIMILAÇÃO --- */}
+      <section className="py-32 container grid lg:grid-cols-2 gap-16 items-center">
+        <div className="space-y-8">
+          <h2 className="font-display text-4xl text-white">
+            Isto não é um manual.<br/>É um alinhamento.
+          </h2>
+          <p className="text-gray-400 text-lg">
+            Um livro para quem deseja conviver com a IA sem perder o centro.
+          </p>
+
+          <div className="grid gap-4">
+            {[
+              "Consciência aplicada à tecnologia",
+              "Critério estratégico em ambientes automatizados",
+              "Preservação da identidade humana",
+              "Uso ético e sustentável da IA"
+            ].map((item, i) => (
+              <div key={i} className="flex gap-4 items-center p-4 bg-white/5 border border-white/5 rounded-sm">
+                <CheckCircle2 className="text-cyan-400 w-5 h-5" />
+                <span className="text-gray-300 text-sm font-mono">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-cyan-950/10 border border-cyan-500/20 p-8 rounded-sm">
+          <h4 className="font-mono text-cyan-400 text-xs mb-4 uppercase tracking-widest">
+            Artefato
+          </h4>
+          <div className="space-y-2 text-sm font-mono text-gray-500">
+            <p>&gt; FORMATO: Livro Digital (PDF)</p>
+            <p>&gt; PROPÓSITO: Alinhamento Humano-IA</p>
+            <p>&gt; ACESSO: Imediato</p>
+          </div>
+        </div>
+      </section>
+
+      {/* --- 6. OFERTA --- */}
+      <section className="py-40">
+        <div className="container max-w-2xl text-center">
+          <h2 className="font-display text-5xl text-white mb-6">
+            Assuma o Eixo
+          </h2>
+          <p className="text-gray-400 mb-12">
+            Não é para todos. É para quem sente.
+          </p>
+
+          <a 
+            href={KIWIFY_LINK}
+            target="_blank"
+            className="w-full inline-block py-6 bg-cyan-600 hover:bg-white text-black font-bold uppercase tracking-[0.3em] transition-all"
+          >
+            Acessar Agora
+          </a>
+        </div>
+      </section>
+
+    </main>
+  );
+}
+</file>
+
+<file path="app/(site)/livros/page.tsx">
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Book, Sparkles, BrainCircuit } from "lucide-react";
+import { Section } from "@/components/ui/Section";
+import { MysticCard } from "@/components/ui/MysticCard";
+
+export default function BibliotecaPage() {
+  return (
+    <main className="min-h-screen bg-[#050505] text-paper pt-24 pb-20">
+      <Section
+        title="Biblioteca Marroc"
+        subtitle="Códices para a transição planetária. Ficção iniciática e estratégia para a era da inteligência."
+        headingLevel="h1"
+        container
+      >
+        <div className="grid md:grid-cols-2 gap-8 mt-12">
+          
+          {/* ARTEFATO 01: O EIXO DA CONSCIÊNCIA */}
+          <MysticCard className="border-cyan-500/20 hover:border-cyan-500/50 bg-gradient-to-br from-cyan-950/10 to-transparent group">
+            <div className="flex flex-col h-full">
+              <div className="relative aspect-[3/4] w-full mb-8 overflow-hidden rounded-sm bg-black border border-white/5">
+                <Image 
+                  src="/capa-eixo.png" 
+                  alt="O Eixo da Consciência" 
+                  fill 
+                  className="object-contain transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute top-4 right-4 bg-cyan-600 text-black text-[10px] font-bold px-2 py-1 uppercase tracking-tighter">
+                  Novo Lançamento
+                </div>
+              </div>
+              
+              <div className="space-y-4 flex-1">
+                <div className="flex items-center gap-2 text-cyan-400">
+                  <BrainCircuit size={18} />
+                  <span className="font-mono text-xs uppercase tracking-widest">Protocolo Digital</span>
+                </div>
+                <h2 className="font-display text-3xl text-white">O Eixo da Consciência</h2>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Como integrar inteligência artificial e psique humana sem perder a soberania. Um guia estratégico para criadores conscientes.
+                </p>
+              </div>
+
+              <Link 
+                href="/livros/o-eixo-da-consciencia"
+                className="mt-8 flex items-center justify-center gap-2 w-full py-4 bg-cyan-600 hover:bg-white text-black font-bold uppercase text-xs tracking-widest transition-all"
+              >
+                Acessar Transmissão <ArrowRight size={14} />
+              </Link>
+            </div>
+          </MysticCard>
+
+          {/* ARTEFATO 02: UM LUGAR ENTRE MUNDOS */}
+          <MysticCard className="border-gold/20 hover:border-gold/50 bg-gradient-to-br from-gold/5 to-transparent group">
+            <div className="flex flex-col h-full">
+              <div className="relative aspect-[3/4] w-full mb-8 overflow-hidden rounded-sm bg-black border border-white/5">
+                <Image 
+                  src="/capa-ulm.png" 
+                  alt="Um Lugar Entre Mundos" 
+                  fill 
+                  className="object-contain transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              
+              <div className="space-y-4 flex-1">
+                <div className="flex items-center gap-2 text-gold">
+                  <Sparkles size={18} />
+                  <span className="font-mono text-xs uppercase tracking-widest">Ficção Iniciática</span>
+                </div>
+                <h2 className="font-display text-3xl text-white">Um Lugar Entre Mundos</h2>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  A jornada de Sofia. O despertar através do xamanismo, da medicina da floresta e da geometria sagrada. Uma obra que pulsa.
+                </p>
+              </div>
+
+              <Link 
+                href="/livros/um-lugar-entre-mundos"
+                className="mt-8 flex items-center justify-center gap-2 w-full py-4 bg-gold hover:bg-white text-black font-bold uppercase text-xs tracking-widest transition-all"
+              >
+                Iniciar Iniciação <ArrowRight size={14} />
+              </Link>
+            </div>
+          </MysticCard>
+
+        </div>
+
+        {/* NOTA DE IMPACTO */}
+        <div className="mt-20 p-8 border border-white/5 bg-white/[0.02] text-center max-w-2xl mx-auto">
+            <Book className="mx-auto mb-4 text-gray-600" size={24} strokeWidth={1} />
+            <p className="text-xs text-gray-500 font-mono uppercase tracking-[0.2em]">Sustentabilidade Cultural</p>
+            <p className="mt-4 text-sm text-gray-400 italic">
+              "Parte do valor de cada artefato é destinado ao apoio das aldeias e saberes tradicionais que fundamentam nossas obras."
+            </p>
+        </div>
+      </Section>
+    </main>
+  );
+}
+</file>
+
+<file path="app/(site)/loja/page.tsx">
+// app/(site)/loja/page.tsx
+import React from "react";
+import type { Metadata } from "next";
+import Image from "next/image";
+import { Section } from "@/components/ui/Section";
+import { BookOpen, Sparkles, ShoppingBag, ArrowRight, BrainCircuit, ShieldCheck } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Arsenal de Artefatos — Marroc",
+  description: "Adquira as obras 'O Eixo da Consciência' e 'Um Lugar Entre Mundos'. Vestuário e objetos de poder na GAJA HAI.",
+};
+
+export default function LojaPage() {
+  return (
+    <main className="bg-[#050505] text-paper min-h-screen pb-20">
+      
+      {/* CABEÇALHO DA PÁGINA */}
+      <Section
+        title="Arsenal de Frequência"
+        subtitle="Ferramentas narrativas e tecnológicas para o despertar da soberania humana."
+        headingLevel="h1"
+        className="pt-24 pb-12"
+      >
+        <div className="grid gap-8 lg:grid-cols-2">
+          
+          {/* ARTEFATO 01: O EIXO DA CONSCIÊNCIA (CYAN) */}
+          <div className="relative group bg-[#0a0a0a] rounded-2xl p-6 md:p-8 border border-cyan-500/10 hover:border-cyan-500/30 transition-all duration-500 shadow-xl">
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="relative w-full md:w-40 aspect-[3/4.5] shrink-0 overflow-hidden rounded-sm bg-black border border-white/5">
+                <Image src="/capa-eixo.png" alt="O Eixo da Consciência" fill className="object-contain" />
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-cyan-400">
+                  <BrainCircuit size={16} />
+                  <span className="font-mono text-[10px] uppercase tracking-widest">Novo Lançamento</span>
+                </div>
+                <h2 className="font-display text-2xl text-white">O Eixo da Consciência</h2>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Como integrar IA e psique humana sem perder a essência. Um download de soberania estratégica.
+                </p>
+                <div className="pt-4 space-y-3">
+                    <p className="text-xs text-cyan-500/70 font-mono uppercase tracking-tighter">Valor de Troca:</p>
+                    <div className="flex items-baseline gap-2">
+                        <span className="text-xs text-white/40">R$</span>
+                        <span className="text-3xl font-display text-white">47,00</span>
+                    </div>
+                    <a 
+                      href="https://pay.kiwify.com.br/QhQvSHx" 
+                      target="_blank" 
+                      className="inline-flex items-center justify-center w-full py-4 bg-cyan-600 hover:bg-white text-black font-bold uppercase text-[10px] tracking-widest transition-all"
+                    >
+                      Adquirir via Kiwify <ArrowRight size={14} className="ml-2" />
+                    </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ARTEFATO 02: UM LUGAR ENTRE MUNDOS (GOLD) */}
+          <div className="relative group bg-[#0a0a0a] rounded-2xl p-6 md:p-8 border border-gold/10 hover:border-gold/30 transition-all duration-500 shadow-xl">
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="relative w-full md:w-40 aspect-[3/4.5] shrink-0 overflow-hidden rounded-sm bg-black border border-white/5">
+                <Image src="/capa-ulm.png" alt="Um Lugar Entre Mundos" fill className="object-contain" />
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-gold">
+                  <Sparkles size={16} />
+                  <span className="font-mono text-[10px] uppercase tracking-widest">Ficção Iniciática</span>
+                </div>
+                <h2 className="font-display text-2xl text-white">Um Lugar Entre Mundos</h2>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  A jornada de Sofia através do xamanismo e da realidade simulada. Medicina da floresta em palavras.
+                </p>
+                <div className="pt-4">
+                    <p className="text-xs text-gold/70 font-mono uppercase tracking-tighter mb-3">Escolha sua contribuição:</p>
+                    <div className="grid grid-cols-2 gap-3">
+                        <a 
+                            href="https://pay.hotmart.com/M101238238O?off=ur3sdp6i" 
+                            target="_blank"
+                            className="text-center py-3 bg-white/5 hover:bg-white/10 text-white text-[10px] font-bold border border-white/10 uppercase tracking-widest transition-all"
+                        >
+                            Simbólico <br/> <span className="text-gold">R$ 22,20</span>
+                        </a>
+                        <a 
+                            href="https://pay.hotmart.com/M101238238O?off=p1uhfzib" 
+                            target="_blank"
+                            className="text-center py-3 bg-gold/10 hover:bg-gold text-gold hover:text-black text-[10px] font-bold border border-gold/20 uppercase tracking-widest transition-all"
+                        >
+                            Consciente <br/> <span className="font-extrabold text-white group-hover:text-black">R$ 33,30</span>
+                        </a>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </Section>
+
+      {/* SEÇÃO GAJA HAI (DESTAQUE FINAL) */}
+      <Section className="mt-12">
+        <div className="relative overflow-hidden rounded-sm border border-white/5 bg-white/[0.01] p-10 md:p-16 text-center">
+          {/* Efeito de fundo sutil */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(199,169,75,0.03),transparent_70%)] pointer-events-none" />
+          
+          <div className="relative z-10 max-w-2xl mx-auto space-y-8">
+            <div className="flex justify-center">
+              <div className="relative w-24 h-24 transition-transform duration-700 hover:scale-110">
+                <Image src="/gaja-logo.png" alt="Gaja Hai" fill className="object-contain" />
+              </div>
+            </div>
+            
+            <div className="space-y-4">
+                <div className="flex items-center justify-center gap-2 text-gold/60">
+                    <ShoppingBag size={18} />
+                    <span className="text-[10px] font-mono uppercase tracking-[0.4em]">Vestuário & Artefatos</span>
+                </div>
+                <h2 className="font-display text-4xl md:text-5xl text-white tracking-tighter">
+                    GAJA <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-gold via-white to-gold">HAI</span>
+                </h2>
+                <p className="text-white/50 text-base md:text-lg font-light leading-relaxed">
+                    A materialização da frequência. Explore nossa curadoria de roupas codificadas e objetos de poder.
+                </p>
+            </div>
+
+            <div className="pt-6">
+                <a 
+                    href="https://store.marroc.xyz" 
+                    target="_blank"
+                    className="inline-flex items-center gap-3 px-12 py-5 bg-white text-black font-bold uppercase tracking-[0.2em] text-xs transition-all hover:bg-gold hover:shadow-[0_0_30px_rgba(199,169,75,0.3)]"
+                >
+                    Entrar na Store <ArrowRight size={16} />
+                </a>
+            </div>
+
+            <div className="flex items-center justify-center gap-6 pt-10 text-white/20 border-t border-white/5">
+                <div className="flex flex-col items-center gap-1">
+                    <ShieldCheck size={20} />
+                    <span className="text-[8px] uppercase font-mono tracking-widest">Segurança Digital</span>
+                </div>
+                <div className="flex flex-col items-center gap-1">
+                    <ShoppingBag size={20} />
+                    <span className="text-[8px] uppercase font-mono tracking-widest">Logística Global</span>
+                </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+    </main>
+  );
+}
+</file>
+
 <file path="app/(site)/rituais/page.tsx">
 import React from "react";
 import type { Metadata } from "next";
@@ -8476,174 +8799,6 @@ export const PROJECTS: Project[] = [
 ];
 </file>
 
-<file path="app/(site)/layout.tsx">
-import type { Metadata } from "next";
-import { Syne, JetBrains_Mono, Inter, Playfair_Display } from "next/font/google";
-import Header from "@/components/site/Header";
-
-// --- NOVAS FONTES DO BLUEPRINT V2.0 ---
-
-// 1. Syne: Para Títulos e Headlines (Vibe Futurista/Artística)
-const syne = Syne({ 
-  subsets: ["latin"], 
-  variable: "--font-display" 
-});
-
-// 2. JetBrains Mono: Para Dados, Tech e "Códigos" (Vibe Terminal)
-const mono = JetBrains_Mono({ 
-  subsets: ["latin"], 
-  variable: "--font-mono" 
-});
-
-// 3. Inter: Para corpo de texto (Leitura Limpa)
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-});
-
-// 4. Playfair: Mantida como secundária para o contexto do Livro/Astrologia
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-});
-
-// --- METADATA ---
-export const metadata: Metadata = {
-  metadataBase: new URL("https://marroc.xyz"),
-  
-  title: {
-    default: "Marroc | Hertz & Bits Ecosystem",
-    template: "%s | Marroc",
-  },
-  
-  description:
-    "Um ecossistema de inovação e alta performance. Da Arquitetura de Software (Solutions) à Engenharia Sonora (Higher Hz). Dominamos a frequência.",
-
-  openGraph: {
-    type: "website",
-    title: "Marroc | Hertz & Bits Ecosystem",
-    description:
-      "Tecnologia com Alma. Consultoria B2B, AI Audio e Rituais.",
-    url: "https://marroc.xyz",
-    siteName: "Marroc Portal",
-    locale: "pt_BR",
-    images: [
-      {
-        url: "/banner-portal.png", 
-        width: 1200,
-        height: 630,
-        alt: "Marroc - Hertz & Bits",
-      },
-    ],
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Marroc | Hertz & Bits Ecosystem",
-    description: "Dominamos a frequência. Soluções Digitais e Arte Sonora.",
-    images: ["/banner-portal.png"],
-  },
-
-  icons: { shortcut: "/favicon.ico" },
-  themeColor: "#050505", // Atualizado para o Preto Profundo
-};
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="pt-BR" suppressHydrationWarning className="scroll-smooth">
-      <head>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              tailwind.config = {
-                theme: {
-                  extend: {
-                    fontFamily: {
-                      sans: ['var(--font-body)', 'sans-serif'],
-                      display: ['var(--font-display)', 'sans-serif'], // Syne
-                      mono: ['var(--font-mono)', 'monospace'],       // JetBrains
-                      serif: ['var(--font-serif)', 'serif'],         // Playfair
-                    },
-                    colors: {
-                      paper: '#e4e4e7',
-                      gold: {
-                        400: '#fbbf24',
-                        500: '#f59e0b',
-                        600: '#d97706',
-                        900: '#78350f',
-                      },
-                      mystic: {
-                        900: '#0a0a0a', 
-                        800: '#18181b',
-                      }
-                    }
-                  }
-                }
-              }
-            `,
-          }}
-        />
-        <style>{`
-          /* Correção Global para textos com gradiente */
-          .bg-clip-text {
-            padding-bottom: 0.1em;
-            padding-right: 0.2em;
-          }
-          /* Ajuste de seleção para a nova identidade */
-          ::selection {
-            background-color: #06b6d4; /* Cyan */
-            color: #000;
-          }
-        `}</style>
-      </head>
-      <body
-        className={`${syne.variable} ${mono.variable} ${inter.variable} ${playfair.variable} font-body antialiased bg-[#050505] text-paper`}
-      >
-        {/* Header unificado */}
-        <Header />
-
-        <main className="min-h-[calc(100vh-8rem)]">
-          {children}
-        </main>
-
-        <footer className="border-t border-white/10 bg-[#050505]">
-          <div className="container px-4 py-10 text-sm text-paper/70 font-mono">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <p>MARROC ECOSYSTEM © {new Date().getFullYear()}</p>
-
-              <div className="flex gap-4">
-                <a
-                  href="https://instagram.com/marroc.life"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
-                  INSTAGRAM
-                </a>
-                <a
-                  href="https://wa.me/5521992669980"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
-                  WHATSAPP
-                </a>
-                <a href="/newsletter" className="hover:text-white transition-colors">DATA_LOG</a>
-              </div>
-
-              <p className="max-w-xl text-xs text-paper/50">
-                SYSTEM STATUS: <span className="text-green-500">OPERATIONAL</span>
-              </p>
-            </div>
-          </div>
-        </footer>
-      </body>
-    </html>
-  );
-}
-</file>
-
 <file path="app/globals.css">
 @tailwind base;
 @tailwind components;
@@ -9394,154 +9549,6 @@ export function SolutionsSection() {
 }
 </file>
 
-<file path="components/site/Header.tsx">
-// components/site/Header.tsx
-"use client";
-
-import React, { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-
-type NavItem = { href: string; label: string };
-
-const NAV: NavItem[] = [
-  { href: "/livros/um-lugar-entre-mundos", label: "Livro" },
-  { href: "/guardian", label: "Oráculo" },
-  { href: "/projetos", label: "Projetos" },
-  { href: "/rituais", label: "Rituais" },
-  { href: "/agenda", label: "Agenda" },
-  { href: "/conteudos", label: "Artigos" },
-  { href: "/sobre", label: "Sobre" },
-  { href: "/contato", label: "Contato" },
-];
-
-export default function Header() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
-  const firstLinkRef = useRef<HTMLAnchorElement>(null);
-
-  // efeito: alterar estilo ao rolar
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // efeito: fechar menu em mudança de rota
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  // efeito: travar scroll body + foco + ESC
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    if (open && firstLinkRef.current) firstLinkRef.current.focus();
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [open]);
-
-  const headerClasses =
-    "sticky top-0 z-40 transition-colors border-b border-white/10 " +
-    (scrolled
-      ? "bg-black/70 backdrop-blur supports-[backdrop-filter]:bg-black/50"
-      : "bg-transparent");
-
-  const mobilePanelClasses =
-    "md:hidden overflow-hidden transition-[max-height] duration-300 motion-reduce:transition-none " +
-    (open ? "max-h-96" : "max-h-0");
-
-  return (
-    <header className={headerClasses}>
-      <div className="container h-14 md:h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2" aria-label="Ir para a home">
-          <Image
-            src="/marroc.png"
-            alt="Marroc"
-            width={240}   // mantém boa densidade (3x o tamanho do mobile)
-            height={80}   // preserve a proporção da sua arte
-            className="w-auto h-32 sm:h-14 md:h-16"  // mobile-first: 32px → 36px → 40px
-            priority
-          />
-        </Link>
-
-        {/* Navegação desktop */}
-        <nav className="hidden md:flex items-center gap-5 text-sm" aria-label="Menu principal">
-          {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-off/90 text-off/80">
-              {item.label}
-            </Link>
-          ))}
-          <Link
-            href="/loja"
-            className="rounded-full bg-gold text-ink px-3 py-1.5 text-sm font-medium hover:opacity-90"
-          >
-            Apoiar
-          </Link>
-        </nav>
-
-        {/* Botão hambúrguer (mobile) */}
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="md:hidden inline-flex items-center justify-center rounded-md p-2 ring-1 ring-white/15 text-off/90"
-          aria-label={open ? "Fechar menu" : "Abrir menu"}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-        >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path
-              d={open ? "M6 6l12 12M6 18L18 6" : "M3 6h18M3 12h18M3 18h18"}
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
-      </div>
-
-      {/* Painel mobile */}
-      <div id="mobile-menu" aria-hidden={!open} className={mobilePanelClasses}>
-        <nav className="border-t border-white/10 bg-black/95" aria-label="Menu principal (mobile)">
-          <ul className="flex flex-col p-3">
-            {NAV.map((item, idx) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  ref={idx === 0 ? firstLinkRef : undefined}
-                  className="block w-full rounded-lg px-3 py-3 text-off/90 hover:bg-white/5"
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-            <li className="pt-1">
-              <Link
-                href="/loja"
-                className="block text-center rounded-full bg-gold text-ink px-4 py-2 font-medium"
-                onClick={() => setOpen(false)}
-              >
-                Apoiar
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-  );
-}
-</file>
-
 <file path="next-env.d.ts">
 /// <reference types="next" />
 /// <reference types="next/image-types/global" />
@@ -9759,6 +9766,235 @@ function Card({ icon, title, desc }: { icon: any, title: string, desc: string })
       <h3 className="text-lg font-bold text-white mb-2 font-mono">{title}</h3>
       <p className="text-sm text-neutral-400 leading-relaxed">{desc}</p>
     </div>
+  );
+}
+</file>
+
+<file path="app/(site)/layout.tsx">
+// app/(site)/layout.tsx
+import type { Metadata } from "next";
+import { Syne, JetBrains_Mono, Inter, Playfair_Display } from "next/font/google";
+import Header from "@/components/site/Header";
+
+// --- NOVAS FONTES DO BLUEPRINT V2.0 (MANTIDAS) ---
+const syne = Syne({ subsets: ["latin"], variable: "--font-display" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" });
+
+// --- METADATA (MANTIDA) ---
+export const metadata: Metadata = {
+  metadataBase: new URL("https://marroc.xyz"),
+  title: {
+    default: "Marroc | Hertz & Bits Ecosystem",
+    template: "%s | Marroc",
+  },
+  description: "Um ecossistema de inovação e alta performance. Tecnologia com Alma.",
+  openGraph: {
+    type: "website",
+    title: "Marroc | Hertz & Bits Ecosystem",
+    description: "Tecnologia com Alma. Consultoria B2B, AI Audio e Rituais.",
+    url: "https://marroc.xyz",
+    siteName: "Marroc Portal",
+    locale: "pt_BR",
+    images: [{ url: "/banner-portal.png", width: 1200, height: 630, alt: "Marroc - Hertz & Bits" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Marroc | Hertz & Bits Ecosystem",
+    description: "Dominamos a frequência. Soluções Digitais e Arte Sonora.",
+    images: ["/banner-portal.png"],
+  },
+  icons: { shortcut: "/favicon.ico" },
+};
+
+export default function SiteLayout({ children }: { children: React.ReactNode }) {
+  return (
+    // REMOVEMOS <html> e <body> daqui, pois já estão no app/layout.tsx
+    // Usamos uma <divWrapper> que carrega todas as suas fontes e estilos
+    <div className={`${syne.variable} ${mono.variable} ${inter.variable} ${playfair.variable} font-body antialiased`}>
+      
+      {/* Injetamos seus scripts e estilos customizados diretamente */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          .bg-clip-text { padding-bottom: 0.1em; padding-right: 0.2em; }
+          ::selection { background-color: #06b6d4; color: #000; }
+        `
+      }} />
+
+      {/* Header unificado */}
+      <Header />
+
+      <main className="min-h-[calc(100vh-8rem)]">
+        {children}
+      </main>
+
+      <footer className="border-t border-white/10 bg-[#050505]">
+        <div className="container px-4 py-10 text-sm text-paper/70 font-mono">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <p>MARROC ECOSYSTEM © {new Date().getFullYear()}</p>
+
+            <div className="flex gap-4">
+              <a href="https://instagram.com/marroc.life" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">INSTAGRAM</a>
+              <a href="https://wa.me/5521992669980" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WHATSAPP</a>
+              <a href="/newsletter" className="hover:text-white transition-colors">DATA_LOG</a>
+            </div>
+
+            <p className="max-w-xl text-xs text-paper/50">
+              SYSTEM STATUS: <span className="text-green-500">OPERATIONAL</span>
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+</file>
+
+<file path="components/site/Header.tsx">
+// components/site/Header.tsx
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+
+type NavItem = { href: string; label: string };
+
+const NAV: NavItem[] = [
+  { href: "/livros", label: "Livros" }, 
+  { href: "/guardian", label: "Oráculo" },
+  { href: "/projetos", label: "Projetos" },
+  { href: "/rituais", label: "Rituais" },
+  { href: "/agenda", label: "Agenda" },
+  { href: "/conteudos", label: "Artigos" },
+  { href: "/sobre", label: "Sobre" },
+  { href: "/contato", label: "Contato" },
+];
+
+export default function Header() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const firstLinkRef = useRef<HTMLAnchorElement>(null);
+
+  // efeito: alterar estilo ao rolar
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // efeito: fechar menu em mudança de rota
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // efeito: travar scroll body + foco + ESC
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    if (open && firstLinkRef.current) firstLinkRef.current.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const headerClasses =
+    "sticky top-0 z-40 transition-colors border-b border-white/10 " +
+    (scrolled
+      ? "bg-black/70 backdrop-blur supports-[backdrop-filter]:bg-black/50"
+      : "bg-transparent");
+
+  const mobilePanelClasses =
+    "md:hidden overflow-hidden transition-[max-height] duration-300 motion-reduce:transition-none " +
+    (open ? "max-h-96" : "max-h-0");
+
+  return (
+    <header className={headerClasses}>
+      <div className="container h-14 md:h-16 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2" aria-label="Ir para a home">
+          <Image
+            src="/marroc.png"
+            alt="Marroc"
+            width={240}   // mantém boa densidade (3x o tamanho do mobile)
+            height={80}   // preserve a proporção da sua arte
+            className="w-auto h-32 sm:h-14 md:h-16"  // mobile-first: 32px → 36px → 40px
+            priority
+          />
+        </Link>
+
+        {/* Navegação desktop */}
+        <nav className="hidden md:flex items-center gap-5 text-sm" aria-label="Menu principal">
+          {NAV.map((item) => (
+            <Link key={item.href} href={item.href} className="hover:text-off/90 text-off/80">
+              {item.label}
+            </Link>
+          ))}
+          <Link
+            href="/loja"
+            className="rounded-full bg-gold text-ink px-3 py-1.5 text-sm font-medium hover:opacity-90"
+          >
+            Apoiar
+          </Link>
+        </nav>
+
+        {/* Botão hambúrguer (mobile) */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="md:hidden inline-flex items-center justify-center rounded-md p-2 ring-1 ring-white/15 text-off/90"
+          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d={open ? "M6 6l12 12M6 18L18 6" : "M3 6h18M3 12h18M3 18h18"}
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* Painel mobile */}
+      <div id="mobile-menu" aria-hidden={!open} className={mobilePanelClasses}>
+        <nav className="border-t border-white/10 bg-black/95" aria-label="Menu principal (mobile)">
+          <ul className="flex flex-col p-3">
+            {NAV.map((item, idx) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  ref={idx === 0 ? firstLinkRef : undefined}
+                  className="block w-full rounded-lg px-3 py-3 text-off/90 hover:bg-white/5"
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+            <li className="pt-1">
+              <Link
+                href="/loja"
+                className="block text-center rounded-full bg-gold text-ink px-4 py-2 font-medium"
+                onClick={() => setOpen(false)}
+              >
+                Apoiar
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
   );
 }
 </file>
@@ -10003,7 +10239,8 @@ export default config
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Hexagon, Zap, Activity, Code, Music } from "lucide-react";
+import Image from "next/image"; 
+import { ArrowRight, Hexagon, Zap, Activity, Code, Music, BookOpen, ShoppingBag } from "lucide-react";
 
 export default function HomePage() {
   const [hoveredSide, setHoveredSide] = useState<"left" | "right" | null>(null);
@@ -10123,63 +10360,139 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- MENU DE SERVIÇOS --- */}
-      <section className="py-24 px-4 bg-[#050505]">
-        <div className="container mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          {/* Card 1: SOLUTIONS */}
-          <div className="group p-8 rounded-none border border-neon-green/30 bg-deep-emerald/5 hover:border-neon-green/50 hover:bg-deep-emerald/10 transition-all duration-500">
-            <Code className="text-neon-green mb-6 w-10 h-10" />
-            <span className="block font-mono text-xs text-neon-green mb-2">B2B / HIGH-PERFORMANCE</span>
-            <h3 className="font-display text-3xl text-white mb-4">Marroc Solutions</h3>
-            <ul className="space-y-2 font-mono text-xs text-gray-400 mb-8">
-              <li>&gt; Desenvolvimento Web Complexo</li>
-              <li>&gt; Otimização Core Vitals</li>
-              <li>&gt; Consultoria de Inovação</li>
-            </ul>
-            <Link href="/marrocsolutions" className="block w-full py-3 text-center bg-neon-green hover:bg-white hover:text-black text-black font-bold uppercase tracking-widest text-xs transition-colors">
-              Agendar Auditoria
-            </Link>
+      {/* --- MENU DE SERVIÇOS (ATUALIZADO PARA 4 COLUNAS) --- */}
+<section className="py-24 px-4 bg-[#050505]">
+  <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    
+    {/* Card 1: SOLUTIONS (Green) */}
+    <div className="group p-8 rounded-none border border-neon-green/30 bg-deep-emerald/5 hover:border-neon-green/50 hover:bg-deep-emerald/10 transition-all duration-500 flex flex-col">
+      <Code className="text-neon-green mb-6 w-10 h-10" />
+      <span className="block font-mono text-xs text-neon-green mb-2 uppercase tracking-widest">B2B / Performance</span>
+      <h3 className="font-display text-3xl text-white mb-4">Marroc Solutions</h3>
+      <ul className="space-y-2 font-mono text-[10px] text-gray-400 mb-8 flex-1">
+        <li>&gt; Desenvolvimento Web</li>
+        <li>&gt; Otimização de Sistemas</li>
+        <li>&gt; Consultoria IA</li>
+      </ul>
+      <Link href="/marrocsolutions" className="block w-full py-3 text-center bg-neon-green hover:bg-white hover:text-black text-black font-bold uppercase tracking-widest text-[10px] transition-colors">
+        Agendar Auditoria
+      </Link>
+    </div>
+
+    {/* Card 2: LIVROS (Cyan - O NOVO) */}
+    <div className="group p-8 rounded-none border border-cyan-500/30 bg-cyan-950/5 hover:border-cyan-400/60 hover:bg-cyan-950/10 transition-all duration-500 flex flex-col">
+      <BookOpen className="text-cyan-400 mb-6 w-10 h-10" />
+      <span className="block font-mono text-xs text-cyan-500 mb-2 uppercase tracking-widest">Digital / Narrative</span>
+      <h3 className="font-display text-3xl text-white mb-4">Biblioteca Marroc</h3>
+      <ul className="space-y-2 font-mono text-[10px] text-gray-400 mb-8 flex-1">
+        <li>&gt; O Eixo da Consciência</li>
+        <li>&gt; Um Lugar Entre Mundos</li>
+        <li>&gt; Soberania Cognitiva</li>
+      </ul>
+      <Link href="/livros" className="block w-full py-3 text-center bg-cyan-600 hover:bg-cyan-400 text-black font-bold uppercase tracking-widest text-[10px] transition-colors">
+        Acessar Acervo
+      </Link>
+    </div>
+
+    {/* Card 3: HIGHER HZ (Purple) */}
+    <div className="group p-8 rounded-none border border-white/5 hover:border-purple-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500 flex flex-col">
+      <Activity className="text-purple-400 mb-6 w-10 h-10" />
+      <span className="block font-mono text-xs text-purple-600 mb-2 uppercase tracking-widest">AI Audio / Arcanos</span>
+      <h3 className="font-display text-3xl text-white mb-4">Higher Hz</h3>
+      <ul className="space-y-2 font-mono text-[10px] text-gray-400 mb-8 flex-1">
+        <li>&gt; IA + Intenção Humana</li>
+        <li>&gt; Tarot Musical</li>
+        <li>&gt; Frequência 432Hz</li>
+      </ul>
+      <Link href="/higher-hz" className="block w-full py-3 text-center border border-white/10 hover:border-purple-500 hover:text-purple-400 text-gray-400 font-bold uppercase tracking-widest text-[10px] transition-colors">
+        Ouvir Álbum
+      </Link>
+    </div>
+
+    {/* Card 4: LIVE (Pink/Green) */}
+    <div className="group p-8 rounded-none border border-white/5 hover:border-pink-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500 flex flex-col">
+      <Music className="text-pink-400 mb-6 w-10 h-10" />
+      <span className="block font-mono text-xs text-pink-600 mb-2 uppercase tracking-widest">Experience / Human</span>
+      <h3 className="font-display text-3xl text-white mb-4">Live & Rituais</h3>
+      <ul className="space-y-2 font-mono text-[10px] text-gray-400 mb-8 flex-1">
+        <li>&gt; Psytrance Ritualístico</li>
+        <li className="text-emerald-400/80">&gt; Atendimentos de Cura</li>
+        <li>&gt; Imersão Multidimensional</li>
+      </ul>
+      <div className="flex gap-2">
+          <Link href="/musica" className="flex-1 py-3 text-center border border-white/10 hover:border-pink-500 hover:text-pink-400 text-gray-400 font-bold uppercase tracking-widest text-[9px] transition-colors">
+            O SHOW
+          </Link>
+          <Link href="/rituais" className="flex-1 py-3 text-center border border-white/10 hover:border-emerald-500 hover:text-emerald-400 text-gray-400 font-bold uppercase tracking-widest text-[9px] transition-colors">
+            A CURA
+          </Link>
+      </div>
+    </div>
+
+  </div>
+</section>
+{/* --- SEÇÃO GAJA HAI: ARTEFATOS --- */}
+<section className="relative py-20 border-t border-white/5 overflow-hidden">
+  {/* Ambient Glow */}
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(199,169,75,0.05),transparent_70%)] pointer-events-none" />
+
+  <div className="container mx-auto max-w-6xl px-6">
+    <div className="relative group bg-white/[0.01] border border-white/5 p-12 md:p-20 overflow-hidden rounded-sm transition-all duration-700 hover:border-gold/20">
+      
+      {/* Detalhe de Canto */}
+      <div className="absolute top-0 right-0 p-4 font-mono text-[10px] text-gray-700 uppercase tracking-widest hidden md:block">
+        Materializing_Frequency // v1.0
+      </div>
+
+      <div className="flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
+        
+        <div className="max-w-xl text-center md:text-left space-y-6">
+          <div className="flex items-center justify-center md:justify-start gap-3 text-gold/60 mb-2">
+            <ShoppingBag size={20} strokeWidth={1.5} />
+            <span className="font-mono text-xs tracking-[0.3em] uppercase">Vestuário & Artefatos</span>
           </div>
 
-          {/* Card 2: HIGHER HZ */}
-          <div className="group p-8 rounded-none border border-white/5 hover:border-purple-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
-            <Activity className="text-purple-400 mb-6 w-10 h-10" />
-            <span className="block font-mono text-xs text-purple-600 mb-2">AI AUDIO / ARCHETYPES</span>
-            <h3 className="font-display text-3xl text-white mb-4">Higher Hz</h3>
-            <ul className="space-y-2 font-mono text-xs text-gray-400 mb-8">
-              <li>&gt; IA + Intenção Humana</li>
-              <li>&gt; 22 Arcanos (Tarot Musical)</li>
-              <li>&gt; Letras Codificadas</li>
-            </ul>
-            <Link href="/higher-hz" className="block w-full py-3 text-center border border-white/10 hover:border-purple-500 hover:text-purple-400 text-gray-400 font-bold uppercase tracking-widest text-xs transition-colors">
-              Ouvir os Arcanos
-            </Link>
-          </div>
+          <h2 className="font-display text-4xl md:text-6xl text-white tracking-tighter leading-none">
+            GAJA <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-gold via-white to-gold">HAI</span>
+          </h2>
 
-          {/* Card 3: LIVE */}
-          <div className="group p-8 rounded-none border border-white/5 hover:border-pink-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500">
-            <Music className="text-pink-400 mb-6 w-10 h-10" />
-            <span className="block font-mono text-xs text-pink-600 mb-2">EXPERIENCE / HUMAN</span>
-            <h3 className="font-display text-3xl text-white mb-4">Live & Rituais</h3>
-            <ul className="space-y-2 font-mono text-xs text-gray-400 mb-8">
-              <li>&gt; Psytrance & Performance</li>
-              <li className="text-emerald-400/80">&gt; Atendimentos Terapêuticos</li>
-              <li>&gt; Imersão Audiovisual</li>
-            </ul>
-            <div className="flex gap-2">
-                <Link href="/musica" className="flex-1 py-3 text-center border border-white/10 hover:border-pink-500 hover:text-pink-400 text-gray-400 font-bold uppercase tracking-widest text-[10px] transition-colors">
-                  O Show
-                </Link>
-                <Link href="/rituais" className="flex-1 py-3 text-center border border-white/10 hover:border-emerald-500 hover:text-emerald-400 text-gray-400 font-bold uppercase tracking-widest text-[10px] transition-colors">
-                  A Cura
-                </Link>
-            </div>
-          </div>
+          <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
+            Curadoria de objetos de poder e vestimentas codificadas. Ferramentas físicas para a jornada imaterial. 
+          </p>
 
+          <div className="pt-4">
+            <a 
+              href="https://store.marroc.xyz" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-white text-black font-bold uppercase tracking-[0.2em] text-xs transition-all hover:bg-gold hover:text-black hover:shadow-[0_0_40px_rgba(199,169,75,0.3)]"
+            >
+              Explorar Store <ArrowRight size={16} />
+            </a>
+          </div>
         </div>
-      </section>
 
+        {/* LOGO GAJA HAI COM ORBITAIS */}
+        <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center group-hover:scale-105 transition-transform duration-1000">
+           {/* Orbitais Geométricos em Dourado Sutil */}
+           <div className="absolute inset-0 border border-gold/30 rounded-full animate-[spin_30s_linear_infinite] opacity-40" />
+           <div className="absolute inset-4 border border-gold/10 rounded-full animate-[spin_20s_linear_infinite_reverse] opacity-20" />
+           
+           {/* Container da Logo */}
+           <div className="relative w-32 h-32 md:w-44 md:h-44 transition-all duration-700 filter group-hover:brightness-125">
+              <Image
+                src="/gaja-logo.jpeg"
+                alt="Gaja Hai Logo"
+                fill
+                className="object-contain drop-shadow-[0_0_15px_rgba(199,169,75,0.4)]"
+              />
+           </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
       <footer className="py-12 border-t border-white/5 text-center font-mono text-xs text-gray-600">
         <p>MARROC ECOSYSTEM © {new Date().getFullYear()}</p>
         <p className="mt-2 text-green-900">SYSTEM STATUS: <span className="text-green-500">OPERATIONAL</span></p>
@@ -10191,11 +10504,9 @@ export default function HomePage() {
 </file>
 
 <file path="app/layout.tsx">
+// app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google"; // Ou a fonte que você usa
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Marroc.xyz | Tecnoxamanismo",
@@ -10208,8 +10519,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-br">
-      <body className={inter.className}>
+    // Removi as fontes daqui para deixar o layout (site) e (b2b) controlarem suas identidades
+    <html lang="pt-br" suppressHydrationWarning className="scroll-smooth">
+      <body className="antialiased bg-[#050505] text-paper">
         {children}
       </body>
     </html>
@@ -10220,7 +10532,7 @@ export default function RootLayout({
 <file path="project_dump.txt">
 # PROJECT DUMP
 Root: C:\Users\Marroc\Downloads\Book\Site\project_dump.txt
-Generated: 2025-12-13T00:11:27.783Z
+Generated: 2026-01-22T11:49:32.564Z
 Files included (pre-filter): 0
 Per-file cap: 1048576 bytes • Total cap: 20971520 bytes
 
