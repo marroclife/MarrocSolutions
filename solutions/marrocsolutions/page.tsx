@@ -3,7 +3,7 @@
 import React, { useState, useEffect, ReactNode } from 'react';
 import { Menu, X, Hexagon, ArrowRight, Globe, Zap, MessageSquare, Map, Database, Search, PenTool, Rocket, Clock, DollarSign, UserCheck, ShieldCheck, Quote, ArrowLeft, Terminal, Cpu, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { PricingSection } from "../../components/sections/PricingSection";
+import { PricingSection } from "@/components/sections/PricingSection";
 
 // --- LÓGICA ORÁCULO ---
 const LOADING_STEPS = [
