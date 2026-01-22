@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Syne, JetBrains_Mono, Inter, Playfair_Display } from "next/font/google";
-import "../globals.css"; // Garante os estilos globais
-import { FloatingWhatsapp } from "@/components/ui/FloatingWhatsapp"; // Importa o botão
+import "./globals.css";
+import { FloatingWhatsapp } from "@/components/ui/FloatingWhatsapp";
 
 const syne = Syne({ subsets: ["latin"], variable: "--font-display" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   icons: { shortcut: "/favicon.ico" },
 };
 
-export default function B2BLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -59,7 +59,6 @@ export default function B2BLayout({
           {children}
         </main>
 
-        {/* O BOTÃO VIVE AQUI 👇 */}
         <FloatingWhatsapp />
         
       </body>
