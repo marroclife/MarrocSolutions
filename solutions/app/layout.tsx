@@ -26,6 +26,8 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <style>{`
           .bg-clip-text { padding-bottom: 0.1em; padding-right: 0.2em; }
           ::selection { background-color: #00FF94; color: #000; }

@@ -49,9 +49,7 @@ const Navbar = () => (
         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
         <span className="text-sm font-medium hidden sm:block">Voltar ao Hub</span>
       </a>
-      <div className="flex items-center gap-3">
-        <img src="/MSLogo.jpg" alt="Marroc Solutions" className="h-10 w-auto" />
-      </div>
+      <a href="/" className="text-white font-bold hover:text-neon-green transition-colors">Marroc Solutions</a>
       <div className="flex items-center gap-4">
         <a href="/portfolio" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">
           Portfolio
@@ -67,22 +65,39 @@ const Navbar = () => (
 const Hero = () => (
   <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-deep-emerald/30 via-[#050505] to-[#050505] z-0" />
-    <div className="max-w-7xl mx-auto px-6 z-10 w-full text-center md:text-left">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-green/20 bg-neon-green/5 backdrop-blur-sm mb-6">
-          <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
-          <span className="text-xs font-medium text-neon-green tracking-wide uppercase">Alta Performance</span>
+    <div className="max-w-7xl mx-auto px-6 z-10 w-full">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="flex flex-col md:flex-row items-center gap-12">
+        <div className="flex-1 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-green/20 bg-neon-green/5 backdrop-blur-sm mb-6">
+            <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
+            <span className="text-xs font-medium text-neon-green tracking-wide uppercase">Alta Performance</span>
+          </div>
+          <h1 className="text-5xl md:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6">
+            Arquitetura Digital de <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-neon-green">Alta Performance para Negócios.</span>
+          </h1>
+          <p className="text-lg md:text-xl text-slate-400 mb-8 leading-relaxed max-w-2xl">
+            Infraestrutura web robusta que escala suas vendas. Velocidade, SEO estrutural e automação inteligente para conversão.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <Button href="#planos" icon>Ver Planos</Button>
+            <Button variant="outline" href="#oracle-section">Agendar Diagnóstico</Button>
+          </div>
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6">
-          Arquitetura Digital de <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-neon-green">Alta Performance para Negócios.</span>
-        </h1>
-        <p className="text-lg md:text-xl text-slate-400 mb-8 leading-relaxed max-w-2xl">
-          Infraestrutura web robusta que escala suas vendas. Velocidade, SEO estrutural e automação inteligente para conversão.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-          <Button href="#planos" icon>Ver Planos</Button>
-          <Button variant="outline" href="#oracle-section">Agendar Diagnóstico</Button>
-        </div>
+        <motion.div 
+          initial={{ opacity: 0, x: 20 }} 
+          animate={{ opacity: 1, x: 0 }} 
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex-1 flex items-center justify-center"
+        >
+          <div className="relative w-full max-w-md">
+            <div className="absolute inset-0 bg-gradient-to-r from-neon-green/20 to-deep-emerald/20 blur-3xl rounded-full" />
+            <img 
+              src="/MSLogo.jpg" 
+              alt="Marroc Solutions" 
+              className="relative w-full h-auto drop-shadow-2xl hover:drop-shadow-[0_0_30px_rgba(0,255,148,0.4)] transition-all duration-300" 
+            />
+          </div>
+        </motion.div>
       </motion.div>
     </div>
   </section>
