@@ -187,8 +187,6 @@ export function PricingSection() {
                 Agendar Diagnóstico
               </a>
            </div>
-           {/* Efeito de fundo */}
-           <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.svg')] opacity-10 mix-blend-overlay"></div>
         </div>
 
       </div>

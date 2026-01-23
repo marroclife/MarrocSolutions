@@ -12,7 +12,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://solutions.marroc.xyz"),
   title: "Marroc Solutions | Arquitetura Digital B2B",
   description: "Consultoria de Tecnologia, Automação com IA e Desenvolvimento Web High-Ticket.",
-  icons: { shortcut: "/favicon.ico" },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -23,31 +26,6 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <head>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              tailwind.config = {
-                theme: {
-                  extend: {
-                    fontFamily: {
-                      sans: ['var(--font-body)', 'sans-serif'],
-                      display: ['var(--font-display)', 'sans-serif'],
-                      mono: ['var(--font-mono)', 'monospace'],
-                      serif: ['var(--font-serif)', 'serif'],
-                    },
-                    colors: {
-                      paper: '#e4e4e7',
-                      gold: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 900: '#78350f' },
-                      mystic: { 900: '#0a0a0a', 800: '#18181b' },
-                      'neon-green': '#00FF94'
-                    }
-                  }
-                }
-              }
-            `,
-          }}
-        />
         <style>{`
           .bg-clip-text { padding-bottom: 0.1em; padding-right: 0.2em; }
           ::selection { background-color: #00FF94; color: #000; }

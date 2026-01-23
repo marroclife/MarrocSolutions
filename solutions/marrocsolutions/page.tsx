@@ -49,9 +49,8 @@ const Navbar = () => (
         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
         <span className="text-sm font-medium hidden sm:block">Voltar ao Hub</span>
       </a>
-      <div className="flex items-center gap-2 text-white font-bold">
-        <Hexagon className="w-6 h-6 text-neon-green" />
-        Marroc<span className="font-light text-slate-400">Solutions</span>
+      <div className="flex items-center gap-3">
+        <img src="/MSLogo.jpg" alt="Marroc Solutions" className="h-10 w-auto" />
       </div>
       <div className="flex items-center gap-4">
         <a href="/portfolio" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">
