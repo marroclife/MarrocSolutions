@@ -445,7 +445,7 @@ export default function LandingPageLivro() {
             O <strong>Guardião da Espiral</strong> pode criar rituais personalizados, legendas poéticas e insights baseados na geometria sagrada para você.
           </p>
           <Link 
-            href="/guardian"
+            href="https://marroc.xyz/guardian"
             className="inline-flex items-center gap-2 px-8 py-4 border border-tech-cyan text-tech-cyan hover:bg-tech-cyan hover:text-black transition-all duration-300 font-mono text-sm tracking-widest uppercase rounded"
           >
             Acessar o Guardião <ArrowRight size={16} />

@@ -45,7 +45,7 @@ const Section: React.FC<any> = ({ children, id, className = "", classNameInner =
 const Navbar = () => (
   <nav className="fixed w-full z-50 bg-[#050505]/90 backdrop-blur-md border-b border-white/5 py-4">
     <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-      <a href="/" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group">
+      <a href="https://marroc.xyz" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group">
         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
         <span className="text-sm font-medium hidden sm:block">Voltar ao Hub</span>
       </a>

@@ -13,8 +13,8 @@ export const Hero: React.FC = () => {
           Mantras, percussões e sopros guiando você por um portal de som e cura.
         </p>
         <div className="mt-8 flex gap-3 flex-wrap">
-          <Link href="/musica" className="btn btn-primary">Ouvir agora</Link>
-          <Link href="/rituais" className="btn btn-outline">Entrar no ritual</Link>
+          <Link href="https://marroc.xyz/musica" className="btn btn-primary">Ouvir agora</Link>
+          <Link href="https://marroc.xyz/rituais" className="btn btn-outline">Entrar no ritual</Link>
         </div>
       </div>
     </section>

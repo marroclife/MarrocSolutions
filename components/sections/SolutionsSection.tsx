@@ -92,7 +92,7 @@ export function SolutionsSection() {
           </div>
 
           <Link 
-            href="/marrocsolutions" 
+            href="https://solutions.marroc.xyz" 
             className="group flex items-center gap-2 text-white border-b border-white/30 pb-1 hover:border-cyan-400 hover:text-cyan-400 transition-all"
           >
             Conhecer a Divisão <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>

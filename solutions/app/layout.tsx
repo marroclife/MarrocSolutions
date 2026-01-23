@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://solutions.marroc.xyz"),
   title: "Marroc Solutions | Arquitetura Digital B2B",
   description: "Consultoria de Tecnologia, Automação com IA e Desenvolvimento Web High-Ticket.",
   icons: { shortcut: "/favicon.ico" },

@@ -66,7 +66,7 @@ export default function Header() {
     <header className={headerClasses}>
       <div className="container h-14 md:h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2" aria-label="Ir para a home">
+        <Link href="https://marroc.xyz" className="flex items-center gap-2" aria-label="Ir para a home">
           <Image
             src="/marroc.png"
             alt="Marroc"

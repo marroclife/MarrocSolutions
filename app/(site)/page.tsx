@@ -26,7 +26,7 @@ export default function HomePage() {
 
         {/* LADO ESQUERDO: SOLUTIONS (Tech) */}
         <Link 
-          href="/marrocsolutions"
+          href="https://solutions.marroc.xyz"
           className="relative w-full md:flex-1 group min-h-[50vh] md:h-full border-b md:border-b-0 md:border-r border-white/10 overflow-hidden cursor-pointer"
           onMouseEnter={() => setHoveredSide("left")}
           onMouseLeave={() => setHoveredSide(null)}
@@ -137,7 +137,7 @@ export default function HomePage() {
         <li>&gt; Otimização de Sistemas</li>
         <li>&gt; Consultoria IA</li>
       </ul>
-      <Link href="/marrocsolutions" className="block w-full py-3 text-center bg-neon-green hover:bg-white hover:text-black text-black font-bold uppercase tracking-widest text-[10px] transition-colors">
+      <Link href="https://solutions.marroc.xyz" className="block w-full py-3 text-center bg-neon-green hover:bg-white hover:text-black text-black font-bold uppercase tracking-widest text-[10px] transition-colors">
         Agendar Auditoria
       </Link>
     </div>

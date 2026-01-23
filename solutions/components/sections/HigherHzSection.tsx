@@ -66,7 +66,7 @@ export function HigherHzSection() {
             {/* Link para a página interna Higher Hz */}
             <div className="pt-4 flex justify-end lg:justify-start">
               <Link 
-                href="/higher-hz"
+                href="https://marroc.xyz/higher-hz"
                 className="group inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 font-bold uppercase tracking-wider text-sm transition-colors"
               >
                 Entrar na Frequência <ArrowRight className="group-hover:translate-x-1 transition-transform" />

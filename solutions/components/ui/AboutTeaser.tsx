@@ -30,7 +30,7 @@ export function AboutTeaser() {
             </p>
           </div>
           <Link
-            href="/sobre"
+            href="https://marroc.xyz/sobre"
             className="inline-flex mt-6 items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 ring-offset-2 ring-gold bg-gold text-ink hover:opacity-90"
           >
             Ler completo

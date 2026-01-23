@@ -10,6 +10,20 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb'
     }
+  },
+  async redirects() {
+    return [
+      {
+        source: '/marrocsolutions/:path*',
+        destination: 'https://solutions.marroc.xyz/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*/marrocsolutions/:path2*',
+        destination: 'https://solutions.marroc.xyz/:path2*',
+        permanent: true,
+      },
+    ]
   }
 }
 export default nextConfig;

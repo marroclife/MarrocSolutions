@@ -14,7 +14,7 @@ export function ImpactoHome() {
           Veja o relatório mais recente com entradas e saídas dedicadas ao projeto.
         </p>
         <Link
-          href="/impacto"
+          href="https://marroc.xyz/impacto"
           className="inline-flex items-center justify-center rounded-2xl px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 ring-offset-2 ring-gold bg-gold text-ink hover:opacity-90"
         >
           Acessar transparência

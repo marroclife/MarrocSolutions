@@ -45,7 +45,7 @@ export function MarrocSection() {
             <div className="flex flex-wrap gap-4 pt-4">
                {/* Link para a página interna de Música */}
                <Link 
-                 href="/musica" 
+                 href="https://marroc.xyz/musica" 
                  className="px-6 py-3 border border-white/30 text-white font-bold rounded-full hover:bg-white hover:text-black transition flex items-center gap-2"
                >
                  Explorar o Som <ArrowRight size={18} />
@@ -53,7 +53,7 @@ export function MarrocSection() {
 
                {/* Link para Agenda */}
                <Link 
-                 href="/agenda" 
+                 href="https://marroc.xyz/agenda" 
                  className="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition flex items-center gap-2"
                >
                  <Calendar size={18} /> Ver Agenda
