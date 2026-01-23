@@ -10,7 +10,7 @@ const LOADING_STEPS = [
   "Estabelecendo conexão com o Guardião...",
   "Rastreando a assinatura digital...",
   "Decodificando a estrutura do HTML...",
-  "Lendo a aura de conversão...",
+  "Analisando Core Web Vitals...",
   "Compilando o diagnóstico final..."
 ];
 
@@ -53,9 +53,14 @@ const Navbar = () => (
         <Hexagon className="w-6 h-6 text-neon-green" />
         Marroc<span className="font-light text-slate-400">Solutions</span>
       </div>
-      <a href="#contato" className="text-sm font-bold bg-white text-black px-4 py-2 rounded hover:bg-neon-green transition-colors">
-        Quero meu site
-      </a>
+      <div className="flex items-center gap-4">
+        <a href="/portfolio" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">
+          Portfolio
+        </a>
+        <a href="#contato" className="text-sm font-bold bg-white text-black px-4 py-2 rounded hover:bg-neon-green transition-colors">
+          Agendar Diagnóstico
+        </a>
+      </div>
     </div>
   </nav>
 );
@@ -70,14 +75,14 @@ const Hero = () => (
           <span className="text-xs font-medium text-neon-green tracking-wide uppercase">Alta Performance</span>
         </div>
         <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6">
-          O futuro da sua <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-neon-green">presença digital.</span>
+          Arquitetura Digital de <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-neon-green">Alta Performance para Negócios.</span>
         </h1>
         <p className="text-lg md:text-xl text-slate-400 mb-8 leading-relaxed max-w-2xl">
-          Unimos estética minimalista e automação inteligente para criar sites que vendem. Rápido, direto e profissional.
+          Infraestrutura web robusta que escala suas vendas. Velocidade, SEO estrutural e automação inteligente para conversão.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
           <Button href="#planos" icon>Ver Planos</Button>
-          <Button variant="outline" href="#oracle-section">Testar Site Atual</Button>
+          <Button variant="outline" href="#oracle-section">Agendar Diagnóstico</Button>
         </div>
       </motion.div>
     </div>
@@ -89,16 +94,16 @@ const About = () => (
     <div className="grid md:grid-cols-2 gap-12 items-center">
       <div>
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-          Design com alma.<br />
-          <span className="text-slate-500">Tecnologia com propósito.</span>
+          Infraestrutura que Vende.<br />
+          <span className="text-slate-500">Tecnologia que Escala.</span>
         </h2>
       </div>
       <div>
         <p className="text-slate-400 text-lg leading-relaxed mb-4">
-          A <strong>Marroc Solutions</strong> nasce da interseção entre a criatividade artística e a precisão tecnológica.
+          A <strong>Marroc Solutions</strong> entrega infraestrutura web robusta focada em resultados mensuráveis.
         </p>
         <p className="text-slate-400 text-lg leading-relaxed">
-          Não entregamos apenas código. Entregamos ferramentas de crescimento para negócios locais, artistas e criadores que precisam de resultados rápidos sem abrir mão da elegância.
+          Velocidade, SEO estrutural e automação de processos para escalar vendas. Transformamos presença digital em receita para negócios que precisam crescer rápido.
         </p>
       </div>
     </div>
@@ -111,19 +116,19 @@ const Services = () => (
         <div className="lg:col-span-2 bg-[#171717]/60 backdrop-blur-xl border border-white/5 p-8 rounded-2xl relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none"><Globe className="w-64 h-64 text-white" /></div>
             <Globe className="w-12 h-12 text-neon-green mb-4" />
-            <h3 className="text-2xl font-bold text-white mb-2">Sites Profissionais</h3>
-            <p className="text-gray-400">Design que converte. Entrega em 72h. Otimizado para SEO e Mobile.</p>
+            <h3 className="text-2xl font-bold text-white mb-2">Arquitetura Web de Alta Performance</h3>
+            <p className="text-gray-400">Sites em Next.js otimizados. Carregam em menos de 2s. Escalam com sua demanda.</p>
         </div>
         <div className="flex flex-col gap-6">
             <div className="bg-[#171717]/60 p-6 rounded-2xl border border-white/5 hover:border-neon-green/30 transition-colors">
-                <MessageSquare className="w-8 h-8 text-purple-400 mb-2" />
-                <h4 className="text-white font-bold">Automação WhatsApp</h4>
-                <p className="text-xs text-gray-500 mt-1">Atendimento 24h com IA.</p>
+                <Zap className="w-8 h-8 text-purple-400 mb-2" />
+                <h4 className="text-white font-bold">Automação de Processos</h4>
+                <p className="text-xs text-gray-500 mt-1">Orquestração inteligente do fluxo de vendas.</p>
             </div>
             <div className="bg-[#171717]/60 p-6 rounded-2xl border border-white/5 hover:border-neon-green/30 transition-colors">
-                <Map className="w-8 h-8 text-blue-400 mb-2" />
-                <h4 className="text-white font-bold">Google Maps</h4>
-                <p className="text-xs text-gray-500 mt-1">Seja encontrado na sua região.</p>
+                <Search className="w-8 h-8 text-blue-400 mb-2" />
+                <h4 className="text-white font-bold">SEO Estrutural</h4>
+                <p className="text-xs text-gray-500 mt-1">Dominar a primeira página do Google.</p>
             </div>
         </div>
     </div>
@@ -136,9 +141,9 @@ const Process = () => (
     <div className="grid md:grid-cols-3 gap-8 relative">
       <div className="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-700 to-transparent z-0" />
       {[
-        { icon: <Search className="w-8 h-8" />, title: "1. Análise", desc: "Entendemos seu negócio." },
-        { icon: <PenTool className="w-8 h-8" />, title: "2. Criação", desc: "Desenvolvimento rápido." },
-        { icon: <Rocket className="w-8 h-8" />, title: "3. Entrega", desc: "Seu site no ar em 72h." }
+        { icon: <Search className="w-8 h-8" />, title: "1. Diagnóstico", desc: "Auditoria técnica completa." },
+        { icon: <PenTool className="w-8 h-8" />, title: "2. Arquitetura", desc: "Design de conversão." },
+        { icon: <Rocket className="w-8 h-8" />, title: "3. Deploy", desc: "Seu site performático no ar." }
       ].map((step, idx) => (
         <div key={idx} className="relative z-10 flex flex-col items-center text-center">
           <div className="w-24 h-24 rounded-full bg-[#0a0a0a] border border-slate-700 flex items-center justify-center mb-6 shadow-xl text-slate-200">{step.icon}</div>
@@ -154,10 +159,10 @@ const WhyChooseUs = () => (
   <Section className="border-t border-white/5">
     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
       {[
-        { icon: <Clock className="w-6 h-6 text-indigo-400" />, title: "Velocidade", desc: "Pronto em dias." },
-        { icon: <DollarSign className="w-6 h-6 text-green-400" />, title: "Custo Acessível", desc: "Qualidade High-End." },
-        { icon: <UserCheck className="w-6 h-6 text-blue-400" />, title: "Suporte Humano", desc: "Direto com o dev." },
-        { icon: <ShieldCheck className="w-6 h-6 text-slate-400" />, title: "Confiabilidade", desc: "Tecnologia segura." }
+        { icon: <Clock className="w-6 h-6 text-indigo-400" />, title: "Implementação Rápida", desc: "72h para o ar." },
+        { icon: <DollarSign className="w-6 h-6 text-green-400" />, title: "ROI Comprovado", desc: "Escalável." },
+        { icon: <UserCheck className="w-6 h-6 text-blue-400" />, title: "Consultoria Estratégica", desc: "Com especialista." },
+        { icon: <ShieldCheck className="w-6 h-6 text-slate-400" />, title: "Infraestrutura Segura", desc: "Enterprise-grade." }
       ].map((reason, idx) => (
         <div key={idx} className="flex flex-col gap-4 p-6 rounded-lg hover:bg-white/5 transition-colors">
           <div className="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center">{reason.icon}</div>
@@ -172,14 +177,19 @@ const Testimonials = () => (
   <Section className="bg-gradient-to-b from-[#0a0a0a] to-deep-emerald/20">
     <div className="grid md:grid-cols-3 gap-8">
       {[
-        { quote: "A velocidade de entrega foi impressionante.", author: "Ricardo S.", role: "Arquiteto" },
-        { quote: "Minimalista e direto ao ponto.", author: "Ana Beatriz", role: "Clínica de Estética" },
-        { quote: "A Marroc Solutions entendeu a estética que eu buscava.", author: "Felipe Mendes", role: "Fotógrafo" }
+        { quote: "O site carrega em menos de 2s. As conversões subiram 45%.", author: "Ricardo S.", role: "E-commerce" },
+        { quote: "A automação otimizou nosso atendimento. Ganhamos 20h semanais.", author: "Ana Beatriz", role: "Consultório" },
+        { quote: "Aumentamos o tráfego orgânico em 3x em 4 meses.", author: "Felipe Mendes", role: "SaaS" }
       ].map((t, idx) => (
         <div key={idx} className="bg-[#171717]/60 backdrop-blur-xl border border-white/5 p-8 rounded-xl relative">
           <Quote className="absolute top-6 left-6 w-8 h-8 text-neon-green/20" />
           <p className="text-slate-300 italic mb-6 relative z-10 pt-4">"{t.quote}"</p>
           <div><p className="font-bold text-white">{t.author}</p><p className="text-xs text-slate-500 uppercase tracking-wider">{t.role}</p></div>
+          <div className="mt-6">
+            <a href="https://wa.me/5521992669980?text=Quero%20resultados%20como%20esses" className="text-xs font-bold text-neon-green hover:text-white transition-colors">
+              Falar com Consultor →
+            </a>
+          </div>
         </div>
       ))}
     </div>
@@ -222,28 +232,28 @@ const OracleSection = () => {
             <div className="absolute top-0 right-0 w-64 h-64 bg-neon-green/10 rounded-full blur-3xl pointer-events-none"></div>
             <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <div className="flex items-center gap-2 text-neon-green mb-2"><Terminal size={16} /><span className="text-xs font-mono uppercase">System Check</span></div>
-                    <h3 className="text-3xl font-serif text-white mb-4">Sua marca está pronta para o futuro?</h3>
-                    <p className="text-gray-400 mb-8">O Oráculo analisa a "alma digital" do seu site atual em busca de falhas de performance.</p>
+                    <div className="flex items-center gap-2 text-neon-green mb-2"><Terminal size={16} /><span className="text-xs font-mono uppercase">Auditoria Técnica</span></div>
+                    <h3 className="text-3xl font-serif text-white mb-4">Seu site está pronto para converter?</h3>
+                    <p className="text-gray-400 mb-8">Auditoria técnica de performance e conversão. Identifique gargalos que custam vendas.</p>
                     <form onSubmit={handleAudit} className="space-y-4">
                         <input type="text" placeholder="Seu site (ex: marroc.xyz)" value={url} onChange={(e) => setUrl(e.target.value)} className="bg-black/50 border border-white/20 text-white px-4 py-3 rounded-lg w-full focus:outline-none focus:border-neon-green font-mono text-sm" required />
                         <div className="flex flex-col sm:flex-row gap-3">
                             <input type="email" placeholder="Seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-black/50 border border-white/20 text-white px-4 py-3 rounded-lg w-full focus:outline-none focus:border-neon-green font-mono text-sm" required />
-                            <button type="submit" disabled={loading} className="bg-neon-green hover:bg-white hover:text-black text-black font-bold px-6 py-3 rounded-lg transition-colors whitespace-nowrap flex items-center justify-center gap-2 disabled:opacity-50">{loading ? <Loader2 className="animate-spin w-4 h-4" /> : <Zap className="w-4 h-4" />}{loading ? "Lendo..." : "Analisar"}</button>
+                            <button type="submit" disabled={loading} className="bg-neon-green hover:bg-white hover:text-black text-black font-bold px-6 py-3 rounded-lg transition-colors whitespace-nowrap flex items-center justify-center gap-2 disabled:opacity-50">{loading ? <Loader2 className="animate-spin w-4 h-4" /> : <Zap className="w-4 h-4" />}{loading ? "Analisando..." : "Analisar"}</button>
                         </div>
                         {loading && <p className="text-xs text-neon-green font-mono animate-pulse mt-2">{`> ${LOADING_STEPS[loadingMsgIndex]}`}</p>}
                     </form>
                 </div>
-                <div className="hidden md:block font-mono text-xs text-green-500/50 bg-black/50 p-6 rounded-lg border border-white/5 leading-loose h-full min-h-[250px]"><p>{`> Initiating protocol...`}</p><p>{`> Connecting to Neural Node...`}</p><p>{`> Status: AWAITING_INPUT`}</p></div>
+                <div className="hidden md:block font-mono text-xs text-green-500/50 bg-black/50 p-6 rounded-lg border border-white/5 leading-loose h-full min-h-[250px]"><p>{`> Initiating audit...`}</p><p>{`> Scanning performance metrics...`}</p><p>{`> Status: AWAITING_INPUT`}</p></div>
             </div>
         </div>
         {/* Modal Simplificado */}
         {result && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
                 <div className="bg-[#0a0a0a] border border-neon-green/30 w-full max-w-2xl rounded-2xl shadow-2xl max-h-[85vh] flex flex-col">
-                    <div className="p-6 border-b border-white/10 flex justify-between items-center"><h3 className="text-xl font-bold text-white">Diagnóstico</h3><button onClick={() => setResult(null)}><X className="text-gray-400 hover:text-white" /></button></div>
+                    <div className="p-6 border-b border-white/10 flex justify-between items-center"><h3 className="text-xl font-bold text-white">Relatório Técnico</h3><button onClick={() => setResult(null)}><X className="text-gray-400 hover:text-white" /></button></div>
                     <div className="p-6 overflow-y-auto custom-scrollbar prose prose-invert prose-green"><div className="whitespace-pre-line text-gray-300">{result}</div></div>
-                    <div className="p-6 border-t border-white/10 bg-[#0f0f0f]"><a href={`https://wa.me/5521992669980?text=Ol%C3%A1%2C%20o%20Or%C3%A1culo%20analisou%20meu%20site.`} target="_blank" className="block w-full text-center bg-neon-green text-black font-bold py-4 rounded-lg hover:bg-white transition-all">Solicitar Correção</a></div>
+                    <div className="p-6 border-t border-white/10 bg-[#0f0f0f]"><a href={`https://wa.me/5521992669980?text=Ol%C3%A1%2C%20analisei%20meu%20site%20no%20Or%C3%A1culo.%20Quero%20falar%20com%20um%20consultor.`} target="_blank" className="block w-full text-center bg-neon-green text-black font-bold py-4 rounded-lg hover:bg-white transition-all">Falar com Consultor</a></div>
                 </div>
             </div>
         )}

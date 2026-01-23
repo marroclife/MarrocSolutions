@@ -184,6 +184,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://solutions.marroc.xyz"),
   title: "Marroc Solutions | Arquitetura Digital B2B",
   description: "Consultoria de Tecnologia, Automação com IA e Desenvolvimento Web High-Ticket.",
   icons: { shortcut: "/favicon.ico" },
@@ -290,7 +291,7 @@ const Section: React.FC<any> = ({ children, id, className = "", classNameInner =
 const Navbar = () => (
   <nav className="fixed w-full z-50 bg-[#050505]/90 backdrop-blur-md border-b border-white/5 py-4">
     <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-      <a href="/" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group">
+      <a href="https://marroc.xyz" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group">
         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
         <span className="text-sm font-medium hidden sm:block">Voltar ao Hub</span>
       </a>
@@ -1473,8 +1474,8 @@ export const Hero: React.FC = () => {
           Mantras, percussões e sopros guiando você por um portal de som e cura.
         </p>
         <div className="mt-8 flex gap-3 flex-wrap">
-          <Link href="/musica" className="btn btn-primary">Ouvir agora</Link>
-          <Link href="/rituais" className="btn btn-outline">Entrar no ritual</Link>
+          <Link href="https://marroc.xyz/musica" className="btn btn-primary">Ouvir agora</Link>
+          <Link href="https://marroc.xyz/rituais" className="btn btn-outline">Entrar no ritual</Link>
         </div>
       </div>
     </section>
@@ -1930,7 +1931,7 @@ export default function LandingPageLivro() {
             O <strong>Guardião da Espiral</strong> pode criar rituais personalizados, legendas poéticas e insights baseados na geometria sagrada para você.
           </p>
           <Link 
-            href="/guardian"
+            href="https://marroc.xyz/guardian"
             className="inline-flex items-center gap-2 px-8 py-4 border border-tech-cyan text-tech-cyan hover:bg-tech-cyan hover:text-black transition-all duration-300 font-mono text-sm tracking-widest uppercase rounded"
           >
             Acessar o Guardião <ArrowRight size={16} />
@@ -2097,7 +2098,7 @@ export function HigherHzSection() {
             {/* Link para a página interna Higher Hz */}
             <div className="pt-4 flex justify-end lg:justify-start">
               <Link 
-                href="/higher-hz"
+                href="https://marroc.xyz/higher-hz"
                 className="group inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 font-bold uppercase tracking-wider text-sm transition-colors"
               >
                 Entrar na Frequência <ArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -2160,7 +2161,7 @@ export function MarrocSection() {
             <div className="flex flex-wrap gap-4 pt-4">
                {/* Link para a página interna de Música */}
                <Link 
-                 href="/musica" 
+                 href="https://marroc.xyz/musica" 
                  className="px-6 py-3 border border-white/30 text-white font-bold rounded-full hover:bg-white hover:text-black transition flex items-center gap-2"
                >
                  Explorar o Som <ArrowRight size={18} />
@@ -2168,7 +2169,7 @@ export function MarrocSection() {
 
                {/* Link para Agenda */}
                <Link 
-                 href="/agenda" 
+                 href="https://marroc.xyz/agenda" 
                  className="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition flex items-center gap-2"
                >
                  <Calendar size={18} /> Ver Agenda
@@ -2504,10 +2505,10 @@ export function SolutionsSection() {
           </div>
 
           <Link 
-            href="/marrocsolutions" 
+            href="https://marroc.xyz" 
             className="group flex items-center gap-2 text-white border-b border-white/30 pb-1 hover:border-cyan-400 hover:text-cyan-400 transition-all"
           >
-            Conhecer a Divisão <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
+            Voltar para Marroc <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
           </Link>
         </div>
 
@@ -2813,7 +2814,7 @@ export default function Header() {
     <header className={headerClasses}>
       <div className="container h-14 md:h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2" aria-label="Ir para a home">
+        <Link href="https://marroc.xyz" className="flex items-center gap-2" aria-label="Ir para a home">
           <Image
             src="/marroc.png"
             alt="Marroc"
@@ -2945,7 +2946,7 @@ export function AboutTeaser() {
             </p>
           </div>
           <Link
-            href="/sobre"
+            href="https://marroc.xyz/sobre"
             className="inline-flex mt-6 items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 ring-offset-2 ring-gold bg-gold text-ink hover:opacity-90"
           >
             Ler completo
@@ -3339,7 +3340,7 @@ export function ImpactoHome() {
           Veja o relatório mais recente com entradas e saídas dedicadas ao projeto.
         </p>
         <Link
-          href="/impacto"
+          href="https://marroc.xyz/impacto"
           className="inline-flex items-center justify-center rounded-2xl px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 ring-offset-2 ring-gold bg-gold text-ink hover:opacity-90"
         >
           Acessar transparência
@@ -4047,6 +4048,20 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb'
     }
+  },
+  async redirects() {
+    return [
+      {
+        source: '/marrocsolutions/:path*',
+        destination: 'https://solutions.marroc.xyz/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*/marrocsolutions/:path2*',
+        destination: 'https://solutions.marroc.xyz/:path2*',
+        permanent: true,
+      },
+    ]
   }
 }
 export default nextConfig;

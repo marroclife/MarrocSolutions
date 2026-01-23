@@ -56,7 +56,7 @@ const PriceCard = ({ title, description, oldPrice, price, monthly, features, isH
       target="_blank" 
       className={`block w-full py-3 text-center rounded-lg font-bold text-sm uppercase tracking-widest transition-all ${isHighlight ? 'bg-neon-green text-black hover:bg-white' : 'border border-white/20 text-white hover:bg-white hover:text-black'}`}
     >
-      Contratar
+      Falar com Consultor
     </a>
   </div>
 );
@@ -70,15 +70,11 @@ export function PricingSection() {
         
         {/* CABEÇALHO DA OFERTA */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-red-900/20 border border-red-500/30 mb-6">
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-            <span className="text-xs font-bold text-red-400 uppercase tracking-widest">Oferta de Natal • Até 31/12</span>
-          </div>
           <h2 className="font-display text-3xl md:text-5xl text-white mb-4">
-            Escolha seu Arsenal
+            Arquitetura de Resultado
           </h2>
           <p className="text-gray-400 font-mono text-sm max-w-xl mx-auto">
-            PREÇOS PROMOCIONAIS ATIVADOS. ARQUITETURA DIGITAL & INTELIGÊNCIA ARTIFICIAL.
+            INFRAESTRUTURA DIGITAL ESCALÁVEL. INVESTIMENTO EM CRESCIMENTO.
           </p>
         </div>
 
@@ -111,31 +107,28 @@ export function PricingSection() {
               type="site"
               title="Landing Page (LP)"
               description="Foco total em conversão. Ideal para tráfego pago e lançamentos."
-              oldPrice="R$ 1.500"
-              price="R$ 1.200"
+              price="A partir de R$ 1.500"
               isHighlight={false}
-              features={["Site One-Page (Página Única)", "Design Persuasivo", "Carregamento Ultrarrápido", "Botão WhatsApp Flutuante", "Configuração de Pixel Básica"]}
-              link="https://wa.me/5521992669980?text=Quero%20aproveitar%20a%20promo%20da%20Landing%20Page"
+              features={["Site One-Page (Página Única)", "Design de Conversão", "Carregamento < 2s", "Integração WhatsApp", "Pixel e Analytics Básicos"]}
+              link="https://wa.me/5521992669980?text=Quero%20uma%20Landing%20Page%20de%20alta%20performance"
             />
             <PriceCard 
               type="site"
               title="Institucional (QG)"
-              description="Branding e Autoridade. A sede oficial da sua marca na internet."
-              oldPrice="R$ 3.500"
-              price="R$ 2.800"
+              description="Autoridade e presença profissional. Sua sede digital."
+              price="A partir de R$ 2.800"
               isHighlight={true}
-              features={["Até 5 Páginas Internas", "Tecnologia Next.js (Alta Performance)", "SEO Estrutural (Google)", "CMS Gerenciável", "Domínio Grátis (1 ano)"]}
-              link="https://wa.me/5521992669980?text=Quero%20o%20Site%20Institucional%20com%20desconto"
+              features={["Até 5 Páginas Internas", "Next.js (Ultra Rápido)", "SEO Estrutural", "CMS Gerenciável", "Domínio + SSL Grátis"]}
+              link="https://wa.me/5521992669980?text=Quero%20um%20Site%20Institucional%20profissional"
             />
             <PriceCard 
               type="site"
               title="E-commerce"
-              description="Vendas complexas, catálogo dinâmico e área do cliente."
-              price="Sob Consulta"
-              monthly="A partir de R$ 5k"
+              description="Vendas complexas, catálogo dinâmico e gestão total."
+              price="A partir de R$ 6.500"
               isHighlight={false}
-              features={["Carrinho de Compras", "Cálculo de Frete", "Gateway de Pagamento", "Painel Administrativo", "Integração ERP"]}
-              link="https://wa.me/5521992669980?text=Preciso%20de%20um%20Ecommerce"
+              features={["Carrinho + Checkout", "Cálculo Automático de Frete", "Múltiplos Gateways", "Painel Admin", "Integração ERP"]}
+              link="https://wa.me/5521992669980?text=Preciso%20de%20um%20Ecommerce%20robusto"
             />
           </motion.div>
         )}
@@ -186,12 +179,12 @@ export function PricingSection() {
         {/* BANNER DO COMBO */}
         <div className="mt-16 p-8 rounded-2xl bg-gradient-to-r from-neon-green/20 to-deep-emerald/20 border border-neon-green/30 text-center relative overflow-hidden">
            <div className="relative z-10">
-              <h3 className="text-neon-green font-display text-2xl mb-2">🎁 O COMBO SUPREMO</h3>
+              <h3 className="text-neon-green font-display text-2xl mb-2">🚀 O COMBO SUPREMO</h3>
               <p className="text-white text-lg max-w-2xl mx-auto mb-6">
-                Contrate <strong>Site + Automação</strong> juntos e ganhe <span className="text-neon-green font-bold">20% DE DESCONTO EXTRA</span> no total do setup.
+                Contrate <strong>Site + Automação</strong> juntos e ganhe <span className="text-neon-green font-bold">20% DE DESCONTO EXTRA</span> no total do investimento.
               </p>
-              <a href="https://wa.me/5521992669980?text=Quero%20o%20Combo%20Supremo%20(Site%20%2B%20Bot)" target="_blank" className="inline-block px-8 py-3 bg-neon-green text-black font-bold rounded-lg hover:bg-white transition-colors uppercase tracking-widest text-sm">
-                Quero o Combo
+              <a href="https://wa.me/5521992669980?text=Quero%20negociar%20o%20Combo%20Supremo%20(Site%20%2B%20Automação%20IA)" target="_blank" className="inline-block px-8 py-3 bg-neon-green text-black font-bold rounded-lg hover:bg-white transition-colors uppercase tracking-widest text-sm">
+                Agendar Diagnóstico
               </a>
            </div>
            {/* Efeito de fundo */}
