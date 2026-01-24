@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { obterProjetoPorSlug } from "@/lib/propostas";
-import { PropostaBlocoContexto } from "@/components/proposals/PropostaBlocoContexto";
-import { PropostaBlocoObjetivos } from "@/components/proposals/PropostaBlocoObjetivos";
-import { PropostaBlocoEstrutura } from "@/components/proposals/PropostaBlocoEstrutura";
-import { PropostaBlocoEvolucao } from "@/components/proposals/PropostaBlocoEvolucao";
-import { PropostaBlocoProximoPasso } from "@/components/proposals/PropostaBlocoProximoPasso";
-import { PasswordModal } from "@/components/proposals/PasswordModal";
+import { obterProjetoPorSlug } from "../../../lib/propostas";
+import { PropostaBlocoContexto } from "../../../components/proposals/PropostaBlocoContexto";
+import { PropostaBlocoObjetivos } from "../../../components/proposals/PropostaBlocoObjetivos";
+import { PropostaBlocoEstrutura } from "../../../components/proposals/PropostaBlocoEstrutura";
+import { PropostaBlocoEvolucao } from "../../../components/proposals/PropostaBlocoEvolucao";
+import { PropostaBlocoProximoPasso } from "../../../components/proposals/PropostaBlocoProximoPasso";
+import { PasswordModal } from "../../../components/proposals/PasswordModal";
 import { ArrowLeft, Film } from "lucide-react";
 
 export default function PropostaPaginaIndividual() {

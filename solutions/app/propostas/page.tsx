@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { listarTodosProjetos } from "@/lib/propostas";
-import { ProjetaCard } from "@/components/proposals/ProjetaCard";
+import { listarTodosProjetos } from "../../lib/propostas";
+import { ProjetaCard } from "../../components/proposals/ProjetaCard";
 import { Hexagon, ArrowRight } from "lucide-react";
 
 export default function PropostasPage() {
