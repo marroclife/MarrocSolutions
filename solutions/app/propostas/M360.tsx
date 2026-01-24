@@ -25,9 +25,9 @@ const Section = ({ children, className = "" }: { children: React.ReactNode; clas
   </section>
 );
 
-const Button = ({ children, onClick, variant = 'primary', className = '', icon: Icon }: { children: React.ReactNode; onClick?: () => void; variant?: string; className?: string; icon?: any }) => {
+const Button = ({ children, onClick, variant = 'primary', className = '', icon: Icon }: { children: React.ReactNode; onClick?: () => void; variant?: 'primary' | 'outline' | 'whatsapp'; className?: string; icon?: any }) => {
   const baseStyle = "inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-sm";
-  const variants = {
+  const variants: Record<'primary' | 'outline' | 'whatsapp', string> = {
     primary: `${BRAND_COLORS.primary} text-white ${BRAND_COLORS.primaryHover}`,
     outline: `border-2 border-emerald-800 text-emerald-800 hover:bg-emerald-50`,
     whatsapp: "bg-green-600 hover:bg-green-700 text-white"
