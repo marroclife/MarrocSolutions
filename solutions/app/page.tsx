@@ -275,6 +275,33 @@ const OracleSection = () => {
   );
 };
 
+const PropostasPreview = () => (
+  <Section className="mt-20 container mx-auto px-6 max-w-6xl py-20">
+    <div className="rounded-3xl bg-gradient-to-r from-deep-emerald/10 via-[#050505] to-neon-green/5 border border-neon-green/20 p-8 md:p-16 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-96 h-96 bg-neon-green/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="relative z-10 text-center max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-green/30 bg-neon-green/10 mb-6">
+          <Hexagon className="w-3 h-3 text-neon-green" />
+          <span className="text-xs font-medium text-neon-green tracking-wide uppercase">Propostas em Andamento</span>
+        </div>
+        <h3 className="text-3xl md:text-4xl font-display font-bold text-white mb-4 leading-tight">
+          Já tem uma proposta em andamento?
+        </h3>
+        <p className="text-slate-400 text-lg leading-relaxed mb-8">
+          Explore nossas propostas estruturadas e veja como estamos transformando ideias em experiências digitais reais.
+        </p>
+        <a 
+          href="/propostas" 
+          className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-green text-black font-bold rounded-lg hover:bg-white transition-all duration-300 group shadow-lg hover:shadow-[0_0_30px_rgba(0,255,148,0.3)]"
+        >
+          <span>Explorar Propostas</span>
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </a>
+      </div>
+    </div>
+  </Section>
+);
+
 // --- RENDERIZAÇÃO FINAL DA PÁGINA ---
 export default function MarrocSolutionsPage() {
   return (
@@ -288,6 +315,7 @@ export default function MarrocSolutionsPage() {
         <PricingSection />  {/* Preços adicionados */}
         <WhyChooseUs />
         <Testimonials />
+        <PropostasPreview />
         <OracleSection />   {/* Oráculo no final */}
         <div className="pb-20"></div>
       </main>
