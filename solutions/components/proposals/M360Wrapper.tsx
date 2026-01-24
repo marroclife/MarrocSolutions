@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import React from 'react';
 
 // Carrega o M360 dinamicamente para evitar problemas
-const M360Component = dynamic(() => import('@/app/propostas/M360').then(mod => ({ default: mod.default })), {
+const M360Component = dynamic(() => import('../../app/propostas/M360').then(mod => ({ default: mod.default })), {
   loading: () => (
     <div className="w-full h-screen flex items-center justify-center bg-[#050505]">
       <div className="text-center">
