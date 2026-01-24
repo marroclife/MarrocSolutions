@@ -17,7 +17,7 @@ const WHATSAPP_NUMBER = "5521999999999"; // Mantido placeholder para proteção,
 
 // --- COMPONENTES UI REUTILIZÁVEIS ---
 
-const Section = ({ children, className = "" }) => (
+const Section = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
   <section className={`py-16 px-6 md:px-12 lg:px-24 ${className}`}>
     <div className="max-w-7xl mx-auto">
       {children}
@@ -25,7 +25,7 @@ const Section = ({ children, className = "" }) => (
   </section>
 );
 
-const Button = ({ children, onClick, variant = 'primary', className = '', icon: Icon }) => {
+const Button = ({ children, onClick, variant = 'primary', className = '', icon: Icon }: { children: React.ReactNode; onClick?: () => void; variant?: string; className?: string; icon?: any }) => {
   const baseStyle = "inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-sm";
   const variants = {
     primary: `${BRAND_COLORS.primary} text-white ${BRAND_COLORS.primaryHover}`,
@@ -41,7 +41,7 @@ const Button = ({ children, onClick, variant = 'primary', className = '', icon: 
   );
 };
 
-const SectionTitle = ({ title, subtitle }) => (
+const SectionTitle = ({ title, subtitle }: { title: string; subtitle?: string }) => (
   <div className="mb-12 text-center">
     <h2 className={`text-3xl md:text-4xl font-serif font-bold ${BRAND_COLORS.textMain} mb-4`}>{title}</h2>
     {subtitle && <p className={`text-lg ${BRAND_COLORS.textLight} max-w-2xl mx-auto`}>{subtitle}</p>}
@@ -51,7 +51,7 @@ const SectionTitle = ({ title, subtitle }) => (
 
 // --- PÁGINAS ---
 
-const HomePage = ({ navigate }) => (
+const HomePage = ({ navigate }: { navigate: (page: string) => void }) => (
   <div className="animate-fade-in">
     {/* Hero Section */}
     <div className="relative h-[85vh] w-full flex items-center justify-center overflow-hidden">
@@ -196,7 +196,7 @@ const MansionPage = () => (
   </div>
 );
 
-const ServicePage = ({ title, subtitle, features, image, ctaText, icon: Icon, extraInfo }) => (
+const ServicePage = ({ title, subtitle, features, image, ctaText, icon: Icon, extraInfo }: { title: string; subtitle: string; features: any[]; image: string; ctaText: string; icon: any; extraInfo?: string }) => (
   <div className="animate-fade-in">
     <div className="h-64 md:h-80 w-full relative overflow-hidden">
         <div className="absolute inset-0 bg-slate-900/50 z-10"></div>
@@ -240,7 +240,7 @@ const ServicePage = ({ title, subtitle, features, image, ctaText, icon: Icon, ex
 );
 
 const GalleryPage = () => {
-  const images = [
+  const images: Array<{ cat: string; url: string; title: string }> = [
     { cat: "Lazer", url: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", title: "Piscina com Vista" },
     { cat: "Suítes", url: "https://images.unsplash.com/photo-1616594039964-40891a913d54?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", title: "Suítes Confortáveis" },
     { cat: "Lazer", url: "https://images.unsplash.com/photo-1596568461741-2a149c40db21?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80", title: "Sinuca e Jogos" },
@@ -342,7 +342,7 @@ const ContactPage = () => (
 
 // --- COMPONENTE PRINCIPAL (LAYOUT) ---
 
-export default function App({ hideHeader = false }) {
+export default function App({ hideHeader = false }: { hideHeader?: boolean }) {
   const [currentPage, setCurrentPage] = useState('inicio');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
