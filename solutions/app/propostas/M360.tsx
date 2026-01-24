@@ -57,7 +57,7 @@ const HomePage = ({ navigate }: { navigate: (page: string) => void }) => (
     <div className="relative h-[85vh] w-full flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-slate-900/40 z-10"></div>
       <img 
-        src="https://static.wixstatic.com/media/766e0b_5240be6db34440bbab4e36f758051278~mv2.jpeg/v1/fill/w_588,h_914,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/766e0b_5240be6db34440bbab4e36f758051278~mv2.jpeg" alt="area gourmet de cima.jpeg" 
+        src="https://static.wixstatic.com/media/766e0b_5240be6db34440bbab4e36f758051278~mv2.jpeg/v1/fill/w_588,h_914,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/766e0b_5240be6db34440bbab4e36f758051278~mv2.jpeg" 
         alt="Mansão 360 Vista Aérea" 
         className="absolute inset-0 w-full h-full object-cover"
       />
