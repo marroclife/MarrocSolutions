@@ -12,3 +12,9 @@ export const OG = {
   twitter: "@marroc_life",
   
 };
+// Contact Information
+export const CONTACT = {
+  whatsapp: "5511999999999", // Substitua pelo número real
+  email: "contato@marrocsolutions.com",
+  instagram: "@marrocsolutions",
+};

@@ -5,6 +5,12 @@ import { listarTodosProjetos } from "../../lib/propostas";
 import { ProjetaCard } from "../../components/proposals/ProjetaCard";
 import { Hexagon, ArrowRight } from "lucide-react";
 
+export const CONTACT = {
+  whatsapp: "5521992669980", // ← Substitua pelo seu número real
+  email: "contato@marrocsolutions.com",
+  instagram: "@marroc.solutions",
+};
+
 export default function PropostasPage() {
   const projetos = listarTodosProjetos();
 
@@ -21,7 +27,9 @@ export default function PropostasPage() {
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-green/30 bg-neon-green/10 mb-6">
             <Hexagon className="w-4 h-4 text-neon-green" />
-            <span className="text-xs font-medium text-neon-green tracking-wide uppercase">Propostas Estruturadas</span>
+            <span className="text-xs font-medium text-neon-green tracking-wide uppercase">
+              Propostas Estruturadas
+            </span>
           </div>
 
           <h1 className="font-display text-5xl md:text-6xl font-semibold text-white mb-6 leading-tight">
@@ -33,7 +41,8 @@ export default function PropostasPage() {
           </p>
 
           <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-2xl mx-auto mb-16 font-light">
-            O objetivo é facilitar o entendimento da estrutura e da proposta, não representar uma decisão final.
+            O objetivo é facilitar o entendimento da estrutura e da proposta, não
+            representar uma decisão final.
           </p>
 
           {/* Grid de projetos */}
@@ -62,7 +71,8 @@ export default function PropostasPage() {
             Quer explorar mais detalhes?
           </h2>
           <p className="text-white/70 mb-8">
-            Clique em qualquer proposta acima para conhecer a estrutura completa e entender nossa visão para o projeto.
+            Clique em qualquer proposta acima para conhecer a estrutura completa e
+            entender nossa visão para o projeto.
           </p>
         </div>
       </section>
