@@ -76,7 +76,7 @@ export default function PropostaPaginaIndividual() {
     <main className="bg-[#050505]">
       {/* Header com breadcrumb e voltar */}
       <section className="sticky top-0 z-30 bg-[#050505]/80 backdrop-blur border-b border-white/10 py-4 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
           <button
             onClick={() => router.push("/propostas")}
             className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
@@ -104,7 +104,7 @@ export default function PropostaPaginaIndividual() {
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-neon-green/5 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           <h1 className="font-display text-4xl md:text-5xl font-semibold text-white mb-4">
             {projeto.titulo}
           </h1>
@@ -136,7 +136,7 @@ export default function PropostaPaginaIndividual() {
 
       {/* Footer simples */}
       <section className="py-12 md:py-16 px-6 md:px-12 border-t border-white/10">
-        <div className="max-w-6xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2">
             <a
               href="/propostas"

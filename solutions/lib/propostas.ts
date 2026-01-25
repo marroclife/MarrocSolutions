@@ -46,7 +46,7 @@ export const projetos: ProjetoProposal[] = [
       "Fortalecimento da presença digital própria e independente",
       "Base profissional para crescimento futuro",
     ],
-    mockupUrl: undefined,
+    mockupUrl: "/propostas/mansao-360/mockup",
     mockupDescricao:
       "Esta visualização é um mockup do front-end que demonstra a estrutura, fluxo visual e experiência proposta. Funcionalidades e integrações estarão ativas após implementação.",
     estrutura: {

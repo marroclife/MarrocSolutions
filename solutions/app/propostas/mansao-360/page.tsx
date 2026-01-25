@@ -13,6 +13,7 @@ import { Mansao360Dominio } from "@/components/proposals/Mansao360Dominio";
 import { Mansao360Opcoes } from "@/components/proposals/Mansao360Opcoes";
 import { Mansao360Evolucao } from "@/components/proposals/Mansao360Evolucao";
 import { Mansao360ProximoPasso } from "@/components/proposals/Mansao360ProximoPasso";
+import { PropostaBlocoMockup } from "@/components/proposals/PropostaBlocoMockup";
 import { PasswordModal } from "@/components/proposals/PasswordModal";
 
 export default function Mansao360Page() {
@@ -130,7 +131,14 @@ export default function Mansao360Page() {
         }}
       />
 
-     
+      {/* Visualização Interativa */}
+      <div id="mockup-section">
+        <PropostaBlocoMockup
+          titulo="Mansão 360"
+          mockupUrl="/propostas/mansao-360/mockup"
+          mockupDescricao="Esta visualização é um mockup do front-end que demonstra a estrutura, fluxo visual e experiência proposta. Funcionalidades e integrações estarão ativas após implementação."
+        />
+      </div>
 
       {/* Domínio */}
       <Mansao360Dominio />

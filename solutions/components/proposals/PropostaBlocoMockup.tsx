@@ -14,48 +14,57 @@ export const PropostaBlocoMockup: React.FC<PropostaBlocoMockupProps> = ({
   return (
     <section className="py-12 md:py-16 px-6 md:px-12">
       <div className="max-w-4xl mx-auto">
-        <h2 className="font-display text-2xl md:text-3xl font-semibold text-white mb-8">
+        {/* Título */}
+        <h2 className="font-display text-2xl md:text-3xl font-semibold text-white mb-6">
           Visualização Interativa
         </h2>
 
+        {/* Aviso institucional */}
         {mockupDescricao && (
-          <p className="text-base md:text-lg text-white/80 leading-relaxed mb-8 p-4 bg-white/5 rounded-lg border border-white/10">
-            {mockupDescricao}
-          </p>
+          <div className="mb-6 rounded-lg border border-white/10 bg-white/5 px-5 py-4">
+            <p className="text-sm md:text-base text-white/80 leading-relaxed">
+              {mockupDescricao}
+            </p>
+          </div>
         )}
 
-        <div className="bg-white/5 border border-white/10 rounded-xl overflow-hidden aspect-video md:aspect-auto md:min-h-[600px] flex items-center justify-center p-6">
+        {/* Container do Mockup */}
+        <div className="relative bg-white/5 border border-white/10 rounded-xl overflow-hidden h-[500px] md:h-[800px]">
           {mockupUrl ? (
             <iframe
               src={mockupUrl}
               title={`Mockup ${titulo}`}
-              className="w-full h-full border-0 rounded-lg"
-              allowFullScreen
+              className="w-full h-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer"
             />
           ) : (
-            <div className="text-center">
-              <div className="w-16 h-16 bg-white/10 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                <svg
-                  className="w-8 h-8 text-white/40"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2 1m0 0L10 4m2 1V6m6-4l-2 1m2-1l-2-1m2 1v2.5"
-                  />
-                </svg>
+            <div className="h-full flex items-center justify-center px-6">
+              <div className="text-center max-w-sm">
+                <div className="w-16 h-16 bg-white/10 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8 text-white/40"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M12 6v6l4 2"
+                    />
+                  </svg>
+                </div>
+                <p className="text-white/60 text-sm">
+                  Mockup será adicionado em breve
+                </p>
               </div>
-              <p className="text-white/60">
-                Mockup será adicionado em breve
-              </p>
             </div>
           )}
         </div>
 
+        {/* Abrir em nova aba */}
         {mockupUrl && (
           <div className="mt-4 text-center">
             <a

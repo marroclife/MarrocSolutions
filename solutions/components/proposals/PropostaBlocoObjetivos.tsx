@@ -10,7 +10,7 @@ export const PropostaBlocoObjetivos: React.FC<PropostaBlocoObjetivosProps> = ({
 }) => {
   return (
     <section className="py-12 md:py-16 px-6 md:px-12 bg-white/5">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h2 className="font-display text-2xl md:text-3xl font-semibold text-white mb-8">
           Objetivo do Projeto
         </h2>

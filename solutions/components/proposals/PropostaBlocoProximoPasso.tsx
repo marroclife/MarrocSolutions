@@ -3,7 +3,7 @@ import React from "react";
 export const PropostaBlocoProximoPasso: React.FC = () => {
   return (
     <section className="py-12 md:py-16 px-6 md:px-12 bg-gradient-to-b from-white/5 to-transparent border-t border-white/10">
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-6xl mx-auto text-center">
         <h2 className="font-display text-2xl md:text-3xl font-semibold text-white mb-6">
           Próximo Passo
         </h2>
