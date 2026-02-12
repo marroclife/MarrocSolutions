@@ -25,55 +25,100 @@ export interface ProjetoProposal {
 
 export const projetos: ProjetoProposal[] = [
   {
+    id: "serra-no-topo",
+    slug: "serra-no-topo",
+    titulo: "Serra no Topo",
+    descricaoBreve:
+      "Hub de visibilidade e presença digital para negócios da Serra do Piloto",
+    senha: "SERRA", // Se precisar de senha, senão removemos a lógica
+    contexto: {
+      tipoDenegocio: "Comércio Local / Turismo",
+      situacao:
+        "Negócios locais com excelente potencial mas invisíveis digitalmente para turistas e novos clientes",
+      necessidadePrincipal:
+        "Criar uma vitrine digital profissional, acessível e focada em conversão para WhatsApp",
+    },
+    objetivos: [
+      "Posicionar a Serra do Piloto no mapa digital",
+      "Aumentar a visibilidade de comércios locais",
+      "Facilitar o contato direto via WhatsApp",
+      "Criar senso de comunidade e autoridade local",
+    ],
+    mockupUrl: "/serra-no-topo",
+    mockupDescricao:
+      "Apresentação do conceito 'Hub Digital' com 3 exemplos práticos de aplicação para negócios reais da região.",
+    estrutura: {
+      paginas: ["Hub Principal", "Agropec", "Padaria & Coisas", "Art-Café"],
+      organizacao:
+        "Página centralizadora (Hub) que distribui tráfego para páginas dedicadas de cada parceiro",
+      logicaNavegacao:
+        "Foco total em conversão: Entendeu o valor -> Clicou -> Chamou no WhatsApp",
+    },
+    visaoEvolucao: {
+      faseAtual: [
+        "Lançamento do Portal Serra no Topo",
+        "Páginas One-Page para os parceiros fundadores",
+        "Otimização básica para Google (SEO Local)",
+      ],
+      fasePossivel: [
+        "Expansão para novos comércios",
+        "Guia turístico completo da região",
+        "Sistema de cupons e promoções cruzadas",
+      ],
+    },
+  },
+  {
     id: "mansao-360",
     slug: "mansao-360",
     titulo: "Mansão 360",
     descricaoBreve:
-      "Experiência digital imersiva para apresentação institucional.",
+      "Experiência digital imersiva para apresentação institucional",
     senha: "M360",
     contexto: {
       tipoDenegocio:
-        "Empreendimento de luxo/prestígio que necessita de experiência digital diferenciada",
+        "Hospedagem / espaço de locação de alto padrão",
       situacao:
-        "Apresentações tradicionais em PDF ou presenciais limitavam o alcance e não transmitiam a experiência visual do projeto",
+        "A apresentação da mansão em plataformas tradicionais (Airbnb, PDF) limita o controle sobre a narrativa, reduz a visibilidade própria e não permite um posicionamento premium diferenciado",
       necessidadePrincipal:
-        "Criar uma experiência navegável que comunique escala, qualidade e detalhe arquitetônico de forma clara e envolvente",
+        "Organizar digitalmente os serviços, apresentar a estrutura da mansão com profissionalismo e criar uma base digital própria fora de plataformas de terceiros",
     },
     objetivos: [
-      "Apresentar visualmente o projeto imóvel e seus diferenciais",
-      "Permitir navegação por diferentes áreas e serviços",
-      "Facilitar entendimento da estrutura arquitetônica",
-      "Criar momento de impacto que anteceda conversas comerciais",
-      "Disponibilizar ferramenta compartilhável entre stakeholders",
+      "Apresentação visual clara da mansão e seus diferenciais",
+      "Organização por tipo de serviço (Day Use, Suítes, Eventos, Locação Completa)",
+      "Direcionamento inteligente para WhatsApp",
+      "Fortalecimento da presença digital própria e independente",
+      "Base profissional para crescimento futuro",
     ],
-    mockupUrl: "https://framer.com/projects", // URL de exemplo
+    mockupUrl: "/propostas/mansao-360/mockup",
     mockupDescricao:
-      "Esta visualização é um mockup navegável criado para facilitar o entendimento da estrutura e da experiência proposta. Você pode interagir com as diferentes seções e observar como a navegação se organiza.",
+      "Esta visualização é um mockup do front-end que demonstra a estrutura, fluxo visual e experiência proposta. Funcionalidades e integrações estarão ativas após implementação.",
     estrutura: {
       paginas: [
-        "Home/Apresentação",
-        "Galeria Visual",
-        "Detalhes Arquitetônicos",
-        "Serviços e Amenidades",
-        "Localização e Entorno",
-        "Formulário de Interesse",
+        "Início",
+        "A Mansão",
+        "Day Use",
+        "Suítes",
+        "Eventos",
+        "Locação Completa",
+        "Galeria",
+        "Contato",
       ],
       organizacao:
-        "Organização por áreas principais do empreendimento, com subnav para detalhes técnicos e comerciais",
+        "Site institucional com navegação por tipos de serviço, permitindo que cada tipo de cliente (turista, empresas, eventos) encontre facilmente o que procura",
       logicaNavegacao:
-        "Navegação intuitiva com breadcrumbs, permitindo voltar a qualquer momento e explorar áreas em qualquer ordem",
+        "Navegação clara e intuitiva com direcionamento estratégico para WhatsApp, garantindo que o cliente possa explorar e sair com a impressão correta sobre a mansão",
     },
     visaoEvolucao: {
       faseAtual: [
-        "Apresentação visual estática com galerria e textos descritivos",
-        "Formulário básico de captura de interesse",
-        "Responsividade mobile/tablet completa",
+        "Site institucional responsivo com estrutura completa",
+        "Apresentação visual profissional com galeria de imagens",
+        "Direcionamento inteligente para WhatsApp",
       ],
       fasePossivel: [
-        "Incorporação de tour virtual 360° ou vídeos imersivos",
-        "Integração com CRM para acompanhar interações",
-        "Simulação de diferentes períodos (dia/noite, estações)",
-        "Chat em tempo real para dúvidas técnicas",
+        "Fase 2: Automação de WhatsApp com IA",
+        "Atendimento automatizado 24/7",
+        "Qualificação inteligente de leads",
+        "Organização automática de agendamentos",
       ],
     },
   },
