@@ -8,9 +8,13 @@ interface ProjetaCardProps {
 }
 
 export const ProjetaCard: React.FC<ProjetaCardProps> = ({ projeto }) => {
+  // Se tiver mockupUrl definido (como no Serra no Topo), vai direto pra lá.
+  // Senão, vai pra página de detalhes padrão.
+  const linkDestino = projeto.mockupUrl || `/propostas/${projeto.slug}`;
+
   return (
     <Link
-      href={`/propostas/${projeto.slug}`}
+      href={linkDestino}
       className="group relative rounded-xl overflow-hidden transition-all duration-300 hover:scale-105"
     >
       {/* Background com gradiente */}
