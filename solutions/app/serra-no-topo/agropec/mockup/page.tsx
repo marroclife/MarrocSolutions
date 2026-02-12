@@ -25,7 +25,7 @@ export default function AgropecMockup() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/50 to-transparent z-10"></div>
           <img 
-            src="https://images.unsplash.com/photo-1625246333195-58f21c41dd10?q=80&w=2070&auto=format&fit=crop" 
+            src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=2070&auto=format&fit=crop" 
             alt="Agropec Background" 
             className="w-full h-full object-cover opacity-60"
           />

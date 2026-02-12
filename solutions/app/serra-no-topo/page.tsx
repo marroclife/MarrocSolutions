@@ -24,7 +24,7 @@ export default function SerraNoTopoHub() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           {/* Card 1: Agropec */}
-          <a href="/solutions/app/serra-no-topo/agropec/mockup" className="group block relative h-96 rounded-2xl overflow-hidden border border-white/10 hover:border-emerald-500/50 transition-all duration-300">
+          <a href="/serra-no-topo/agropec/mockup" className="group block relative h-96 rounded-2xl overflow-hidden border border-white/10 hover:border-emerald-500/50 transition-all duration-300">
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1932&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-110"></div>
             <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300"></div>
             <div className="absolute bottom-0 left-0 p-8 w-full">
@@ -37,7 +37,7 @@ export default function SerraNoTopoHub() {
           </a>
 
           {/* Card 2: Padaria & Coisas */}
-          <a href="/solutions/app/serra-no-topo/padaria/mockup" className="group block relative h-96 rounded-2xl overflow-hidden border border-white/10 hover:border-amber-500/50 transition-all duration-300">
+          <a href="/serra-no-topo/padaria/mockup" className="group block relative h-96 rounded-2xl overflow-hidden border border-white/10 hover:border-amber-500/50 transition-all duration-300">
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-110"></div>
             <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300"></div>
             <div className="absolute bottom-0 left-0 p-8 w-full">
@@ -50,7 +50,7 @@ export default function SerraNoTopoHub() {
           </a>
 
           {/* Card 3: Art-Café */}
-          <a href="/solutions/app/serra-no-topo/art-cafe/mockup" className="group block relative h-96 rounded-2xl overflow-hidden border border-white/10 hover:border-rose-500/50 transition-all duration-300">
+          <a href="/serra-no-topo/art-cafe/mockup" className="group block relative h-96 rounded-2xl overflow-hidden border border-white/10 hover:border-rose-500/50 transition-all duration-300">
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-110"></div>
             <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300"></div>
             <div className="absolute bottom-0 left-0 p-8 w-full">
