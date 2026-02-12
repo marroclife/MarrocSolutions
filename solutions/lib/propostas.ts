@@ -25,6 +25,49 @@ export interface ProjetoProposal {
 
 export const projetos: ProjetoProposal[] = [
   {
+    id: "serra-no-topo",
+    slug: "serra-no-topo",
+    titulo: "Serra no Topo",
+    descricaoBreve:
+      "Hub de visibilidade e presença digital para negócios da Serra do Piloto",
+    senha: "SERRA", // Se precisar de senha, senão removemos a lógica
+    contexto: {
+      tipoDenegocio: "Comércio Local / Turismo",
+      situacao:
+        "Negócios locais com excelente potencial mas invisíveis digitalmente para turistas e novos clientes",
+      necessidadePrincipal:
+        "Criar uma vitrine digital profissional, acessível e focada em conversão para WhatsApp",
+    },
+    objetivos: [
+      "Posicionar a Serra do Piloto no mapa digital",
+      "Aumentar a visibilidade de comércios locais",
+      "Facilitar o contato direto via WhatsApp",
+      "Criar senso de comunidade e autoridade local",
+    ],
+    mockupUrl: "/serra-no-topo",
+    mockupDescricao:
+      "Apresentação do conceito 'Hub Digital' com 3 exemplos práticos de aplicação para negócios reais da região.",
+    estrutura: {
+      paginas: ["Hub Principal", "Agropec", "Padaria & Coisas", "Art-Café"],
+      organizacao:
+        "Página centralizadora (Hub) que distribui tráfego para páginas dedicadas de cada parceiro",
+      logicaNavegacao:
+        "Foco total em conversão: Entendeu o valor -> Clicou -> Chamou no WhatsApp",
+    },
+    visaoEvolucao: {
+      faseAtual: [
+        "Lançamento do Portal Serra no Topo",
+        "Páginas One-Page para os parceiros fundadores",
+        "Otimização básica para Google (SEO Local)",
+      ],
+      fasePossivel: [
+        "Expansão para novos comércios",
+        "Guia turístico completo da região",
+        "Sistema de cupons e promoções cruzadas",
+      ],
+    },
+  },
+  {
     id: "mansao-360",
     slug: "mansao-360",
     titulo: "Mansão 360",
