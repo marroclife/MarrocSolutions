@@ -18,7 +18,42 @@ export default function BibliotecaPage() {
       >
         <div className="grid md:grid-cols-2 gap-8 mt-12">
           
-          {/* ARTEFATO 01: O EIXO DA CONSCIÊNCIA */}
+          {/* ARTEFATO 01: O ESCRIBA DO INOMINÁVEL */}
+          <MysticCard className="border-gold/20 hover:border-gold/50 bg-gradient-to-br from-gold/5 to-transparent group">
+            <div className="flex flex-col h-full">
+              <div className="relative aspect-[3/4] w-full mb-8 overflow-hidden rounded-sm bg-black border border-white/5">
+                <Image 
+                  src="/Ganesha-cyber.png" 
+                  alt="O Escriba do Inominável" 
+                  fill 
+                  className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
+                />
+                <div className="absolute top-4 right-4 bg-gold text-black text-[10px] font-bold px-2 py-1 uppercase tracking-tighter">
+                  Novo Lançamento
+                </div>
+              </div>
+              
+              <div className="space-y-4 flex-1">
+                <div className="flex items-center gap-2 text-gold">
+                  <Sparkles size={18} />
+                  <span className="font-mono text-xs uppercase tracking-widest">Códice de Ganesha</span>
+                </div>
+                <h2 className="font-display text-3xl text-white">O Escriba do Inominável</h2>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Gaṇeśa e a Engenharia da Sabedoria Primordial. Um guia teúrgico para remover obstáculos e sintonizar a mente.
+                </p>
+              </div>
+
+              <Link 
+                href="/livros/ganesha"
+                className="mt-8 flex items-center justify-center gap-2 w-full py-4 bg-gold hover:bg-white text-black font-bold uppercase text-xs tracking-widest transition-all"
+              >
+                Acessar Transmissão <ArrowRight size={14} />
+              </Link>
+            </div>
+          </MysticCard>
+
+          {/* ARTEFATO 02: O EIXO DA CONSCIÊNCIA */}
           <MysticCard className="border-cyan-500/20 hover:border-cyan-500/50 bg-gradient-to-br from-cyan-950/10 to-transparent group">
             <div className="flex flex-col h-full">
               <div className="relative aspect-[3/4] w-full mb-8 overflow-hidden rounded-sm bg-black border border-white/5">
@@ -28,9 +63,6 @@ export default function BibliotecaPage() {
                   fill 
                   className="object-contain transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute top-4 right-4 bg-cyan-600 text-black text-[10px] font-bold px-2 py-1 uppercase tracking-tighter">
-                  Novo Lançamento
-                </div>
               </div>
               
               <div className="space-y-4 flex-1">
@@ -53,7 +85,7 @@ export default function BibliotecaPage() {
             </div>
           </MysticCard>
 
-          {/* ARTEFATO 02: UM LUGAR ENTRE MUNDOS */}
+          {/* ARTEFATO 03: UM LUGAR ENTRE MUNDOS */}
           <MysticCard className="border-gold/20 hover:border-gold/50 bg-gradient-to-br from-gold/5 to-transparent group">
             <div className="flex flex-col h-full">
               <div className="relative aspect-[3/4] w-full mb-8 overflow-hidden rounded-sm bg-black border border-white/5">
