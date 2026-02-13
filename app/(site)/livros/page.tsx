@@ -23,7 +23,7 @@ export default function BibliotecaPage() {
             <div className="flex flex-col h-full">
               <div className="relative aspect-[3/4] w-full mb-8 overflow-hidden rounded-sm bg-black border border-white/5">
                 <Image 
-                  src="/Ganesha-cyber.png" 
+                  src="/Capa-escriba.png" 
                   alt="O Escriba do Inominável" 
                   fill 
                   className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
