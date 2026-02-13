@@ -24,7 +24,7 @@ export default function GaneshaPage() {
             <div className="absolute -inset-1 bg-gradient-to-r from-gold/50 to-amber-600/50 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
             <div className="relative aspect-[3/4] w-full max-w-md mx-auto overflow-hidden rounded-sm bg-black border border-gold/20 shadow-2xl shadow-gold/10">
               <Image 
-                src="/Ganesha-cyber.png" 
+                src="/Capa-escriba.png" 
                 alt="O Escriba do Inominável - Capa" 
                 fill 
                 className="object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
