@@ -122,6 +122,52 @@ export const projetos: ProjetoProposal[] = [
       ],
     },
   },
+    {
+    id: "academia-fuzzion",
+    slug: "academia-fuzzion",
+    titulo: "Academia Fuzzion Gym",
+    descricaoBreve:
+      "Experiência digital imersiva com animação 3D para academia de alto padrão",
+    senha: "M360",
+    contexto: {
+      tipoDenegocio: "Fitness / Academia",
+      situacao:
+        "Academia premium buscando presença digital diferenciada com experiência visual impactante",
+      necessidadePrincipal:
+        "Criar uma landing page com animação 3D interativa que transmita modernidade e qualidade premium",
+    },
+    objetivos: [
+      "Apresentação visual impactante com animação 3D scroll-based",
+      "Transmitir sensação de modernidade e tecnologia",
+      "Destacar diferenciais da academia",
+      "Criar experiência memorável para visitantes",
+    ],
+    mockupUrl: "/propostas/academia-fuzzion/mockup",
+    mockupDescricao:
+      "Animação 3D interativa com 240 frames que respondem ao scroll do usuário, criando uma experiência imersiva e moderna",
+    estruturas: {
+      paginas: [
+        "Landing Page com Animação 3D",
+      ],
+      organizacao:
+        "Single page com animação scroll-based usando 240 frames de alta qualidade",
+      logicaNavegacao:
+        "Experiência linear controlada pelo scroll, revelando a animação frame por frame",
+    },
+    visaoEvolucao: {
+      faseAtual: [
+        "Landing page com animação 3D interativa",
+        "Experiência visual premium",
+        "Design moderno e impactante",
+      ],
+      fasePossivel: [
+        "Integração com sistema de agendamento",
+        "Galeria de instalações e equipamentos",
+        "Área de membros com treinos personalizados",
+        "Blog com dicas de fitness",
+      ],
+    },
+  },
 ];
 
 export function obterProjetoPorSlug(slug: string): ProjetoProposal | undefined {
