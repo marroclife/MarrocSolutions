@@ -127,48 +127,56 @@ export const projetos: ProjetoProposal[] = [
     slug: "academia-fuzzion",
     titulo: "Academia Fuzzion",
     descricaoBreve:
-      "Site institucional moderno para academia de treinamento funcional e CrossFit",
+      "Transforme sua academia em uma máquina de atrair alunos todos os dias através de presença digital profissional",
     senha: "FUZZION",
     contexto: {
       tipoDenegocio: "Academia / Treinamento Funcional",
       situacao:
-        "Academia consolidada localmente mas sem presença digital profissional para captar novos alunos e reter os atuais",
+        "Mesmo com uma estrutura física sólida e bons resultados, a academia perde novos alunos diariamente por não ter uma presença digital profissional e estratégica",
       necessidadePrincipal:
-        "Criar uma vitrine digital que comunique energia, disciplina e resultados, com fácil acesso a planos, horários e contato direto via WhatsApp",
+        "Criar uma presença digital que não apenas represente a academia, mas que atraia, engaje e converta visitantes em alunos ativos via WhatsApp",
     },
     objetivos: [
-      "Aumentar captação de novos alunos via internet",
-      "Comunicar os diferenciais do método Fuzzion",
-      "Facilitar visualização de planos e horários",
-      "Criar canal direto de contato via WhatsApp",
-      "Fortalecer identidade visual da marca",
+      "Atrair novos alunos diariamente pela internet",
+      "Converter visitantes em alunos via WhatsApp",
+      "Posicionar a academia como referência local em treino funcional",
+      "Apresentar planos, horários e diferenciais de forma clara e estratégica",
+      "Reduzir dependência de indicação e boca a boca",
     ],
     mockupUrl: "/propostas/academia-fuzzion/mockup",
     mockupDescricao:
-      "Site institucional com vibe energética, seções de planos, grade de horários e integração direta com WhatsApp para conversão.",
+      "Veja exatamente como seus futuros alunos irão enxergar sua academia. Esta visualização demonstra a experiência real de navegação, estrutura e conversão proposta.",
     estrutura: {
-      paginas: ["Home", "Sobre", "Modalidades", "Planos", "Horários", "Galeria", "Contato"],
+      paginas: [
+        "Home",
+        "Sobre",
+        "Modalidades",
+        "Planos",
+        "Horários",
+        "Galeria",
+        "Contato",
+      ],
       organizacao:
-        "Site one-page com navegação fluida, destacando transformação e resultados, com CTA estratégicos para matrícula",
+        "Landing page estruturada para conduzir o visitante desde o impacto inicial até a decisão de entrar em contato, destacando resultados, diferenciais e planos",
       logicaNavegacao:
-        "Visitante entra, vê resultados, entende o método, visualiza planos e converte via WhatsApp ou formulário",
+        "Fluxo estratégico: impacto visual → prova de resultado → entendimento do método → apresentação dos planos → conversão via WhatsApp",
     },
     visaoEvolucao: {
       faseAtual: [
-        "Site institucional responsivo",
-        "Apresentação de modalidades e planos",
-        "Galeria de transformações/resultados",
-        "Contato direto via WhatsApp",
+        "Site institucional responsivo com foco em conversão",
+        "Apresentação estratégica de modalidades e planos",
+        "Integração direta com WhatsApp",
+        "Base sólida para captação contínua de novos alunos",
       ],
       fasePossivel: [
         "Sistema de agendamento de aulas online",
+        "Atendimento automatizado via WhatsApp com IA",
         "Área do aluno com treinos personalizados",
-        "Integração com apps de fitness (Strava, etc)",
         "Sistema de check-in via QR Code",
-      ],
+      ]
     },
   },
-];
+  ];
 
 export function obterProjetoPorSlug(slug: string): ProjetoProposal | undefined {
   return projetos.find((p) => p.slug === slug);
