@@ -1,0 +1,100 @@
+{
+  "name": "Academia Fuzzion Gym - Premium Fitness Experience",
+  "short_name": "Fuzzion Gym",
+  "description": "Transforme seu corpo com a Academia Fuzzion Gym - Experiência premium de fitness com tecnologia 3D",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#FF6D00",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%23FF6D00' width='192' height='192'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='80' font-weight='bold' fill='white' transform='translate(0,5)'%3EF%3C/text%3E%3Crect x='60' y='60' width='72' height='60' fill='%230066FF' opacity='0.9'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect fill='%23FF6D00' width='512' height='512'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='250' font-weight='bold' fill='white' transform='translate(0,15)'%3EF%3C/text%3E%3Crect x='150' y='180' width='212' height='152' fill='%230066FF' opacity='0.9'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%23FF6D00' width='192' height='192'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='80' font-weight='bold' fill='white' transform='translate(0,5)'%3EF%3C/text%3E%3Crect x='60' y='60' width='72' height='60' fill='%230066FF' opacity='0.9'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["health", "fitness"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'%3E%3Crect fill='%23ffffff' width='540' height='720'/%3E%3Crect fill='%23F5F5F7' width='540' height='100'/%3E%3Ctext x='30' y='50' font-family='system-ui' font-size='24' font-weight='bold' fill='%23FF6D00'%3E Fuzzion%3C/text%3E%3Crect fill='%23FF6D00' x='50' y='250' width='440' height='200' rx='20'/%3E%3Crect fill='%230066FF' x='50' y='500' width='440' height='150' rx='20'/%3E%3C/svg%3E",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "purpose": "any",
+      "comment": "Aplicação principal"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1080 1920'%3E%3Crect fill='%23ffffff' width='1080' height='1920'/%3E%3Crect fill='%23F5F5F7' width='1080' height='200'/%3E%3Crect fill='%23FF6D00' x='100' y='500' width='880' height='400' rx='40'/%3E%3Crect fill='%230066FF' x='100' y='1100' width='880' height='300' rx='40'/%3E%3C/svg%3E",
+      "sizes": "1080x1920",
+      "type": "image/svg+xml",
+      "purpose": "any",
+      "comment": "Tablet"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Serviços",
+      "short_name": "Serviços",
+      "description": "Ver nossos serviços de musculação, aulas coletivas e muay thai",
+      "url": "/?section=services",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%230066FF' width='192' height='192'/%3E%3Ctext x='96' y='96' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='100' fill='white'%3E🎯%3C/text%3E%3C/svg%3E",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Planos",
+      "short_name": "Planos",
+      "description": "Conheça nossos planos de filiação",
+      "url": "/?section=plans",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%23FF6D00' width='192' height='192'/%3E%3Ctext x='96' y='96' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='100' fill='white'%3E💰%3C/text%3E%3C/svg%3E",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Contato",
+      "short_name": "Contato",
+      "description": "Entre em contato conosco",
+      "url": "/?section=contact",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%230066FF' width='192' height='192'/%3E%3Ctext x='96' y='96' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='100' fill='white'%3E📞%3C/text%3E%3C/svg%3E",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/api/share",
+    "method": "POST",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "prefer_related_applications": false
+}

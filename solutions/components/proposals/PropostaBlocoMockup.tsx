@@ -34,8 +34,8 @@ export const PropostaBlocoMockup: React.FC<PropostaBlocoMockupProps> = ({
             <iframe
               src={mockupUrl}
               title={`Mockup ${titulo}`}
-              className="w-full h-full border-0"
-              loading="lazy"
+              className="absolute inset-0 w-full h-full border-0 block"
+              loading="eager"
               referrerPolicy="no-referrer"
             />
           ) : (

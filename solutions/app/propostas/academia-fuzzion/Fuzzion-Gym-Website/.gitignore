@@ -1,0 +1,66 @@
+# ===================================
+# Node and npm
+# ===================================
+node_modules/
+npm-debug.log
+package-lock.json
+yarn.lock
+
+# ===================================
+# IDE and Editor Files
+# ===================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+
+# ===================================
+# Build and Distribution
+# ===================================
+dist/
+build/
+*.bak
+*.tmp
+
+# ===================================
+# OS Files
+# ===================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+desktop.ini
+
+# ===================================
+# Environment Variables
+# ===================================
+.env
+.env.local
+.env.*.local
+
+# ===================================
+# Logs
+# ===================================
+logs
+*.log
+npm-loglevel=verbose
+
+# ===================================
+# Temporary Files
+# ===================================
+temp/
+tmp/
+*.temp
+
+# ===================================
+# Keep frames folder
+# ===================================
+!frames/
+frames/**/*.jpg

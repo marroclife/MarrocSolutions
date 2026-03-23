@@ -145,7 +145,7 @@ export const projetos: ProjetoProposal[] = [
     mockupUrl: "/propostas/academia-fuzzion/mockup",
     mockupDescricao:
       "Animação 3D interativa com 240 frames que respondem ao scroll do usuário, criando uma experiência imersiva e moderna",
-    estruturas: {
+    estrutura: {
       paginas: [
         "Landing Page com Animação 3D",
       ],

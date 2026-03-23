@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Academia Fuzzion Gym - Musculação, aulas coletivas, Muay Thai e Muay Boxing em Padre Miguel, Rio de Janeiro. 6 anos de experiência, avaliação 4.4⭐ Google.">
+    <meta name="keywords" content="academia padre miguel, academia rio de janeiro, musculação padre miguel, aulas coletivas rio, muay thai padre miguel, academia bangu, wellhub padre miguel, gympass padre miguel">
+    <meta name="theme-color" content="#FF6D00">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Fuzzion Gym">
+    <meta property="og:title" content="Academia Fuzzion Gym | 6 anos transformando vidas em Padre Miguel">
+    <meta property="og:description" content="Academia com 4.4⭐ Google, Musculação, Aulas Coletivas (FitDance, Jump), Muay Thai. Espaço amplo com vista do Morro. Parcerias Wellhub e Gurupass.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.fuzziongym.com.br/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Academia Fuzzion Gym | Padre Miguel - RJ">
+    <meta name="twitter:description" content="Academia 24horas em Padre Miguel com Musculação, Aulas Coletivas, Muay Thai. Avaliação Google 4.4⭐ (96 avaliações).">
+    
+    <title>Academia Fuzzion Gym | Padre Miguel - Rio de Janeiro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23FF6D00' width='100' height='100'/%3E%3Ctext x='50' y='50' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='60' font-weight='bold' fill='white'%3EF%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect fill='%23FF6D00' width='180' height='180'/%3E%3Crect x='0' y='0' width='180' height='180' rx='40' fill='%23FF6D00'/%3E%3Ctext x='90' y='90' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='100' font-weight='bold' fill='white'%3E𝙵%3C/text%3E%3C/svg%3E">
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Fuzzion</span>
+                <span class="logo-gym">GYM</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">Sobre</a></li>
+                <li><a href="#services" class="nav-link">Serviços</a></li>
+                <li><a href="#plans" class="nav-link">Planos</a></li>
+                <li><a href="#contact" class="nav-link">Contato</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Canvas Background - 240 Frame Animation -->
+    <canvas id="frameCanvas"></canvas>
+    <div class="canvas-overlay"></div>
+
+    <!-- Hero Section with Content Overlay -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="word">Transforme</span>
+                    <span class="word">Seu</span>
+                    <span class="word">Corpo</span>
+                </h1>
+                <p class="hero-subtitle">Experiência premium de fitness com tecnologia 3D</p>
+                <button class="cta-button">Começar Agora</button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sobre Academia Fuzzion</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>6 Anos Transformando Vidas em Padre Miguel</h3>
+                    <p>
+                        A Academia Fuzzion Gym é a escolha de centenas de alunos em Padre Miguel, Rio de Janeiro.
+                        Com avaliação 4.4⭐ no Google (96 avaliações), oferecemos musculação, aulas coletivas dinâmicas
+                        (FitDance, Jump, ritmos), Muay Thai e atendimento personalizado em espaço amplo com vista privilegiada
+                        do Morro da Pedra Branca.
+                    </p>
+                    <p>
+                        Nossa missão é proporcionar transformação corporal acessível com profissionais qualificados,
+                        parcerias com Wellhub (Gympass) e Gurupass, além de horários flexíveis para todos.
+                    </p>
+                    <ul class="about-features">
+                        <li>6 anos de experiência no mercado</li>
+                        <li>Avaliação Google 4.4⭐ (96 avaliações)</li>
+                        <li>Espaço amplo com ótima iluminação</li>
+                        <li>Instrutores certificados e atendimento VIP</li>
+                        <li>Parcerias Wellhub (Gympass) e Gurupass</li>
+                        <li>Horário estendido: Seg-Sex 6h-22h</li>
+                    </ul>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">4.4<span style="font-size: 0.6em">⭐</span></div>
+                        <div class="stat-label">Avaliação Google</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">96</div>
+                        <div class="stat-label">Avaliações Google</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Anos de História</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossos Serviços</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon musculacao">💪</div>
+                    <h3>Musculação</h3>
+                    <p>
+                        Treinos personalizados com foco em hipertrofia e força. Nossos instrutores
+                        desenvolvem planos adaptados ao seu nível e objetivos específicos.
+                    </p>
+                    <ul class="service-features">
+                        <li>Avaliação inicial completa</li>
+                        <li>Treinos personalizados</li>
+                        <li>Acompanhamento semanal</li>
+                        <li>Biblioteca de exercícios</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon aulas">🎯</div>
+                    <h3>Aulas Coletivas</h3>
+                    <p>
+                        Aulas dinâmicas e motivadoras em ambiente energético. FitDance, Jump, ritmos variados
+                        e fitness coletivo com instrutores especializados para todos os níveis.
+                    </p>
+                    <ul class="service-features">
+                        <li>FitDance, Jump, Ritmos</li>
+                        <li>Horários variados</li>
+                        <li>Instrutores especializados</li>
+                        <li>Comunidade engajada</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon muaythai">🥊</div>
+                    <h3>Muay Thai</h3>
+                    <p>
+                        Treinamento completo de luta com técnica tailandesa. Condicionamento físico,
+                        defesa pessoal e desenvolvimento mental em aulas estruturadas.
+                    </p>
+                    <ul class="service-features">
+                        <li>Técnica autêntica</li>
+                        <li>Treinos progressivos</li>
+                        <li>Contato controlado</li>
+                        <li>Preparação para competição</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="plans">
+        <div class="container">
+            <div class="section-header">
+                <h2>Planos e Preços</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Promocional</h3>
+                        <p class="plan-price"><span class="currency">R$</span>9,99<span class="period">/mês</span></p>
+                        <p style="font-size: 0.85em; color: #ff6d00;">🔥 Por tempo limitado!</p>
+                    </div>
+                    <ul class="plan-features">
+                        <li>✓ Acesso à academia seg-sex 6h-22h</li>
+                        <li>✓ Sábado 8h-15h</li>
+                        <li>✓ Todos os equipamentos</li>
+                        <li>✓ Vestiários modernos</li>
+                        <li>✗ Aulas coletivas incluídas</li>
+                        <li>✗ Personal trainer</li>
+                    </ul>
+                    <button class="plan-button">Contrate Agora</button>
+                </div>
+
+                <div class="plan-card featured">
+                    <div class="plan-badge">Mais Popular</div>
+                    <div class="plan-header">
+                        <h3>Completo</h3>
+                        <p class="plan-price"><span class="currency">R$</span>99<span class="period">/mês</span></p>
+                    </div>
+                    <ul class="plan-features">
+                        <li>✓ Acesso ilimitado seg-sex 6h-22h</li>
+                        <li>✓ Sábado 8h-15h</li>
+                        <li>✓ Aulas coletivas ilimitadas</li>
+                        <li>✓ FitDance, Jump, ritmos</li>
+                        <li>✓ Avaliação física mensal</li>
+                        <li>✓ Parcerias Wellhub + Gurupass</li>
+                    </ul>
+                    <button class="plan-button">Contrate</button>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Premium</h3>
+                        <p class="plan-price"><span class="currency">R$</span>199<span class="period">/mês</span></p>
+                    </div>
+                    <ul class="plan-features">
+                        <li>✓ Todas as vantagens Completo</li>
+                        <li>✓ Personal trainer (4 sessões)</li>
+                        <li>✓ Consultoria nutricional</li>
+                        <li>✓ Treino de Muay Thai incluso</li>
+                        <li>✓ Prioridade em atendimento VIP</li>
+                        <li>✓ Assessoria de treino personalizado</li>
+                    </ul>
+                    <button class="plan-button">Contrate</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Entre em Contato</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-text">
+                            <h4>Localização</h4>
+                            <p>Rua Murundu, 419 - Padre Miguel<br>Rio de Janeiro, RJ 21775-210</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-text">
+                            <h4>Telefone & WhatsApp</h4>
+                            <p>(21) 3986-1993<br>(21) 96633-1819</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <div class="info-text">
+                            <h4>Horário</h4>
+                            <p>Seg-Sex: 6h - 22h<br>Sáb: 8h - 15h<br>Dom: Fechado</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-text">
+                            <h4>Redes Sociais</h4>
+                            <p>Instagram: @academiafuzziongym<br>Facebook: academiafuzziongym</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Seu Nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Seu Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Seu Telefone">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Sua Mensagem" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="form-button">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Fuzzion Gym</h4>
+                    <p>Transformando vidas através do fitness premium.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#services">Serviços</a></li>
+                        <li><a href="#plans">Planos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <ul>
+                        <li><a href="https://instagram.com/academiafuzziongym" target="_blank">Instagram</a></li>
+                        <li><a href="https://facebook.com/academiafuzziongym" target="_blank">Facebook</a></li>
+                        <li><a href="https://wa.me/5521966331819" target="_blank">WhatsApp</a></li>
+                        <li><a href="https://google.com/maps/place/Academia+Fuzzion+Gym" target="_blank">Google Maps</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Academia Fuzzion Gym - Padre Miguel, Rio de Janeiro. Todos os direitos reservados.</p>
+                <p>Musculação | Aulas Coletivas | Muay Thai | Parcerias Wellhub + Gurupass</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

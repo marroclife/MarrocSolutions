@@ -1,0 +1,122 @@
+# ========================================
+# Academia Fuzzion Gym - Apache Configuration
+# ========================================
+
+# Enable GZIP Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Set proper MIME types
+<IfModule mod_mime.c>
+    AddType application/javascript js
+    AddType text/css css
+    AddType text/html html
+    AddType application/json json
+    AddType application/manifest+json webmanifest
+    AddType image/svg+xml svg svgz
+    AddEncoding gzip svgz
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options: "nosniff"
+    
+    # Enable XSS protection
+    Header always set X-XSS-Protection: "1; mode=block"
+    
+    # Prevent clickjacking
+    Header always set X-Frame-Options: "SAMEORIGIN"
+    
+    # Content Security Policy
+    Header always set Content-Security-Policy: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self';"
+    
+    # Referrer Policy
+    Header always set Referrer-Policy: "strict-origin-when-cross-origin"
+    
+    # Feature Policy
+    Header always set Permissions-Policy: "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpeg "access 1 year"
+    ExpiresByType image/gif "access 1 year"
+    ExpiresByType image/png "access 1 year"
+    ExpiresByType image/svg+xml "access 1 year"
+    ExpiresByType image/x-icon "access 1 year"
+    
+    # CSS and JS
+    ExpiresByType text/css "access 1 month"
+    ExpiresByType application/javascript "access 1 month"
+    ExpiresByType text/javascript "access 1 month"
+    
+    # HTML
+    ExpiresByType text/html "access 12 hours"
+    
+    # Manifest
+    ExpiresByType application/manifest+json "access 12 hours"
+    
+    # Fonts
+    ExpiresByType font/ttf "access 1 year"
+    ExpiresByType font/woff "access 1 year"
+    ExpiresByType font/woff2 "access 1 year"
+</IfModule>
+
+# ETags for cache validation
+<IfModule mod_expires.c>
+    FileETag MTime Size
+</IfModule>
+
+# Rewrite engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Remove www
+    # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    # RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+    
+    # Force HTTPS (uncomment when using SSL)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Route all requests to index.html for SPA
+    # RewriteCond %{REQUEST_FILENAME} !-f
+    # RewriteCond %{REQUEST_FILENAME} !-d
+    # RewriteRule ^ index.html [QSA,L]
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes
+
+# Set default character encoding
+AddDefaultCharset UTF-8
+
+# Custom error pages (optional)
+# ErrorDocument 404 /404.html
+# ErrorDocument 500 /500.html
+
+# Allow CORS headers if needed
+# <IfModule mod_headers.c>
+#     Header set Access-Control-Allow-Origin "*"
+# </IfModule>
+
+# Protect sensitive files
+<FilesMatch "(\.env|\.git|config\.php|database\.php)">
+    Deny from all
+</FilesMatch>
+
+# Block access to hidden files and directories
+<FilesMatch "^\.|^#.*#">
+    Deny from all
+</FilesMatch>

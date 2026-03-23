@@ -122,6 +122,52 @@ export const projetos: ProjetoProposal[] = [
       ],
     },
   },
+  {
+    id: "academia-fuzzion",
+    slug: "academia-fuzzion",
+    titulo: "Academia Fuzzion",
+    descricaoBreve:
+      "Site institucional moderno para academia de treinamento funcional e CrossFit",
+    senha: "FUZZION",
+    contexto: {
+      tipoDenegocio: "Academia / Treinamento Funcional",
+      situacao:
+        "Academia consolidada localmente mas sem presença digital profissional para captar novos alunos e reter os atuais",
+      necessidadePrincipal:
+        "Criar uma vitrine digital que comunique energia, disciplina e resultados, com fácil acesso a planos, horários e contato direto via WhatsApp",
+    },
+    objetivos: [
+      "Aumentar captação de novos alunos via internet",
+      "Comunicar os diferenciais do método Fuzzion",
+      "Facilitar visualização de planos e horários",
+      "Criar canal direto de contato via WhatsApp",
+      "Fortalecer identidade visual da marca",
+    ],
+    mockupUrl: "/propostas/academia-fuzzion/mockup",
+    mockupDescricao:
+      "Site institucional com vibe energética, seções de planos, grade de horários e integração direta com WhatsApp para conversão.",
+    estrutura: {
+      paginas: ["Home", "Sobre", "Modalidades", "Planos", "Horários", "Galeria", "Contato"],
+      organizacao:
+        "Site one-page com navegação fluida, destacando transformação e resultados, com CTA estratégicos para matrícula",
+      logicaNavegacao:
+        "Visitante entra, vê resultados, entende o método, visualiza planos e converte via WhatsApp ou formulário",
+    },
+    visaoEvolucao: {
+      faseAtual: [
+        "Site institucional responsivo",
+        "Apresentação de modalidades e planos",
+        "Galeria de transformações/resultados",
+        "Contato direto via WhatsApp",
+      ],
+      fasePossivel: [
+        "Sistema de agendamento de aulas online",
+        "Área do aluno com treinos personalizados",
+        "Integração com apps de fitness (Strava, etc)",
+        "Sistema de check-in via QR Code",
+      ],
+    },
+  },
 ];
 
 export function obterProjetoPorSlug(slug: string): ProjetoProposal | undefined {

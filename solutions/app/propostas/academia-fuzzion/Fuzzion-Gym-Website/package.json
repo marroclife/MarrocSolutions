@@ -1,0 +1,58 @@
+{
+  "name": "fuzzion-gym-website",
+  "version": "1.0.0",
+  "description": "Premium 3D scroll-based website for Academia Fuzzion Gym",
+  "private": true,
+  "author": "Premium Web Development",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fuzzion-gym/website.git"
+  },
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "npx http-server",
+    "serve": "npx live-server",
+    "build": "echo 'Build process would go here'",
+    "optimize": "npx imagemin frames/*.jpg --out-dir=frames",
+    "test": "echo 'Test suite would go here'",
+    "lint": "echo 'Linting would go here'",
+    "deploy:vercel": "vercel",
+    "deploy:netlify": "netlify deploy",
+    "analyze": "echo 'Performance analysis would go here'",
+    "validate:html": "npx html-validate index.html"
+  },
+  "keywords": [
+    "gym",
+    "fitness",
+    "3d-animation",
+    "scroll-animation",
+    "responsive-design",
+    "premium-design"
+  ],
+  "devDependencies": {
+    "cssnano": "^6.0.0",
+    "html-minifier": "^4.0.0",
+    "http-server": "^14.1.0",
+    "imagemin-cli": "^7.0.0",
+    "live-server": "^1.2.0",
+    "terser": "^5.16.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "Firefox ESR"
+  ],
+  "categories": [
+    "health",
+    "fitness",
+    "gym"
+  ],
+  "homepage": "https://www.fuzzion.com.br",
+  "bugs": {
+    "url": "https://github.com/fuzzion-gym/website/issues"
+  }
+}

@@ -112,11 +112,11 @@ export default function PropostaPaginaIndividual() {
             {projeto.descricaoBreve}
           </p>
 
-          {/* CTA para Mockup se for mansao-360 */}
-          {projeto.slug === "mansao-360" && (
+          {/* CTA para Mockup quando houver mockupUrl no catálogo */}
+          {projeto.mockupUrl && (
             <div className="mt-8">
               <a
-                href={`/propostas/${projeto.slug}/mockup`}
+                href={projeto.mockupUrl}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-neon-green/20 border border-neon-green/50 hover:border-neon-green text-neon-green hover:text-white hover:bg-neon-green/30 rounded-lg transition-all duration-300"
               >
                 <Film className="w-4 h-4" />

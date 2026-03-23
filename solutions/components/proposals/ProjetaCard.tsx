@@ -8,9 +8,9 @@ interface ProjetaCardProps {
 }
 
 export const ProjetaCard: React.FC<ProjetaCardProps> = ({ projeto }) => {
-  // Se tiver mockupUrl definido (como no Serra no Topo), vai direto pra lá.
-  // Senão, vai pra página de detalhes padrão.
-  const linkDestino = projeto.mockupUrl || `/propostas/${projeto.slug}`;
+  // Regra do ecossistema: o card sempre leva para a página da proposta
+  // (e o mockup fica acessível dentro da página, quando aplicável).
+  const linkDestino = `/propostas/${projeto.slug}`;
 
   return (
     <Link
