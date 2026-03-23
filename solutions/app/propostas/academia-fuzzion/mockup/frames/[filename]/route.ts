@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
@@ -14,10 +14,10 @@ function isAllowedFrameName(filename: string) {
 }
 
 export async function GET(
-  _request: Request,
-  { params }: { params: { filename: string } }
+  _request: NextRequest,
+  { params }: { params: Promise<{ filename: string }> }
 ) {
-  const { filename } = params;
+  const { filename } = await params;
 
   if (!isAllowedFrameName(filename)) {
     return new NextResponse("Not Found", { status: 404 });
@@ -37,4 +37,3 @@ export async function GET(
     return new NextResponse("Not Found", { status: 404 });
   }
 }
-
