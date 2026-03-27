@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Telescope, Layers, Leaf, Atom, Calendar, MessageCircle, ArrowLeft, User, Lock, CheckCircle2 } from "lucide-react";
+import { Telescope, Layers, Leaf, Atom, Calendar, MessageCircle, ArrowLeft, User, Lock, CheckCircle2, Waves } from "lucide-react";
 import { MysticCard } from "@/components/ui/MysticCard";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { Section } from "@/components/ui/Section";
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Terapias holísticas para relembrar quem você é: Astrologia Viva, Tarot, Reiki e Sistema Arcturiano.",
 };
 
-const WHATS = "https://wa.me/5521992669980?text=Olá,%20quero%20agendar%20uma%20sessão%20de%20Rituais%20de%20Reconexão.";
+const WHATS = "https://wa.me/5521983821884?text=Olá,%20quero%20agendar%20uma%20sessão%20de%20Rituais%20de%20Reconexão.";
 const CALENDLY = "https://calendly.com/SEU_USUARIO/rituais"; 
 
 // Dados atualizados com ícones Lucide para consistência visual
@@ -19,41 +19,51 @@ const RITUAIS = [
   {
     icon: <Telescope className="w-8 h-8 text-emerald-400" />,
     title: "Astrologia Viva",
-    desc: "Mais do que mapas, espelhos cósmicos. A leitura astral torna-se uma ativação: revela potenciais, padrões e portais.",
+    desc: "Mais do que mapas, espelhos cósmicos. A leitura astral torna-se uma ativação profunda: revela seu potencial inato, decodifica padrões repetitivos e abre portais.",
     bullets: [
-      "Leitura intuitiva do Mapa Natal",
-      "Trânsitos e Ciclos atuais",
-      "Rituais de alinhamento planetário",
+      "Leitura Intuitiva do Mapa Natal",
+      "Trânsitos, Ciclos e Ajuste de Rota",
+      "Revolução Solar e Ativação Kármica",
+    ],
+  },
+  {
+    icon: <Waves className="w-8 h-8 text-blue-400" />,
+    title: "Alinhamento Frequencial Somático",
+    desc: "Um reboot completo do seu sistema. O toque físico dissolve bloqueios (hardware), a energia cristalina e o som recalibram sua frequência (software).",
+    bullets: [
+      "Massagem para Descompressão e Aterramento",
+      "Reiki e Cristaloterapia (Fluxo)",
+      "Sound Healing (Ajuste Frequencial)",
     ],
   },
   {
     icon: <Layers className="w-8 h-8 text-purple-400" />,
-    title: "Tarot + Runas",
-    desc: "Tecnologia ancestral. Traduz o invisível em orientação prática. Espelhos ativos para decisões com clareza.",
+    title: "Oráculos (Tarot + Runas)",
+    desc: "Tecnologia ancestral que traduz o invisível em orientação prática. Espelhos ativos para tomada de decisões com clareza brutal e pragmatismo estratégico.",
     bullets: [
       "Tiragem de Mandala Astrológica",
-      "Mapeamento de caminhos",
-      "Ato ritual para selar escolhas",
+      "Mapeamento de Caminhos e Sombras",
+      "Ato Ritual para Selar Escolhas",
     ],
   },
   {
     icon: <Leaf className="w-8 h-8 text-green-400" />,
-    title: "Reiki & Energia",
-    desc: "O corpo fala, mas o campo grita. Reiki Usui e canalizações para desbloqueio e harmonização dos chakras.",
+    title: "Alinhamento Sutil (Reiki)",
+    desc: "O corpo fala, mas o campo grita. Canalizações de Reiki para desbloqueio profundo e harmonização dos chakras, focado apenas no campo sutil (sem massagem).",
     bullets: [
-      "Alinhamento de Chakras",
-      "Limpeza de campo áurico",
-      "Reconexão do fluxo vital",
+      "Alinhamento Completo de Chakras",
+      "Limpeza e Blindagem Áurica",
+      "Reconexão do Fluxo Vital",
     ],
   },
   {
     icon: <Atom className="w-8 h-8 text-cyan-400" />,
     title: "Cura Arcturiana",
-    desc: "Para quem sente o chamado das estrelas. Terapia vibracional multidimensional para expansão de consciência.",
+    desc: "Para quem sente o chamado estelar. Terapia vibracional multidimensional avançada para expansão de consciência e cura anímica em níveis sutis.",
     bullets: [
-      "Limpeza de registros kármicos",
-      "Reprogramação celular",
-      "Geometria sagrada avançada",
+      "Limpeza de Registros Kármicos",
+      "Reprogramação Celular e Emocional",
+      "Geometria Sagrada Avançada",
     ],
   },
 ];
@@ -123,14 +133,80 @@ export default function RituaisPage() {
       </section>
 
       {/* --- 2. AS TERAPIAS (GRID) --- */}
-      <section id="terapias" className="py-24 container">
+      <section id="terapias" className="py-24">
+        <div className="container max-w-5xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-display text-4xl text-white mb-4">Caminhos de Cura</h2>
           <p className="text-emerald-200/50">Escolha a chave que abre sua próxima porta.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {RITUAIS.map((ritual, i) => (
+          {/* Primeiro card: Astrologia Viva — largura total */}
+          <MysticCard className="md:col-span-2 border-emerald-500/20 hover:border-emerald-400/50 hover:bg-emerald-900/10 transition-all group">
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="shrink-0">
+                <div className="p-3 bg-emerald-500/10 rounded-full border border-emerald-500/20 group-hover:scale-110 transition-transform duration-500">
+                  {RITUAIS[0].icon}
+                </div>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-display text-white mb-3 group-hover:text-emerald-300 transition-colors">
+                  {RITUAIS[0].title}
+                </h3>
+                <p className="text-gray-400 leading-relaxed mb-6">{RITUAIS[0].desc}</p>
+                <div className="flex flex-wrap gap-x-8 gap-y-2 pt-4 border-t border-emerald-500/10">
+                  {RITUAIS[0].bullets?.map((bullet, idx) => (
+                    <div key={idx} className="flex items-start gap-3 text-sm text-gray-300/80">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
+                      <span>{bullet}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6">
+                  <a href={WHATS} target="_blank" className="text-xs font-bold text-emerald-400 uppercase tracking-widest hover:text-white transition flex items-center gap-2">
+                    Saber mais <ArrowLeft className="rotate-180 w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </MysticCard>
+
+          {/* Segundo card: Alinhamento Frequencial Somático — destaque especial */}
+          <MysticCard className="md:col-span-2 border-blue-500/30 hover:border-blue-400/60 hover:bg-blue-900/10 transition-all group bg-blue-950/20">
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="shrink-0">
+                <div className="p-3 bg-blue-500/10 rounded-full border border-blue-500/20 group-hover:scale-110 transition-transform duration-500">
+                  {RITUAIS[1].icon}
+                </div>
+              </div>
+              <div className="flex-1">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+                  <span className="text-xs font-mono text-blue-300 tracking-widest uppercase">Novo Serviço</span>
+                </div>
+                <h3 className="text-2xl font-display text-white mb-3 group-hover:text-blue-300 transition-colors">
+                  {RITUAIS[1].title}
+                </h3>
+                <p className="text-gray-400 leading-relaxed mb-6">{RITUAIS[1].desc}</p>
+                <div className="flex flex-wrap gap-x-8 gap-y-2 pt-4 border-t border-blue-500/10">
+                  {RITUAIS[1].bullets?.map((bullet, idx) => (
+                    <div key={idx} className="flex items-start gap-3 text-sm text-gray-300/80">
+                      <CheckCircle2 className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
+                      <span>{bullet}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6">
+                  <a href={WHATS} target="_blank" className="text-xs font-bold text-blue-400 uppercase tracking-widest hover:text-white transition flex items-center gap-2">
+                    Agendar agora <ArrowLeft className="rotate-180 w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </MysticCard>
+
+          {/* Demais cards: 2 por linha */}
+          {RITUAIS.slice(2).map((ritual, i) => (
             <MysticCard key={i} className="border-emerald-500/20 hover:border-emerald-400/50 hover:bg-emerald-900/10 transition-all group">
               <div className="flex items-start justify-between mb-6">
                 <div className="p-3 bg-emerald-500/10 rounded-full border border-emerald-500/20 group-hover:scale-110 transition-transform duration-500">
@@ -166,6 +242,7 @@ export default function RituaisPage() {
               </div>
             </MysticCard>
           ))}
+        </div>
         </div>
       </section>
 
@@ -214,7 +291,8 @@ export default function RituaisPage() {
       </Section>
 
       {/* --- 4. ÁREA DO CLIENTE (LOGIN) --- */}
-      <section className="py-24 container max-w-4xl">
+      <section className="py-24">
+        <div className="container max-w-4xl mx-auto px-4">
         <MysticCard className="border-gold/30 bg-gradient-to-br from-black to-[#1a1500]">
             <div className="flex flex-col md:flex-row items-center justify-between gap-8 p-4">
                 <div className="space-y-4 text-center md:text-left">
@@ -234,11 +312,12 @@ export default function RituaisPage() {
                 </div>
             </div>
         </MysticCard>
+        </div>
       </section>
 
       {/* --- 5. FOOTER CTA --- */}
       <section className="py-20 text-center border-t border-white/5">
-        <div className="container max-w-2xl space-y-8">
+        <div className="container max-w-2xl mx-auto px-4 space-y-8">
             <MessageCircle className="w-12 h-12 text-emerald-500 mx-auto" />
             <h2 className="font-display text-3xl md:text-4xl text-white">
                 Pronto para começar?
