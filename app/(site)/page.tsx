@@ -198,9 +198,160 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- MENU DE SERVIÇOS (ATUALIZADO PARA 4 COLUNAS) --- */}
-<section className="py-24 px-4 bg-[#050505]">
-  <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* --- ONDA 3: LEARNING PATHS (Trilhas de Autoridade) --- */}
+      <section className="py-24 px-6 border-t border-white/5 bg-[#080808] relative overflow-hidden">
+        {/* Glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,255,148,0.02),transparent_50%)] pointer-events-none" />
+        
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <span className="font-mono text-neon-green text-xs uppercase tracking-widest mb-4 block">Learning Paths</span>
+            <h2 className="font-display text-3xl md:text-5xl text-white mb-6">
+              A Jornada da <span className="text-neon-green">Soberania Digital</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Não vendemos serviços. Entregamos <strong className="text-white">educação estratégica</strong>. Cada trilha é um caminho de domínio que transforma sua percepção sobre o digital.
+            </p>
+          </div>
+
+          {/* Trilhas */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Trilha 1: Arquitetura de IA */}
+            <div className="group p-8 border border-white/10 bg-white/[0.02] hover:border-neon-green/30 transition-all duration-500">
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <span className="font-mono text-neon-green text-xs uppercase tracking-widest mb-2 block">Trilha 01</span>
+                  <h3 className="font-display text-2xl text-white">Arquitetura de Agentes</h3>
+                </div>
+                <div className="w-12 h-12 rounded-full border border-neon-green/30 flex items-center justify-center text-neon-green group-hover:bg-neon-green group-hover:text-black transition-colors">
+                  <span className="text-lg">→</span>
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm mb-6">
+                Do conceito à operação: como transformar processos manuais em <strong className="text-white">sistemas autônomos</strong> que executam, aprendem e evoluem.
+              </p>
+              <div className="space-y-2 text-xs font-mono text-gray-500">
+                <div className="flex items-center gap-2">
+                  <span className="text-neon-green">01</span>
+                  <span>Mapeamento de fluxos operacionais</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-neon-green">02</span>
+                  <span>Engenharia de prompts e memória</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-neon-green">03</span>
+                  <span>Deploy e monitoramento contínuo</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Trilha 2: Saliência de Entidade */}
+            <div className="group p-8 border border-white/10 bg-white/[0.02] hover:border-cyan-400/30 transition-all duration-500">
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <span className="font-mono text-cyan-400 text-xs uppercase tracking-widest mb-2 block">Trilha 02</span>
+                  <h3 className="font-display text-2xl text-white">Saliência de Entidade</h3>
+                </div>
+                <div className="w-12 h-12 rounded-full border border-cyan-400/30 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-400 group-hover:text-black transition-colors">
+                  <span className="text-lg">→</span>
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm mb-6">
+                Como fazer o Google <strong className="text-white">entender que você é a autoridade máxima</strong> do seu nicho. Além do SEO: engenharia de percepção.
+              </p>
+              <div className="space-y-2 text-xs font-mono text-gray-500">
+                <div className="flex items-center gap-2">
+                  <span className="text-cyan-400">01</span>
+                  <span>Diagnóstico de posicionamento atual</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-cyan-400">02</span>
+                  <span>Construção de silo de autoridade</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-cyan-400">03</span>
+                  <span>Monitoramento de percepção (E-E-A-T)</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Trilha 3: Sistemas Vivos */}
+            <div className="group p-8 border border-white/10 bg-white/[0.02] hover:border-purple-400/30 transition-all duration-500">
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <span className="font-mono text-purple-400 text-xs uppercase tracking-widest mb-2 block">Trilha 03</span>
+                  <h3 className="font-display text-2xl text-white">Sistemas Vivos Digitais</h3>
+                </div>
+                <div className="w-12 h-12 rounded-full border border-purple-400/30 flex items-center justify-center text-purple-400 group-hover:bg-purple-400 group-hover:text-black transition-colors">
+                  <span className="text-lg">→</span>
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm mb-6">
+                A transição de <strong className="text-white">sites estáticos para ecossistemas responsivos</strong>. Como fazer seu digital respirar, aprender e se adaptar.
+              </p>
+              <div className="space-y-2 text-xs font-mono text-gray-500">
+                <div className="flex items-center gap-2">
+                  <span className="text-purple-400">01</span>
+                  <span>De páginas à ecossistemas (arquitetura)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-purple-400">02</span>
+                  <span>Feedback loops e adaptação contínua</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-purple-400">03</span>
+                  <span>Escalabilidade sem perda de performance</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Trilha 4: Performance Zero-Latency */}
+            <div className="group p-8 border border-white/10 bg-white/[0.02] hover:border-yellow-400/30 transition-all duration-500">
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <span className="font-mono text-yellow-400 text-xs uppercase tracking-widest mb-2 block">Trilha 04</span>
+                  <h3 className="font-display text-2xl text-white">Performance Zero-Latency</h3>
+                </div>
+                <div className="w-12 h-12 rounded-full border border-yellow-400/30 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-black transition-colors">
+                  <span className="text-lg">→</span>
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm mb-6">
+                Como alcançar <strong className="text-white">INP &lt; 200ms e CLS = 0</strong>. A velocidade como extensão do pensamento, não como métrica técnica.
+              </p>
+              <div className="space-y-2 text-xs font-mono text-gray-500">
+                <div className="flex items-center gap-2">
+                  <span className="text-yellow-400">01</span>
+                  <span>Auditoria de renderização crítica</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-yellow-400">02</span>
+                  <span>Otimização de Server Components</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-yellow-400">03</span>
+                  <span>Zero-CLS: estabilidade total de layout</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-12">
+            <p className="text-gray-500 font-mono text-xs mb-4">
+              Pronto para dominar sua jornada digital?
+            </p>
+            <a
+              href="https://solutions.marroc.xyz"
+              className="inline-flex items-center gap-2 px-8 py-4 border border-neon-green text-neon-green hover:bg-neon-green hover:text-black font-bold uppercase tracking-widest text-xs transition-colors"
+            >
+              Iniciar minha Trilha <span className="text-lg">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
     
     {/* Card 1: SOLUTIONS (Green) */}
     <div className="group p-8 rounded-none border border-neon-green/30 bg-deep-emerald/5 hover:border-neon-green/50 hover:bg-deep-emerald/10 transition-all duration-500 flex flex-col">
