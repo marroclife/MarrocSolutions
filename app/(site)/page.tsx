@@ -123,6 +123,57 @@ export default function HomePage() {
         </div>
       </section>
 
+
+      {/* --- ONDA 2: PROOF OF WORK (Nexo como caso vivo) --- */}
+      <section className="py-24 px-6 border-t border-neon-green/10 bg-[#050505] relative overflow-hidden">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="font-mono text-neon-green text-xs uppercase tracking-widest mb-4 block">Live Proof</span>
+            <h2 className="font-display text-3xl md:text-5xl text-white mb-4">
+              Este site é gerenciado por <span className="text-neon-green">agentes autônomos</span>
+            </h2>
+            <p className="text-gray-400 max-w-xl mx-auto">
+              Cada decisão, contexto e aprendizado é preservado em arquivos estruturados. O sistema nunca esquece. Nunca perde o fio.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="p-6 border border-white/10 bg-white/[0.02] rounded-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-neon-green/10 flex items-center justify-center">
+                  <span className="text-neon-green font-mono text-sm">🧠</span>
+                </div>
+                <span className="font-mono text-xs text-neon-green uppercase tracking-widest">Memória Perpétua</span>
+              </div>
+              <p className="text-gray-400 text-sm">Cada decisão, contexto e aprendizado é preservado em arquivos estruturados. O sistema nunca esquece.</p>
+            </div>
+            <div className="p-6 border border-white/10 bg-white/[0.02] rounded-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-neon-green/10 flex items-center justify-center">
+                  <span className="text-neon-green font-mono text-sm">⚡</span>
+                </div>
+                <span className="font-mono text-xs text-neon-green uppercase tracking-widest">Execução Autônoma</span>
+              </div>
+              <p className="text-gray-400 text-sm">Crons executam tarefas em background. Revisões rodam sozinhas. Alertas disparados automaticamente.</p>
+            </div>
+            <div className="p-6 border border-white/10 bg-white/[0.02] rounded-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-neon-green/10 flex items-center justify-center">
+                  <span className="text-neon-green font-mono text-sm">🔄</span>
+                </div>
+                <span className="font-mono text-xs text-neon-green uppercase tracking-widest">Orquestração</span>
+              </div>
+              <p className="text-gray-400 text-sm">Múltiplos agentes especializados trabalham em paralelo. Cada um com seu papel. Uma inteligência coordenando.</p>
+            </div>
+          </div>
+          <div className="text-center mt-10">
+            <p className="text-gray-500 font-mono text-xs mb-4">Quer um sistema assim para o seu negócio?</p>
+            <a href="https://solutions.marroc.xyz" className="inline-flex items-center gap-2 px-8 py-4 bg-neon-green hover:bg-white text-black font-bold uppercase tracking-widest text-xs transition-colors">
+              Implementar Autonomia →
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* --- MENU DE SERVIÇOS (ATUALIZADO PARA 4 COLUNAS) --- */}
 <section className="py-24 px-4 bg-[#050505]">
   <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -194,7 +245,129 @@ export default function HomePage() {
 
   </div>
 </section>
+
+      {/* --- ONDA 3: LEARNING PATHS --- */}
+      <section className="py-24 px-6 border-t border-white/5 bg-[#080808] relative overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="font-mono text-neon-green text-xs uppercase tracking-widest mb-4 block">Learning Paths</span>
+            <h2 className="font-display text-3xl md:text-5xl text-white mb-6">
+              A Jornada da <span className="text-neon-green">Soberania Digital</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Não vendemos serviços. Entregamos <strong className="text-white">educação estratégica</strong>.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="group p-8 border border-white/10 bg-white/[0.02] hover:border-neon-green/30 transition-all">
+              <span className="font-mono text-neon-green text-xs uppercase tracking-widest mb-2 block">Trilha 01</span>
+              <h3 className="font-display text-2xl text-white mb-4">Arquitetura de Agentes</h3>
+              <p className="text-gray-400 text-sm mb-4">Do conceito à operação: como transformar processos manuais em sistemas autônomos.</p>
+              <div className="space-y-2 text-xs font-mono text-gray-500">
+                <div><span className="text-neon-green">01</span> Mapeamento de fluxos operacionais</div>
+                <div><span className="text-neon-green">02</span> Engenharia de prompts e memória</div>
+                <div><span className="text-neon-green">03</span> Deploy e monitoramento contínuo</div>
+              </div>
+            </div>
+            <div className="group p-8 border border-white/10 bg-white/[0.02] hover:border-cyan-400/30 transition-all">
+              <span className="font-mono text-cyan-400 text-xs uppercase tracking-widest mb-2 block">Trilha 02</span>
+              <h3 className="font-display text-2xl text-white mb-4">Saliência de Entidade</h3>
+              <p className="text-gray-400 text-sm mb-4">Como fazer o Google entender que você é a autoridade máxima do seu nicho.</p>
+              <div className="space-y-2 text-xs font-mono text-gray-500">
+                <div><span className="text-cyan-400">01</span> Diagnóstico de posicionamento atual</div>
+                <div><span className="text-cyan-400">02</span> Construção de silo de autoridade</div>
+                <div><span className="text-cyan-400">03</span> Monitoramento de percepção (E-E-A-T)</div>
+              </div>
+            </div>
+            <div className="group p-8 border border-white/10 bg-white/[0.02] hover:border-purple-400/30 transition-all">
+              <span className="font-mono text-purple-400 text-xs uppercase tracking-widest mb-2 block">Trilha 03</span>
+              <h3 className="font-display text-2xl text-white mb-4">Sistemas Vivos Digitais</h3>
+              <p className="text-gray-400 text-sm mb-4">A transição de sites estáticos para ecossistemas responsivos.</p>
+              <div className="space-y-2 text-xs font-mono text-gray-500">
+                <div><span className="text-purple-400">01</span> De páginas à ecossistemas</div>
+                <div><span className="text-purple-400">02</span> Feedback loops e adaptação</div>
+                <div><span className="text-purple-400">03</span> Escalabilidade sem perda</div>
+              </div>
+            </div>
+            <div className="group p-8 border border-white/10 bg-white/[0.02] hover:border-yellow-400/30 transition-all">
+              <span className="font-mono text-yellow-400 text-xs uppercase tracking-widest mb-2 block">Trilha 04</span>
+              <h3 className="font-display text-2xl text-white mb-4">Performance Zero-Latency</h3>
+              <p className="text-gray-400 text-sm mb-4">Como alcançar INP &lt; 200ms e CLS = 0.</p>
+              <div className="space-y-2 text-xs font-mono text-gray-500">
+                <div><span className="text-yellow-400">01</span> Auditoria de renderização crítica</div>
+                <div><span className="text-yellow-400">02</span> Otimização de Server Components</div>
+                <div><span className="text-yellow-400">03</span> Zero-CLS: estabilidade total</div>
+              </div>
+            </div>
+          </div>
+          <div className="text-center mt-12">
+            <a href="https://solutions.marroc.xyz" className="inline-flex items-center gap-2 px-8 py-4 border border-neon-green text-neon-green hover:bg-neon-green hover:text-black font-bold uppercase tracking-widest text-xs transition-colors">
+              Iniciar minha Trilha →
+            </a>
+          </div>
+        </div>
+      </section>
+
 {/* --- SEÇÃO GAJA HAI: ARTEFATOS --- */}
+
+      {/* --- ONDA 5: RESPONSE MATRIX --- */}
+      <section className="py-24 px-6 border-t border-white/5 bg-[#080808] relative overflow-hidden">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="font-mono text-neon-green text-xs uppercase tracking-widest mb-4 block">Response Matrix</span>
+            <h2 className="font-display text-3xl md:text-5xl text-white mb-6">
+              Teses de <span className="text-neon-green">Autoridade</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Não respondemos perguntas. <strong className="text-white">Apresentamos teses.</strong>
+            </p>
+          </div>
+          <div className="space-y-4">
+            <details className="group border border-white/10 bg-white/[0.02] rounded-sm overflow-hidden">
+              <summary className="flex items-center justify-between cursor-pointer p-6 font-mono text-sm text-white hover:text-neon-green list-none">
+                <span><span className="text-neon-green">//</span> O que é um sistema vivo digital?</span>
+                <span className="text-neon-green group-open:rotate-45">+</span>
+              </summary>
+              <div className="px-6 pb-6 text-gray-400 text-sm border-t border-white/5 pt-4">
+                <p><strong className="text-white">Um sistema vivo digital é um ecossistema que respira, aprende e se adapta.</strong> Diferente de um site tradicional (que é estático), um sistema vivo possui memória, autonomia e capacidade de evolução.</p>
+              </div>
+            </details>
+            <details className="group border border-white/10 bg-white/[0.02] rounded-sm overflow-hidden">
+              <summary className="flex items-center justify-between cursor-pointer p-6 font-mono text-sm text-white hover:text-neon-green list-none">
+                <span><span className="text-neon-green">//</span> Por que a maioria das agências falha?</span>
+                <span className="text-neon-green group-open:rotate-45">+</span>
+              </summary>
+              <div className="px-6 pb-6 text-gray-400 text-sm border-t border-white/5 pt-4">
+                <p><strong className="text-white">Porque entregam ferramentas, não sistemas.</strong> Uma landing page bonita não gera receita. O que gera resultado é um ecossistema onde cada componente conversa com o outro.</p>
+              </div>
+            </details>
+            <details className="group border border-white/10 bg-white/[0.02] rounded-sm overflow-hidden">
+              <summary className="flex items-center justify-between cursor-pointer p-6 font-mono text-sm text-white hover:text-neon-green list-none">
+                <span><span className="text-neon-green">//</span> Como a IA muda a operação B2B?</span>
+                <span className="text-neon-green group-open:rotate-45">+</span>
+              </summary>
+              <div className="px-6 pb-6 text-gray-400 text-sm border-t border-white/5 pt-4">
+                <p><strong className="text-white">A IA não automatiza tarefas. Ela multiplica resultados.</strong> O mesmo tempo que um salesperson gasta respondendo perguntas básicas, um agente de IA responde 1000x com consistência.</p>
+              </div>
+            </details>
+            <details className="group border border-white/10 bg-white/[0.02] rounded-sm overflow-hidden">
+              <summary className="flex items-center justify-between cursor-pointer p-6 font-mono text-sm text-white hover:text-neon-green list-none">
+                <span><span className="text-neon-green">//</span> O que é saliência de entidade?</span>
+                <span className="text-neon-green group-open:rotate-45">+</span>
+              </summary>
+              <div className="px-6 pb-6 text-gray-400 text-sm border-t border-white/5 pt-4">
+                <p><strong className="text-white">Saliência de entidade é como o Google te vê.</strong> Se você é uma "agência de marketing", o Google te compara com 10.000 outras. Se você é o "Arquiteto de Agentes Autônomos para B2B", não existe comparação.</p>
+              </div>
+            </details>
+          </div>
+          <div className="text-center mt-12">
+            <a href="https://solutions.marroc.xyz" className="inline-flex items-center gap-2 px-8 py-4 bg-neon-green hover:bg-white text-black font-bold uppercase tracking-widest text-xs transition-colors">
+              Implementar Minha Autoridade →
+            </a>
+          </div>
+        </div>
+      </section>
+
 <section className="relative py-20 border-t border-white/5 overflow-hidden">
   {/* Ambient Glow */}
   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(199,169,75,0.05),transparent_70%)] pointer-events-none" />
