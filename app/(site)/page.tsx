@@ -123,6 +123,81 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* --- ONDA 2: PROOF OF WORK (Nexo como caso vivo) --- */}
+      <section className="py-24 px-6 border-t border-neon-green/10 bg-[#050505] relative overflow-hidden">
+        {/* Glow de fundo */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,148,0.03),transparent_70%)] pointer-events-none" />
+        
+        <div className="max-w-5xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <span className="font-mono text-neon-green text-xs uppercase tracking-widest mb-4 block">Proof of Work</span>
+            <h2 className="font-display text-3xl md:text-5xl text-white mb-6">
+              Este ecossistema é operado por <br/>
+              <span className="text-neon-green">sistemas de agentes autônomos</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              A melhor prova de que construímos sistemas vivos é que <strong className="text-white">este site é gerido por um deles</strong>. Não vendemos teoria. Entregamos realidade.
+            </p>
+          </div>
+
+          {/* Cards de Prova */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Prova 1: Memória */}
+            <div className="p-6 border border-white/10 bg-white/[0.02] rounded-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-neon-green/10 flex items-center justify-center">
+                  <span className="text-neon-green font-mono text-sm">🧠</span>
+                </div>
+                <span className="font-mono text-xs text-neon-green uppercase tracking-widest">Memória Perpétua</span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Cada decisão, contexto e aprendizado é preservado em arquivos estruturados. O sistema nunca esquece. Nunca perde o fio.
+              </p>
+            </div>
+
+            {/* Prova 2: Ejecução */}
+            <div className="p-6 border border-white/10 bg-white/[0.02] rounded-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-neon-green/10 flex items-center justify-center">
+                  <span className="text-neon-green font-mono text-sm">⚡</span>
+                </div>
+                <span className="font-mono text-xs text-neon-green uppercase tracking-widest">Execução Autônoma</span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Crons executam tarefas em background. Revisões rodam sozinhas. Alertas disparados automaticamente. Sem intervenção humana constante.
+              </p>
+            </div>
+
+            {/* Prova 3: Orquestração */}
+            <div className="p-6 border border-white/10 bg-white/[0.02] rounded-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-neon-green/10 flex items-center justify-center">
+                  <span className="text-neon-green font-mono text-sm">🔄</span>
+                </div>
+                <span className="font-mono text-xs text-neon-green uppercase tracking-widest">Orquestração de Agentes</span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Múltiplos agentes especializados trabalham em paralelo. Cada um com seu papel. Uma única inteligência coordenando o ecossistema.
+              </p>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-12">
+            <p className="text-gray-500 font-mono text-xs mb-4">
+              Quer um sistema assim para o seu negócio?
+            </p>
+            <Link 
+              href="https://solutions.marroc.xyz" 
+              className="inline-flex items-center gap-2 px-8 py-4 bg-neon-green hover:bg-white text-black font-bold uppercase tracking-widest text-xs transition-colors"
+            >
+              Implementar Autonomia <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* --- MENU DE SERVIÇOS (ATUALIZADO PARA 4 COLUNAS) --- */}
 <section className="py-24 px-4 bg-[#050505]">
   <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
