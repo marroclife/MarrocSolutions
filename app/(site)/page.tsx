@@ -420,6 +420,106 @@ export default function HomePage() {
 
   </div>
 </section>
+
+{/* --- ONDA 5: RESPONSE MATRIX (Teses de Autoridade) --- */}
+<section className="py-24 px-6 border-t border-white/5 bg-[#080808] relative overflow-hidden">
+  {/* Glow */}
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(0,255,148,0.02),transparent_50%)] pointer-events-none" />
+  
+  <div className="max-w-4xl mx-auto">
+    {/* Header */}
+    <div className="text-center mb-16">
+      <span className="font-mono text-neon-green text-xs uppercase tracking-widest mb-4 block">Response Matrix</span>
+      <h2 className="font-display text-3xl md:text-5xl text-white mb-6">
+        Teses de <span className="text-neon-green">Autoridade</span>
+      </h2>
+      <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+        Não respondemos perguntas. <strong className="text-white">Apresentamos teses.</strong> Cada resposta é um posicionamento que define quem somos.
+      </p>
+    </div>
+
+    {/* FAQ Accordion */}
+    <div className="space-y-4">
+      {/* FAQ 1 */}
+      <details className="group border border-white/10 bg-white/[0.02] rounded-sm overflow-hidden">
+        <summary className="flex items-center justify-between cursor-pointer p-6 font-mono text-sm text-white hover:text-neon-green transition-colors list-none">
+          <span className="flex items-center gap-3">
+            <span className="text-neon-green">//</span>
+            O que é um sistema vivo digital?
+          </span>
+          <span className="text-neon-green group-open:rotate-45 transition-transform">+</span>
+        </summary>
+        <div className="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+          <p>
+            <strong className="text-white">Um sistema vivo digital é um ecossistema que respira, aprende e se adapta.</strong> Diferente de um site tradicional (que é estático e precisa de intervenção humana para atualizar), um sistema vivo possui memória, autonomia e capacidade de evolução. É o que construímos aqui: uma infraestrutura que não apenas existe, mas <span className="text-neon-green">funciona</span>.
+          </p>
+        </div>
+      </details>
+
+      {/* FAQ 2 */}
+      <details className="group border border-white/10 bg-white/[0.02] rounded-sm overflow-hidden">
+        <summary className="flex items-center justify-between cursor-pointer p-6 font-mono text-sm text-white hover:text-neon-green transition-colors list-none">
+          <span className="flex items-center gap-3">
+            <span className="text-neon-green">//</span>
+            Por que a maioria das agências falha em entregar resultados?
+          </span>
+          <span className="text-neon-green group-open:rotate-45 transition-transform">+</span>
+        </summary>
+        <div className="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+          <p>
+            <strong className="text-white">Porque entregam ferramentas, não sistemas.</strong> Uma landing page bonita não gera receita. Um blog otimizado não cria autoridade. O que gera resultado é um ecossistema onde cada componente conversa com o outro, onde a performance alimenta a conversão e onde a autoridade sustenta o tráfego. É por isso que não vendemos sites. Vendemos <span className="text-neon-green">arquiteturas de resultado</span>.
+          </p>
+        </div>
+      </details>
+
+      {/* FAQ 3 */}
+      <details className="group border border-white/10 bg-white/[0.02] rounded-sm overflow-hidden">
+        <summary className="flex items-center justify-between cursor-pointer p-6 font-mono text-sm text-white hover:text-neon-green transition-colors list-none">
+          <span className="flex items-center gap-3">
+            <span className="text-neon-green">//</span>
+            Como a IA muda a operação de um negócio B2B?
+          </span>
+          <span className="text-neon-green group-open:rotate-45 transition-transform">+</span>
+        </summary>
+        <div className="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+          <p>
+            <strong className="text-white">A IA não automatiza tarefas. Ela multiplica resultados.</strong> O mesmo tempo que um salesperson gasta respondendo perguntas básicas, um agente de IA responde 1000x com consistência. O mesmo tempo que um analista gasta compilando relatórios, um sistema autônomo compila e interpreta em tempo real. O resultado: <span className="text-neon-green">sua equipe focando no que importa</span> enquanto a IA cuida do resto.
+          </p>
+        </div>
+      </details>
+
+      {/* FAQ 4 */}
+      <details className="group border border-white/10 bg-white/[0.02] rounded-sm overflow-hidden">
+        <summary className="flex items-center justify-between cursor-pointer p-6 font-mono text-sm text-white hover:text-neon-green transition-colors list-none">
+          <span className="flex items-center gap-3">
+            <span className="text-neon-green">//</span>
+            O que é saliência de entidade e por que importa?
+          </span>
+          <span className="text-neon-green group-open:rotate-45 transition-transform">+</span>
+        </summary>
+        <div className="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+          <p>
+            <strong className="text-white">Saliência de entidade é como o Google te vê.</strong> Se você é uma "agência de marketing", o Google te compara com 10.000 outras. Se você é o <span className="text-neon-green">"Arquiteto de Agentes Autônomos para B2B"</span>, não existe comparação. É por isso que não trabalhamos com palavras-chave genéricas. Trabalhamos com <strong className="text-white">definição de território exclusivo</strong>. Quando você domina um território, o tráfego qualificado vem naturalmente.
+          </p>
+        </div>
+      </details>
+    </div>
+
+    {/* CTA */}
+    <div className="text-center mt-12">
+      <p className="text-gray-500 font-mono text-xs mb-4">
+        Pronto para abandonar o genérico e dominar o único?
+      </p>
+      <Link
+        href="https://solutions.marroc.xyz"
+        className="inline-flex items-center gap-2 px-8 py-4 bg-neon-green hover:bg-white text-black font-bold uppercase tracking-widest text-xs transition-colors"
+      >
+        Implementar Minha Autoridade <ArrowRight size={14} />
+      </Link>
+    </div>
+  </div>
+</section>
+
 {/* --- SEÇÃO GAJA HAI: ARTEFATOS --- */}
 <section className="relative py-20 border-t border-white/5 overflow-hidden">
   {/* Ambient Glow */}
