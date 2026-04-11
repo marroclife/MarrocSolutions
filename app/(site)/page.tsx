@@ -43,8 +43,8 @@ export default function HomePage() {
               MARROC <br/> SOLUTIONS
             </h2>
             <p className="font-mono text-gray-400 text-sm md:text-base max-w-sm mt-4 border-l border-neon-green/30 pl-4">
-              Arquitetura Digital & Alta Performance. <br/>
-              Otimize o código da sua empresa.
+              <strong className="text-white">Arquitetura de Inteligência Operacional.</strong><br/>
+              Sistemas de agentes autônomos para escalar a capacidade produtiva da sua empresa.
             </p>
             <div className="mt-8 flex items-center gap-2 text-sm font-bold uppercase tracking-widest md:opacity-0 md:group-hover:opacity-100 transition-opacity transform md:translate-y-4 md:group-hover:translate-y-0 text-neon-green md:text-white">
               Acessar Consultoria <ArrowRight size={16} />
@@ -133,9 +133,9 @@ export default function HomePage() {
       <span className="block font-mono text-xs text-neon-green mb-2 uppercase tracking-widest">B2B / Performance</span>
       <h3 className="font-display text-3xl text-white mb-4">Marroc Solutions</h3>
       <ul className="space-y-2 font-mono text-[10px] text-gray-400 mb-8 flex-1">
-        <li>&gt; Desenvolvimento Web</li>
-        <li>&gt; Otimização de Sistemas</li>
-        <li>&gt; Consultoria IA</li>
+        <li>&gt; Orquestração de Agentes Autônomos</li>
+        <li>&gt; Saliência de Entidade & SEO</li>
+        <li>&gt; Arquitetura de Sistemas Vivos</li>
       </ul>
       <Link href="https://solutions.marroc.xyz" className="block w-full py-3 text-center bg-neon-green hover:bg-white hover:text-black text-black font-bold uppercase tracking-widest text-[10px] transition-colors">
         Agendar Auditoria
