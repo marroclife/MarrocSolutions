@@ -61,7 +61,7 @@ export default function Page() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <a 
-              href="https://wa.me/5521992669980" 
+              href="https://wa.me/5521990387232" 
               className="bg-[#00FF94] text-black font-bold px-8 py-4 rounded-lg hover:bg-[#00dd85] transition-all shadow-[0_0_20px_rgba(0,255,148,0.3)]"
             >
               Agendar Auditoria Gratuita
@@ -95,14 +95,14 @@ export default function Page() {
             icon={Cpu} 
             text="Quer automatizar fluxos complexos com agentes que pensam e executam sozinhos?"
             ctaText="Implementar Agentes" 
-            href="https://wa.me/5521992669980" 
+            href="https://wa.me/5521990387232" 
           />
           
           <CTABox 
             icon={BrainCircuit} 
             text="Aumente a capacidade cognitiva da sua empresa com arquiteturas de IA autônoma."
             ctaText="Consultoria de IA" 
-            href="https://wa.me/5521992669980" 
+            href="https://wa.me/5521990387232" 
           />
 
           <AuthorBox 

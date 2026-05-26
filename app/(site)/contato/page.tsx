@@ -48,7 +48,7 @@ export default function ContatoPage() {
               
               {/* WhatsApp (Destaque Principal - Verde) */}
               <a 
-                href="https://wa.me/5521992669980" 
+                href="https://wa.me/5521990387232" 
                 target="_blank" 
                 rel="noreferrer"
                 className="group flex items-center justify-between p-6 rounded-2xl bg-[#121212] border border-white/10 hover:border-green-500/50 hover:bg-green-500/5 transition-all duration-300"

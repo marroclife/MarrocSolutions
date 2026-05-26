@@ -62,7 +62,7 @@ export default function Page() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <a 
-              href="https://wa.me/5521992669980" 
+              href="https://wa.me/5521990387232" 
               className="bg-[#00FF94] text-black font-bold px-8 py-4 rounded-lg hover:bg-[#00dd85] transition-all shadow-[0_0_20px_rgba(0,255,148,0.3)]"
             >
               Agendar Auditoria Gratuita
@@ -97,14 +97,14 @@ export default function Page() {
             icon={Rocket} 
             text="Sua página demora mais de 2 segundos para carregar? Você está perdendo clientes agora mesmo."
             ctaText="Otimizar meu site" 
-            href="https://wa.me/5521992669980" 
+            href="https://wa.me/5521990387232" 
           />
           
           <CTABox 
             icon={Zap} 
             text="Implementamos a arquitetura de performance mais agressiva do mercado para ROI máximo."
             ctaText="Consultoria de Elite" 
-            href="https://wa.me/5521992669980" 
+            href="https://wa.me/5521990387232" 
           />
 
           <AuthorBox 
