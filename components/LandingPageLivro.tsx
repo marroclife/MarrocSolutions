@@ -123,8 +123,18 @@ const ChapterZeroModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
   );
 };
 
+interface BookOfferProps {
+  data: {
+    physical: string;
+    digital: string;
+    label: string;
+    image: string;
+  };
+  isMain?: boolean;
+}
+
 // --- COMPONENTE DE PRODUTO (OFFER CARD) ---
-const BookOffer = ({ data, isMain = false }) => {
+const BookOffer = ({ data, isMain = false }: BookOfferProps) => {
   return (
     <MysticCard className={`relative group p-6 rounded-2xl border transition-all duration-500 flex flex-col ${isMain ? 'border-gold bg-gold/5 shadow-gold/10 shadow-2xl scale-105 z-10' : 'border-white/10 bg-white/[0.02] hover:border-gold/30'}`}>
       <div className="flex flex-col md:flex-row gap-8 h-full">
