@@ -165,7 +165,7 @@ export default function BibliotecaPage() {
               status="Best-Seller"
               description="A jornada de Sofia. O despertar através do xamanismo, da medicina da floresta e da geometria sagrada. Uma obra que pulsa."
               color="gold"
-              image="/capa-ulm.png"
+              image="/covers/ulem-unified.png"
               link="/livros/um-lugar-entre-mundos"
             />
 
