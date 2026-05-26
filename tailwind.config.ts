@@ -26,7 +26,8 @@ const config: Config = {
             
             // HACK DE MIGRAÇÃO: 
             // Redefinimos 'tech-cyan' para Cinza Industrial.
-            'tech-cyan': '#A9A9A9', 
+            // Removido duplicata de 'tech-cyan' para evitar erro de build.
+            'industrial-silver-legacy': '#A9A9A9', 
 
             // --- CORES BASE DO SITE ---
   			forest: '#0E3B2E',
