@@ -41,6 +41,17 @@ const BookItem = ({
   link, 
   hasPhysical = true, 
   hasDigital = true 
+}: { 
+  title: string; 
+  tag: string; 
+  category: string; 
+  status: string; 
+  description: string; 
+  color: 'gold' | 'cyan'; 
+  image: string; 
+  link: string; 
+  hasPhysical?: boolean; 
+  hasDigital?: boolean; 
 }) => {
   const colorClass = color === 'gold' ? 'text-gold border-gold/20 bg-gradient-to-br from-gold/5 to-transparent' : 'text-cyan-400 border-cyan-500/20 bg-gradient-to-br from-cyan-950/10 to-transparent';
   const btnClass = color === 'gold' ? 'bg-gold hover:bg-white' : 'bg-cyan-600 hover:bg-white';
