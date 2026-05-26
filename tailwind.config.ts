@@ -11,14 +11,22 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
-            // --- NOVA IDENTIDADE (MATRIX / NEON) ---
+            // --- IDENTIDADE BASE (TECH/ART) ---
             'neon-green': '#00FF94', // O Verde do seu Instagram
             'deep-emerald': '#064e3b', // Fundo verde escuro
+            'tech-cyan': '#00FF94', 
+
+            // --- IDENTIDADE INDUSTRIAL (FUNDO/ACENTOS) ---
+            'industrial-black': '#1a1a1a', 
+            'industrial-charcoal': '#262626', 
+            'industrial-concrete': '#333333', 
+            'industrial-silver': '#A9A9A9', 
+            'industrial-paper': '#E0E0E0', 
+            'industrial-gold': '#C7A94B', 
             
             // HACK DE MIGRAÇÃO: 
-            // Redefinimos 'tech-cyan' para ser Verde Neon.
-            // Assim, componentes antigos ficam verdes automaticamente.
-            'tech-cyan': '#00FF94', 
+            // Redefinimos 'tech-cyan' para Cinza Industrial.
+            'tech-cyan': '#A9A9A9', 
 
             // --- CORES BASE DO SITE ---
   			forest: '#0E3B2E',
@@ -47,7 +55,7 @@ const config: Config = {
             'refined-gold': '#d4af37',
 
             // --- SHADCN UI (OVERRIDE DARK) ---
-  			background: '#050505', 
+  			background: '#1a1a1a', 
   			foreground: '#E0E0E0', 
   			card: {
   				DEFAULT: 'hsl(var(--card))',

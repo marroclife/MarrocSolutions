@@ -9,7 +9,7 @@ export default function HomePage() {
   const [hoveredSide, setHoveredSide] = useState<"left" | "right" | null>(null);
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-neon-green selection:text-black">
+    <main className="min-h-screen bg-transparent text-white overflow-x-hidden selection:bg-industrial-gold selection:text-black">
       
       {/* --- DOBRA 1: HERO SPLIT --- */}
       <section className="relative w-full flex flex-col md:flex-row md:h-screen">
@@ -24,22 +24,23 @@ export default function HomePage() {
             </p>
         </div>
 
-        {/* LADO ESQUERDO: SOLUTIONS (Tech) */}
-        <Link 
-          href="https://solutions.marroc.xyz"
-          className="relative w-full md:flex-1 group min-h-[50vh] md:h-full border-b md:border-b-0 md:border-r border-white/10 overflow-hidden cursor-pointer"
-          onMouseEnter={() => setHoveredSide("left")}
-          onMouseLeave={() => setHoveredSide(null)}
-        >
-          <div className={`absolute inset-0 bg-[url('/bg-tech-grid.jpg')] bg-cover bg-center transition-all duration-700 ${hoveredSide === 'left' ? 'scale-105 opacity-40' : 'opacity-20 grayscale'}`} />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-90" />
+      {/* LADO ESQUERDO: SOLUTIONS (Tech) */}
+      <Link 
+        href="https://solutions.marroc.xyz"
+        className="relative w-full md:flex-1 group min-h-[50vh] md:h-full border-b md:border-b-0 md:border-r border-white/10 overflow-hidden cursor-pointer"
+        onMouseEnter={() => setHoveredSide("left")}
+        onMouseLeave={() => setHoveredSide(null)}
+      >
+        <div className={`absolute inset-0 transition-all duration-700 ${hoveredSide === 'left' ? 'scale-105 opacity-60' : 'opacity-30 grayscale'} bg-[#1A1A1A]`} 
+             style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+        <div className="absolute inset-0 bg-gradient-to-t from-industrial-black via-transparent to-transparent opacity-90" />
           
           <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 py-12 transition-transform duration-500 md:group-hover:translate-x-2">
             <div className="flex items-center gap-2 text-neon-green mb-4">
               <Hexagon size={20} />
               <span className="font-mono text-xs tracking-widest uppercase">Para Negócios</span>
             </div>
-            <h2 className="font-display text-4xl md:text-7xl leading-none mb-2 md:group-hover:text-neon-green transition-colors">
+            <h2 className="font-display text-4xl md:text-7xl leading-none mb-2 md:group-hover:text-neon-green transition-colors drop-shadow-[0_0_15px_rgba(0,255,148,0.3)]">
               MARROC <br/> SOLUTIONS
             </h2>
             <p className="font-mono text-gray-400 text-sm md:text-base max-w-sm mt-4 border-l border-neon-green/30 pl-4">
@@ -58,15 +59,16 @@ export default function HomePage() {
           onMouseEnter={() => setHoveredSide("right")}
           onMouseLeave={() => setHoveredSide(null)}
         >
-          <div className={`absolute inset-0 bg-[url('/bg-art-fluid.jpg')] bg-cover bg-center transition-all duration-700 ${hoveredSide === 'right' ? 'scale-105 opacity-50' : 'opacity-20'}`} />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-90" />
+          <div className={`absolute inset-0 transition-all duration-700 ${hoveredSide === 'right' ? 'scale-105 opacity-50' : 'opacity-30'} bg-[#1A1A1A]`} 
+               style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(199,169,75,0.05) 1px, transparent 0)', backgroundSize: '20px 20px' }} />
+          <div className="absolute inset-0 bg-gradient-to-t from-industrial-black via-transparent to-transparent opacity-90" />
 
           <div className="relative z-10 h-full flex flex-col justify-center md:items-end md:text-right px-6 md:px-16 py-12 transition-transform duration-500 md:group-hover:-translate-x-2">
             <div className="flex items-center md:justify-end gap-2 text-purple-400 mb-4">
               <span className="font-mono text-xs tracking-widest uppercase md:order-1">Para a Mente</span>
               <Zap size={20} className="md:order-2"/>
             </div>
-            <h2 className="font-display text-4xl md:text-7xl leading-none mb-2 md:group-hover:text-purple-400 transition-colors">
+            <h2 className="font-display text-4xl md:text-7xl leading-none mb-2 md:group-hover:text-purple-400 transition-colors drop-shadow-[0_0_15px_rgba(168,85,247,0.3)]">
               MARROC <br/> LABS
             </h2>
             <p className="font-mono text-gray-400 text-sm md:text-base max-w-sm mt-4 md:border-r border-l md:border-l-0 border-purple-500/30 pl-4 md:pl-0 md:pr-4">
@@ -103,7 +105,7 @@ export default function HomePage() {
       </section>
 
       {/* --- DOBRA 2: A PONTE --- */}
-      <section className="py-20 px-6 border-t border-white/5 bg-[#080808]">
+      <section className="py-20 px-6 border-t border-white/5 bg-industrial-black/30 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h3 className="font-mono text-neon-green text-xs md:text-sm uppercase tracking-widest">
             // O Algoritmo da Criação
@@ -125,7 +127,7 @@ export default function HomePage() {
 
 
       {/* --- ONDA 2: PROOF OF WORK (Nexo como caso vivo) --- */}
-      <section className="py-24 px-6 border-t border-neon-green/10 bg-[#050505] relative overflow-hidden">
+      <section className="py-24 px-6 border-t border-neon-green/10 bg-industrial-black/20 relative overflow-hidden">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <span className="font-mono text-neon-green text-xs uppercase tracking-widest mb-4 block">Live Proof</span>
@@ -175,7 +177,7 @@ export default function HomePage() {
       </section>
 
       {/* --- MENU DE SERVIÇOS (ATUALIZADO PARA 4 COLUNAS) --- */}
-<section className="py-24 px-4 bg-[#050505]">
+<section className="py-24 px-4 bg-industrial-black/40">
   <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     
     {/* Card 1: SOLUTIONS (Green) */}

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /sites-de-alta-performance
+Allow: /agentes-autonomos
+Allow: /seo-saliencia-entidade
+Allow: /performance-web
+
+# Host and Sitemap
+Sitemap: https://solutions.marroc.xyz/sitemap.xml
