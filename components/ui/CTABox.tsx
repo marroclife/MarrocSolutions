@@ -3,7 +3,7 @@ import { Button } from './Button';
 import { LucideIcon } from 'lucide-react';
 
 interface CTABoxProps {
-  icon: React.ElementType<LucideIcon>;
+  icon: any;
   text: string;
   ctaText: string;
   href: string;
