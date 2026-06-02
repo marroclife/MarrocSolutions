@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Syne, JetBrains_Mono, Inter, Playfair_Display } from "next/font/google";
 import Header from "@/components/site/Header";
+import NexoFloatingWidget from "@/components/NexoFloatingWidget";
 
 // --- JSON-LD SCHEMA (Sovereign Loop - Technical Supremacy) ---
 const jsonLdSchema = {
@@ -137,6 +138,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
           </div>
         </div>
       </footer>
+      <NexoFloatingWidget />
     </div>
   );
 }

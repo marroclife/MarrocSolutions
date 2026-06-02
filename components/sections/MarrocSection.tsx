@@ -22,7 +22,7 @@ export function MarrocSection() {
             <h2 className="text-5xl md:text-7xl font-serif text-white leading-none">
               Live Psytrance <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                Ritualístico
+                Experiência de Fluxo
               </span>
             </h2>
 

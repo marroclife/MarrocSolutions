@@ -116,21 +116,50 @@ export default function BibliotecaPage() {
               não são apenas pixels em uma tela — são frequências que pedem para ser tocadas, 
               sentidas e guardadas em estantes como relíquias de um despertar.
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
               <Link 
                 href="#vitrine" 
                 className="px-6 py-3 bg-white text-black font-bold uppercase text-xs tracking-widest hover:bg-gold transition-colors"
               >
                 Explorar Artefatos
               </Link>
+              <Link 
+                href="#tangivel" 
+                className="px-6 py-3 border border-gold/50 text-gold font-bold uppercase text-xs tracking-widest hover:bg-gold hover:text-black transition-colors"
+              >
+                Por que o Físico?
+              </Link>
             </div>
           </div>
-          <div className="relative aspect-square max-w-md mx-auto animate-slowFloat">
+          {/* COMPOSIÇÃO VISUAL (substitui o "Sinergia Material" sem imagem) */}
+          <div className="relative aspect-square max-w-lg mx-auto animate-slowFloat scale-110">
+             {/* Glow dourado de fundo */}
              <div className="absolute inset-0 bg-gold/10 blur-3xl rounded-full"></div>
-             <div className="relative z-10 border border-white/10 p-4 backdrop-blur-sm rounded-lg">
-                <div className="aspect-[3/4] bg-black border border-white/5 overflow-hidden rounded-md flex items-center justify-center">
-                   <Book size={80} className="text-gold/20" />
-                   <span className="absolute bottom-4 text-[10px] font-mono text-gray-500 uppercase tracking-widest">Sinergia Material</span>
+             {/* Frame principal com triptico simbólico */}
+             <div className="relative z-10 h-full border border-white/10 p-6 backdrop-blur-sm rounded-lg flex flex-col justify-between bg-gradient-to-br from-gold/[0.03] to-transparent">
+                {/* Topo: ícone + label */}
+                <div className="flex items-center gap-2 text-gold">
+                   <BrainCircuit size={16} />
+                   <span className="text-[10px] font-mono uppercase tracking-widest">Códice</span>
+                </div>
+                {/* Centro: números/manifesto numerado */}
+                <div className="space-y-3 my-auto">
+                   <div className="flex items-baseline gap-3">
+                      <span className="text-gold/40 font-mono text-xs">01</span>
+                      <span className="text-white font-display text-lg leading-tight">Ancestralidade</span>
+                   </div>
+                   <div className="flex items-baseline gap-3">
+                      <span className="text-gold/40 font-mono text-xs">02</span>
+                      <span className="text-white font-display text-lg leading-tight">Tecnologia</span>
+                   </div>
+                   <div className="flex items-baseline gap-3">
+                      <span className="text-gold/40 font-mono text-xs">03</span>
+                      <span className="text-white font-display text-lg leading-tight">Frequência</span>
+                   </div>
+                </div>
+                {/* Rodapé: assinatura */}
+                <div className="pt-4 border-t border-white/5">
+                   <p className="text-[9px] font-mono text-gray-500 uppercase tracking-widest">Tradição Agora Tem Forma</p>
                 </div>
              </div>
           </div>
@@ -186,7 +215,7 @@ export default function BibliotecaPage() {
 
       {/* 3. ARGUMENTO DO FÍSICO */}
       <Section container>
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-16 items-center py-12">
+        <div id="tangivel" className="max-w-4xl mx-auto grid md:grid-cols-2 gap-16 items-center py-12">
           <div className="space-y-6">
             <h2 className="font-display text-4xl text-white leading-tight">
               Por que o <span className="text-gold">Tangível</span>?

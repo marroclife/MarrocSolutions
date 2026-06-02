@@ -8,10 +8,10 @@ import { Section } from "@/components/ui/Section";
 
 export const metadata: Metadata = {
   title: "Marroc | Live Psytrance Ritual",
-  description: "Progressive Trance com instrumentos ao vivo e mantras. A pista de dança como templo de transformação.",
+  description: "Compor, pra mim, sempre foi ritual. Psytrance, eletrônica, experimental — não é gênero, é estado expandido. Som como portal. Frequência como linguagem. Silêncio como matéria-prima.",
 };
 
-// CONSTANTES ATUALIZADAS
+// CONSTANTES — IDs REAIS
 const VIDEOS = [
   { 
     id: "PXv-ViQn3Os", 
@@ -24,6 +24,8 @@ const VIDEOS = [
     tag: "RITUAL" 
   }
 ];
+
+const SPOTIFY_TRACK_ID = "0lXblVXKNTqM5oJf17yYPZ";
 
 const LINKS = {
   youtube: "https://www.youtube.com/@marroc-life",
@@ -51,10 +53,9 @@ export default function MusicaPage() {
         </Link>
       </nav>
 
-      {/* --- 1. HERO: O RITUAL --- */}
+      {/* --- 1. HERO: O RITUAL (Copy Fusão 3 Camadas) --- */}
       <section className="relative min-h-[85vh] flex flex-col justify-center items-center text-center px-6 pt-20">
         
-        {/* Visualizer Effect */}
         <div className="relative mb-8 animate-in fade-in zoom-in duration-1000">
            <div className="absolute inset-0 bg-fuchsia-600 blur-[100px] opacity-30 rounded-full"></div>
            <div className="relative w-32 h-32 border border-white/20 rounded-full flex items-center justify-center bg-black/20 backdrop-blur-sm">
@@ -74,15 +75,29 @@ export default function MusicaPage() {
             </span>
           </div>
 
+          {/* H1 PRINCIPAL: "Live Psytrance" como marca (sem "Ritualístico") */}
           <h1 className="font-display text-6xl md:text-8xl text-white tracking-tight leading-[0.9] drop-shadow-xl">
-            Live Psytrance <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-200 to-cyan-300">Ritualístico</span>
+            Live <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-200 to-cyan-300">Psytrance</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed font-light tracking-wide">
-            Energia de pista, alma de templo. <br />
-            <span className="text-fuchsia-300 font-medium">Beats Eletrônicos</span> + <span className="text-emerald-300 font-medium">Instrumentos Orgânicos</span> + <span className="text-gold font-medium">Voz ao Vivo</span>.
+          {/* SUBTÍTULO MANIFESTO: "Compor, pra mim, sempre foi ritual" como refinamento */}
+          <p className="text-2xl md:text-3xl text-fuchsia-300 max-w-3xl mx-auto leading-relaxed font-display italic">
+            "Compor, pra mim, sempre foi ritual."
           </p>
+
+          {/* FUSÃO DAS 3 COPIES */}
+          <div className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed font-light tracking-wide space-y-3">
+            <p>
+              É o momento onde eu paro de reagir ao mundo e começo a criá-lo.
+            </p>
+            <p>
+              <span className="text-fuchsia-300 font-medium">Beats Eletrônicos</span> + <span className="text-emerald-300 font-medium">Instrumentos Orgânicos</span> + <span className="text-gold font-medium">Voz ao Vivo</span>.
+            </p>
+            <p className="text-lg md:text-xl text-gray-300 italic">
+              Psytrance, eletrônica, experimental — <span className="text-fuchsia-300 not-italic">não é gênero, é estado expandido</span>.
+            </p>
+          </div>
 
           <div className="pt-8 flex flex-col sm:flex-row justify-center gap-6">
             <GlowButton variant="cyan" href="#videos">
@@ -98,12 +113,12 @@ export default function MusicaPage() {
         </div>
       </section>
 
-      {/* --- 2. O CONCEITO --- */}
+      {/* --- 2. O CONCEITO (3 Pilares) --- */}
       <Section className="border-y border-white/10 bg-white/5 backdrop-blur-sm">
         <div className="container grid md:grid-cols-3 gap-8">
             <div className="p-6 border-l-2 border-fuchsia-500/40 space-y-4 bg-black/40 rounded-r-xl hover:bg-black/60 transition-colors">
                 <Disc className="text-fuchsia-400 w-8 h-8 mb-2 drop-shadow-glow" />
-                <h3 className="text-xl font-display text-white">Prog & Psy</h3>
+                <h3 className="text-xl font-display text-white">Estado Expandido</h3>
                 <p className="text-sm text-gray-300 leading-relaxed">
                     A base é sólida. Grooves progressivos e psicodélicos desenhados para induzir estados de transe e movimento contínuo.
                 </p>
@@ -113,7 +128,7 @@ export default function MusicaPage() {
                 <Music className="text-emerald-400 w-8 h-8 mb-2 drop-shadow-glow" />
                 <h3 className="text-xl font-display text-white">Multi-Instrumentista</h3>
                 <p className="text-sm text-gray-300 leading-relaxed">
-                    Não é apenas um DJ set. Flautas, percussões e sintetizadores são tocados ao vivo, trazendo a energia do momento presente.
+                    Flautas, percussões e sintetizadores tocados ao vivo — trazendo a energia do momento presente.
                 </p>
             </div>
 
@@ -121,20 +136,53 @@ export default function MusicaPage() {
                 <Mic className="text-gold w-8 h-8 mb-2 drop-shadow-glow" />
                 <h3 className="text-xl font-display text-white">Voz & Mantra</h3>
                 <p className="text-sm text-gray-300 leading-relaxed">
-                    O rezo no meio da pista. Cantos sagrados e mantras são entoados sobre as batidas, elevando a vibração coletiva.
+                    O rezo no meio da pista. Cantos sagrados e mantras entoados sobre as batidas, elevando a vibração coletiva.
                 </p>
             </div>
         </div>
       </Section>
 
-      {/* --- 3. MAIN STAGE (VIDEOS) --- */}
-      <section id="videos" className="py-24 container max-w-6xl">
+      {/* --- 3. NOVA SEÇÃO: PLAYER SPOTIFY EMBARCADO --- */}
+      <section className="py-20 container max-w-4xl mx-auto">
+        <div className="text-center mb-10 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 border border-emerald-500/30 rounded-full bg-emerald-500/10 backdrop-blur-sm">
+              <Music className="w-3 h-3 text-emerald-400" />
+              <span className="text-[10px] font-mono text-emerald-300 tracking-widest uppercase">
+                Streaming Embarcado
+              </span>
+            </div>
+            <h2 className="font-display text-4xl md:text-5xl text-white">Ouça Agora</h2>
+            <p className="text-gray-400">Player oficial. Sem sair do portal.</p>
+        </div>
+
+        {/* SPOTIFY EMBED */}
+        <div className="relative group">
+          <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 via-fuchsia-500/20 to-cyan-500/20 rounded-2xl blur opacity-50 group-hover:opacity-75 transition duration-500"></div>
+          <div className="relative bg-black/60 border border-white/10 rounded-2xl p-3 backdrop-blur-md">
+            <iframe
+              data-testid="embed-iframe"
+              style={{ borderRadius: '12px' }}
+              src={`https://open.spotify.com/embed/track/${SPOTIFY_TRACK_ID}?utm_source=generator&theme=0`}
+              width="100%"
+              height="152"
+              frameBorder="0"
+              allowFullScreen
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              title="Spotify Player"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* --- 4. MAIN STAGE (VIDEOS) --- */}
+      <section id="videos" className="py-24 container max-w-6xl mx-auto">
         <div className="text-center mb-12">
             <h2 className="font-display text-4xl md:text-5xl text-white mb-4">A Experiência</h2>
             <p className="text-gray-400">Registros do campo de batalha espiritual.</p>
         </div>
 
-        {/* Destaque Principal (Live Set Completo) */}
+        {/* Destaque Principal */}
         <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(192,38,211,0.15)] group bg-black">
              <div className="absolute top-4 left-4 z-10 bg-fuchsia-600 text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-widest shadow-lg">
                 {VIDEOS[0].tag}
@@ -148,7 +196,7 @@ export default function MusicaPage() {
             />
         </div>
 
-        {/* Vídeo Secundário (Abertura Cerimonial) */}
+        {/* Vídeo Secundário */}
         <div className="mt-8">
              <MysticCard className="p-0 overflow-hidden border-white/10 bg-black/60 hover:border-fuchsia-500/30 group">
                  <div className="grid md:grid-cols-2">
@@ -184,14 +232,14 @@ export default function MusicaPage() {
         </div>
       </section>
 
-      {/* --- 4. MANIFESTO RÁPIDO --- */}
+      {/* --- 5. MANIFESTO RÁPIDO (Copy Fusão Atualizada) --- */}
       <section className="py-20 bg-gradient-to-r from-black via-[#1a0b2e] to-black border-y border-white/10">
-        <div className="container max-w-4xl text-center space-y-8">
+        <div className="container max-w-4xl mx-auto text-center space-y-8">
             <Zap className="w-10 h-10 text-fuchsia-500 mx-auto animate-pulse" />
             <p className="text-xl md:text-2xl text-gray-200 font-light leading-relaxed">
-                "Música não é entretenimento. É portal. <br />
-                No Marroc, a pista de dança é um templo. O público, um círculo sagrado. <br />
-                Não estamos aqui apenas para tocar música. Estamos aqui para invocar."
+                "Som como portal. Frequência como linguagem. Silêncio como matéria-prima. <br />
+                <span className="text-fuchsia-300">Cada faixa é um mapa pra sair do ruído e entrar no silêncio que fala.</span> <br />
+                Esta é a trilha sonora do que eu construo quando ninguém está olhando."
             </p>
             <p className="text-fuchsia-400/60 font-mono text-sm uppercase tracking-widest">
                 — Manifesto do Som Ritual
@@ -199,9 +247,9 @@ export default function MusicaPage() {
         </div>
       </section>
 
-      {/* --- 5. FOOTER CTA (LINKS REAIS) --- */}
+      {/* --- 6. FOOTER CTA (LINKS REAIS) --- */}
       <section className="py-24 text-center">
-        <div className="container max-w-2xl">
+        <div className="container max-w-2xl mx-auto">
             <Headphones className="w-12 h-12 text-white mx-auto mb-6" />
             <h2 className="font-display text-4xl md:text-5xl text-white mb-6">Siga o Artista</h2>
             <p className="text-gray-400 mb-10 text-lg">

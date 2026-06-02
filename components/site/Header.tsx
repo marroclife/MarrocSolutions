@@ -10,9 +10,9 @@ type NavItem = { href: string; label: string };
 
 const NAV: NavItem[] = [
   { href: "/livros", label: "Livros" }, 
-  { href: "/guardian", label: "Oráculo" },
+  { href: "/nexo", label: "Nexo" },
   { href: "/projetos", label: "Projetos" },
-  { href: "/rituais", label: "Rituais" },
+  { href: "/rituais", label: "Terapias" },
   { href: "/agenda", label: "Agenda" },
   { href: "/conteudos", label: "Artigos" },
   { href: "/sobre", label: "Sobre" },

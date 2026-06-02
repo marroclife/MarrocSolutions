@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image"; 
-import { ArrowRight, Hexagon, Zap, Activity, Code, Music, BookOpen, ShoppingBag } from "lucide-react";
+import { ArrowRight, Hexagon, Zap, Activity, Code, Music, BookOpen, ShoppingBag, Bot, Heart } from "lucide-react";
 
 export default function HomePage() {
   const [hoveredSide, setHoveredSide] = useState<"left" | "right" | null>(null);
@@ -73,7 +73,7 @@ export default function HomePage() {
             </h2>
             <p className="font-mono text-gray-400 text-sm md:text-base max-w-sm mt-4 md:border-r border-l md:border-l-0 border-purple-500/30 pl-4 md:pl-0 md:pr-4">
               Ecossistema de Arte & Frequência. <br/>
-              Música IA, Rituais e Livros.
+              Música IA, Terapias e Livros.
             </p>
             
             <div className="mt-8 flex flex-wrap md:justify-end gap-3 md:opacity-0 md:group-hover:opacity-100 transition-opacity transform md:translate-y-4 md:group-hover:translate-y-0">
@@ -81,7 +81,7 @@ export default function HomePage() {
                  Higher Hz
                </Link>
                <Link href="/musica" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-purple-500 hover:text-black text-xs font-mono uppercase transition">
-                 Live Ritual
+                 Live Psytrance
                </Link>
                <Link href="/rituais" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-emerald-500 hover:border-emerald-500 hover:text-black text-xs font-mono uppercase transition text-emerald-400/80">
                  Terapias
@@ -176,10 +176,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- MENU DE SERVIÇOS (ATUALIZADO PARA 4 COLUNAS) --- */}
+      {/* --- MENU DE SERVIÇOS (EXPANDIDO PARA 6 CARDS - 3x2) --- */}
 <section className="py-24 px-4 bg-industrial-black/40">
-  <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    
+  <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
     {/* Card 1: SOLUTIONS (Green) */}
     <div className="group p-8 rounded-none border border-neon-green/30 bg-deep-emerald/5 hover:border-neon-green/50 hover:bg-deep-emerald/10 transition-all duration-500 flex flex-col">
       <Code className="text-neon-green mb-6 w-10 h-10" />
@@ -195,7 +195,54 @@ export default function HomePage() {
       </Link>
     </div>
 
-    {/* Card 2: LIVROS (Cyan - O NOVO) */}
+    {/* Card 2: NEXO (Fuchsia/Cyan Glow - CENTRO DA LINHA 1) */}
+    <div className="group p-8 rounded-none border border-fuchsia-500/40 bg-fuchsia-950/5 hover:border-fuchsia-400 hover:bg-fuchsia-950/10 transition-all duration-500 flex flex-col relative overflow-hidden">
+      {/* Glow effect sutil */}
+      <div className="absolute -top-10 -right-10 w-40 h-40 bg-fuchsia-500/10 blur-3xl rounded-full pointer-events-none" />
+      <Bot className="text-fuchsia-400 mb-6 w-10 h-10 relative" />
+      <span className="block font-mono text-xs text-fuchsia-400 mb-2 uppercase tracking-widest relative">AI Assistant / Live</span>
+      <h3 className="font-display text-3xl text-white mb-4 relative">Nexo</h3>
+      <ul className="space-y-2 font-mono text-[10px] text-gray-400 mb-8 flex-1 relative">
+        <li>&gt; Assistente do Ecossistema</li>
+        <li className="text-cyan-400/80">&gt; Kimi K2.5 (Cloud)</li>
+        <li>&gt; 100% focado em você</li>
+      </ul>
+      <Link href="/nexo" className="block w-full py-3 text-center bg-gradient-to-r from-fuchsia-500 to-cyan-500 hover:from-fuchsia-400 hover:to-cyan-400 text-white font-bold uppercase tracking-widest text-[10px] transition-colors">
+        Falar com o Nexo
+      </Link>
+    </div>
+
+    {/* Card 3: LIVE PSYTRANCE (Purple - DIREITA DA LINHA 1) */}
+    <div className="group p-8 rounded-none border border-purple-500/30 bg-purple-950/5 hover:border-purple-400 hover:bg-purple-950/10 transition-all duration-500 flex flex-col">
+      <Music className="text-purple-400 mb-6 w-10 h-10" />
+      <span className="block font-mono text-xs text-purple-400 mb-2 uppercase tracking-widest">Experience / Show</span>
+      <h3 className="font-display text-3xl text-white mb-4">Live Psytrance</h3>
+      <ul className="space-y-2 font-mono text-[10px] text-gray-400 mb-8 flex-1">
+        <li>&gt; Performance ao Vivo</li>
+        <li>&gt; Beats + Instrumentos + Voz</li>
+        <li>&gt; Pista de Dança como Templo</li>
+      </ul>
+      <Link href="/musica" className="block w-full py-3 text-center border border-purple-500/50 hover:border-purple-400 hover:bg-purple-500 hover:text-black text-purple-300 font-bold uppercase tracking-widest text-[10px] transition-colors">
+        Ver Performance
+      </Link>
+    </div>
+
+    {/* Card 4: TERAPIAS (Green - ESQUERDA DA LINHA 2) */}
+    <div className="group p-8 rounded-none border border-emerald-500/30 bg-emerald-950/5 hover:border-emerald-400 hover:bg-emerald-950/10 transition-all duration-500 flex flex-col">
+      <Heart className="text-emerald-400 mb-6 w-10 h-10" />
+      <span className="block font-mono text-xs text-emerald-400 mb-2 uppercase tracking-widest">Experience / Cura</span>
+      <h3 className="font-display text-3xl text-white mb-4">Terapias</h3>
+      <ul className="space-y-2 font-mono text-[10px] text-gray-400 mb-8 flex-1">
+        <li>&gt; Atendimentos Integrativos</li>
+        <li>&gt; Cura Vibracional</li>
+        <li>&gt; Imersão Multidimensional</li>
+      </ul>
+      <Link href="/rituais" className="block w-full py-3 text-center border border-emerald-500/50 hover:border-emerald-400 hover:bg-emerald-500 hover:text-black text-emerald-300 font-bold uppercase tracking-widest text-[10px] transition-colors">
+        Agendar Sessão
+      </Link>
+    </div>
+
+    {/* Card 5: BIBLIOTECA MARROC (Cyan - CENTRO DA LINHA 2) */}
     <div className="group p-8 rounded-none border border-cyan-500/30 bg-cyan-950/5 hover:border-cyan-400/60 hover:bg-cyan-950/10 transition-all duration-500 flex flex-col">
       <BookOpen className="text-cyan-400 mb-6 w-10 h-10" />
       <span className="block font-mono text-xs text-cyan-500 mb-2 uppercase tracking-widest">Digital / Narrative</span>
@@ -210,39 +257,19 @@ export default function HomePage() {
       </Link>
     </div>
 
-    {/* Card 3: HIGHER HZ (Purple) */}
-    <div className="group p-8 rounded-none border border-white/5 hover:border-purple-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500 flex flex-col">
-      <Activity className="text-purple-400 mb-6 w-10 h-10" />
-      <span className="block font-mono text-xs text-purple-600 mb-2 uppercase tracking-widest">AI Audio / Arcanos</span>
+    {/* Card 6: HIGHER HZ (Pink - DIREITA DA LINHA 2) */}
+    <div className="group p-8 rounded-none border border-pink-500/30 bg-pink-950/5 hover:border-pink-400 hover:bg-pink-950/10 transition-all duration-500 flex flex-col">
+      <Activity className="text-pink-400 mb-6 w-10 h-10" />
+      <span className="block font-mono text-xs text-pink-400 mb-2 uppercase tracking-widest">AI Audio / Arcanos</span>
       <h3 className="font-display text-3xl text-white mb-4">Higher Hz</h3>
       <ul className="space-y-2 font-mono text-[10px] text-gray-400 mb-8 flex-1">
         <li>&gt; IA + Intenção Humana</li>
         <li>&gt; Tarot Musical</li>
         <li>&gt; Frequência 432Hz</li>
       </ul>
-      <Link href="/higher-hz" className="block w-full py-3 text-center border border-white/10 hover:border-purple-500 hover:text-purple-400 text-gray-400 font-bold uppercase tracking-widest text-[10px] transition-colors">
+      <Link href="/higher-hz" className="block w-full py-3 text-center border border-pink-500/50 hover:border-pink-400 hover:bg-pink-500 hover:text-black text-pink-300 font-bold uppercase tracking-widest text-[10px] transition-colors">
         Ouvir Álbum
       </Link>
-    </div>
-
-    {/* Card 4: LIVE (Pink/Green) */}
-    <div className="group p-8 rounded-none border border-white/5 hover:border-pink-500/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500 flex flex-col">
-      <Music className="text-pink-400 mb-6 w-10 h-10" />
-      <span className="block font-mono text-xs text-pink-600 mb-2 uppercase tracking-widest">Experience / Human</span>
-      <h3 className="font-display text-3xl text-white mb-4">Live & Rituais</h3>
-      <ul className="space-y-2 font-mono text-[10px] text-gray-400 mb-8 flex-1">
-        <li>&gt; Psytrance Ritualístico</li>
-        <li className="text-emerald-400/80">&gt; Atendimentos de Cura</li>
-        <li>&gt; Imersão Multidimensional</li>
-      </ul>
-      <div className="flex gap-2">
-          <Link href="/musica" className="flex-1 py-3 text-center border border-white/10 hover:border-pink-500 hover:text-pink-400 text-gray-400 font-bold uppercase tracking-widest text-[9px] transition-colors">
-            O SHOW
-          </Link>
-          <Link href="/rituais" className="flex-1 py-3 text-center border border-white/10 hover:border-emerald-500 hover:text-emerald-400 text-gray-400 font-bold uppercase tracking-widest text-[9px] transition-colors">
-            A CURA
-          </Link>
-      </div>
     </div>
 
   </div>

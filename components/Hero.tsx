@@ -7,7 +7,7 @@ export const Hero: React.FC = () => {
       {/* ... imagem ou background ... */}
       <div className="container py-16 md:py-24">
         <h1 className="font-display text-4xl md:text-6xl">
-          Live Psytrance Ritualístico — Músicas autorais com instrumentos e voz ao vivo.
+          Live Psytrance — Experiência de Fluxo. Músicas autorais com instrumentos e voz ao vivo.
         </h1>
         <p className="mt-4 text-xl text-paper/80">
           Mantras, percussões e sopros guiando você por um portal de som e cura.
