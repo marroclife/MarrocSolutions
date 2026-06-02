@@ -28,7 +28,7 @@ export default function ProtocoloPage() {
     return () => clearInterval(timer);
   }, []);
 
-  const whatsappUrl = `https://wa.me/+5521992669980?text=${encodeURIComponent(CONST_MESSAGE)}`;
+  const whatsappUrl = `https://wa.me/+5521990387232?text=${encodeURIComponent(CONST_MESSAGE)}`;
 
   // --- FUNÇÃO DE RASTREAMENTO (NOVO) ---
   const handleConversion = () => {

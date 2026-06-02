@@ -188,7 +188,7 @@ const PortfolioCard = ({ project }: { project: ProjectData }) => (
 
           {/* CTA */}
           <a
-            href={`https://wa.me/5521992669980?text=Quero%20agendar%20um%20diagnóstico%20para%20${encodeURIComponent(project.name)}`}
+            href={`https://wa.me/5521990387232?text=Quero%20agendar%20um%20diagnóstico%20para%20${encodeURIComponent(project.name)}`}
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-neon-green text-black font-bold rounded-lg hover:bg-white transition-all duration-300 uppercase tracking-widest text-sm group-hover:shadow-[0_0_20px_rgba(0,255,148,0.3)]"
           >
             Agendar Diagnóstico desta Solução
@@ -340,7 +340,7 @@ export default function PortfolioPage() {
             Arquitetura digital que escala. Automação que inteligence. Resultados que convertem em receita.
           </p>
           <a
-            href="https://wa.me/5521992669980?text=Quero%20entender%20qual%20solução%20se%20aplica%20ao%20meu%20negócio"
+            href="https://wa.me/5521990387232?text=Quero%20entender%20qual%20solução%20se%20aplica%20ao%20meu%20negócio"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-bold rounded-lg hover:bg-neon-green transition-colors text-lg"
           >
             Agendar Diagnóstico

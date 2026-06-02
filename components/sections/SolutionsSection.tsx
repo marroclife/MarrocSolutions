@@ -253,7 +253,7 @@ export function SolutionsSection() {
                 Este foi apenas um vislumbre superficial. Para reescrever sua arquitetura digital:
               </p>
               <a 
-                href={`https://wa.me/5521992669980?text=Ol%C3%A1%2C%20o%20Or%C3%A1culo%20analisou%20meu%20site%20(${url})%20e%20quero%20aprofundar.`}
+                href={`https://wa.me/5521990387232?text=Ol%C3%A1%2C%20o%20Or%C3%A1culo%20analisou%20meu%20site%20(${url})%20e%20quero%20aprofundar.`}
                 target="_blank"
                 rel="noreferrer"
                 className="block w-full text-center bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-4 rounded-lg transition-all shadow-lg shadow-cyan-900/20"

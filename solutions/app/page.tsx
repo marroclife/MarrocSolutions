@@ -200,7 +200,7 @@ const Testimonials = () => (
           <p className="text-slate-300 italic mb-6 relative z-10 pt-4">"{t.quote}"</p>
           <div><p className="font-bold text-white">{t.author}</p><p className="text-xs text-slate-500 uppercase tracking-wider">{t.role}</p></div>
           <div className="mt-6">
-            <a href="https://wa.me/5521992669980?text=Quero%20resultados%20como%20esses" className="text-xs font-bold text-neon-green hover:text-white transition-colors">
+            <a href="https://wa.me/5521990387232?text=Quero%20resultados%20como%20esses" className="text-xs font-bold text-neon-green hover:text-white transition-colors">
               Falar com Consultor →
             </a>
           </div>
@@ -264,7 +264,7 @@ const OracleSection = () => {
                 <div className="bg-[#0a0a0a] border border-neon-green/30 w-full max-w-2xl rounded-2xl shadow-2xl max-h-[85vh] flex flex-col">
                     <div className="p-6 border-b border-white/10 flex justify-between items-center"><h3 className="text-xl font-bold text-white">Relatório Técnico</h3><button onClick={() => setResult(null)}><X className="text-gray-400 hover:text-white" /></button></div>
                     <div className="p-6 overflow-y-auto custom-scrollbar prose prose-invert prose-green"><div className="whitespace-pre-line text-gray-300">{result}</div></div>
-                    <div className="p-6 border-t border-white/10 bg-[#0f0f0f]"><a href={`https://wa.me/5521992669980?text=Ol%C3%A1%2C%20analisei%20meu%20site%20no%20Or%C3%A1culo.%20Quero%20falar%20com%20um%20consultor.`} target="_blank" className="block w-full text-center bg-neon-green text-black font-bold py-4 rounded-lg hover:bg-white transition-all">Falar com Consultor</a></div>
+                    <div className="p-6 border-t border-white/10 bg-[#0f0f0f]"><a href={`https://wa.me/5521990387232?text=Ol%C3%A1%2C%20analisei%20meu%20site%20no%20Or%C3%A1culo.%20Quero%20falar%20com%20um%20consultor.`} target="_blank" className="block w-full text-center bg-neon-green text-black font-bold py-4 rounded-lg hover:bg-white transition-all">Falar com Consultor</a></div>
                 </div>
             </div>
         )}

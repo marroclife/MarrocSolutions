@@ -115,7 +115,7 @@ export function PricingSection() {
               price="R$ 1.200"
               isHighlight={false}
               features={["Site One-Page (Página Única)", "Design Persuasivo", "Carregamento Ultrarrápido", "Botão WhatsApp Flutuante", "Configuração de Pixel Básica"]}
-              link="https://wa.me/5521992669980?text=Quero%20aproveitar%20a%20promo%20da%20Landing%20Page"
+              link="https://wa.me/5521990387232?text=Quero%20aproveitar%20a%20promo%20da%20Landing%20Page"
             />
             <PriceCard 
               type="site"
@@ -125,7 +125,7 @@ export function PricingSection() {
               price="R$ 2.800"
               isHighlight={true}
               features={["Até 5 Páginas Internas", "Tecnologia Next.js (Alta Performance)", "SEO Estrutural (Google)", "CMS Gerenciável", "Domínio Grátis (1 ano)"]}
-              link="https://wa.me/5521992669980?text=Quero%20o%20Site%20Institucional%20com%20desconto"
+              link="https://wa.me/5521990387232?text=Quero%20o%20Site%20Institucional%20com%20desconto"
             />
             <PriceCard 
               type="site"
@@ -135,7 +135,7 @@ export function PricingSection() {
               monthly="A partir de R$ 5k"
               isHighlight={false}
               features={["Carrinho de Compras", "Cálculo de Frete", "Gateway de Pagamento", "Painel Administrativo", "Integração ERP"]}
-              link="https://wa.me/5521992669980?text=Preciso%20de%20um%20Ecommerce"
+              link="https://wa.me/5521990387232?text=Preciso%20de%20um%20Ecommerce"
             />
           </motion.div>
         )}
@@ -156,7 +156,7 @@ export function PricingSection() {
               monthly="R$ 800"
               isHighlight={false}
               features={["IA de Texto (GPT-4o-mini)", "Atendimento 24/7", "Semáforo (#pare/#volte)", "Respostas Contextuais", "Anti-Spam Básico"]}
-              link="https://wa.me/5521992669980?text=Quero%20o%20pacote%20Escudeiro"
+              link="https://wa.me/5521990387232?text=Quero%20o%20pacote%20Escudeiro"
             />
             <PriceCard 
               type="bot"
@@ -167,7 +167,7 @@ export function PricingSection() {
               monthly="R$ 1.200"
               isHighlight={true}
               features={["Tudo do Escudeiro +", "Ouvido Absoluto (Áudio/Whisper)", "Integração Google Sheets", "Buffer Anti-Alucinação", "Personalidade Customizada"]}
-              link="https://wa.me/5521992669980?text=Quero%20o%20pacote%20Guardiao"
+              link="https://wa.me/5521990387232?text=Quero%20o%20pacote%20Guardiao"
             />
             <PriceCard 
               type="bot"
@@ -178,7 +178,7 @@ export function PricingSection() {
               monthly="A partir de R$ 2k"
               isHighlight={false}
               features={["Multi-Agentes", "Integração CRM (RD/Pipefy)", "Dashboard BI", "Motor GPT-4o Full", "Consultoria Estratégica Mensal"]}
-              link="https://wa.me/5521992669980?text=Interesse%20no%20Enterprise"
+              link="https://wa.me/5521990387232?text=Interesse%20no%20Enterprise"
             />
           </motion.div>
         )}
@@ -190,7 +190,7 @@ export function PricingSection() {
               <p className="text-white text-lg max-w-2xl mx-auto mb-6">
                 Contrate <strong>Site + Automação</strong> juntos e ganhe <span className="text-neon-green font-bold">20% DE DESCONTO EXTRA</span> no total do setup.
               </p>
-              <a href="https://wa.me/5521992669980?text=Quero%20o%20Combo%20Supremo%20(Site%20%2B%20Bot)" target="_blank" className="inline-block px-8 py-3 bg-neon-green text-black font-bold rounded-lg hover:bg-white transition-colors uppercase tracking-widest text-sm">
+              <a href="https://wa.me/5521990387232?text=Quero%20o%20Combo%20Supremo%20(Site%20%2B%20Bot)" target="_blank" className="inline-block px-8 py-3 bg-neon-green text-black font-bold rounded-lg hover:bg-white transition-colors uppercase tracking-widest text-sm">
                 Quero o Combo
               </a>
            </div>

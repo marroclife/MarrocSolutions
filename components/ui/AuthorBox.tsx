@@ -30,7 +30,7 @@ export const AuthorBox = ({ name, role, bio, image }: AuthorBoxProps) => {
           <Button href="#cases" variant="outline" className="text-neutral-300 border-neutral-700 hover:border-[#00FF94] hover:text-[#00FF94] transition-colors">
             Ver Cases
           </Button>
-          <Button href="https://wa.me/5521992669980" className="bg-[#00FF94] text-black hover:bg-[#00dd85] font-bold">
+          <Button href="https://wa.me/5521990387232" className="bg-[#00FF94] text-black hover:bg-[#00dd85] font-bold">
             Agendar Consultoria
           </Button>
         </div>

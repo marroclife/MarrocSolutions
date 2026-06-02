@@ -188,7 +188,7 @@ export default function SerraNoTopoHub() {
             </h2>
             <div className="flex justify-center">
               <a 
-                href="https://wa.me/5521992669980?text=Ol%C3%A1%2C%20quero%20participar%20do%20Serra%20no%20Topo!" 
+                href="https://wa.me/5521990387232?text=Ol%C3%A1%2C%20quero%20participar%20do%20Serra%20no%20Topo!" 
                 target="_blank"
                 className="bg-emerald-600 hover:bg-emerald-500 text-white text-xl font-bold py-6 px-12 rounded-full shadow-2xl shadow-emerald-900/50 transform hover:scale-105 transition-all flex items-center gap-3"
               >

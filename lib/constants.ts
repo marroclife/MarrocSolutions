@@ -5,7 +5,7 @@ export const SITE_DESCRIPTION =
 
 // Contact Information
 export const CONTACT = {
-  whatsapp: "5521992669980",
+  whatsapp: "5521990387232",
   email: "contato@marrocsolutions.com",
   instagram: "@marroc_life",
 };

@@ -110,7 +110,7 @@ export function PricingSection() {
               price="A partir de R$ 1.500"
               isHighlight={false}
               features={["Site One-Page (Página Única)", "Design de Conversão", "Carregamento < 2s", "Integração WhatsApp", "Pixel e Analytics Básicos"]}
-              link="https://wa.me/5521992669980?text=Quero%20uma%20Landing%20Page%20de%20alta%20performance"
+              link="https://wa.me/5521990387232?text=Quero%20uma%20Landing%20Page%20de%20alta%20performance"
             />
             <PriceCard 
               type="site"
@@ -119,7 +119,7 @@ export function PricingSection() {
               price="A partir de R$ 2.800"
               isHighlight={true}
               features={["Até 5 Páginas Internas", "Next.js (Ultra Rápido)", "SEO Estrutural", "CMS Gerenciável", "Domínio + SSL Grátis"]}
-              link="https://wa.me/5521992669980?text=Quero%20um%20Site%20Institucional%20profissional"
+              link="https://wa.me/5521990387232?text=Quero%20um%20Site%20Institucional%20profissional"
             />
             <PriceCard 
               type="site"
@@ -128,7 +128,7 @@ export function PricingSection() {
               price="A partir de R$ 6.500"
               isHighlight={false}
               features={["Carrinho + Checkout", "Cálculo Automático de Frete", "Múltiplos Gateways", "Painel Admin", "Integração ERP"]}
-              link="https://wa.me/5521992669980?text=Preciso%20de%20um%20Ecommerce%20robusto"
+              link="https://wa.me/5521990387232?text=Preciso%20de%20um%20Ecommerce%20robusto"
             />
           </motion.div>
         )}
@@ -149,7 +149,7 @@ export function PricingSection() {
               monthly="R$ 800"
               isHighlight={false}
               features={["IA de Texto (GPT-4o-mini)", "Atendimento 24/7", "Semáforo (#pare/#volte)", "Respostas Contextuais", "Anti-Spam Básico"]}
-              link="https://wa.me/5521992669980?text=Quero%20o%20pacote%20Escudeiro"
+              link="https://wa.me/5521990387232?text=Quero%20o%20pacote%20Escudeiro"
             />
             <PriceCard 
               type="bot"
@@ -160,7 +160,7 @@ export function PricingSection() {
               monthly="R$ 1.200"
               isHighlight={true}
               features={["Tudo do Escudeiro +", "Ouvido Absoluto (Áudio/Whisper)", "Integração Google Sheets", "Buffer Anti-Alucinação", "Personalidade Customizada"]}
-              link="https://wa.me/5521992669980?text=Quero%20o%20pacote%20Guardiao"
+              link="https://wa.me/5521990387232?text=Quero%20o%20pacote%20Guardiao"
             />
             <PriceCard 
               type="bot"
@@ -171,7 +171,7 @@ export function PricingSection() {
               monthly="A partir de R$ 2k"
               isHighlight={false}
               features={["Multi-Agentes", "Integração CRM (RD/Pipefy)", "Dashboard BI", "Motor GPT-4o Full", "Consultoria Estratégica Mensal"]}
-              link="https://wa.me/5521992669980?text=Interesse%20no%20Enterprise"
+              link="https://wa.me/5521990387232?text=Interesse%20no%20Enterprise"
             />
           </motion.div>
         )}
@@ -183,7 +183,7 @@ export function PricingSection() {
               <p className="text-white text-lg max-w-2xl mx-auto mb-6">
                 Contrate <strong>Site + Automação</strong> juntos e ganhe <span className="text-neon-green font-bold">20% DE DESCONTO EXTRA</span> no total do investimento.
               </p>
-              <a href="https://wa.me/5521992669980?text=Quero%20negociar%20o%20Combo%20Supremo%20(Site%20%2B%20Automação%20IA)" target="_blank" className="inline-block px-8 py-3 bg-neon-green text-black font-bold rounded-lg hover:bg-white transition-colors uppercase tracking-widest text-sm">
+              <a href="https://wa.me/5521990387232?text=Quero%20negociar%20o%20Combo%20Supremo%20(Site%20%2B%20Automação%20IA)" target="_blank" className="inline-block px-8 py-3 bg-neon-green text-black font-bold rounded-lg hover:bg-white transition-colors uppercase tracking-widest text-sm">
                 Agendar Diagnóstico
               </a>
            </div>

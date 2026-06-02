@@ -6,7 +6,7 @@ import { ProjetaCard } from "../../components/proposals/ProjetaCard";
 import { Hexagon, ArrowRight } from "lucide-react";
 
 export const CONTACT = {
-  whatsapp: "5521992669980", // ← Substitua pelo seu número real
+  whatsapp: "5521990387232", // ← Substitua pelo seu número real
   email: "contato@marrocsolutions.com",
   instagram: "@marroc.solutions",
 };
