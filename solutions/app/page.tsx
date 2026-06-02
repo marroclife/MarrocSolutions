@@ -229,15 +229,12 @@ const OracleSection = () => {
     e.preventDefault();
     if (!url || !email) return;
     setLoading(true);
-    try {
-      const res = await fetch("/api/oracle", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url, email }),
-      });
-      const data = await res.json();
-      setResult(data.result);
-    } catch (err) { alert("Erro ao conectar."); } finally { setLoading(false); }
+    // TODO: integrar com Nexo Lite (motor de auditoria do ecossistema Marroc).
+    // Por enquanto mostra placeholder enquanto a integração não está pronta.
+    setTimeout(() => {
+      setResult("**Integração em migração**\n\nA auditoria automática está sendo migrada para o novo motor de IA (Nexo Lite). Em breve, esta seção usará o mesmo sistema que roda no marroc.xyz.\n\nEnquanto isso, agende uma conversa direta com a equipe para uma análise personalizada.");
+      setLoading(false);
+    }, 1200);
   };
 
   return (
