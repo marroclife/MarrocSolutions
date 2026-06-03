@@ -4,6 +4,10 @@ Allow: /sites-de-alta-performance
 Allow: /agentes-autonomos
 Allow: /seo-saliencia-entidade
 Allow: /performance-web
+Allow: /solutions
+Allow: /solutions/portfolio
+Allow: /solutions/cases
 
-# Host and Sitemap
-Sitemap: https://solutions.marroc.xyz/sitemap.xml
+# Host and Sitemap (atualizado em 03/06/2026: subdomínio solutions.marroc.xyz extinto,
+# todo o conteúdo migrou para /solutions dentro de marroc.xyz)
+Sitemap: https://marroc.xyz/sitemap.xml

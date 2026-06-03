@@ -5,19 +5,12 @@ const nextConfig = {
       bodySizeLimit: '2mb'
     }
   },
+  // Redirecionamentos legados foram removidos em 03/06/2026.
+  // O antigo solutions.marroc.xyz (subdomínio) foi extinto e todo o
+  // conteúdo migrou para rotas internas em /solutions dentro de marroc.xyz.
+  // Caso seja necessário adicionar redirects no futuro, documente a origem.
   async redirects() {
-    return [
-      {
-        source: '/solutions/:path*',
-        destination: 'https://solutions.marroc.xyz/:path*',
-        permanent: true,
-      },
-      {
-        source: '/marrocsolutions/:path*',
-        destination: 'https://solutions.marroc.xyz/:path*',
-        permanent: true,
-      },
-    ]
+    return []
   }
 }
 export default nextConfig;

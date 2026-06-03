@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link"; // Importando Link do Next.js
-import { Mic2, Music2, Calendar, ArrowRight } from "lucide-react";
+import { Mic2, Music2, ArrowRight } from "lucide-react";
 
 export function MarrocSection() {
   const SPOTIFY_ID = "74vMSJj7Vy2CzAo1U3x9YY";
@@ -49,14 +49,6 @@ export function MarrocSection() {
                  className="px-6 py-3 border border-white/30 text-white font-bold rounded-full hover:bg-white hover:text-black transition flex items-center gap-2"
                >
                  Explorar o Som <ArrowRight size={18} />
-               </Link>
-
-               {/* Link para Agenda */}
-               <Link 
-                 href="/agenda" 
-                 className="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition flex items-center gap-2"
-               >
-                 <Calendar size={18} /> Ver Agenda
                </Link>
             </div>
           </div>

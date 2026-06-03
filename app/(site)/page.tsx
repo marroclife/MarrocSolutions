@@ -26,7 +26,7 @@ export default function HomePage() {
 
       {/* LADO ESQUERDO: SOLUTIONS (Tech) */}
       <Link 
-        href="https://solutions.marroc.xyz"
+        href="/solutions"
         className="relative w-full md:flex-1 group min-h-[50vh] md:h-full border-b md:border-b-0 md:border-r border-white/10 overflow-hidden cursor-pointer"
         onMouseEnter={() => setHoveredSide("left")}
         onMouseLeave={() => setHoveredSide(null)}
@@ -83,7 +83,7 @@ export default function HomePage() {
                <Link href="/musica" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-purple-500 hover:text-black text-xs font-mono uppercase transition">
                  Live Psytrance
                </Link>
-               <Link href="/rituais" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-emerald-500 hover:border-emerald-500 hover:text-black text-xs font-mono uppercase transition text-emerald-400/80">
+               <Link href="/terapias" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-emerald-500 hover:border-emerald-500 hover:text-black text-xs font-mono uppercase transition text-emerald-400/80">
                  Terapias
                </Link>
             </div>
@@ -169,9 +169,9 @@ export default function HomePage() {
           </div>
           <div className="text-center mt-10">
             <p className="text-gray-500 font-mono text-xs mb-4">Quer um sistema assim para o seu negócio?</p>
-            <a href="https://solutions.marroc.xyz" className="inline-flex items-center gap-2 px-8 py-4 bg-neon-green hover:bg-white text-black font-bold uppercase tracking-widest text-xs transition-colors">
+            <Link href="/solutions" className="inline-flex items-center gap-2 px-8 py-4 bg-neon-green hover:bg-white text-black font-bold uppercase tracking-widest text-xs transition-colors">
               Implementar Autonomia →
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -190,7 +190,7 @@ export default function HomePage() {
         <li>&gt; Saliência de Entidade & SEO</li>
         <li>&gt; Arquitetura de Sistemas Vivos</li>
       </ul>
-      <Link href="https://solutions.marroc.xyz" className="block w-full py-3 text-center bg-neon-green hover:bg-white hover:text-black text-black font-bold uppercase tracking-widest text-[10px] transition-colors">
+      <Link href="/solutions" className="block w-full py-3 text-center bg-neon-green hover:bg-white hover:text-black text-black font-bold uppercase tracking-widest text-[10px] transition-colors">
         Agendar Auditoria
       </Link>
     </div>
@@ -237,7 +237,7 @@ export default function HomePage() {
         <li>&gt; Cura Vibracional</li>
         <li>&gt; Imersão Multidimensional</li>
       </ul>
-      <Link href="/rituais" className="block w-full py-3 text-center border border-emerald-500/50 hover:border-emerald-400 hover:bg-emerald-500 hover:text-black text-emerald-300 font-bold uppercase tracking-widest text-[10px] transition-colors">
+      <Link href="/terapias" className="block w-full py-3 text-center border border-emerald-500/50 hover:border-emerald-400 hover:bg-emerald-500 hover:text-black text-emerald-300 font-bold uppercase tracking-widest text-[10px] transition-colors">
         Agendar Sessão
       </Link>
     </div>
@@ -330,9 +330,9 @@ export default function HomePage() {
             </div>
           </div>
           <div className="text-center mt-12">
-            <a href="https://solutions.marroc.xyz" className="inline-flex items-center gap-2 px-8 py-4 border border-neon-green text-neon-green hover:bg-neon-green hover:text-black font-bold uppercase tracking-widest text-xs transition-colors">
+            <Link href="/solutions" className="inline-flex items-center gap-2 px-8 py-4 border border-neon-green text-neon-green hover:bg-neon-green hover:text-black font-bold uppercase tracking-widest text-xs transition-colors">
               Iniciar minha Trilha →
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -390,9 +390,9 @@ export default function HomePage() {
             </details>
           </div>
           <div className="text-center mt-12">
-            <a href="https://solutions.marroc.xyz" className="inline-flex items-center gap-2 px-8 py-4 bg-neon-green hover:bg-white text-black font-bold uppercase tracking-widest text-xs transition-colors">
+            <Link href="/solutions" className="inline-flex items-center gap-2 px-8 py-4 bg-neon-green hover:bg-white text-black font-bold uppercase tracking-widest text-xs transition-colors">
               Implementar Minha Autoridade →
-            </a>
+            </Link>
           </div>
         </div>
       </section>

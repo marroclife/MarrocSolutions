@@ -41,7 +41,7 @@ export default function RituaisClientPage() {
                     </div>
                     
                     <Link 
-                        href="/rituais/rituaisclient/tamires"
+                        href="/terapias/terapiasclient/tamires"
                         className="inline-flex items-center gap-2 px-6 py-3 bg-[#e6b8a2] text-[#151e1c] font-bold uppercase tracking-widest text-[10px] md:text-xs rounded hover:bg-white hover:shadow-[0_0_20px_rgba(230,184,162,0.4)] transition-all duration-300"
                     >
                         <Lock size={12} />
@@ -67,7 +67,7 @@ export default function RituaisClientPage() {
                     </div>
                     
                     <Link 
-                        href="/rituais/rituaisclient/serena"
+                        href="/terapias/terapiasclient/serena"
                         className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-black font-bold uppercase tracking-widest text-[10px] md:text-xs rounded hover:bg-white hover:shadow-[0_0_20px_rgba(199,169,75,0.4)] transition-all duration-300"
                     >
                         <Lock size={12} />
@@ -102,7 +102,7 @@ export default function RituaisClientPage() {
 
                     <div className="relative z-10">
                          <a 
-                            href="/rituais/mapa_anto.html" 
+                            href="/terapias/mapa_anto.html" 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="group/btn relative inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold uppercase tracking-widest text-xs rounded-full overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]"
@@ -136,7 +136,7 @@ export default function RituaisClientPage() {
 
         {/* Nota de Rodapé e Voltar */}
         <div className="mt-20 text-center border-t border-white/5 pt-8">
-            <Link href="/rituais" className="text-white/30 hover:text-gold text-xs uppercase tracking-widest transition-colors pb-1 border-b border-transparent hover:border-gold">
+            <Link href="/terapias" className="text-white/30 hover:text-gold text-xs uppercase tracking-widest transition-colors pb-1 border-b border-transparent hover:border-gold">
                 ← Voltar para o Menu Principal
             </Link>
         </div>

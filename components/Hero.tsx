@@ -14,7 +14,7 @@ export const Hero: React.FC = () => {
         </p>
         <div className="mt-8 flex gap-3 flex-wrap">
           <Link href="/musica" className="btn btn-primary">Ouvir agora</Link>
-          <Link href="/rituais" className="btn btn-outline">Entrar no ritual</Link>
+          <Link href="/terapias" className="btn btn-outline">Entrar no ritual</Link>
         </div>
       </div>
     </section>

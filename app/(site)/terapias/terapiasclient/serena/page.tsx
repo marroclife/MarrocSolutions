@@ -69,7 +69,7 @@ export default function SerenaPage() {
         </form>
         
         <div className="mt-8 text-center">
-            <a href="/rituais/rituaisclient" className="text-white/40 text-xs hover:text-white transition flex items-center justify-center gap-1">
+            <a href="/terapias/terapiasclient" className="text-white/40 text-xs hover:text-white transition flex items-center justify-center gap-1">
                 ← Voltar para Área de Clientes
             </a>
         </div>

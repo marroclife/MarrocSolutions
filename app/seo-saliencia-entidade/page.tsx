@@ -12,16 +12,16 @@ export const metadata: Metadata = {
   title: 'Saliência de Entidade | Marroc Solutions',
   description: 'O novo paradigma do SEO semântico e a engenharia de autoridade para liderança de mercado.',
   alternates: {
-    canonical: 'https://solutions.marroc.xyz/seo-saliencia-entidade',
+    canonical: 'https://marroc.xyz/seo-saliencia-entidade',
   },
   openGraph: {
     title: 'Saliência de Entidade | Marroc Solutions',
     description: 'O novo paradigma do SEO semântico e a engenharia de autoridade para liderança de mercado.',
-    url: 'https://solutions.marroc.xyz/seo-saliencia-entidade',
+    url: 'https://marroc.xyz/seo-saliencia-entidade',
     siteName: 'Marroc Solutions',
     type: 'article',
     locale: 'pt_BR',
-    images: [{ url: 'https://solutions.marroc.xyz/og-image-seo.jpg' }],
+    images: [{ url: 'https://marroc.xyz/og-image-seo.jpg' }],
   },
   twitter: {
     card: 'summary_large_image',

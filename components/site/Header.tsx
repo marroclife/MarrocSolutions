@@ -8,12 +8,15 @@ import { usePathname } from "next/navigation";
 
 type NavItem = { href: string; label: string };
 
+// Ordem atualizada em 03/06/2026:
+// /agenda extinta (decisão Marroc). Livros inserido entre Terapias e Artigos.
 const NAV: NavItem[] = [
-  { href: "/livros", label: "Livros" }, 
+  { href: "/solutions", label: "Solutions" },
+  { href: "/musica", label: "Música" },
   { href: "/nexo", label: "Nexo" },
   { href: "/projetos", label: "Projetos" },
-  { href: "/rituais", label: "Terapias" },
-  { href: "/agenda", label: "Agenda" },
+  { href: "/terapias", label: "Terapias" },
+  { href: "/livros", label: "Livros" },
   { href: "/conteudos", label: "Artigos" },
   { href: "/sobre", label: "Sobre" },
   { href: "/contato", label: "Contato" },

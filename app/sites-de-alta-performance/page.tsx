@@ -12,16 +12,16 @@ export const metadata: Metadata = {
   title: 'Sites de Alta Performance | Marroc Solutions',
   description: 'Engenharia de conversão e ciência da velocidade para maximizar ROI e autoridade de marca.',
   alternates: {
-    canonical: 'https://solutions.marroc.xyz/sites-de-alta-performance',
+    canonical: 'https://marroc.xyz/sites-de-alta-performance',
   },
   openGraph: {
     title: 'Sites de Alta Performance | Marroc Solutions',
     description: 'Engenharia de conversão e ciência da velocidade para maximizar ROI e autoridade de marca.',
-    url: 'https://solutions.marroc.xyz/sites-de-alta-performance',
+    url: 'https://marroc.xyz/sites-de-alta-performance',
     siteName: 'Marroc Solutions',
     type: 'article',
     locale: 'pt_BR',
-    images: [{ url: 'https://solutions.marroc.xyz/og-image-performance.jpg' }],
+    images: [{ url: 'https://marroc.xyz/og-image-performance.jpg' }],
   },
   twitter: {
     card: 'summary_large_image',

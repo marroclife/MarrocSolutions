@@ -48,9 +48,10 @@ export default function GaneshaStotramPage() {
 
       <div className="w-full h-80 md:h-[450px] mb-16 overflow-hidden rounded-sm relative group">
          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
-         <img 
-            src="/Ganesha-cyber.png" 
-            alt="Ganesha Cyberpunk - Misticismo Digital" 
+         {/* Shri Ganesha — imagem adicionada em 03/06/2026 */}
+         <img
+            src="/ganesha-stotram-hero.jpg"
+            alt="Shri Ganesha dourado com diyas e pétalas de rosa — removedor de obstáculos"
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90"
          />
       </div>

@@ -12,16 +12,16 @@ export const metadata: Metadata = {
   title: 'Performance Web | Marroc Solutions',
   description: 'Engenharia da velocidade como alavanca de ROI: Core Web Vitals e estratégias de elite.',
   alternates: {
-    canonical: 'https://solutions.marroc.xyz/performance-web',
+    canonical: 'https://marroc.xyz/performance-web',
   },
   openGraph: {
     title: 'Performance Web | Marroc Solutions',
     description: 'Engenharia da velocidade como alavanca de ROI: Core Web Vitals e estratégias de elite.',
-    url: 'https://solutions.marroc.xyz/performance-web',
+    url: 'https://marroc.xyz/performance-web',
     siteName: 'Marroc Solutions',
     type: 'article',
     locale: 'pt_BR',
-    images: [{ url: 'https://solutions.marroc.xyz/og-image-performance-web.jpg' }],
+    images: [{ url: 'https://marroc.xyz/og-image-performance-web.jpg' }],
   },
   twitter: {
     card: 'summary_large_image',

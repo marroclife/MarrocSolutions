@@ -12,16 +12,16 @@ export const metadata: Metadata = {
   title: 'Agentes Autónomos | Marroc Solutions',
   description: 'A nova fronteira da produtividade empresarial: Autonomia Cognitiva e IA como colaborador.',
   alternates: {
-    canonical: 'https://solutions.marroc.xyz/agentes-autonomos',
+    canonical: 'https://marroc.xyz/agentes-autonomos',
   },
   openGraph: {
     title: 'Agentes Autónomos | Marroc Solutions',
     description: 'A nova fronteira da produtividade empresarial: Autonomia Cognitiva e IA como colaborador.',
-    url: 'https://solutions.marroc.xyz/agentes-autonomos',
+    url: 'https://marroc.xyz/agentes-autonomos',
     siteName: 'Marroc Solutions',
     type: 'article',
     locale: 'pt_BR',
-    images: [{ url: 'https://solutions.marroc.xyz/og-image-agents.jpg' }],
+    images: [{ url: 'https://marroc.xyz/og-image-agents.jpg' }],
   },
   twitter: {
     card: 'summary_large_image',

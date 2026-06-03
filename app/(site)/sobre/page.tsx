@@ -205,9 +205,7 @@ export default function SobrePage() {
           
           {/* Botões Empilhados no Mobile, Lado a Lado no Desktop */}
           <div className="mt-8 flex flex-col md:flex-row justify-center gap-4 w-full md:w-auto">
-            <Link href="/agenda" className="btn btn-outline rounded-full px-6 py-3 w-full md:w-auto text-center">
-              Ver Agenda
-            </Link>
+            {/* /agenda extinta em 03/06/2026 — botão removido. */}
             <Link href="/higher-hz" className="btn btn-ghost rounded-full px-6 py-3 w-full md:w-auto text-center">
               Conhecer Higher Hz
             </Link>

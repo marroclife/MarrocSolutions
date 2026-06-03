@@ -43,10 +43,10 @@ const jsonLdSchema = {
     },
     {
       "@type": "ProfessionalService",
-      "@id": "https://solutions.marroc.xyz/#service",
+      "@id": "https://marroc.xyz/#service",
       "name": "Marroc Solutions",
       "alternateName": "Hertz & Bits Solutions",
-      "url": "https://solutions.marroc.xyz",
+      "url": "https://marroc.xyz",
       "description": "Arquitetura de Inteligência Operacional para Negócios B2B. Orquestração de Agentes Autônomos, Saliência de Entidade e Sistemas Vivos Digitais.",
       "provider": {
         "@id": "https://marroc.xyz/#organization"

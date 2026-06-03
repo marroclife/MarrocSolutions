@@ -4,8 +4,8 @@ export const NAV_LINKS: NavItem[] = [
   { label: 'Livro', path: '/livro' },
   { label: 'Oráculo', path: '/oraculo' },
   { label: 'Projetos', path: '/projetos' },
-  { label: 'Rituais', path: '/rituais' },
-  { label: 'Agenda', path: '/agenda' },
+  { label: 'Terapias', path: '/terapias' },
+  { label: 'Livros', path: '/livros' },
   { label: 'Conteúdos', path: '/conteudos' }, // This is our target
   { label: 'Sobre', path: '/sobre' },
   { label: 'Contato', path: '/contato' },
@@ -215,7 +215,7 @@ Tasya vidya bhavetsarva, Ganeshasya prasadatah</div>
       <h3>O Stotram no ritual sonoro</h3>
       <p>No Marroc, o hino pode ser acoplado a bases eletrônicas mantendo métrica e vibração originais, expandindo‑o para um campo coletivo. Em um Live Set ritualístico, o Ganesha Stotram age como <em>chave vibracional</em>, abrindo o portal para que toda a experiência sonora transcorra sem bloqueios.</p>
     `,
-    imageUrl: 'https://images.unsplash.com/photo-1597825686520-47b85e0501be?q=80&w=2070&auto=format&fit=crop', // Flowers/Offering/Abstract
+    imageUrl: '/ganesha-stotram-hero.jpg', // Shri Ganesha dourado com diyas e pétalas (03/06/2026)
     publishDate: '2025-01-10',
     tags: ['Mantra', 'Sânscrito', 'Tradição'],
     readTime: '6 min'
@@ -283,5 +283,172 @@ Tasya vidya bhavetsarva, Ganeshasya prasadatah</div>
     publishDate: '2023-10-28',
     tags: ['Cura', 'Alquimia', 'Prática'],
     readTime: '3 min'
+  },
+  // ===== 15 TESES MARROC SOLUTIONS SEO =====
+  // Adicionadas em 03/06/2026. Cada tese vive em /conteudos/[slug] como página silo.
+  {
+    id: 'tese-01',
+    slug: 'o-fim-do-site-estatico',
+    title: 'O Fim do Site Estático',
+    excerpt: 'A transição do panfleto digital para o Sistema Vivo. Por que beleza sem performance é apenas ruído visual.',
+    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['Saliência', 'SEO', 'Sistemas Vivos', 'Performance'],
+    content: '',
+    readTime: '6 min'
+  },
+  {
+    id: 'tese-02',
+    slug: 'a-anatomia-da-saliencia-de-entidade',
+    title: 'A Anatomia da Saliência de Entidade',
+    excerpt: 'Do keyword stuffing ao mapeamento semântico de autoridade. Como ser a fonte autoritativa que o Google reconhece.',
+    imageUrl: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['SEO', 'Saliência', 'Knowledge Graph', 'Autoridade'],
+    content: '',
+    readTime: '7 min'
+  },
+  {
+    id: 'tese-03',
+    slug: 'core-web-vitals-conversao',
+    title: 'Core Web Vitals & Conversão',
+    excerpt: 'A matemática do Zero-Latency nas vendas. Por que performance não é sobre SEO — é sobre psicologia do consumo.',
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['Performance', 'Conversão', 'Core Web Vitals', 'Zero-Latency'],
+    content: '',
+    readTime: '6 min'
+  },
+  {
+    id: 'tese-04',
+    slug: 'o-erro-das-agencias-tradicionais',
+    title: 'O Erro das Agências Tradicionais',
+    excerpt: 'Abordagem sistêmica vs. templates. Por que vender "sites" é vender commodity — e o que separa o arquiteto.',
+    imageUrl: 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['Agências', 'Sistemas Vivos', 'Abordagem Sistêmica', 'Templates'],
+    content: '',
+    readTime: '7 min'
+  },
+  {
+    id: 'tese-05',
+    slug: 'a-transicao-para-a-operacao-autonoma',
+    title: 'A Transição para a Operação Autônoma',
+    excerpt: 'Do processo manual ao fluxo de agentes IA. Por que automação linear é o oposto de operação autônoma.',
+    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['IA', 'Agentes', 'Operação Autônoma', 'Sistemas Vivos'],
+    content: '',
+    readTime: '6 min'
+  },
+  {
+    id: 'tese-06',
+    slug: 'orquestracao-de-agentes-vs-chatbots',
+    title: 'Orquestração de Agentes vs. Chatbots',
+    excerpt: 'A diferença entre perguntar e operar. Chatbots são oráculos — agentes são unidades de execução.',
+    imageUrl: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['IA', 'Agentes', 'Chatbots', 'Orquestração'],
+    content: '',
+    readTime: '6 min'
+  },
+  {
+    id: 'tese-07',
+    slug: 'escalabilidade-sem-perda-de-qualidade',
+    title: 'Escalabilidade sem Perda de Qualidade',
+    excerpt: 'A arquitetura de agentes como motor de crescimento exponencial. Escalar com prompts isolados cria ruído.',
+    imageUrl: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['Escalabilidade', 'Agentes', 'Sistemas Vivos'],
+    content: '',
+    readTime: '6 min'
+  },
+  {
+    id: 'tese-08',
+    slug: 'sistemas-vivos-digitais',
+    title: 'Sistemas Vivos Digitais',
+    excerpt: 'Além da automação, a evolução em tempo real. O que diferencia um sistema que funciona de um que aprende e evolui.',
+    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['Sistemas Vivos', 'IA', 'Auto-Otimização', 'Ecossistemas'],
+    content: '',
+    readTime: '6 min'
+  },
+  {
+    id: 'tese-09',
+    slug: 'ia-como-alavanca-de-lucro',
+    title: 'IA como Alavanca de Lucro',
+    excerpt: 'Além da redução de custos. Por que tratar IA como cortador de despesas é jogar na defesa.',
+    imageUrl: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['IA', 'Lucro', 'Receita', 'Hiper-Personalização'],
+    content: '',
+    readTime: '6 min'
+  },
+  {
+    id: 'tese-10',
+    slug: 'a-morte-do-freelancer-de-site',
+    title: 'A Morte do Freelancer de Site',
+    excerpt: 'A ascensão do Arquiteto de Sistemas Digitais. Por que vender sites virou commodity.',
+    imageUrl: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['Mercado', 'Freelancer', 'Arquiteto de Sistemas', 'Saliência'],
+    content: '',
+    readTime: '5 min'
+  },
+  {
+    id: 'tese-11',
+    slug: 'a-psicologia-da-performance',
+    title: 'A Psicologia da Performance',
+    excerpt: 'Como a velocidade impacta a percepção de valor. Performance real vs. percebida — a distinção que define a conversão.',
+    imageUrl: 'https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['Performance', 'Psicologia', 'UX', 'Authority Signaling'],
+    content: '',
+    readTime: '6 min'
+  },
+  {
+    id: 'tese-12',
+    slug: 'a-matematica-da-cura-432hz',
+    title: 'A Matemática da Cura 432Hz',
+    excerpt: 'A precisão do código e a ressonância de 432Hz. Por que C5 = 256Hz é uma potência de 2 — arquitetura como cura.',
+    imageUrl: 'https://images.unsplash.com/photo-1471478331149-c72f17e33c73?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['Frequência', 'Cura', '432Hz', 'Sistemas Vivos'],
+    content: '',
+    readTime: '5 min'
+  },
+  {
+    id: 'tese-13',
+    slug: 'soberania-cognitiva-na-era-da-ia',
+    title: 'Soberania Cognitiva na Era da IA',
+    excerpt: 'Essência humana vs. delegação operacional. O risco civilizatório não é a substituição — é a atrofia cognitiva.',
+    imageUrl: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['IA', 'Soberania Cognitiva', 'Autonomia', 'Futuro do Trabalho'],
+    content: '',
+    readTime: '6 min'
+  },
+  {
+    id: 'tese-14',
+    slug: 'a-sinergia-entre-hertz-e-bits',
+    title: 'A Sinergia entre Hertz e Bits',
+    excerpt: 'A convergência entre frequências sonoras, arte generativa e experiências imersivas.',
+    imageUrl: 'https://images.unsplash.com/photo-1518972559570-7cc1309f3229?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['Arte Generativa', 'Hertz & Bits', 'Imersão', 'Sinergia Vibracional'],
+    content: '',
+    readTime: '5 min'
+  },
+  {
+    id: 'tese-15',
+    slug: 'o-algoritmo-da-criacao',
+    title: 'O Algoritmo da Criação',
+    excerpt: 'A união entre intuição e algoritmo. Sinfonia de Devoção & O Outro Lado. A Simbiose Algorítmica.',
+    imageUrl: 'https://images.unsplash.com/photo-1543968996-ee822b8176ba?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['Arte Generativa', 'Intuição', 'Simbiose Algorítmica', 'Sintetista'],
+    content: '',
+    readTime: '5 min'
   }
 ];

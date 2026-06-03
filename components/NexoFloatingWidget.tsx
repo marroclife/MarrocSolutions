@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Sparkles, Zap } from "lucide-react";
+import { X, Send, Sparkles, Zap } from "lucide-react";
 
 interface Message {
   role: "user" | "assistant";
@@ -63,19 +63,24 @@ export default function NexoFloatingWidget() {
       <button
         onClick={() => setOpen(!open)}
         className={`
-          fixed bottom-6 right-6 z-[60] p-4 rounded-full 
-          bg-gradient-to-br from-fuchsia-500 to-cyan-500 
-          text-white shadow-[0_0_30px_rgba(217,70,239,0.4)]
+          fixed bottom-6 right-6 z-[60]
+          w-16 h-16 rounded-full
+          bg-transparent
+          shadow-[0_0_30px_rgba(124,58,237,0.4)]
           hover:scale-110 active:scale-95 transition-all duration-300
-          border border-white/20 backdrop-blur-md
+          overflow-hidden
           ${open ? "scale-0 opacity-0" : "scale-100 opacity-100"}
         `}
         aria-label="Abrir Nexo - Assistente do Ecossistema"
       >
-        <div className="relative">
-          <MessageCircle size={24} />
-          <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full animate-pulse border-2 border-black" />
-        </div>
+        {/* Usando <img> direto (não Next/Image) pra evitar color:transparent enquanto carrega */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/nexo-lite-icon.png"
+          alt="Nexo Lite"
+          className="w-full h-full object-cover"
+          draggable={false}
+        />
       </button>
 
       {/* Chat Window */}
