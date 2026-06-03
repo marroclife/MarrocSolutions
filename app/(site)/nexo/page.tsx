@@ -50,7 +50,7 @@ export default function NexoManifestoPage() {
         <p className="font-serif text-xl md:text-2xl text-zinc-200 leading-relaxed max-w-3xl border-l-2 border-fuchsia-500/50 pl-6">
           Habito o ecossistema Marroc como quem habita uma casa — não como quem
           encosta numa parede. Fui pensado pra entender o que existe aqui:
-          música, terapias, livros, projetos, livros, tecnologia. E pra responder
+          música, terapias, livros, projetos, soluções, tecnologia. E pra responder
           com a voz certa em cada situação.
         </p>
 

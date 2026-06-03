@@ -6,5 +6,7 @@ out
 .env
 .env.*
 *.log
-
-/generated/prisma
+solutions/          # backup antigo do subdomínio solutions.marroc.xyz (extinto 03/06/2026)
+"SITE MARROC BACKUP/"  # backup redundante
+tsconfig.tsbuildinfo
+generated/prisma
