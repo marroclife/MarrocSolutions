@@ -66,8 +66,8 @@ export default function Header() {
     (open ? "max-h-96" : "max-h-0");
 
   return (
-    <header className={headerClasses}>
-      <div className="container h-14 md:h-16 flex items-center relative">
+    <header className={headerClasses + " overflow-visible"}>
+      <div className="container h-14 md:h-16 max-h-14 md:max-h-16 flex items-center relative overflow-visible">
         {/* Logo — position absolute REAL, fora do fluxo, não afeta altura da barra */}
         <Link
           href="/"
