@@ -3,7 +3,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 type NavItem = { href: string; label: string };
@@ -66,7 +65,7 @@ export default function Header() {
     (open ? "max-h-96" : "max-h-0");
 
   return (
-    <header className={headerClasses + " overflow-visible"}>
+    <header className={headerClasses + " max-h-14 md:max-h-16 overflow-visible"}>
       <div className="container h-14 md:h-16 max-h-14 md:max-h-16 flex items-center relative overflow-visible">
         {/* Logo — position absolute REAL, fora do fluxo, não afeta altura da barra */}
         <Link
@@ -74,13 +73,12 @@ export default function Header() {
           className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex items-center"
           aria-label="Ir para a home"
         >
-          <Image
+          <img
             src="/marroc.png"
             alt="Marroc"
             width={360}
             height={120}
-            className="h-12 sm:h-14 md:h-20 w-auto object-contain"
-            priority
+            className="h-12 md:h-20 w-auto object-contain"
           />
         </Link>
 
