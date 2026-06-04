@@ -1,209 +1,103 @@
 import React from "react";
 import { Section } from "@/components/ui/Section";
-import { Mail, MessageSquare, Send, ArrowRight, Instagram } from "lucide-react";
-import { redirect } from "next/navigation";
-// import { prisma } from "@/lib/prisma"; // Descomente quando configurar o banco
-// import { redirect } from "next/navigation";
-
-// --- SERVER ACTION (Backend) ---
-// Estratégia atual: gerar URL wa.me com a mensagem pré-preenchida + redirecionar.
-// Opcionalmente também loga no Vault se VAULT_LOG_DIR estiver configurado.
-async function submitContact(formData: FormData) {
-  "use server";
-
-  const name = (formData.get("name") as string || "").trim();
-  const email = (formData.get("email") as string || "").trim();
-  const message = (formData.get("message") as string || "").trim();
-
-  // Validação mínima
-  if (!name || !email || !message) {
-    redirect("/contato?status=error&reason=campos");
-  }
-
-  // Monta a mensagem pra WhatsApp
-  const waText = [
-    "Olá Marroc, sinal de contato pelo site:",
-    "",
-    `*Nome:* ${name}`,
-    `*Email:* ${email}`,
-    "",
-    "*Mensagem:*",
-    message,
-  ].join("\n");
-
-  const waNumber = process.env.WHATSAPP_NUMBER || "5521990387232";
-  const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
-
-  // Log best-effort no Vault (não bloqueia se falhar)
-  const logDir = process.env.VAULT_LOG_DIR;
-  if (logDir) {
-    try {
-      const { mkdir, appendFile } = await import("fs/promises");
-      const path = await import("path");
-      const dir = path.join(logDir, "contato");
-      await mkdir(dir, { recursive: true });
-      const stamp = new Date().toISOString().replace(/[:.]/g, "-");
-      await appendFile(
-        path.join(dir, `${stamp}-${name.replace(/\s+/g, "_")}.txt`),
-        `From: ${name} <${email}>\nAt: ${new Date().toISOString()}\n\n${message}\n`
-      );
-    } catch (e) {
-      console.warn("[contato] vault log falhou:", e);
-    }
-  }
-
-  // Redireciona pro WhatsApp (fora do try pra não capturar)
-  redirect(waUrl);
-}
+import { Mail, MessageSquare, ArrowRight, Instagram } from "lucide-react";
 
 export default function ContatoPage() {
   return (
     <main className="bg-[#0b0b0b] text-paper min-h-screen">
-      
-      {/* Cabeçalho / Hero */}
       <Section
         title="Canal Aberto"
-        subtitle="Envie seu sinal. Seja para projetos, rituais ou colaborações."
+        subtitle="Três portas. Escolha a frequência da sua mensagem."
         headingLevel="h1"
-        className="pt-16 pb-8 md:pt-20 md:pb-12"
+        className="pt-16 pb-12 md:pt-24 md:pb-20"
       >
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-          
-          {/* COLUNA 1: INFORMAÇÕES E REDES (Mobile First) */}
-          <div className="space-y-8">
-            
-            {/* Box de Texto */}
-            <div className="prose prose-invert">
-              <p className="text-lg text-white/80 leading-relaxed">
-                O ecossistema Marroc opera em múltiplas frequências. 
-                Se você busca a tecnologia da <strong>Solutions</strong>, a cura do <strong>Reiki</strong> ou 
-                a sonoridade do <strong>Higher Hz</strong>, este é o ponto de convergência.
-              </p>
+        {/* Box de Texto — copy introdutória centralizada */}
+        <div className="max-w-2xl mx-auto text-center mb-16">
+          <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+            O ecossistema Marroc opera em múltiplas frequências — tecnologia,
+            cura, música. Escolha o canal que combina com a sua intenção.
+          </p>
+        </div>
+
+        {/* 3 CANAIS — destaque central, grid 1col mobile / 3col desktop */}
+        <div className="max-w-5xl mx-auto grid gap-6 md:grid-cols-3">
+          {/* WhatsApp — DESTAQUE (verde neon) */}
+          <a
+            href="https://wa.me/5521990387232"
+            target="_blank"
+            rel="noreferrer"
+            className="group relative flex flex-col items-center text-center p-8 md:p-10 rounded-3xl bg-[#121212] border-2 border-green-500/30 hover:border-green-500 transition-all duration-300 hover:shadow-[0_0_40px_rgba(34,197,94,0.25)] hover:-translate-y-1"
+          >
+            {/* Badge "Recomendado" */}
+            <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-green-500 text-black text-[10px] font-bold uppercase tracking-widest rounded-full">
+              Resposta mais rápida
+            </span>
+
+            <div className="bg-green-500/15 p-5 rounded-full text-green-500 group-hover:scale-110 transition-transform mb-5">
+              <MessageSquare size={32} />
             </div>
 
-            {/* Cards de Contato Rápido */}
-            <div className="grid gap-4">
-              
-              {/* WhatsApp (Destaque Principal - Verde) */}
-              <a 
-                href="https://wa.me/5521990387232" 
-                target="_blank" 
-                rel="noreferrer"
-                className="group flex items-center justify-between p-6 rounded-2xl bg-[#121212] border border-white/10 hover:border-green-500/50 hover:bg-green-500/5 transition-all duration-300"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="bg-green-500/10 p-3 rounded-full text-green-500 group-hover:scale-110 transition-transform">
-                    <MessageSquare size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-xl text-white">WhatsApp</h3>
-                    <p className="text-sm text-white/50">Resposta rápida e direta</p>
-                  </div>
-                </div>
-                <ArrowRight className="text-white/30 group-hover:text-green-500 group-hover:translate-x-1 transition-all" />
-              </a>
+            <h3 className="font-display text-2xl text-white mb-2">WhatsApp</h3>
+            <p className="text-sm text-white/60 mb-4">
+              Para conversas diretas, briefings rápidos e agendamentos.
+            </p>
+            <p className="text-green-500 font-bold text-lg">+55 21 99038-7232</p>
 
-              {/* Instagram (Atualizado para @marroc.xyz) */}
-              <a 
-                href="https://instagram.com/marroc.xyz" 
-                target="_blank" 
-                rel="noreferrer"
-                className="group flex items-center gap-4 p-6 rounded-2xl bg-[#121212] border border-white/10 hover:border-amber-200/30 transition-all"
-              >
-                <div className="bg-white/5 p-3 rounded-full text-white/70 group-hover:text-amber-200 transition-colors">
-                  <Instagram size={24} />
-                </div>
-                <div>
-                  <h3 className="font-display text-xl text-white">Instagram</h3>
-                  <p className="text-sm text-amber-200 font-bold">@marroc.xyz</p>
-                </div>
-              </a>
-
-              {/* Email */}
-              <a
-                href="mailto:contato@marroc.xyz"
-                className="group flex items-center gap-4 p-6 rounded-2xl bg-[#121212] border border-white/10 hover:border-amber-200/30 transition-all"
-              >
-                <div className="bg-white/5 p-3 rounded-full text-white/70 group-hover:text-amber-200 transition-colors">
-                  <Mail size={24} />
-                </div>
-                <div>
-                  <h3 className="font-display text-xl text-white">Email</h3>
-                  <p className="text-sm text-white/50 group-hover:text-amber-200 transition-colors">contato@marroc.xyz</p>
-                </div>
-              </a>
-
+            <div className="mt-6 flex items-center gap-2 text-green-500 text-sm font-bold uppercase tracking-widest group-hover:translate-x-1 transition-transform">
+              Abrir conversa <ArrowRight size={16} />
             </div>
-          </div>
+          </a>
 
-          {/* COLUNA 2: FORMULÁRIO (Server Action) */}
-          <div className="bg-white/5 p-6 md:p-10 rounded-3xl border border-white/10 relative overflow-hidden">
-            {/* Efeito de Fundo */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-200/5 rounded-full blur-[80px] pointer-events-none"></div>
+          {/* Instagram */}
+          <a
+            href="https://instagram.com/marroc.xyz"
+            target="_blank"
+            rel="noreferrer"
+            className="group flex flex-col items-center text-center p-8 md:p-10 rounded-3xl bg-[#121212] border border-white/10 hover:border-amber-200/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(251,191,36,0.15)] hover:-translate-y-1"
+          >
+            <div className="bg-white/5 p-5 rounded-full text-white/70 group-hover:text-amber-200 group-hover:bg-amber-200/15 transition-all mb-5 group-hover:scale-110">
+              <Instagram size={32} />
+            </div>
 
-            <h3 className="font-display text-2xl text-white mb-6 relative z-10">
-              Transmissão de Mensagem
-            </h3>
+            <h3 className="font-display text-2xl text-white mb-2">Instagram</h3>
+            <p className="text-sm text-white/60 mb-4">
+              Para acompanhar o dia a dia, bastidores e lançamentos.
+            </p>
+            <p className="text-amber-200 font-bold text-lg">@marroc.xyz</p>
 
-            <form action={submitContact} className="space-y-5 relative z-10">
-              
-              <div className="space-y-2">
-                <label htmlFor="name" className="text-xs uppercase tracking-widest text-amber-200/70 font-bold ml-1">
-                  Identificação (Nome)
-                </label>
-                <input 
-                  type="text" 
-                  name="name" 
-                  id="name"
-                  required
-                  placeholder="Como devo te chamar?"
-                  className="w-full bg-[#0b0b0b] border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-amber-200/50 focus:ring-1 focus:ring-amber-200/50 transition-all placeholder:text-white/20"
-                />
-              </div>
+            <div className="mt-6 flex items-center gap-2 text-amber-200 text-sm font-bold uppercase tracking-widest group-hover:translate-x-1 transition-transform">
+              Seguir <ArrowRight size={16} />
+            </div>
+          </a>
 
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-xs uppercase tracking-widest text-amber-200/70 font-bold ml-1">
-                  Frequência de Retorno (Email)
-                </label>
-                <input 
-                  type="email" 
-                  name="email" 
-                  id="email"
-                  required
-                  placeholder="seu@email.com"
-                  className="w-full bg-[#0b0b0b] border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-amber-200/50 focus:ring-1 focus:ring-amber-200/50 transition-all placeholder:text-white/20"
-                />
-              </div>
+          {/* Email */}
+          <a
+            href="mailto:contato@marroc.xyz"
+            className="group flex flex-col items-center text-center p-8 md:p-10 rounded-3xl bg-[#121212] border border-white/10 hover:border-cyan-300/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] hover:-translate-y-1"
+          >
+            <div className="bg-white/5 p-5 rounded-full text-white/70 group-hover:text-cyan-300 group-hover:bg-cyan-300/15 transition-all mb-5 group-hover:scale-110">
+              <Mail size={32} />
+            </div>
 
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-xs uppercase tracking-widest text-amber-200/70 font-bold ml-1">
-                  O Código (Mensagem)
-                </label>
-                <textarea 
-                  name="message" 
-                  id="message"
-                  required
-                  rows={5}
-                  placeholder="Conte o que quer construir, curar ou ativar..."
-                  className="w-full bg-[#0b0b0b] border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-amber-200/50 focus:ring-1 focus:ring-amber-200/50 transition-all placeholder:text-white/20 resize-none"
-                />
-              </div>
+            <h3 className="font-display text-2xl text-white mb-2">Email</h3>
+            <p className="text-sm text-white/60 mb-4">
+              Para propostas formais, parcerias e materiais detalhados.
+            </p>
+            <p className="text-cyan-300 font-bold text-base md:text-lg break-all">
+              contato@marroc.xyz
+            </p>
 
-              <button 
-                type="submit" 
-                className="w-full btn bg-amber-200 text-black font-bold hover:bg-amber-100 py-4 rounded-xl flex items-center justify-center gap-2 mt-4 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(253,230,138,0.1)]"
-              >
-                Enviar Transmissão <Send size={18} />
-              </button>
-              
-              <p className="text-xs text-center text-white/30 pt-2">
-                * Ao enviar, você será redirecionado pro WhatsApp com a mensagem
-                pré-preenchida. Zero servidores: o sinal vai direto pra ti.
-              </p>
+            <div className="mt-6 flex items-center gap-2 text-cyan-300 text-sm font-bold uppercase tracking-widest group-hover:translate-x-1 transition-transform">
+              Escrever <ArrowRight size={16} />
+            </div>
+          </a>
+        </div>
 
-            </form>
-          </div>
-
+        {/* Rodapé sutil — alinhado com a tese âncora da /sobre */}
+        <div className="max-w-2xl mx-auto text-center mt-16 pt-12 border-t border-white/5">
+          <p className="text-white/40 text-sm italic">
+            &ldquo;Eu não entrego serviços. Eu ativo frequência. A sua, a do seu negócio, a do coletivo.&rdquo;
+          </p>
         </div>
       </Section>
     </main>
