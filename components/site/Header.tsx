@@ -68,14 +68,18 @@ export default function Header() {
   return (
     <header className={headerClasses}>
       <div className="container h-14 md:h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2" aria-label="Ir para a home">
+        {/* Logo — sobrepõe a barra pra ficar maior sem aumentar h-14/h-16 */}
+        <Link
+          href="/"
+          className="relative flex items-center"
+          aria-label="Ir para a home"
+        >
           <Image
             src="/marroc.png"
             alt="Marroc"
-            width={240}   // mantém boa densidade (3x o tamanho do mobile)
-            height={80}   // preserve a proporção da sua arte
-            className="w-auto h-32 sm:h-14 md:h-16"  // mobile-first: 32px → 36px → 40px
+            width={320}
+            height={120}
+            className="relative h-12 sm:h-14 md:h-20 w-auto -my-2 sm:-my-3 md:-my-4 object-contain"
             priority
           />
         </Link>
@@ -87,12 +91,6 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/loja"
-            className="rounded-full bg-gold text-ink px-3 py-1.5 text-sm font-medium hover:opacity-90"
-          >
-            Apoiar
-          </Link>
         </nav>
 
         {/* Botão hambúrguer (mobile) */}
@@ -131,15 +129,6 @@ export default function Header() {
                 </Link>
               </li>
             ))}
-            <li className="pt-1">
-              <Link
-                href="/loja"
-                className="block text-center rounded-full bg-gold text-ink px-4 py-2 font-medium"
-                onClick={() => setOpen(false)}
-              >
-                Apoiar
-              </Link>
-            </li>
           </ul>
         </nav>
       </div>
