@@ -65,8 +65,15 @@ export default function Header() {
     (open ? "max-h-96" : "max-h-0");
 
   return (
-    <header className={headerClasses + " max-h-14 md:max-h-16 overflow-visible"}>
-      <div className="container h-14 md:h-16 max-h-14 md:max-h-16 flex items-center relative overflow-visible">
+    <header className={headerClasses} style={{ height: "64px", maxHeight: "64px", overflow: "visible" }}>
+      <style>{`
+        .marroc-logo { height: 48px !important; width: auto !important; }
+        @media (min-width: 768px) { .marroc-logo { height: 80px !important; } }
+      `}</style>
+      <div
+        className="container h-14 md:h-16 max-h-14 md:max-h-16 flex items-center relative overflow-visible"
+        style={{ height: "64px", maxHeight: "64px" }}
+      >
         {/* Logo — position absolute REAL, fora do fluxo, não afeta altura da barra */}
         <Link
           href="/"
@@ -78,7 +85,7 @@ export default function Header() {
             alt="Marroc"
             width={360}
             height={120}
-            className="h-12 md:h-20 w-auto object-contain"
+            className="marroc-logo object-contain"
           />
         </Link>
 
