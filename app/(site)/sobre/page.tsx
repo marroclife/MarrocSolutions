@@ -147,38 +147,8 @@ export default function SobrePage() {
         </div>
       </section>
 
-      {/* === 3. PONTE — TRANSMUTAÇÃO === */}
-      <section className="relative py-20 md:py-32 px-4 md:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-300/30 bg-cyan-300/5 text-cyan-300 text-[10px] uppercase tracking-widest font-mono mb-8">
-            🌀 A Ponte · 2020-2021
-          </div>
-
-          <h2 className="font-display text-4xl md:text-6xl text-white leading-[1.05] mb-10">
-            Da massagem
-            <br />
-            <span className="text-cyan-300">à frequência sutil.</span>
-          </h2>
-
-          <div className="space-y-6 text-white/90 text-lg leading-relaxed">
-            <p>
-              Entre 2020 e 2021, o renascimento começou pelas mãos. Honrando a linhagem materna, a
-              massoterapia me reconectou com o sentir. O toque evoluiu para o campo vibracional
-              (Reiki e Som), e a música deixou de ser apenas técnica para se tornar medicina.
-            </p>
-            <p>
-              Consagrei-me <strong className="text-cyan-300">Mestre Reiki Usui</strong> — o nível de iniciação
-              (grau) dentro do <Link href="/terapias" className="text-cyan-300 underline underline-offset-4 hover:text-cyan-200 transition">Reiki oferecido em /terapias</Link> —,
-              unindo a condução do pai (música) com a intenção da mãe (cura). O portal se abriu com
-              Ganesha, mas foi o{" "}
-              <strong className="text-cyan-300">Maha Mrityunjaya (Shiva)</strong> que selou o
-              destino: o som da morte e renascimento.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* === 4. MANIFESTAÇÃO — O ARQUITETO DIGITAL (highlights neon green = Solutions) === */}
+      
+{/* === 3. MANIFESTAÇÃO — O ARQUITETO DIGITAL (pos 3 na nova ordem: Forja→Manifestação) === */}
       <section className="relative py-20 md:py-32 px-4 md:px-8 bg-gradient-to-b from-neon-green/[0.03] via-neon-green/[0.06] to-neon-green/[0.03] border-y border-neon-green/10">
         <div className="max-w-5xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon-green/40 bg-neon-green/10 text-neon-green text-[10px] uppercase tracking-widest font-mono mb-8">
@@ -212,13 +182,6 @@ export default function SobrePage() {
           {/* CTAs divididos em 2: B2C (Terapias) + B2B (Solutions) */}
           <div className="mt-12 flex flex-col md:flex-row gap-4">
             <Link
-              href="/terapias"
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-cyan-300/40 text-cyan-300 hover:bg-cyan-300 hover:text-black font-bold uppercase tracking-widest text-sm rounded transition-all"
-            >
-              Terapias Holísticas
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
               href="/solutions"
               className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-green text-black hover:bg-white font-bold uppercase tracking-widest text-sm rounded transition-all shadow-[0_0_20px_rgba(0,255,148,0.3)]"
             >
@@ -229,7 +192,51 @@ export default function SobrePage() {
         </div>
       </section>
 
-      {/* === 5. OS 3 PILARES DO SER (3 cards horizontais) === */}
+      
+{/* === 4. PONTE — TRANSMUTAÇÃO (pos 4 na nova ordem: Forja→Manifestação→Ponte) === */}
+      <section className="relative py-20 md:py-32 px-4 md:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-300/30 bg-cyan-300/5 text-cyan-300 text-[10px] uppercase tracking-widest font-mono mb-8">
+            🌀 A Ponte · 2020-2021
+          </div>
+
+          <h2 className="font-display text-4xl md:text-6xl text-white leading-[1.05] mb-10">
+            Da massagem
+            <br />
+            <span className="text-cyan-300">à frequência sutil.</span>
+          </h2>
+
+          <div className="space-y-6 text-white/90 text-lg leading-relaxed">
+            <p>
+              Entre 2020 e 2021, o renascimento começou pelas mãos. Honrando a linhagem materna, a
+              massoterapia me reconectou com o sentir. O toque evoluiu para o campo vibracional
+              (Reiki e Som), e a música deixou de ser apenas técnica para se tornar medicina.
+            </p>
+            <p>
+              Consagrei-me <strong className="text-cyan-300">Mestre Reiki Usui</strong> — o nível de iniciação
+              (grau) dentro do <Link href="/terapias" className="text-cyan-300 underline underline-offset-4 hover:text-cyan-200 transition">Reiki oferecido em /terapias</Link> —,
+              unindo a condução do pai (música) com a intenção da mãe (cura). O portal se abriu com
+              Ganesha, mas foi o{" "}
+              <strong className="text-cyan-300">Maha Mrityunjaya (Shiva)</strong> que selou o
+              destino: o som da morte e renascimento.
+            </p>
+          </div>
+
+          {/* CTA da Ponte → terapia sutil */}
+          <div className="mt-12">
+            <Link
+              href="/terapias"
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-cyan-300/40 text-cyan-300 hover:bg-cyan-300 hover:text-black font-bold uppercase tracking-widest text-sm rounded transition-all"
+            >
+              Terapias Holísticas
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      
+{/* === 5. OS 3 PILARES DO SER (3 cards horizontais) === */}
       <section className="py-20 md:py-32 px-4 md:px-8">
         <div className="max-w-6xl mx-auto">
           <h2 className="font-display text-3xl md:text-5xl text-white text-center mb-4">
