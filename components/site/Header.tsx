@@ -67,7 +67,8 @@ export default function Header() {
 
   return (
     <header className={headerClasses}>
-      <div className="container h-14 md:h-16 flex items-center justify-between">
+      {/* h-12 (48px) mobile / h-14 (56px) desktop — opção A conservadora */}
+      <div className="container h-12 md:h-14 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2" aria-label="Ir para a home">
           <Image
@@ -75,7 +76,8 @@ export default function Header() {
             alt="Marroc"
             width={240}   // mantém boa densidade (3x o tamanho do mobile)
             height={80}   // preserve a proporção da sua arte
-            className="w-auto h-32 sm:h-14 md:h-16"  // mobile-first: 32px → 36px → 40px
+            // mobile-first: 96px → 48px → 56px (proporcional à barra h-12/h-14)
+            className="w-auto h-24 sm:h-12 md:h-14"  // logo atravessa menos a barra
             priority
           />
         </Link>
