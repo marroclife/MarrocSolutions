@@ -57,10 +57,16 @@ export default function SobrePage() {
                   priority
                   className="rounded-2xl border border-amber-200/20 shadow-[0_0_50px_rgba(245,158,11,0.15)] w-full max-w-[400px] md:max-w-full h-auto"
                 />
-                {/* Caption embaixo da imagem */}
-                <p className="mt-4 text-center text-xs text-white/40 font-mono uppercase tracking-widest">
-                  Marroc · Arquiteto Digital
-                </p>
+                {/* Logo oficial abaixo da imagem do autor (substitui o caption textual) */}
+                <div className="mt-6 flex justify-center">
+                  <img
+                    src="/marroc.png"
+                    alt="Marroc"
+                    width={360}
+                    height={120}
+                    className="h-12 md:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                  />
+                </div>
               </div>
             </div>
 
