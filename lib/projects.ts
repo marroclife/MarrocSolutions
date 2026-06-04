@@ -21,7 +21,7 @@ export const PROJECTS: Project[] = [
     ],
     channels: [
       { label: "Spotify", href: "https://open.spotify.com/artist/74vMSJj7Vy2CzAo1U3x9YY" },
-      { label: "Instagram", href: "https://www.instagram.com/marroc.life/" },
+      { label: "Instagram", href: "https://www.instagram.com/marroc.xyz/" },
     ],
   },
   {

@@ -21,7 +21,7 @@ const jsonLdSchema = {
         "addressCountry": "BR"
       },
       "sameAs": [
-        "https://instagram.com/marroc.life",
+        "https://instagram.com/marroc.xyz",
         "https://wa.me/5521990387232"
       ]
     },
@@ -127,7 +127,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
             <p>MARROC ECOSYSTEM © {new Date().getFullYear()}</p>
 
             <div className="flex gap-4">
-              <a href="https://instagram.com/marroc.life" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">INSTAGRAM</a>
+              <a href="https://instagram.com/marroc.xyz" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">INSTAGRAM</a>
               <a href="https://wa.me/5521990387232" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WHATSAPP</a>
               <a href="/newsletter" className="hover:text-white transition-colors">DATA_LOG</a>
             </div>

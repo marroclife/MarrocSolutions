@@ -6,16 +6,16 @@ export const SITE_DESCRIPTION =
 // Contact Information
 export const CONTACT = {
   whatsapp: "5521990387232",
-  email: "contato@marrocsolutions.com",
-  instagram: "@marroc_life",
+  email: "marroc.mrr@gmail.com",
+  instagram: "@marroc.xyz",
 };
 
 // Open Graph defaults (ajuste os caminhos conforme seus assets em /public)
 export const OG = {
-  url: "https://instagram.com/marroc.life",
+  url: "https://instagram.com/marroc.xyz",
   image: "/og.png",
   locale: "pt_BR",
   siteName: "Marroc",
-  twitter: "@marroc_life",
+  twitter: "@marroc.xyz",
   
 };

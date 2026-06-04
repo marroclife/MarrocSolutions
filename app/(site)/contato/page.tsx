@@ -1,21 +1,59 @@
 import React from "react";
 import { Section } from "@/components/ui/Section";
 import { Mail, MessageSquare, Send, ArrowRight, Instagram } from "lucide-react";
+import { redirect } from "next/navigation";
 // import { prisma } from "@/lib/prisma"; // Descomente quando configurar o banco
 // import { redirect } from "next/navigation";
 
-// --- SERVER ACTION (Lógica do Backend) ---
+// --- SERVER ACTION (Backend) ---
+// Estratégia atual: gerar URL wa.me com a mensagem pré-preenchida + redirecionar.
+// Opcionalmente também loga no Vault se VAULT_LOG_DIR estiver configurado.
 async function submitContact(formData: FormData) {
   "use server";
 
-  const name = formData.get("name") as string;
-  const email = formData.get("email") as string;
-  const message = formData.get("message") as string;
+  const name = (formData.get("name") as string || "").trim();
+  const email = (formData.get("email") as string || "").trim();
+  const message = (formData.get("message") as string || "").trim();
 
-  console.log("Sinal recebido:", { name, email, message });
+  // Validação mínima
+  if (!name || !email || !message) {
+    redirect("/contato?status=error&reason=campos");
+  }
 
-  // ⚠️ PRISMA: Descomente as linhas abaixo quando tiver sua tabela criada
- 
+  // Monta a mensagem pra WhatsApp
+  const waText = [
+    "Olá Marroc, sinal de contato pelo site:",
+    "",
+    `*Nome:* ${name}`,
+    `*Email:* ${email}`,
+    "",
+    "*Mensagem:*",
+    message,
+  ].join("\n");
+
+  const waNumber = process.env.WHATSAPP_NUMBER || "5521990387232";
+  const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
+
+  // Log best-effort no Vault (não bloqueia se falhar)
+  const logDir = process.env.VAULT_LOG_DIR;
+  if (logDir) {
+    try {
+      const { mkdir, appendFile } = await import("fs/promises");
+      const path = await import("path");
+      const dir = path.join(logDir, "contato");
+      await mkdir(dir, { recursive: true });
+      const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+      await appendFile(
+        path.join(dir, `${stamp}-${name.replace(/\s+/g, "_")}.txt`),
+        `From: ${name} <${email}>\nAt: ${new Date().toISOString()}\n\n${message}\n`
+      );
+    } catch (e) {
+      console.warn("[contato] vault log falhou:", e);
+    }
+  }
+
+  // Redireciona pro WhatsApp (fora do try pra não capturar)
+  redirect(waUrl);
 }
 
 export default function ContatoPage() {
@@ -65,9 +103,9 @@ export default function ContatoPage() {
                 <ArrowRight className="text-white/30 group-hover:text-green-500 group-hover:translate-x-1 transition-all" />
               </a>
 
-              {/* Instagram (Atualizado para @marroc.life) */}
+              {/* Instagram (Atualizado para @marroc.xyz) */}
               <a 
-                href="https://instagram.com/marroc.life" 
+                href="https://instagram.com/marroc.xyz" 
                 target="_blank" 
                 rel="noreferrer"
                 className="group flex items-center gap-4 p-6 rounded-2xl bg-[#121212] border border-white/10 hover:border-amber-200/30 transition-all"
@@ -77,20 +115,23 @@ export default function ContatoPage() {
                 </div>
                 <div>
                   <h3 className="font-display text-xl text-white">Instagram</h3>
-                  <p className="text-sm text-amber-200 font-bold">@marroc.life</p>
+                  <p className="text-sm text-amber-200 font-bold">@marroc.xyz</p>
                 </div>
               </a>
 
               {/* Email */}
-              <div className="flex items-center gap-4 p-6 rounded-2xl bg-[#121212] border border-white/10">
-                <div className="bg-white/5 p-3 rounded-full text-white/70">
+              <a
+                href="mailto:marroc.mrr@gmail.com"
+                className="group flex items-center gap-4 p-6 rounded-2xl bg-[#121212] border border-white/10 hover:border-amber-200/30 transition-all"
+              >
+                <div className="bg-white/5 p-3 rounded-full text-white/70 group-hover:text-amber-200 transition-colors">
                   <Mail size={24} />
                 </div>
                 <div>
                   <h3 className="font-display text-xl text-white">Email</h3>
-                  <p className="text-sm text-white/50">contato@marroc.com.br</p>
+                  <p className="text-sm text-white/50 group-hover:text-amber-200 transition-colors">marroc.mrr@gmail.com</p>
                 </div>
-              </div>
+              </a>
 
             </div>
           </div>
@@ -143,7 +184,7 @@ export default function ContatoPage() {
                   id="message"
                   required
                   rows={5}
-                  placeholder="Escreva sua mensagem aqui..."
+                  placeholder="Conte o que quer construir, curar ou ativar..."
                   className="w-full bg-[#0b0b0b] border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-amber-200/50 focus:ring-1 focus:ring-amber-200/50 transition-all placeholder:text-white/20 resize-none"
                 />
               </div>
@@ -156,7 +197,8 @@ export default function ContatoPage() {
               </button>
               
               <p className="text-xs text-center text-white/30 pt-2">
-                * Seus dados estão protegidos pelo Guardião.
+                * Ao enviar, você será redirecionado pro WhatsApp com a mensagem
+                pré-preenchida. Zero servidores: o sinal vai direto pra ti.
               </p>
 
             </form>
