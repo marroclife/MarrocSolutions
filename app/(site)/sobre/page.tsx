@@ -95,13 +95,13 @@ export default function SobrePage() {
                 <div className="pt-6 flex justify-start">
                   <div className="relative">
                     {/* Glow amber idêntico ao da foto do autor */}
-                    <div className="absolute -inset-4 bg-gradient-to-br from-amber-200/10 to-amber-400/5 blur-2xl rounded-3xl pointer-events-none" />
+                    <div className="absolute -inset-6 bg-gradient-to-br from-amber-200/15 to-amber-400/8 blur-3xl rounded-3xl pointer-events-none" />
                     <img
                       src="/marroc.png"
                       alt="Marroc"
                       width={720}
                       height={240}
-                      className="relative h-28 md:h-40 w-auto object-contain opacity-95 hover:opacity-100 transition-opacity drop-shadow-[0_0_30px_rgba(245,158,11,0.3)]"
+                      className="relative h-36 md:h-52 w-auto object-contain opacity-95 hover:opacity-100 transition-opacity drop-shadow-[0_0_35px_rgba(245,158,11,0.4)]"
                     />
                   </div>
                 </div>
