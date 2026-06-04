@@ -151,7 +151,7 @@ export default function SobrePage() {
       <section className="relative py-20 md:py-32 px-4 md:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-300/30 bg-cyan-300/5 text-cyan-300 text-[10px] uppercase tracking-widest font-mono mb-8">
-            🌀 A Ponte · 2019-2020
+            🌀 A Ponte · 2020-2021
           </div>
 
           <h2 className="font-display text-4xl md:text-6xl text-white leading-[1.05] mb-10">
@@ -162,7 +162,7 @@ export default function SobrePage() {
 
           <div className="space-y-6 text-white/90 text-lg leading-relaxed">
             <p>
-              Entre 2019 e 2020, o renascimento começou pelas mãos. Honrando a linhagem materna, a
+              Entre 2020 e 2021, o renascimento começou pelas mãos. Honrando a linhagem materna, a
               massoterapia me reconectou com o sentir. O toque evoluiu para o campo vibracional
               (Reiki e Som), e a música deixou de ser apenas técnica para se tornar medicina.
             </p>
