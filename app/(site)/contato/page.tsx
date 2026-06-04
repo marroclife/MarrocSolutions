@@ -121,7 +121,7 @@ export default function ContatoPage() {
 
               {/* Email */}
               <a
-                href="mailto:marroc.mrr@gmail.com"
+                href="mailto:contato@marroc.xyz"
                 className="group flex items-center gap-4 p-6 rounded-2xl bg-[#121212] border border-white/10 hover:border-amber-200/30 transition-all"
               >
                 <div className="bg-white/5 p-3 rounded-full text-white/70 group-hover:text-amber-200 transition-colors">
@@ -129,7 +129,7 @@ export default function ContatoPage() {
                 </div>
                 <div>
                   <h3 className="font-display text-xl text-white">Email</h3>
-                  <p className="text-sm text-white/50 group-hover:text-amber-200 transition-colors">marroc.mrr@gmail.com</p>
+                  <p className="text-sm text-white/50 group-hover:text-amber-200 transition-colors">contato@marroc.xyz</p>
                 </div>
               </a>
 
