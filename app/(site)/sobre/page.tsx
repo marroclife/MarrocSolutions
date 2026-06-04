@@ -91,7 +91,7 @@ export default function SobrePage() {
                   ao propósito da cura.
                 </p>
 
-                {/* Logo oficial /marroc.png — exato 180px do Canva, centralizada, com mesmo glow amber da foto */}
+                {/* Logo oficial /marroc.png — 270px (180px × 1.5 = 150%), centralizada, com mesmo glow amber da foto */}
                 <div className="pt-6 flex justify-center">
                   <div className="relative">
                     {/* Glow amber idêntico ao da foto do autor */}
@@ -99,9 +99,9 @@ export default function SobrePage() {
                     <img
                       src="/marroc.png"
                       alt="Marroc"
-                      width={720}
-                      height={240}
-                      className="relative h-[180px] w-auto object-contain opacity-95 hover:opacity-100 transition-opacity drop-shadow-[0_0_35px_rgba(245,158,11,0.4)]"
+                      width={1080}
+                      height={360}
+                      className="relative h-[270px] w-auto object-contain opacity-95 hover:opacity-100 transition-opacity drop-shadow-[0_0_35px_rgba(245,158,11,0.4)]"
                     />
                   </div>
                 </div>

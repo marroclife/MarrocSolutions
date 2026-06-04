@@ -25,7 +25,8 @@ const VIDEOS = [
   }
 ];
 
-const SPOTIFY_TRACK_ID = "0lXblVXKNTqM5oJf17yYPZ";
+// Mesmo embed usado em /projetos (MarrocSection) — perfil completo do artista
+const SPOTIFY_ARTIST_ID = "74vMSJj7Vy2CzAo1U3x9YY";
 
 const LINKS = {
   youtube: "https://www.youtube.com/@marroc-life",
@@ -162,9 +163,9 @@ export default function MusicaPage() {
             <iframe
               data-testid="embed-iframe"
               style={{ borderRadius: '12px' }}
-              src={`https://open.spotify.com/embed/track/${SPOTIFY_TRACK_ID}?utm_source=generator&theme=0`}
+              src={`https://open.spotify.com/embed/artist/${SPOTIFY_ARTIST_ID}?utm_source=generator&theme=0`}
               width="100%"
-              height="152"
+              height="352"
               frameBorder="0"
               allowFullScreen
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
