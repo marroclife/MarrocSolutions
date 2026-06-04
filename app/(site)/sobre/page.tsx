@@ -91,8 +91,8 @@ export default function SobrePage() {
                   ao propósito da cura.
                 </p>
 
-                {/* Logo oficial /marroc.png — exato 180px do Canva, com mesmo glow amber da foto */}
-                <div className="pt-6 flex justify-start">
+                {/* Logo oficial /marroc.png — exato 180px do Canva, centralizada, com mesmo glow amber da foto */}
+                <div className="pt-6 flex justify-center">
                   <div className="relative">
                     {/* Glow amber idêntico ao da foto do autor */}
                     <div className="absolute -inset-6 bg-gradient-to-br from-amber-200/15 to-amber-400/8 blur-3xl rounded-3xl pointer-events-none" />
