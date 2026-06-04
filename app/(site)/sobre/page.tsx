@@ -148,52 +148,7 @@ export default function SobrePage() {
       </section>
 
       
-{/* === 3. MANIFESTAÇÃO — O ARQUITETO DIGITAL (pos 3 na nova ordem: Forja→Manifestação) === */}
-      <section className="relative py-20 md:py-32 px-4 md:px-8 bg-gradient-to-b from-neon-green/[0.03] via-neon-green/[0.06] to-neon-green/[0.03] border-y border-neon-green/10">
-        <div className="max-w-5xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon-green/40 bg-neon-green/10 text-neon-green text-[10px] uppercase tracking-widest font-mono mb-8">
-            🏗️ A Manifestação · Hoje
-          </div>
-
-          <h2 className="font-display text-4xl md:text-6xl text-white leading-[1.05] mb-10">
-            O Arquiteto
-            <br />
-            <span className="text-neon-green">Digital.</span>
-          </h2>
-
-          <div className="space-y-6 text-white/90 text-lg leading-relaxed max-w-4xl">
-            <p>
-              Hoje, todas essas vidas convergem em um único propósito: a{" "}
-              <strong className="text-neon-green">Arquitetura Digital de Alta Performance</strong>.
-            </p>
-            <p>
-              Eu não vejo o código apenas como linhas de comando, mas como frequências. Para mim,
-              a <strong>complexidade é a minha linguagem</strong>. Uso a disciplina do militar, a
-              precisão do produtor e a sensibilidade do terapeuta para construir ecossistemas
-              digitais onde a Saliência de Entidade e a Velocidade Extrema não são apenas
-              métricas, mas ferramentas de dominação de mercado.
-            </p>
-            <p className="font-display text-2xl text-white border-l-2 border-neon-green pl-6 mt-8">
-              Eu não construo sites. Eu desenho a frequência onde o seu negócio se torna a
-              autoridade máxima do seu nicho.
-            </p>
-          </div>
-
-          {/* CTAs divididos em 2: B2C (Terapias) + B2B (Solutions) */}
-          <div className="mt-12 flex flex-col md:flex-row gap-4">
-            <Link
-              href="/solutions"
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-green text-black hover:bg-white font-bold uppercase tracking-widest text-sm rounded transition-all shadow-[0_0_20px_rgba(0,255,148,0.3)]"
-            >
-              Marroc Solutions (B2B)
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      
-{/* === 4. PONTE — TRANSMUTAÇÃO (pos 4 na nova ordem: Forja→Manifestação→Ponte) === */}
+{/* === 3. PONTE — TRANSMUTAÇÃO (pos 3 na ordem cronológica: Forja → Ponte → Música → Manifestação) === */}
       <section className="relative py-20 md:py-32 px-4 md:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-300/30 bg-cyan-300/5 text-cyan-300 text-[10px] uppercase tracking-widest font-mono mb-8">
@@ -236,7 +191,112 @@ export default function SobrePage() {
       </section>
 
       
-{/* === 5. OS 3 PILARES DO SER (3 cards horizontais) === */}
+
+      {/* === 4. MÚSICA — O NASCIMENTO DO NOME (2017-Hoje) === */}
+      <section className="relative py-20 md:py-32 px-4 md:px-8 bg-gradient-to-b from-purple-400/[0.03] via-purple-400/[0.06] to-purple-400/[0.03] border-y border-purple-400/10">
+        <div className="max-w-5xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-400/40 bg-purple-400/10 text-purple-400 text-[10px] uppercase tracking-widest font-mono mb-8">
+            🎧 A Música · 2017-Hoje
+          </div>
+
+          <h2 className="font-display text-4xl md:text-6xl text-white leading-[1.05] mb-10">
+            Onde o nome
+            <br />
+            <span className="text-purple-400">ganhou corpo.</span>
+          </h2>
+
+          <div className="space-y-6 text-white/90 text-lg leading-relaxed">
+            <p>
+              Em <strong className="text-purple-400">2017</strong>, comecei a estudar produção musical
+              de verdade. Não como hobby — como <strong>instrumento de cura</strong>. O Psytrance
+              entrou como a linguagem que mais ressoou: batida repetitiva, camadas em ascensão,
+              viagem coletiva.
+            </p>
+            <p>
+              Em <strong className="text-purple-400">2020</strong>, depois de todo o processo de
+              saída do Exército, o nome <strong className="text-purple-400">"Marroc"</strong> nasceu —
+              junto com os primeiros lançamentos do projeto. Não foi escolha de palco, foi{" "}
+              <em>batismo</em>.
+            </p>
+            <p className="font-display text-2xl text-white border-l-2 border-purple-400 pl-6 mt-8">
+              Marroc não é nome artístico.{" "}
+              <span className="text-purple-400">Marroc é a minha identidade.</span>
+            </p>
+            <p>
+              Hoje, a música segue como uma das minhas frentes de ativação — trilhas, sound
+              healing, frequências em 432Hz, sets autorais. Mas ela não está separada de tudo
+              o mais: é mais um canal da mesma corrente.
+            </p>
+          </div>
+
+          <div className="mt-12 flex flex-col md:flex-row gap-4">
+            <Link
+              href="/musica"
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-purple-400/40 text-purple-400 hover:bg-purple-400 hover:text-black font-bold uppercase tracking-widest text-sm rounded transition-all"
+            >
+              Ouvir as Frequências
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link
+              href="/projetos"
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 text-white/70 hover:text-white font-bold uppercase tracking-widest text-sm rounded transition-all"
+            >
+              Ver o Projeto Marroc
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* === 5. MANIFESTAÇÃO — A MISSÃO (pos 5: Forja → Ponte → Música → Manifestação) === */}
+      <section className="relative py-20 md:py-32 px-4 md:px-8 bg-gradient-to-b from-neon-green/[0.03] via-neon-green/[0.06] to-neon-green/[0.03] border-y border-neon-green/10">
+        <div className="max-w-5xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon-green/40 bg-neon-green/10 text-neon-green text-[10px] uppercase tracking-widest font-mono mb-8">
+            🏗️ A Manifestação · Hoje
+          </div>
+
+          <h2 className="font-display text-4xl md:text-6xl text-white leading-[1.05] mb-10">
+            O Arquiteto
+            <br />
+            <span className="text-neon-green">Digital.</span>
+          </h2>
+
+          <div className="space-y-6 text-white/90 text-lg leading-relaxed max-w-4xl">
+            <p>
+              Em todo esse processo, uma missão se revelou:{" "}
+              <strong className="text-neon-green">ajudar no processo de Expansão da Consciência Planetária</strong>{" "}
+              através de todas as ferramentas que carrego.
+            </p>
+            <p>
+              Sempre fui aquele que gosta de estudar, passar o conhecimento adiante e aplicar tudo
+              na prática — transformar informação em <strong>vivência</strong>, e vivência em{" "}
+              <strong>sabedoria</strong>. O código, a música, a terapia, a estratégia, a frequência
+              — são linguagens diferentes do mesmo verbo: <em>atravessar</em>.
+            </p>
+            <p>
+              Atravessar o ruído. Atravessar a superfície. Atravessar o medo. Mostrar o caminho
+              para que cada pessoa possa, também, atravessar.
+            </p>
+            <p className="font-display text-2xl text-white border-l-2 border-neon-green pl-6 mt-8">
+              Eu não entrego serviços. Eu ativo frequência. A sua, a do seu negócio, a do coletivo.
+            </p>
+          </div>
+
+          {/* CTAs divididos em 2: B2C (Terapias) + B2B (Solutions) */}
+          <div className="mt-12 flex flex-col md:flex-row gap-4">
+            <Link
+              href="/solutions"
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-green text-black hover:bg-white font-bold uppercase tracking-widest text-sm rounded transition-all shadow-[0_0_20px_rgba(0,255,148,0.3)]"
+            >
+              Marroc Solutions (B2B)
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      
+{/* === 6. OS 4 PILARES DO SER (cards) === */}
       <section className="py-20 md:py-32 px-4 md:px-8">
         <div className="max-w-6xl mx-auto">
           <h2 className="font-display text-3xl md:text-5xl text-white text-center mb-4">
@@ -275,15 +335,16 @@ export default function SobrePage() {
         </div>
       </section>
 
-      {/* === 6. ECOSSISTEMA (5 serviços terapêuticos — integrado com /terapias) === */}
+      {/* === 7. ECOSSISTEMA (5 serviços terapêuticos — integrado com /terapias) === */}
       <section className="py-20 md:py-32 px-4 md:px-8 bg-white/[0.02]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-5xl text-white mb-4">
-              Ecossistema de Ativação
+              Portas de Entrada
             </h2>
             <p className="text-white/60 max-w-2xl mx-auto">
-              Como a herança se manifesta hoje. Cada frente é uma camada de uma mesma verdade.
+              Cinco caminhos para atravessar. Cada um abre uma camada diferente da mesma
+              frequência — escolha por onde quer começar.
             </p>
           </div>
 
@@ -317,7 +378,7 @@ export default function SobrePage() {
         </div>
       </section>
 
-      {/* === 7. CTA FINAL — copy da Prisma === */}
+      {/* === 8. CTA FINAL — copy da Prisma === */}
       <section className="py-20 md:py-32 px-4 md:px-8 text-center">
         <div className="max-w-3xl mx-auto space-y-6">
           <p className="font-display text-2xl md:text-3xl text-white leading-tight">
