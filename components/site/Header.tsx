@@ -67,25 +67,25 @@ export default function Header() {
 
   return (
     <header className={headerClasses}>
-      <div className="container h-14 md:h-16 flex items-center justify-between">
-        {/* Logo — sobrepõe a barra pra ficar maior sem aumentar h-14/h-16 */}
+      <div className="container h-14 md:h-16 flex items-center relative">
+        {/* Logo — position absolute REAL, fora do fluxo, não afeta altura da barra */}
         <Link
           href="/"
-          className="relative flex items-center"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex items-center"
           aria-label="Ir para a home"
         >
           <Image
             src="/marroc.png"
             alt="Marroc"
-            width={320}
+            width={360}
             height={120}
-            className="relative h-12 sm:h-14 md:h-20 w-auto -my-2 sm:-my-3 md:-my-4 object-contain"
+            className="h-12 sm:h-14 md:h-20 w-auto object-contain"
             priority
           />
         </Link>
 
-        {/* Navegação desktop */}
-        <nav className="hidden md:flex items-center gap-5 text-sm" aria-label="Menu principal">
+        {/* Nav empurrada pra direita (margin-left auto) com padding pra não bater na logo */}
+        <nav className="hidden md:flex items-center gap-5 text-sm ml-auto pl-44" aria-label="Menu principal">
           {NAV.map((item) => (
             <Link key={item.href} href={item.href} className="hover:text-off/90 text-off/80">
               {item.label}
@@ -97,7 +97,7 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden inline-flex items-center justify-center rounded-md p-2 ring-1 ring-white/15 text-off/90"
+          className="md:hidden ml-auto inline-flex items-center justify-center rounded-md p-2 ring-1 ring-white/15 text-off/90"
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           aria-expanded={open}
           aria-controls="mobile-menu"
