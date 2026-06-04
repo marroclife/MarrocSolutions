@@ -3,6 +3,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 type NavItem = { href: string; label: string };
@@ -65,32 +66,22 @@ export default function Header() {
     (open ? "max-h-96" : "max-h-0");
 
   return (
-    <header className={headerClasses} style={{ height: "64px", maxHeight: "64px", overflow: "visible" }}>
-      <style>{`
-        .marroc-logo { height: 48px !important; width: auto !important; }
-        @media (min-width: 768px) { .marroc-logo { height: 80px !important; } }
-      `}</style>
-      <div
-        className="container h-14 md:h-16 max-h-14 md:max-h-16 flex items-center relative overflow-visible"
-        style={{ height: "64px", maxHeight: "64px" }}
-      >
-        {/* Logo — position absolute REAL, fora do fluxo, não afeta altura da barra */}
-        <Link
-          href="/"
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex items-center"
-          aria-label="Ir para a home"
-        >
-          <img
+    <header className={headerClasses}>
+      <div className="container h-14 md:h-16 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2" aria-label="Ir para a home">
+          <Image
             src="/marroc.png"
             alt="Marroc"
-            width={360}
-            height={120}
-            className="marroc-logo object-contain"
+            width={240}   // mantém boa densidade (3x o tamanho do mobile)
+            height={80}   // preserve a proporção da sua arte
+            className="w-auto h-32 sm:h-14 md:h-16"  // mobile-first: 32px → 36px → 40px
+            priority
           />
         </Link>
 
-        {/* Nav empurrada pra direita (margin-left auto) com padding pra não bater na logo */}
-        <nav className="hidden md:flex items-center gap-5 text-sm ml-auto pl-44" aria-label="Menu principal">
+        {/* Navegação desktop */}
+        <nav className="hidden md:flex items-center gap-5 text-sm" aria-label="Menu principal">
           {NAV.map((item) => (
             <Link key={item.href} href={item.href} className="hover:text-off/90 text-off/80">
               {item.label}
