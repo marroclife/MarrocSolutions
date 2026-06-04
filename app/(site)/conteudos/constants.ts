@@ -450,5 +450,18 @@ Tasya vidya bhavetsarva, Ganeshasya prasadatah</div>
     tags: ['Arte Generativa', 'Intuição', 'Simbiose Algorítmica', 'Sintetista'],
     content: '',
     readTime: '5 min'
+  },
+  {
+    // Tese 16 — adicionada em 03/06/2026 (vault/.../tese-psytrance-meditacao-ativa.md)
+    // Não estava no PLANEJAMENTO original mas combina com Fase 2 Labs (arte+consciência).
+    id: 'tese-16',
+    slug: 'psytrance-como-meditacao-ativa',
+    title: 'Psytrance como Meditação Ativa',
+    excerpt: 'Engenharia sonora pra induzir flow state. Por que dança + ritmo elevado = meditação em movimento.',
+    imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-03',
+    tags: ['Psytrance', 'Neurociência', 'Meditação Ativa', 'Flow State'],
+    readTime: '5 min',
+    content: ''
   }
 ];
