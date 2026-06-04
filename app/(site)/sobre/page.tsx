@@ -105,7 +105,7 @@ export default function SobrePage() {
 
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-200/40 bg-amber-200/10 text-amber-200 text-[10px] uppercase tracking-widest font-mono mb-8">
-            🔥 A Forja · 2010-2019
+            🔥 A Forja · 2014-2020
           </div>
 
           <h2 className="font-display text-4xl md:text-6xl text-white leading-[1.05] mb-10">
