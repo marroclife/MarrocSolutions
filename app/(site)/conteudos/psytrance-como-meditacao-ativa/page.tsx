@@ -13,7 +13,7 @@ export default function Page() {
       publishDate="2026-06-03"
       readTime="5 min"
       tags={['Psytrance', 'Neurociência', 'Meditação Ativa', 'Flow State']}
-      imageUrl="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=2070&auto=format&fit=crop"
+      imageUrl="/cases/psytrance-rave.jpg"
       imageAlt="Dancefloor psicodélico com luzes imersivas — pista como templo de meditação"
       prev={{ title: 'O Algoritmo da Criação', href: '/conteudos/o-algoritmo-da-criacao' }}
     >
