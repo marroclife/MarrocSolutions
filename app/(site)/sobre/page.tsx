@@ -91,15 +91,19 @@ export default function SobrePage() {
                   ao propósito da cura.
                 </p>
 
-                {/* Logo oficial /marroc.png — abaixo do parágrafo, como 'assinatura' visual */}
-                <div className="pt-4 flex justify-start">
-                  <img
-                    src="/marroc.png"
-                    alt="Marroc"
-                    width={360}
-                    height={120}
-                    className="h-10 md:h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
-                  />
+                {/* Logo oficial /marroc.png — grande, com o mesmo glow amber da foto do autor */}
+                <div className="pt-6 flex justify-start">
+                  <div className="relative">
+                    {/* Glow amber idêntico ao da foto do autor */}
+                    <div className="absolute -inset-4 bg-gradient-to-br from-amber-200/10 to-amber-400/5 blur-2xl rounded-3xl pointer-events-none" />
+                    <img
+                      src="/marroc.png"
+                      alt="Marroc"
+                      width={720}
+                      height={240}
+                      className="relative h-28 md:h-40 w-auto object-contain opacity-95 hover:opacity-100 transition-opacity drop-shadow-[0_0_30px_rgba(245,158,11,0.3)]"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
