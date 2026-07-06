@@ -1,29 +1,77 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { X, Send, Sparkles, Zap } from "lucide-react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { X, Send, Sparkles, Zap, Trash2 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
 }
 
+const STORAGE_KEY = "nexo-lite-history";
+const INTRO_MESSAGE: Message = {
+  role: "assistant",
+  content:
+    "**Nexo online.** 🌀\nPosso te ajudar a navegar pelo ecossistema Marroc. Qual é a sua intenção?",
+};
+
+function getStoredMessages(): Message[] {
+  if (typeof window === "undefined") return [INTRO_MESSAGE];
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [INTRO_MESSAGE];
+    const parsed = JSON.parse(raw) as Message[];
+    if (!Array.isArray(parsed) || parsed.length === 0) return [INTRO_MESSAGE];
+    return parsed;
+  } catch {
+    return [INTRO_MESSAGE];
+  }
+}
+
+function errorMessage(statusCode?: number, fallback?: string): string {
+  if (statusCode === 429) {
+    return "Muitas mensagens em pouco tempo. Aguarda 30 segundos e tenta de novo.";
+  }
+  if (statusCode === 401 || statusCode === 403) {
+    return "Autenticação do Nexo está pendente no servidor. Enquanto isso, fale com a gente no WhatsApp: https://wa.me/5521990387232";
+  }
+  if (statusCode === 408 || statusCode === 504) {
+    return "O Nexo demorou demais pra responder. Tenta de novo com uma pergunta mais curta.";
+  }
+  return fallback || "Falha no sinal. Tenta de novo daqui a pouco.";
+}
+
 export default function NexoFloatingWidget() {
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content:
-        "**Nexo online.** 🌀\nPosso te ajudar a navegar pelo ecossistema Marroc. Qual é a sua intenção?",
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([INTRO_MESSAGE]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // Carrega histórico ao montar
+  useEffect(() => {
+    setMessages(getStoredMessages());
+  }, []);
+
+  // Persiste histórico a cada mudança
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+    }
+  }, [messages]);
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, open]);
+
+  const clearHistory = useCallback(() => {
+    setMessages([INTRO_MESSAGE]);
+    if (typeof window !== "undefined") {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+  }, []);
 
   const handleSend = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -35,22 +83,32 @@ export default function NexoFloatingWidget() {
     setMessages((prev) => [...prev, { role: "user", content: userMsg }]);
 
     try {
+      const recentHistory = messages.slice(-10).map((m) => ({
+        role: m.role,
+        content: m.content,
+      }));
+
       const response = await fetch("/api/nexo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMsg }),
+        body: JSON.stringify({ message: userMsg, history: recentHistory }),
       });
       const data = await response.json();
-      if (!response.ok) throw new Error();
 
-      const formatted = (data.reply || "")
-        .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-        .replace(/\n/g, "<br />");
-      setMessages((prev) => [...prev, { role: "assistant", content: formatted }]);
-    } catch {
+      if (!response.ok || data.error) {
+        throw new Error(
+          errorMessage(data.statusCode || response.status, data.error)
+        );
+      }
+
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "⚠️ Falha no sinal. Tenta de novo." },
+        { role: "assistant", content: data.reply || "" },
+      ]);
+    } catch (err: any) {
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: `⚠️ ${err.message}` },
       ]);
     } finally {
       setLoading(false);
@@ -73,7 +131,6 @@ export default function NexoFloatingWidget() {
         `}
         aria-label="Abrir Nexo - Assistente do Ecossistema"
       >
-        {/* Usando <img> direto (não Next/Image) pra evitar color:transparent enquanto carrega */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/nexo-lite-icon.png"
@@ -112,13 +169,23 @@ export default function NexoFloatingWidget() {
                 </div>
               </div>
             </div>
-            <button
-              onClick={() => setOpen(false)}
-              className="p-1 rounded-full hover:bg-white/10 text-white/60 hover:text-white transition"
-              aria-label="Fechar"
-            >
-              <X size={18} />
-            </button>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={clearHistory}
+                className="p-1.5 rounded-full hover:bg-white/10 text-white/40 hover:text-white transition"
+                aria-label="Limpar conversa"
+                title="Limpar conversa"
+              >
+                <Trash2 size={14} />
+              </button>
+              <button
+                onClick={() => setOpen(false)}
+                className="p-1 rounded-full hover:bg-white/10 text-white/60 hover:text-white transition"
+                aria-label="Fechar"
+              >
+                <X size={18} />
+              </button>
+            </div>
           </div>
 
           {/* Messages */}
@@ -137,8 +204,13 @@ export default function NexoFloatingWidget() {
                         : "bg-cyan-500/10 border border-cyan-500/20 text-gray-100"
                     }
                   `}
-                  dangerouslySetInnerHTML={{ __html: msg.content }}
-                />
+                >
+                  <div className="prose prose-invert prose-sm max-w-none">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {msg.content}
+                    </ReactMarkdown>
+                  </div>
+                </div>
               </div>
             ))}
             {loading && (

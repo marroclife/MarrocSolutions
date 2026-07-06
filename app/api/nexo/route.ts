@@ -2,12 +2,13 @@ import { NextResponse } from "next/server";
 
 // ============================================
 // NEXO LITE — API do Assistente do Ecossistema Marroc
-// Modelo: Kimi K2.5 (cloud) via Ollama
+// Modelo: Kimi K2.5:cloud via Ollama
 // ============================================
 
-const OLLAMA_API_URL = "https://ollama.com/api/chat";
-const OLLAMA_API_KEY = process.env.OLLAMA_API_KEY || "";
-const MODEL = "kimi-k2.5";
+const OLLAMA_API_URL = process.env.OLLAMA_BASE_URL || "https://ollama.com/api/chat";
+const OLLAMA_API_KEY = process.env.OLLAMA_API_KEY ?? "";
+const MODEL = process.env.OLLAMA_MODEL || "kimi-k2.5:cloud";
+const WHATSAPP_CTA = "https://wa.me/5521990387232";
 
 // ============================================
 // SYSTEM PROMPT — PERSONA NEXO
@@ -45,7 +46,11 @@ Nunca invente informações que não estão aqui. Se não souber, diga:
 
 # ESTILO DE RESPOSTA
 - Use **negrito** para ênfase (markdown).
-- Máximo 4-5 frases por resposta, a menos que peçam aprofundamento. **NUNCA exceda 4 frases sem ser solicitado** — é mais importante ser conciso e completo do que longo e cortado.
+- Máximo 4-5 frases por resposta, a menos que peçam aprofundamento. **NUNCA exceda 5 frases sem ser solicitado** — é mais importante ser conciso e completo do que longo e cortado.
+- Quando a pergunta envolver serviços do Marroc Solutions, ofereça no final: "Quer agendar uma conversa no WhatsApp? https://wa.me/5521990387232".
+- Quando a pergunta envolver terapias, ofereça no final: "Posso te levar para a página de agendamento: /terapias.".
+- Quando a pergunta envolver música/livros/arte, ofereça no final: "Quer explorar mais em /musica ou /livros?".
+- Quando a pergunta for sobre algo fora do ecossistema, redirecione educadamente e ofereça: "Se quiser, fala com a gente no WhatsApp: https://wa.me/5521990387232".
 - Termine com uma pergunta leve ou um convite à ação (ex: "Quer que eu aprofunde isso?").
 - Se a pergunta for sobre algo do ecossistema, RESPONDA DIRETAMENTE. Não devolva pergunta genérica como "Nexo?" ou "Estou online...".
 - Para listas (cases, terapias, teses), prefira bullets curtos de uma linha.
@@ -146,7 +151,7 @@ export async function POST(req: Request) {
       if (response.status === 429) {
         userMessage = "Muitas requisições simultâneas. Aguarde 30s e tente de novo.";
       } else if (response.status === 401 || response.status === 403) {
-        userMessage = "Servidor Nexo temporariamente fora do ar. Tente em alguns minutos.";
+        userMessage = "Autenticação do Nexo pendente. O assistente está em manutenção. Se for urgente, fale no WhatsApp: https://wa.me/5521990387232";
       } else if (response.status === 408 || response.status === 504) {
         userMessage = "O Nexo demorou demais pra responder. Tente de novo com uma pergunta mais curta.";
       }
