@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 // Modelo: Kimi K2.5:cloud via Ollama
 // ============================================
 
-const OLLAMA_API_URL = process.env.OLLAMA_BASE_URL || "https://api.ollama.com/v1/chat/completions";
+const OLLAMA_API_URL = process.env.OLLAMA_BASE_URL || "https://ollama.com/api/chat";
 const OLLAMA_API_KEY = process.env.OLLAMA_API_KEY ?? "";
 const MODEL = process.env.OLLAMA_MODEL || "kimi-k2.5:cloud";
 const WHATSAPP_CTA = "https://wa.me/5521990387232";
@@ -117,13 +117,16 @@ export async function POST(req: Request) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${OLLAMA_API_KEY}`,
         },
-        // 03/09/2026: Normaliza payload para OpenAI-compatible endpoint
+        // 03/09/2026: Payload no formato nativo Ollama Cloud (/api/chat)
         body: JSON.stringify({
           model: MODEL,
           messages,
-          temperature: 0.7,
-          top_p: 0.9,
-          max_tokens: 800,
+          stream: false,
+          options: {
+            temperature: 0.7,
+            top_p: 0.9,
+            num_predict: 800,
+          },
         }),
         // 03/06/2026: timeout de 30s
         signal: AbortSignal.timeout(30_000),
@@ -142,7 +145,8 @@ export async function POST(req: Request) {
 
     if (!response.ok) {
       const contentType = response.headers.get("content-type") || "";
-      const errText = contentType.includes("application/json") ? await response.text() : await response.text().slice(0, 300);
+      const rawErrText = await response.text();
+      const errText = contentType.includes("application/json") ? rawErrText : rawErrText.slice(0, 300);
       console.error(`[Nexo] Ollama API Error [${response.status}]:`, errText);
       
       // 03/06/2026: mensagens de erro específicas por status code
@@ -162,9 +166,8 @@ export async function POST(req: Request) {
     }
 
     const data = await response.json();
-    // 03/09/2026: OpenAI-compatible format usa choices[0].message.content
-    const reply = data.choices?.[0]?.message?.content || data.message?.content;
-    const finishReason = data.choices?.[0]?.finish_reason || data.done_reason;
+    const reply = data.message?.content;
+    const finishReason = data.done_reason;
 
     if (!reply || reply.trim() === "") {
       console.warn("[Nexo] Modelo retornou resposta vazia. Payload:", JSON.stringify(data).slice(0, 500));
@@ -186,9 +189,12 @@ export async function POST(req: Request) {
         body: JSON.stringify({
           model: MODEL,
           messages,
-          temperature: 0.4, // mais determinístico
-          top_p: 0.85,
-          max_tokens: 800,
+          stream: false,
+          options: {
+            temperature: 0.4, // mais determinístico
+            top_p: 0.85,
+            num_predict: 800,
+          },
         }),
         signal: AbortSignal.timeout(30_000),
       });
