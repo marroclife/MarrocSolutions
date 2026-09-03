@@ -2,12 +2,14 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 interface GlowButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  variant?: "gold" | "cyan";
+  variant?: "gold" | "cyan" | "purple";
 }
 
 export function GlowButton({ children, className, variant = "gold", ...props }: GlowButtonProps) {
   const colorClass = variant === "gold" 
     ? "bg-gold text-black hover:bg-white hover:shadow-[0_0_20px_rgba(199,169,75,0.6)]" 
+    : variant === "purple"
+    ? "bg-purple-600 text-white hover:bg-white hover:text-purple-900 hover:shadow-[0_0_20px_rgba(147,51,234,0.6)]"
     : "border border-tech-cyan text-tech-cyan hover:bg-tech-cyan hover:text-black hover:shadow-[0_0_20px_rgba(0,240,255,0.6)]";
 
   return (

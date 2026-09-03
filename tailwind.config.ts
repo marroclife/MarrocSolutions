@@ -55,6 +55,24 @@ const config: Config = {
             'gold-rose': '#e6b8a2',
             'refined-gold': '#d4af37',
 
+            // --- TEMAS NARA / MARCIO ---
+            nara: {
+                'deep-indigo': '#0B0A10',
+                'indigo-900': '#151226',
+                'amethyst': '#9D50BB',
+                'amethyst-soft': '#B08FC9',
+                'silver': '#E2E0E8',
+                'moon-glow': '#7B6DC1',
+            },
+            marcio: {
+                'obsidian': '#0A0A0A',
+                'charcoal': '#141414',
+                'copper': '#B87333',
+                'copper-light': '#D99A5E',
+                'slate': '#8C8C8C',
+                'ember': '#D44A2C',
+            },
+
             // --- SHADCN UI (OVERRIDE DARK) ---
   			background: '#1a1a1a', 
   			foreground: '#E0E0E0', 

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Star, Lock, Eye, Sparkles } from "lucide-react";
+import { Star, Lock, Eye, Sparkles, Flame } from "lucide-react";
 
 export default function RituaisClientPage() {
   return (
@@ -26,7 +26,57 @@ export default function RituaisClientPage() {
                     Análises Premium Disponíveis
                 </h2>
 
-                {/* 1. Card Tamires (Novo - Tema Santuário) */}
+                {/* 3. Card Nara (Novo - Tema Etéreo) */}
+            <div className="group relative overflow-hidden rounded-xl border border-nara-amethyst/30 bg-gradient-to-br from-nara-deep-indigo to-[#0f0b1a] p-8 transition-all duration-500 hover:border-nara-amethyst/60 hover:shadow-[0_0_30px_-10px_rgba(157,80,187,0.15)]">
+                <div className="absolute top-0 right-0 p-3 bg-nara-amethyst/10 rounded-bl-2xl border-b border-l border-nara-amethyst/20 flex items-center gap-2">
+                    <span className="text-[10px] uppercase tracking-widest text-nara-amethyst font-bold">Novo</span>
+                    <Sparkles className="w-3 h-3 text-nara-amethyst animate-pulse" />
+                </div>
+
+                <div className="mb-6 relative z-10">
+                    <h3 className="font-serif text-3xl text-nara-silver mb-2">Lady Nara Freitas</h3>
+                    <p className="text-nara-silver/60 text-sm max-w-lg leading-relaxed font-light">
+                        Tema: <strong>"A Tece Etérea"</strong>. Uma análise focada na Grande Cruz Fixa, na nobreza de Touro e no poder regenerativo de Sagitário na Casa 8.
+                    </p>
+                </div>
+
+                <Link
+                    href="/terapias/terapiasclient/nara"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-nara-amethyst text-white font-bold uppercase tracking-widest text-[10px] md:text-xs rounded hover:bg-white hover:text-nara-deep-indigo hover:shadow-[0_0_20px_rgba(157,80,187,0.4)] transition-all duration-300"
+                >
+                    <Lock size={12} />
+                    Acessar Portal
+                </Link>
+
+                <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-nara-amethyst/5 rounded-full blur-[80px] pointer-events-none group-hover:bg-nara-amethyst/10 transition-colors" />
+            </div>
+
+            {/* 4. Card Marcio (Novo - Tema Terrestre) */}
+            <div className="group relative overflow-hidden rounded-xl border border-marcio-copper/30 bg-gradient-to-br from-marcio-obsidian to-[#0d0d0d] p-8 transition-all duration-500 hover:border-marcio-copper/60 hover:shadow-[0_0_30px_-10px_rgba(184,115,51,0.15)]">
+                <div className="absolute top-0 right-0 p-3 bg-marcio-copper/10 rounded-bl-2xl border-b border-l border-marcio-copper/20 flex items-center gap-2">
+                    <span className="text-[10px] uppercase tracking-widest text-marcio-copper font-bold">Novo</span>
+                    <Flame className="w-3 h-3 text-marcio-copper animate-pulse" />
+                </div>
+
+                <div className="mb-6 relative z-10">
+                    <h3 className="font-serif text-3xl text-white mb-2">Marcio Rocha</h3>
+                    <p className="text-white/60 text-sm max-w-lg leading-relaxed font-light">
+                        Tema: <strong>"O Arquiteto Terrestre"</strong>. Uma análise focada no Grande Trígono de Fogo, na inovação de Aquário e na liderança visionária.
+                    </p>
+                </div>
+
+                <Link
+                    href="/terapias/terapiasclient/marcio"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-marcio-copper text-white font-bold uppercase tracking-widest text-[10px] md:text-xs rounded hover:bg-white hover:text-marcio-obsidian hover:shadow-[0_0_20px_rgba(184,115,51,0.4)] transition-all duration-300"
+                >
+                    <Lock size={12} />
+                    Acessar Portal
+                </Link>
+
+                <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-marcio-copper/5 rounded-full blur-[80px] pointer-events-none group-hover:bg-marcio-copper/10 transition-colors" />
+            </div>
+
+            {/* 1. Card Tamires (Novo - Tema Santuário) */}
                 <div className="group relative overflow-hidden rounded-xl border border-[#e6b8a2]/30 bg-gradient-to-br from-[#151e1c] to-[#0f1614] p-8 transition-all duration-500 hover:border-[#e6b8a2]/60 hover:shadow-[0_0_30px_-10px_rgba(230,184,162,0.15)]">
                     <div className="absolute top-0 right-0 p-3 bg-[#e6b8a2]/10 rounded-bl-2xl border-b border-l border-[#e6b8a2]/20 flex items-center gap-2">
                         <span className="text-[10px] uppercase tracking-widest text-[#e6b8a2] font-bold">Novo</span>
