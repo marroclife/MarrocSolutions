@@ -58,8 +58,8 @@ function LoginForm() {
         ? from
         : `/terapias/terapiasclient/${data.slug}`;
 
-      router.push(target);
-      router.refresh();
+      // Full reload para garantir que o cookie seja enviado no próximo request
+      window.location.href = target;
     } catch {
       setError("Erro ao conectar. Tente novamente.");
       setLoading(false);
