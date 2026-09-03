@@ -92,7 +92,7 @@ function LoginForm() {
               type="text"
               value={key}
               onChange={(e) => setKey(e.target.value)}
-              placeholder="Ex: Nara"
+              placeholder="Digite sua chave"
               className="w-full bg-black/40 border border-white/15 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/30 transition-all"
               autoComplete="off"
               disabled={loading}
