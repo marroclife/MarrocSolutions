@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "Sobre — Marroc | A Alquimia do Arquiteto",
   description:
     "Marroc é a síntese de uma alquimia genética: a herança do DJ, o cuidado da massoterapeuta, a disciplina do Chefe de TI do Exército. Hoje, Arquiteto Digital de Alta Performance.",
+  alternates: { canonical: "/sobre" },
 };
 
 export default function SobrePage() {

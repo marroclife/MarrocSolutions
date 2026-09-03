@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   title: "Terapias Holísticas | Marroc",
   description:
     "Terapias para relembrar quem você é: Astrologia Viva, Alinhamento Frequencial Somático, Oráculos, Reiki e Cura Arcturiana.",
+  alternates: { canonical: "/terapias" },
 };
 
 const WHATS = "https://wa.me/5521983821884?text=Olá,%20quero%20agendar%20uma%20sessão%20de%20Terapias%20Holísticas.";

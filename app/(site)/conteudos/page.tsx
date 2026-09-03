@@ -3,6 +3,19 @@ import { ARTICLES } from './constants';
 import { Article } from '../../../components/types';
 import { ArrowRight, Clock, Tag } from 'lucide-react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Artigos sobre IA, Performance, Consciência e Sistemas Vivos',
+  description: 'Ensaios e guias do ecossistema Marroc sobre inteligência artificial, SEO, performance, música, consciência e sistemas vivos.',
+  alternates: { canonical: '/conteudos' },
+  openGraph: {
+    title: 'Artigos e Arquivos | Marroc',
+    description: 'Ideias, guias e teses originais do ecossistema Marroc.',
+    url: '/conteudos',
+    type: 'website',
+  },
+};
 
 export default function ConteudosIndexPage() {
   return (

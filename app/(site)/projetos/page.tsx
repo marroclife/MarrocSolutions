@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: `${SITE_TITLE} — Ecossistema`,
   description:
     "Cinco frentes do ecossistema Marroc: O Ritual (Live), A Arquitetura (Solutions), Cura (Terapias), A Alquimia (Higher Hz) e Loja (Gaja Hai).",
+  alternates: { canonical: "/projetos" },
   openGraph: {
     title: `${SITE_TITLE} — Ecossistema`,
     description: SITE_DESCRIPTION,

@@ -15,11 +15,13 @@ export const metadata = {
   title: "Marroc Solutions — Arquitetura Digital de Alta Performance",
   description:
     "Saliência de entidade, ultra-performance e agentes autônomos. Arquitetura digital de alta performance para negócios que precisam crescer rápido.",
+  alternates: { canonical: "/solutions" },
 };
 
 const PILLARS = [
   {
     icon: <Search className="w-8 h-8" />,
+    href: "/seo-saliencia-entidade",
     title: "Saliência de Entidade & SEO",
     valueProp: "Não tente \"aparecer\" no Google. Torne-se a referência absoluta.",
     detail:
@@ -28,6 +30,7 @@ const PILLARS = [
   },
   {
     icon: <Zap className="w-8 h-8" />,
+    href: "/sites-de-alta-performance",
     title: "Arquitetura de Ultra-Performance",
     valueProp: "Velocidade não é luxo, é conversão.",
     detail:
@@ -36,6 +39,7 @@ const PILLARS = [
   },
   {
     icon: <Bot className="w-8 h-8" />,
+    href: "/agentes-autonomos",
     title: "Agentes Autônomos (IA)",
     valueProp: "Substitua processos manuais por inteligência.",
     detail:
@@ -44,6 +48,7 @@ const PILLARS = [
   },
   {
     icon: <MapPin className="w-8 h-8" />,
+    href: "/performance-web",
     title: "Dominação Regional",
     valueProp: "Saliência Local.",
     detail:
@@ -95,9 +100,23 @@ const DIFFERENTIALS = [
   },
 ];
 
+const FAQ = [
+  { question: "O que a Marroc Solutions faz?", answer: "A Marroc Solutions projeta sites de alta performance, sistemas com agentes autônomos e arquiteturas de SEO por entidades para aumentar autoridade, eficiência e conversão." },
+  { question: "Qual é a diferença entre um agente autônomo e um chatbot?", answer: "Um chatbot normalmente responde perguntas. Um agente autônomo também pode executar etapas de um processo, consultar ferramentas, organizar dados e acionar fluxos conforme regras e limites definidos." },
+  { question: "O que é saliência de entidade?", answer: "É a clareza com que buscadores relacionam uma marca, pessoa ou negócio aos temas, serviços, lugares e provas que definem sua autoridade." },
+  { question: "Como começa um projeto?", answer: "O trabalho começa por um diagnóstico técnico e comercial. Depois são definidos objetivo, métricas, arquitetura, conteúdo e automações antes da implementação." },
+];
+
 export default function SolutionsHubPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ.map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })),
+  };
+
   return (
     <div className="bg-[#050505] text-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       {/* 1. HERO */}
       <section className="relative pt-24 pb-20 border-b border-white/5 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-deep-emerald/30 via-[#050505] to-[#050505] z-0" />
@@ -165,7 +184,9 @@ export default function SolutionsHubPage() {
                 className="group p-8 rounded-2xl ring-1 ring-white/10 bg-gradient-to-br from-[#171717] to-[#0a0a0a] hover:ring-white/20 transition-all"
               >
                 <div className={`${p.color} mb-6`}>{p.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-3">{p.title}</h3>
+                <h3 className="text-xl font-bold text-white mb-3">
+                  <Link href={p.href} className="hover:text-neon-green transition-colors">{p.title}</Link>
+                </h3>
                 <p className={`font-mono text-sm uppercase tracking-wide ${p.color} mb-4`}>
                   {p.valueProp}
                 </p>
@@ -223,6 +244,21 @@ export default function SolutionsHubPage() {
                 <h3 className="text-lg font-bold text-white">{d.title}</h3>
                 <p className="text-sm text-paper/60 leading-relaxed">{d.desc}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-6 border-b border-white/5" aria-labelledby="perguntas-frequentes">
+        <div className="max-w-4xl mx-auto">
+          <p className="font-mono text-neon-green text-xs uppercase tracking-widest mb-4">// Respostas diretas</p>
+          <h2 id="perguntas-frequentes" className="font-display text-3xl md:text-5xl text-white mb-10">Perguntas frequentes</h2>
+          <div className="space-y-4">
+            {FAQ.map((item) => (
+              <details key={item.question} className="border border-white/10 bg-white/[0.03] rounded-xl p-6">
+                <summary className="cursor-pointer font-bold text-lg text-white marker:text-neon-green">{item.question}</summary>
+                <p className="mt-4 text-paper/70 leading-relaxed">{item.answer}</p>
+              </details>
             ))}
           </div>
         </div>

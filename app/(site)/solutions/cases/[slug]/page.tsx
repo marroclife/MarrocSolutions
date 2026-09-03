@@ -25,9 +25,18 @@ export async function generateMetadata({
   const { slug } = await params;
   const c = getCaseBySlug(slug);
   if (!c) return {};
+  const canonical = `/solutions/cases/${c.slug}`;
   return {
     title: `${c.name} — ${c.tagline}`,
     description: c.summary[0],
+    alternates: { canonical },
+    openGraph: {
+      title: `${c.name} — ${c.tagline}`,
+      description: c.summary[0],
+      url: canonical,
+      type: "article",
+      images: [{ url: c.image, alt: `Case ${c.name}` }],
+    },
   };
 }
 
@@ -40,10 +49,23 @@ const CaseDetailPage = async ({
   const c = getCaseBySlug(slug);
   if (!c) notFound();
 
+  const caseSchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: c.name,
+    headline: c.tagline,
+    description: c.summary.join(" "),
+    image: c.image,
+    dateCreated: String(c.year),
+    creator: { "@type": "Organization", "@id": "https://marroc.xyz/#organization", name: "Marroc Solutions" },
+    url: `https://marroc.xyz/solutions/cases/${c.slug}`,
+  };
+
   const others = ALL_CASES.filter((x) => x.slug !== c.slug).slice(0, 3);
 
   return (
     <div className="bg-[#050505] text-white min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseSchema) }} />
       {/* Navbar interna */}
       <nav className="fixed w-full z-50 bg-[#050505]/90 backdrop-blur-md border-b border-white/5 py-4">
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">

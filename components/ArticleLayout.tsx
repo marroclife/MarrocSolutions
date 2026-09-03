@@ -7,6 +7,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import { ShareButton } from '@/components/ShareButton';
+import { ARTICLES } from '@/app/(site)/conteudos/constants';
 
 export type ArticleLayoutProps = {
   title: string;
@@ -34,8 +35,23 @@ export function ArticleLayout({
   next,
   children,
 }: ArticleLayoutProps) {
+  const article = ARTICLES.find((item) => item.title === title);
+  const canonical = article ? `https://marroc.xyz/conteudos/${article.slug}` : undefined;
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: excerpt,
+    image: imageUrl,
+    datePublished: publishDate,
+    author: { '@type': 'Person', '@id': 'https://marroc.xyz/#person', name: 'Marroc' },
+    publisher: { '@type': 'Organization', '@id': 'https://marroc.xyz/#organization', name: 'Marroc' },
+    ...(canonical ? { mainEntityOfPage: canonical } : {}),
+  };
+
   return (
     <article className="max-w-3xl mx-auto py-12 px-6 animate-fade-in-up font-sans text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       {/* Navigation Back */}
       <Link
         href="/conteudos"
@@ -69,7 +85,7 @@ export function ArticleLayout({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <div className="flex items-center gap-3 text-zinc-400 text-sm">
             <Calendar className="w-4 h-4" />
-            <time>{publishDate}</time>
+            <time dateTime={publishDate}>{publishDate}</time>
             <span className="w-1 h-1 bg-zinc-700 rounded-full" />
             <span>{readTime} de leitura</span>
           </div>

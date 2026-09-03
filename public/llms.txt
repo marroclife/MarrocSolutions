@@ -1,0 +1,19 @@
+# marroc.xyz - Hub Vivo do Ecossistema Marroc
+
+Hub central de consciência, arquitetura digital e arte. Ponto de convergência entre Marroc Solutions, Marroc Labs e Gaja Hai.
+
+## Core Resources
+- [Home](https://marroc.xyz) - Portal de entrada e visão geral do ecossistema.
+- [Marroc Solutions](https://marroc.xyz/solutions) - Performance Web, SEO de Saliência e Agentes Autônomos.
+- [Livros & Protocolos](https://marroc.xyz/livros) - O Eixo da Consciência e outras obras de protocolo digital.
+- [Gaja Hai](https://store.marroc.xyz) - Vestuário e artefatos do ecossistema.
+- [Contato](https://marroc.xyz/contato) - Canal direto para parcerias e projetos.
+
+## Specialized Pages
+- [Performance Web](https://marroc.xyz/performance-web) - Estratégias de alta performance e conversão.
+- [Agentes Autônomos](https://marroc.xyz/agentes-autonomos) - Implementação de IAs operacionais.
+- [SEO Saliência](https://marroc.xyz/seo-saliencia-entidade) - Posicionamento baseado em entidades e relevância.
+- [Nexo](https://marroc.xyz/nexo) - Manifesto do assistente digital consciente.
+
+## Full Documentation
+- [Full LLM Index](https://marroc.xyz/llms-full.txt) - Comprehensive map of the ecosystem.

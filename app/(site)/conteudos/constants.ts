@@ -13,8 +13,17 @@ export const NAV_LINKS: NavItem[] = [
 
 export const ARTICLES: Article[] = [
   {
-    // Tese 16 — adicionada em 03/06/2026 (vault/.../tese-psytrance-meditacao-ativa.md)
-    // Não estava no PLANEJAMENTO original mas combina com Fase 2 Labs (arte+consciência).
+    id: 'tese-soberania-digital',
+    slug: 'soberania-digital',
+    title: 'Soberania Digital',
+    excerpt: 'O Framework de Inteligência para a Nova Era. A transição do uso de ferramentas para a operação de ecossistemas autônomos.',
+    imageUrl: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2070&auto=format&fit=crop',
+    publishDate: '2026-06-11',
+    tags: ['Soberania', 'IA', 'Framework', 'Sistemas Vivos'],
+    content: '',
+    readTime: 'Interativo'
+  },
+  {
     id: 'tese-16',
     slug: 'psytrance-como-meditacao-ativa',
     title: 'Psytrance como Meditação Ativa',

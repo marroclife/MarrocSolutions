@@ -3,6 +3,8 @@
 
 import React from 'react';
 import { ArticleLayout } from '@/components/ArticleLayout';
+import { getArticleMetadata } from '@/lib/article-metadata';
+export const metadata = getArticleMetadata('ia-como-alavanca-de-lucro');
 
 export default function Page() {
   return (

@@ -38,6 +38,7 @@
   ],
   "exclude": [
     "node_modules",
-    "solutions"
+    "solutions",
+    "app/(site)/conteudos/soberania-digital"
   ]
 }

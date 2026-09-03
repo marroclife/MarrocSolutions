@@ -1,0 +1,6 @@
+{
+  "name": "Soberania Digital",
+  "description": "Landing page de autoridade de ecossistema digital e conversão de leads para criadores multifacetados.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

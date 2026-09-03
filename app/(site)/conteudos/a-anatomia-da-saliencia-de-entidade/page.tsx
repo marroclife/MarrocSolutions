@@ -3,6 +3,8 @@
 
 import React from 'react';
 import { ArticleLayout } from '@/components/ArticleLayout';
+import { getArticleMetadata } from '@/lib/article-metadata';
+export const metadata = getArticleMetadata('a-anatomia-da-saliencia-de-entidade');
 
 export default function Page() {
   return (

@@ -4,6 +4,8 @@
 
 import React from 'react';
 import { ArticleLayout } from '@/components/ArticleLayout';
+import { getArticleMetadata } from '@/lib/article-metadata';
+export const metadata = getArticleMetadata('o-fim-do-site-estatico');
 
 export default function Page() {
   return (

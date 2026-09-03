@@ -13,7 +13,10 @@ const jsonLdSchema = {
       "@id": "https://marroc.xyz/#organization",
       "name": "Marroc",
       "url": "https://marroc.xyz",
-      "logo": "https://marroc.xyz/logo.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://marroc.xyz/marroc.png"
+      },
       "description": "Hertz & Bits Ecosystem. Arquitetura de Sistemas Vivos, Arte Sonora e Tecnologia com Alma.",
       "address": {
         "@type": "PostalAddress",
@@ -36,10 +39,7 @@ const jsonLdSchema = {
         "@type": "Organization",
         "@id": "https://marroc.xyz/#organization"
       },
-      "sameAs": [
-        "https://github.com/marroc",
-        "https://linkedin.com/in/marroc"
-      ]
+      "sameAs": ["https://instagram.com/marroc.xyz"]
     },
     {
       "@type": "ProfessionalService",
@@ -72,26 +72,35 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif"
 export const metadata: Metadata = {
   metadataBase: new URL("https://marroc.xyz"),
   title: {
-    default: "Marroc | Hertz & Bits Ecosystem",
+    default: "Marroc Solutions | Sistemas de Agentes Autônomos e IA para Negócios",
     template: "%s | Marroc",
   },
   description: "Hertz & Bits Ecosystem. Arquitetura de Sistemas Vivos, Orquestração de Agentes Autônomos e Tecnologia com Alma para Negócios B2B.",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  publisher: "Marroc Solutions",
   openGraph: {
     type: "website",
-    title: "Marroc | Hertz & Bits Ecosystem",
-    description: "Tecnologia com Alma. Consultoria B2B, AI Audio e Rituais.",
+    title: "Marroc Solutions | Sistemas de Agentes Autônomos e IA para Negócios",
+    description: "Marroc Solutions: Sistemas de Agentes Autônomos, SEO de Entidade e Arquitetura Digital para Negócios B2B. Tecnologia com Alma do Hertz & Bits Ecosystem.",
     url: "https://marroc.xyz",
     siteName: "Marroc Portal",
     locale: "pt_BR",
-    images: [{ url: "/banner-portal.png", width: 1200, height: 630, alt: "Marroc - Hertz & Bits" }],
+    images: [{ url: "/marroc.png", alt: "Marroc - Hertz & Bits" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Marroc | Hertz & Bits Ecosystem",
-    description: "Dominamos a frequência. Soluções Digitais e Arte Sonora.",
-    images: ["/banner-portal.png"],
+    title: "Marroc Solutions | Sistemas de Agentes Autônomos e IA para Negócios",
+    description: "Marroc Solutions: Agentes Autônomos, SEO de Entidade e Arquitetura Digital para Negócios B2B. Parte do Hertz & Bits Ecosystem.",
+    images: ["/marroc.png"],
   },
-  icons: { shortcut: "/favicon.ico" },
+  icons: { icon: "/marroc.png", shortcut: "/marroc.png", apple: "/marroc.png" },
 };
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {

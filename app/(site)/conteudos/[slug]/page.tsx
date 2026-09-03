@@ -5,11 +5,39 @@ import { ShareButton } from '../../../../components/ShareButton';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 
 export function generateStaticParams() {
   return ARTICLES.map((article: Article) => ({
     slug: article.slug,
   }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const article = ARTICLES.find((item: Article) => item.slug === slug);
+  if (!article) return {};
+
+  const canonical = `/conteudos/${article.slug}`;
+  return {
+    title: article.title,
+    description: article.excerpt,
+    alternates: { canonical },
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      url: canonical,
+      type: 'article',
+      publishedTime: article.publishDate,
+      images: [{ url: article.imageUrl, alt: article.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.excerpt,
+      images: [article.imageUrl],
+    },
+  };
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -20,8 +48,32 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     return notFound();
   }
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.excerpt,
+    image: article.imageUrl,
+    datePublished: article.publishDate,
+    author: { '@type': 'Person', '@id': 'https://marroc.xyz/#person', name: 'Marroc' },
+    publisher: { '@type': 'Organization', '@id': 'https://marroc.xyz/#organization', name: 'Marroc' },
+    mainEntityOfPage: `https://marroc.xyz/conteudos/${article.slug}`,
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://marroc.xyz/' },
+      { '@type': 'ListItem', position: 2, name: 'Conteúdos', item: 'https://marroc.xyz/conteudos' },
+      { '@type': 'ListItem', position: 3, name: article.title, item: `https://marroc.xyz/conteudos/${article.slug}` },
+    ],
+  };
+
   return (
     <article className="max-w-3xl mx-auto py-12 px-6 animate-fade-in-up font-sans text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Navigation Back */}
       <Link 
         href="/conteudos"
@@ -48,7 +100,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex items-center gap-3 text-zinc-400 text-sm">
                 <Calendar className="w-4 h-4" />
-                <time>{new Date(article.publishDate).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
+                <time dateTime={article.publishDate}>{new Date(article.publishDate).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}</time>
                 <span className="w-1 h-1 bg-zinc-700 rounded-full"></span>
                 <span>{article.readTime} de leitura</span>
             </div>

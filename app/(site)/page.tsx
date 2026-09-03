@@ -16,9 +16,9 @@ export default function HomePage() {
         
         {/* MOBILE HEADER (Fixo no topo em telas pequenas) */}
         <div className="md:hidden pt-24 pb-8 px-6 text-center bg-[#050505] z-20 relative">
-            <h1 className="font-display text-3xl tracking-tighter leading-none mb-2 text-white">
+            <h2 className="font-display text-3xl tracking-tighter leading-none mb-2 text-white">
               DOMINAMOS A <br/> FREQUÊNCIA
-            </h1>
+            </h2>
             <p className="font-mono text-[10px] text-gray-500 uppercase tracking-[0.3em]">
               Hertz & Bits Ecosystem
             </p>
@@ -72,19 +72,19 @@ export default function HomePage() {
               MARROC <br/> LABS
             </h2>
             <p className="font-mono text-gray-400 text-sm md:text-base max-w-sm mt-4 md:border-r border-l md:border-l-0 border-purple-500/30 pl-4 md:pl-0 md:pr-4">
-              Ecossistema de Arte & Frequência. <br/>
-              Música IA, Terapias e Livros.
+              Laboratório de Som & Consciência. <br/>
+              Música · Terapias · Sabedoria · Criação.
             </p>
             
             <div className="mt-8 flex flex-wrap md:justify-end gap-3 md:opacity-0 md:group-hover:opacity-100 transition-opacity transform md:translate-y-4 md:group-hover:translate-y-0">
-               <Link href="/higher-hz" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-purple-500 hover:text-black text-xs font-mono uppercase transition">
-                 Higher Hz
-               </Link>
                <Link href="/musica" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-purple-500 hover:text-black text-xs font-mono uppercase transition">
-                 Live Psytrance
+                 Som Ritual
                </Link>
-               <Link href="/terapias" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-emerald-500 hover:border-emerald-500 hover:text-black text-xs font-mono uppercase transition text-emerald-400/80">
-                 Terapias
+               <Link href="/terapias" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-purple-500 hover:text-black text-xs font-mono uppercase transition">
+                 Reconexão
+               </Link>
+               <Link href="/livros" className="px-4 py-2 border border-purple-500/50 rounded hover:bg-amber-500 hover:border-amber-500 hover:text-black text-xs font-mono uppercase transition text-amber-400/80">
+                 Obra
                </Link>
             </div>
           </div>
@@ -107,21 +107,23 @@ export default function HomePage() {
       {/* --- DOBRA 2: A PONTE --- */}
       <section className="py-20 px-6 border-t border-white/5 bg-industrial-black/30 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h3 className="font-mono text-neon-green text-xs md:text-sm uppercase tracking-widest">
-            // O Algoritmo da Criação
+          <h3 className="font-mono text-purple-400 text-xs md:text-sm uppercase tracking-widest">
+            // O Ecossistema
           </h3>
           <p className="font-display text-2xl md:text-4xl leading-relaxed text-gray-200">
-            "Por que uma consultoria de tecnologia produz música psicodélica? <br/>
-            Porque <span className="text-white border-b border-neon-green">Complexidade</span> é a nossa linguagem."
+            Dois braços. Uma consciência.
           </p>
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 text-left mt-12 font-mono text-sm text-gray-400 leading-relaxed">
             <p>
-              O mesmo código que gera frequências de cura e orquestra experiências imersivas no palco é a base da inteligência que aplicamos no seu negócio.
+              <strong className="text-purple-400">Marroc Labs</strong> investiga a experiência interna — som, terapias, sabedoria e criação como caminhos de presença.
             </p>
             <p>
-              Não somos apenas desenvolvedores. Somos arquitetos de sistemas vivos. Unimos a precisão matemática da IA com a intuição humana.
+              <strong className="text-neon-green">Marroc Solutions</strong> constrói sistemas para o mundo externo — agentes autônomos, SEO e infraestrutura digital de alta performance.
             </p>
           </div>
+          <p className="text-gray-500 font-mono text-sm">
+            Ambos nascem do mesmo lugar: a busca por arquiteturas que funcionem — seja na consciência, seja no código.
+          </p>
         </div>
       </section>
 
@@ -195,20 +197,19 @@ export default function HomePage() {
       </Link>
     </div>
 
-    {/* Card 2: NEXO (Fuchsia/Cyan Glow - CENTRO DA LINHA 1) */}
-    <div className="group p-8 rounded-none border border-fuchsia-500/40 bg-fuchsia-950/5 hover:border-fuchsia-400 hover:bg-fuchsia-950/10 transition-all duration-500 flex flex-col relative overflow-hidden">
-      {/* Glow effect sutil */}
-      <div className="absolute -top-10 -right-10 w-40 h-40 bg-fuchsia-500/10 blur-3xl rounded-full pointer-events-none" />
-      <Bot className="text-fuchsia-400 mb-6 w-10 h-10 relative" />
-      <span className="block font-mono text-xs text-fuchsia-400 mb-2 uppercase tracking-widest relative">AI Assistant / Live</span>
-      <h3 className="font-display text-3xl text-white mb-4 relative">Nexo</h3>
+    {/* Card 2: LABS (Purple - CENTRO DA LINHA 1) */}
+    <div className="group p-8 rounded-none border border-purple-500/40 bg-purple-950/5 hover:border-purple-400 hover:bg-purple-950/10 transition-all duration-500 flex flex-col relative overflow-hidden">
+      <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-500/10 blur-3xl rounded-full pointer-events-none" />
+      <Zap className="text-purple-400 mb-6 w-10 h-10 relative" />
+      <span className="block font-mono text-xs text-purple-400 mb-2 uppercase tracking-widest relative">Som × Consciência × Experiência</span>
+      <h3 className="font-display text-3xl text-white mb-4 relative">Marroc Labs</h3>
       <ul className="space-y-2 font-mono text-[10px] text-gray-400 mb-8 flex-1 relative">
-        <li>&gt; Assistente do Ecossistema</li>
-        <li className="text-cyan-400/80">&gt; Kimi K2.5 (Cloud)</li>
-        <li>&gt; 100% focado em você</li>
+        <li>&gt; Som Ritual & Live Psytrance</li>
+        <li>&gt; Reconexão & Terapias Integrativas</li>
+        <li>&gt; Sabedoria, Consciência & Obra</li>
       </ul>
-      <Link href="/nexo" className="block w-full py-3 text-center bg-gradient-to-r from-fuchsia-500 to-cyan-500 hover:from-fuchsia-400 hover:to-cyan-400 text-white font-bold uppercase tracking-widest text-[10px] transition-colors">
-        Falar com o Nexo
+      <Link href="/labs" className="block w-full py-3 text-center border border-purple-500/50 hover:border-purple-400 hover:bg-purple-500 hover:text-black text-purple-300 font-bold uppercase tracking-widest text-[10px] transition-colors">
+        Entrar no Laboratório
       </Link>
     </div>
 
@@ -257,18 +258,18 @@ export default function HomePage() {
       </Link>
     </div>
 
-    {/* Card 6: HIGHER HZ (Pink - DIREITA DA LINHA 2) */}
+    {/* Card 6: PROJETOS (Pink - DIREITA DA LINHA 2) */}
     <div className="group p-8 rounded-none border border-pink-500/30 bg-pink-950/5 hover:border-pink-400 hover:bg-pink-950/10 transition-all duration-500 flex flex-col">
       <Activity className="text-pink-400 mb-6 w-10 h-10" />
-      <span className="block font-mono text-xs text-pink-400 mb-2 uppercase tracking-widest">AI Audio / Arcanos</span>
-      <h3 className="font-display text-3xl text-white mb-4">Higher Hz</h3>
+      <span className="block font-mono text-xs text-pink-400 mb-2 uppercase tracking-widest">Ecossistema / Projetos</span>
+      <h3 className="font-display text-3xl text-white mb-4">Projetos</h3>
       <ul className="space-y-2 font-mono text-[10px] text-gray-400 mb-8 flex-1">
-        <li>&gt; IA + Intenção Humana</li>
-        <li>&gt; Tarot Musical</li>
-        <li>&gt; Frequência 432Hz</li>
+        <li>&gt; Live Psytrance Ritual</li>
+        <li>&gt; Agentes Autônomos</li>
+        <li>&gt; Gaja Hai & Outros Satélites</li>
       </ul>
-      <Link href="/higher-hz" className="block w-full py-3 text-center border border-pink-500/50 hover:border-pink-400 hover:bg-pink-500 hover:text-black text-pink-300 font-bold uppercase tracking-widest text-[10px] transition-colors">
-        Ouvir Álbum
+      <Link href="/projetos" className="block w-full py-3 text-center border border-pink-500/50 hover:border-pink-400 hover:bg-pink-500 hover:text-black text-pink-300 font-bold uppercase tracking-widest text-[10px] transition-colors">
+        Ver Ecossistema
       </Link>
     </div>
 
