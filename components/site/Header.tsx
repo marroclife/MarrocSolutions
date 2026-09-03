@@ -8,15 +8,16 @@ import { usePathname } from "next/navigation";
 
 type NavItem = { href: string; label: string };
 
-// Ordem atualizada em 03/06/2026:
-// /agenda extinta (decisão Marroc). Livros inserido entre Terapias e Artigos.
+// Ordem atualizada em 25/08/2026:
+// Arquitetura: Solutions (B2B) | Labs (som/consciência) | conteúdo do ecossistema.
+// /agenda extinta (decisão Marroc). /nexo movido para menu secundário.
 const NAV: NavItem[] = [
   { href: "/solutions", label: "Solutions" },
+  { href: "/labs", label: "Labs" },
   { href: "/musica", label: "Música" },
-  { href: "/nexo", label: "Nexo" },
-  { href: "/projetos", label: "Projetos" },
   { href: "/terapias", label: "Terapias" },
   { href: "/livros", label: "Livros" },
+  { href: "/projetos", label: "Projetos" },
   { href: "/conteudos", label: "Artigos" },
   { href: "/sobre", label: "Sobre" },
   { href: "/contato", label: "Contato" },
@@ -63,7 +64,7 @@ export default function Header() {
 
   const mobilePanelClasses =
     "md:hidden overflow-hidden transition-[max-height] duration-300 motion-reduce:transition-none " +
-    (open ? "max-h-96" : "max-h-0");
+    (open ? "max-h-[100vh]" : "max-h-0");
 
   return (
     <header className={headerClasses}>
