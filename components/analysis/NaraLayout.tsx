@@ -163,29 +163,59 @@ export default function NaraLayout() {
                 </div>
                 <div className="order-1 lg:order-2">
                   <h2 className="font-playfair text-4xl md:text-5xl mb-2">Sincronia Galáctica</h2>
-                  <p className="text-nara-amethyst-soft font-sans uppercase tracking-[0.2em] text-xs mb-8">Sincronário Maia</p>
-                  <div className="space-y-8">
-                    <div className="pl-6 border-l border-nara-amethyst/30">
-                      <h3 className="text-2xl font-medium text-white mb-1">Cachorro Cósmico Branco</h3>
-                      <p className="text-nara-amethyst/60 text-sm mb-4 font-mono">KIN 130 • O Amor, A Lealdade & O Coração</p>
-                      <p className="text-white/70 font-light text-justify leading-relaxed text-sm">Nara, sua assinatura galáctica é a do <strong className="text-white">Guardião do Coração</strong>. O Cachorro traz a lealdade incondicional e o amor que protege. O Tom Cósmico eleva isso para uma dimensão de serviço ao Todo, onde amar o outro é a forma mais alta de sabedoria.</p>
+                  <p className="text-nara-amethyst-soft font-sans uppercase tracking-[0.2em] text-xs mb-8">Dreamspell • Sincronário das 13 Luas</p>
+
+                  <div className="pl-6 border-l border-nara-amethyst/30 mb-8">
+                    <h3 className="text-2xl font-medium text-white mb-1">Cachorro Cósmico Branco</h3>
+                    <p className="text-nara-amethyst/60 text-sm mb-2 font-mono">KIN 130 • Coração, Amor & Lealdade • Tom 13: Presença/Transcendência</p>
+                    <p className="text-white/50 text-xs italic mb-3">“Eu persevero para amar; transcendendo a lealdade; selo o processo do coração com o tom cósmico da presença.”</p>
+                    <p className="text-white/70 font-light text-justify leading-relaxed text-sm">
+                      Nara, sua assinatura galáctica não é simplesmente “amar”. É aprender <strong className="text-white">o que permanece do amor quando ele atravessa o tempo, as provas, as expectativas e o apego</strong>. O Cachorro fala de coração + lealdade; o Tom Cósmico, de transcendência. Juntos, eles perguntam: <em>até onde posso permanecer leal ao amor sem me tornar prisioneiro da forma que o amor assumiu?</em>
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div className="bg-white/5 p-4 rounded-sm border border-white/5">
+                      <h4 className="text-nara-amethyst-soft text-xs uppercase tracking-widest mb-3">Oráculo do KIN 130</h4>
+                      <ul className="text-white/60 text-xs space-y-2">
+                        <li><span className="text-white">Destino:</span> Cachorro Cósmico Branco — KIN 130</li>
+                        <li><span className="text-white">Guia:</span> Mago Cósmico Branco — KIN 234</li>
+                        <li><span className="text-white">Apoio:</span> Lua Cósmica Vermelha — KIN 169</li>
+                        <li><span className="text-white">Desafio:</span> Sol Cósmico Amarelo — KIN 260</li>
+                        <li><span className="text-white">Oculto:</span> Macaco Magnético Azul — KIN 131</li>
+                      </ul>
+                      <p className="text-[10px] text-white/30 mt-3 italic">Oráculo calculado segundo a matriz padrão do Dreamspell de José Argüelles.</p>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="bg-white/5 p-4 rounded-sm border border-white/5">
-                        <h4 className="text-nara-amethyst-soft text-xs uppercase tracking-widest mb-2">Oráculo do Destino</h4>
-                        <ul className="text-white/60 text-xs space-y-1">
-                          <li><span className="text-white">Guia:</span> Cachorro Cósmico Branco</li>
-                          <li><span className="text-white">Apoio:</span> Macaco Planetário Amarelo</li>
-                          <li><span className="text-white">Desafio:</span> Sol Lunar Branco</li>
-                          <li><span className="text-white">Oculto:</span> Vento Espectral Vermelho</li>
-                        </ul>
-                      </div>
-                      <div className="bg-white/5 p-4 rounded-sm border border-white/5">
-                        <h4 className="text-nara-moon-glow/80 text-xs uppercase tracking-widest mb-2">Frequência Central</h4>
-                        <p className="text-white font-medium text-sm">Lealdade + Amor + Unidade</p>
-                        <p className="text-xs text-white/50 mt-2 leading-tight">Você é o porto seguro onde a alma do outro encontra descanso e verdade.</p>
-                      </div>
+                    <div className="bg-white/5 p-4 rounded-sm border border-white/5">
+                      <h4 className="text-nara-moon-glow/80 text-xs uppercase tracking-widest mb-3">Frequência Central</h4>
+                      <p className="text-white font-medium text-sm mb-2">AMOR + LEALDADE + PRESENÇA → TRANSCENDÊNCIA</p>
+                      <p className="text-xs text-white/50 leading-relaxed">Amar sem aprisionar. Permanecer sem possuir. Entregar-se sem perder a presença.</p>
                     </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="pl-4 border-l-2 border-nara-amethyst/20">
+                      <h4 className="text-white text-sm font-medium mb-1">Guia — Mago Cósmico Branco</h4>
+                      <p className="text-white/60 text-xs leading-relaxed">O coração guiado pela presença. Não é “fazer mais pelo outro”, mas <strong className="text-white">estar suficientemente presente para perceber o que realmente existe</strong>. O Mago recebe. O Mago observa. O Mago entra no tempo presente.</p>
+                    </div>
+                    <div className="pl-4 border-l-2 border-nara-moon-glow/20">
+                      <h4 className="text-white text-sm font-medium mb-1">Apoio — Lua Cósmica Vermelha</h4>
+                      <p className="text-white/60 text-xs leading-relaxed">Cachorro diz “eu permaneço”. Lua diz “eu deixo fluir”. A maturidade é fazer ambos: ter coração sem transformar lealdade em retenção. Amar não significa segurar.</p>
+                    </div>
+                    <div className="pl-4 border-l-2 border-yellow-500/30">
+                      <h4 className="text-white text-sm font-medium mb-1">Desafio — Sol Cósmico Amarelo</h4>
+                      <p className="text-white/60 text-xs leading-relaxed">A antípoda pergunta: <em>seu coração consegue continuar irradiando mesmo quando ninguém específico está recebendo essa luz?</em> É a passagem do amor como vínculo para o amor como estado de ser.</p>
+                    </div>
+                    <div className="pl-4 border-l-2 border-blue-500/30">
+                      <h4 className="text-white text-sm font-medium mb-1">Oculto — Macaco Magnético Azul</h4>
+                      <p className="text-white/60 text-xs leading-relaxed">A chave secreta do mapa. Quando o Cachorro leva o amor até o limite, o que aparece atrás? A criança, a brincadeira, a espontaneidade. <strong className="text-white">O amor suficientemente maduro volta a brincar.</strong></p>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 p-4 bg-white/[0.03] border border-white/10 rounded-sm">
+                    <p className="text-white/70 text-xs leading-relaxed italic">
+                      KIN 130 marca a fronteira matemática do Tzolk'in: após ele vem o KIN 131. É o momento exato em que transcendência (Tom 13) se torna propósito (Tom 1). Para Nara, isso traduz a capacidade de transformar o fim de cada ciclo em início consciente — sem drama, sem apego, com presença.
+                    </p>
                   </div>
                 </div>
               </div>
