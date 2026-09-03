@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 
 const OLLAMA_API_URL = process.env.OLLAMA_BASE_URL || "https://ollama.com/api/chat";
 const OLLAMA_API_KEY = process.env.OLLAMA_API_KEY ?? "";
-const MODEL = process.env.OLLAMA_MODEL || "kimi-k2.5:cloud";
+const MODEL = process.env.OLLAMA_MODEL || "kimi-k2.7-code:cloud";
 const WHATSAPP_CTA = "https://wa.me/5521990387232";
 
 // ============================================
