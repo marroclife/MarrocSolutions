@@ -152,29 +152,64 @@ export default function MarcioLayout() {
                 </div>
                 <div className="order-1 lg:order-2">
                   <h2 className="font-playfair text-4xl md:text-5xl mb-2">Identidade Galáctica</h2>
-                  <p className="text-marcio-copper-light font-sans uppercase tracking-[0.2em] text-xs mb-8">Sincronário Maia</p>
-                  <div className="space-y-8">
-                    <div className="pl-6 border-l border-marcio-copper/30">
-                      <h3 className="text-2xl font-medium text-white mb-1">Macaco Solar Azul</h3>
-                      <p className="text-marcio-copper/60 text-sm mb-4 font-mono">KIN 191 • A Magia, O Lúdico & A Realização</p>
-                      <p className="text-white/70 font-light text-justify leading-relaxed text-sm">Marcio, sua assinatura galáctica é a do <strong>Brincalhão Cósmico</strong> que transforma realidades. O Macaco traz a magia, a quebra de paradigmas e os sorrisos. O Tom Solar transforma essa energia em realização pura.</p>
+                  <p className="text-marcio-copper-light font-sans uppercase tracking-[0.2em] text-xs mb-8">Dreamspell • Sincronário das 13 Luas</p>
+
+                  <div className="pl-6 border-l border-marcio-copper/30 mb-8">
+                    <h3 className="text-2xl font-medium text-white mb-1">Macaco Solar Azul</h3>
+                    <p className="text-marcio-copper/60 text-sm mb-2 font-mono">KIN 191 • Magia, Brincadeira & Ilusão • Tom 9: Intenção/Realização</p>
+                    <p className="text-white/50 text-xs italic mb-3">“I pulse in order to play / Realizing illusion / I seal the process of magic / With the solar tone of intention / I am guided by the power of accomplishment.”</p>
+                    <p className="text-white/70 font-light text-justify leading-relaxed text-sm">
+                      Marcio, sua assinatura galáctica é a do <strong>Realizador da Magia</strong>. O Macaco traz a capacidade de perceber que o cenário não é absoluto — aquilo que parece sólido pode ser reconfigurado. O Tom Solar adiciona a pergunta decisiva: <em>“qual dessas possibilidades você realmente pretende trazer para o mundo?”</em> A magia encontra a intenção, e a intenção gera realização.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div className="bg-white/5 p-4 rounded-sm border border-white/5">
+                      <h4 className="text-marcio-copper-light text-xs uppercase tracking-widest mb-3">Oráculo do KIN 191</h4>
+                      <ul className="text-white/60 text-xs space-y-2">
+                        <li><span className="text-white">Destino:</span> Macaco Solar Azul — KIN 191</li>
+                        <li><span className="text-white">Guia:</span> Mão Solar Azul — KIN 87</li>
+                        <li><span className="text-white">Apoio:</span> Estrela Solar Amarela — KIN 48</li>
+                        <li><span className="text-white">Desafio:</span> Dragão Solar Vermelho — KIN 61</li>
+                        <li><span className="text-white">Oculto:</span> Cachorro Harmônico Branco — KIN 70</li>
+                      </ul>
+                      <p className="text-[10px] text-white/30 mt-3 italic">Oráculo calculado segundo a matriz padrão do Dreamspell de José Argüelles.</p>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="bg-white/5 p-4 rounded-sm border border-white/5">
-                        <h4 className="text-marcio-copper-light text-xs uppercase tracking-widest mb-2">Oráculo do Destino</h4>
-                        <ul className="text-white/60 text-xs space-y-1">
-                          <li><span className="text-white">Guia:</span> Macaco Solar Azul</li>
-                          <li><span className="text-white">Apoio:</span> Estrela Planetária Amarela</li>
-                          <li><span className="text-white">Desafio:</span> Cachorro Lunar Branco</li>
-                          <li><span className="text-white">Oculto:</span> Dragão Espectral Vermelho</li>
-                        </ul>
-                      </div>
-                      <div className="bg-white/5 p-4 rounded-sm border border-white/5">
-                        <h4 className="text-marcio-ember/80 text-xs uppercase tracking-widest mb-2">Frequência Central</h4>
-                        <p className="text-white font-medium text-sm">Magia + Realização + Ilusão</p>
-                        <p className="text-xs text-white/50 mt-2 leading-tight">Você veio para brincar com a realidade e, ao brincar, reinventá-la.</p>
-                      </div>
+                    <div className="bg-white/5 p-4 rounded-sm border border-white/5">
+                      <h4 className="text-marcio-ember/80 text-xs uppercase tracking-widest mb-3">Frequência Central</h4>
+                      <p className="text-white font-medium text-sm mb-2">MAGIA + INTENÇÃO + REALIZAÇÃO</p>
+                      <ul className="text-xs text-white/50 leading-relaxed space-y-1">
+                        <li>✋ materialize aquilo que imaginar</li>
+                        <li>⭐ dê beleza ao que materializar</li>
+                        <li>🐉 sustente aquilo que fizer nascer</li>
+                        <li>❤️ mantenha o coração naquilo que transformar</li>
+                      </ul>
                     </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="pl-4 border-l-2 border-blue-500/30">
+                      <h4 className="text-white text-sm font-medium mb-1">Guia — Mão Solar Azul (KIN 87)</h4>
+                      <p className="text-white/60 text-xs leading-relaxed">Macaco imagina. Mão faz. Seu guia não é permanecer no universo das ideias, mas transformar visão em obra. A prova da sua magia é aquilo que você constrói.</p>
+                    </div>
+                    <div className="pl-4 border-l-2 border-yellow-500/30">
+                      <h4 className="text-white text-sm font-medium mb-1">Apoio — Estrela Solar Amarela (KIN 48)</h4>
+                      <p className="text-white/60 text-xs leading-relaxed">A Estrela oferece forma estética à imaginação do Macaco. Ela pergunta: “Como isso se torna belo? Qual é a composição? Como diferentes elementos entram em harmonia?”</p>
+                    </div>
+                    <div className="pl-4 border-l-2 border-red-500/30">
+                      <h4 className="text-white text-sm font-medium mb-1">Desafio — Dragão Solar Vermelho (KIN 61)</h4>
+                      <p className="text-white/60 text-xs leading-relaxed">O Dragão pergunta: “O que sustenta aquilo que você está criando?” Não basta iniciar mundos; é preciso alimentá-los. Criar também significa cuidar.</p>
+                    </div>
+                    <div className="pl-4 border-l-2 border-white/30">
+                      <h4 className="text-white text-sm font-medium mb-1">Oculto — Cachorro Harmônico Branco (KIN 70)</h4>
+                      <p className="text-white/60 text-xs leading-relaxed">A magia sem coração pode virar manipulação. O Cachorro oculto coloca a pergunta ética: “Para que — e para quem — você está usando sua capacidade de transformar a realidade?”</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 p-4 bg-white/[0.03] border border-white/10 rounded-sm">
+                    <p className="text-white/70 text-xs leading-relaxed italic">
+                      KIN 191 é o 9º Kin da Onda Encantada da Noite Azul. O pano de fundo é o sonho: a Noite sonha a possibilidade, o Macaco brinca com ela, o Solar escolhe uma intenção, a Mão transforma em realização, a Estrela dá forma e beleza, o Dragão exige sustentação e o Cachorro pergunta se há coração em tudo isso.
+                    </p>
                   </div>
                 </div>
               </div>
