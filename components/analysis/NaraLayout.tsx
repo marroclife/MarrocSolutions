@@ -43,7 +43,7 @@ export default function NaraLayout() {
             <span className="italic text-nara-amethyst/90 font-playfair">Freitas dos Reis</span>
           </h1>
           <p className="text-sm md:text-base tracking-widest text-white/60 mt-6 font-light uppercase">9 de Dezembro de 1999 • 16:19 BRST • Mangaratiba, RJ</p>
-          <p className="text-xs text-white/40 mt-2 uppercase tracking-widest">Ascendente Touro • Sol Sagitário Casa 8 • Lua Capricórnio Casa 9</p>
+          <p className="text-xs text-white/40 mt-2 uppercase tracking-widest">Ascendente Touro 5°18' • Sol Sagitário 17°13' Casa 8 • Lua Capricórnio 6°56' Casa 9</p>
           <div className="relative inline-block py-8 px-4 md:px-12 mt-8">
             <span className="absolute top-0 left-0 text-6xl text-nara-amethyst opacity-30 font-playfair">"</span>
             <p className="text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto text-white/90 italic">
@@ -136,7 +136,7 @@ export default function NaraLayout() {
                   A máscara do mundo é de calma e beleza clássica. Touro traz a Nara a capacidade de materializar a visão, transformando a inspiração etérea em <strong className="text-white">resultados tangíveis e duradouros</strong>.
                 </p>
                 <p className="text-white/50 text-xs mt-4 leading-relaxed">
-                  Com Saturno retrógrado conjunto ao Ascendente (11°17'), sua presença física é marcante, imponente e aristocrática. Transmite confiabilidade, estabilidade e refinamento. Postura serena, gestos nobres, movimentos harmoniosos.
+                  Com Saturno retrógrado em Touro a pouco mais de 5° do Ascendente, sua presença física é marcante, imponente e aristocrática. Transmite confiabilidade, estabilidade e refinamento. Postura serena, gestos nobres, movimentos harmoniosos.
                 </p>
               </Card>
             </Reveal>
@@ -214,7 +214,7 @@ export default function NaraLayout() {
 
                   <div className="mt-6 p-4 bg-white/[0.03] border border-white/10 rounded-sm">
                     <p className="text-white/70 text-xs leading-relaxed italic">
-                      KIN 130 marca a fronteira matemática do Tzolk'in: após ele vem o KIN 131. É o momento exato em que transcendência (Tom 13) se torna propósito (Tom 1). Para Nara, isso traduz a capacidade de transformar o fim de cada ciclo em início consciente — sem drama, sem apego, com presença.
+                      KIN 130, no Dreamspell de José Argüelles, marca a fronteira matemática antes do KIN 131. É o momento em que transcendência (Tom 13) se torna propósito (Tom 1). Para Nara, isso traduz a capacidade de transformar o fim de cada ciclo em início consciente — sem drama, sem apego, com presença.<br/><br/><span className="text-white/50">Nota: Dreamspell e Tzolk'in maia histórico são sistemas diferentes com raízes simbólicas relacionadas.</span>
                     </p>
                   </div>
                 </div>
@@ -227,10 +227,13 @@ export default function NaraLayout() {
       {/* GRANDE CRUZ FIXA */}
       <section className="py-24 px-6 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          <SectionTitle eyebrow="Padrão Geométrico Raro" title="A Grande Cruz Fixa Sagrada" description="Uma das configurações mais poderosas e raras da astrologia. Quatro pontos vitais nos signos fixos de Touro, Leão, Escorpião e Aquário." />
+          <SectionTitle eyebrow="Padrão Geométrico Raro" title="A Grande Cruz Fixa" description="Uma configuração rara e precisa nos primeiros graus dos signos fixos de Touro, Leão, Escorpião e Aquário." />
           <div className="max-w-3xl mx-auto mb-16 text-white/70 font-light leading-relaxed space-y-6 text-sm md:text-base">
-            <p>Nara possui uma configuração extraordinária: a <strong className="text-white">Grande Cruz Fixa</strong>. Quatro ventos cósmicos puxam para direções opostas — Touro (terra), Leão (fogo), Escorpião (água) e Aquário (ar).</p>
-            <p>Para a maioria, isso seria tensão insuportável. Para Nara, é a fonte de sua <strong className="text-white">Sustentação Lendária</strong>. Ela não é apenas resiliente; ela é o eixo onde o caos se organiza. Quando tudo ao redor desmorona, ela permanece, transformando pressão extrema em diamante.</p>
+            <p>Nara possui uma <strong className="text-white">Grande Cruz Fixa</strong> muito precisa. Quatro ventos cósmicos puxam para direções opostas — Touro (terra), Leão (fogo), Escorpião (água) e Aquário (ar).</p>
+            <p>Para a maioria, isso seria tensão insuportável. Para Nara, é a fonte de sua <strong className="text-white">sustentação</strong>. Ela não é apenas resiliente; ela é o eixo onde o caos se organiza.</p>
+            <p className="text-white/50 text-xs">
+              Nota técnica: a cruz é formada por <strong className="text-white">Ascendente (Touro) × Nodo Norte (Leão) × Vênus (Escorpião) × Netuno (Aquário)</strong>. Ou seja, envolve dois corpos planetários, o Nodo Norte e um ângulo — não quatro planetas. Mesmo assim, geometricamente, ela é real e marcante.
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
             <Reveal delay={100}>
@@ -261,8 +264,8 @@ export default function NaraLayout() {
               <Card className="h-full text-center border-t-2 border-t-nara-moon-glow mt-0 md:mt-8">
                 <Wind className="w-8 h-8 text-nara-moon-glow mx-auto mb-4" />
                 <h3 className="font-playfair text-xl text-white mb-2">Aquário</h3>
-                <p className="text-[10px] uppercase tracking-widest text-nara-amethyst-soft mb-4">MC 6° • Marte 10° • Urano 13° • Netuno 2°</p>
-                <p className="text-white/70 font-light text-sm">A vanguarda da mente, a liberdade do espírito e a liderança humanitária.</p>
+                <p className="text-[10px] uppercase tracking-widest text-nara-amethyst-soft mb-4">MC 6° • Marte 10° • Urano 13°</p>
+                <p className="text-white/70 font-light text-sm">A vanguarda da mente, a liberdade do espírito e a liderança humanitária. Netuno está na Casa 9, conjunto ao MC (~3°55').</p>
               </Card>
             </Reveal>
           </div>
@@ -270,7 +273,7 @@ export default function NaraLayout() {
             <Card className="bg-gradient-to-br from-nara-amethyst/10 to-transparent border-nara-amethyst/20">
               <div className="text-center max-w-3xl mx-auto">
                 <h3 className="font-playfair text-2xl text-nara-amethyst mb-4">A Cruz de Ouro & Sustentação dos 4 Guardiões</h3>
-                <p className="text-white/70 leading-relaxed text-sm">Formada com orbes exatas nos primeiros graus, a Grande Cruz Fixa confere lealdade lendária, poder de sustentação e autoridade inabalável. Nara foi talhada para resistir às maiores tempestades e transformar pressões extremas em diamantes de sabedoria e realeza.</p>
+                <p className="text-white/70 leading-relaxed text-sm">A Grande Cruz Fixa une quatro territórios vitais: o corpo (Touro), a alma (Leão), o outro (Escorpião) e a visão (Aquário). Nara foi talhada para aprender o equilíbrio dinâmico entre esses polos, transformando tensão em presença.</p>
                 <p className="text-white/50 text-sm mt-4 italic">Como harmonizar: integrar a nobreza de Leão no lar, a sabedoria de Escorpião nos afetos, a estabilidade de Touro no corpo e a visão de Aquário na carreira.</p>
               </div>
             </Card>
@@ -318,7 +321,7 @@ export default function NaraLayout() {
                 </div>
                 <div className="md:w-3/4 border-l border-white/10 md:pl-8 pt-4 md:pt-0 border-t md:border-t-0">
                   <p className="text-white font-serif italic mb-2">“Quebrar moldes para criar novos mundos”</p>
-                  <p className="text-white/60 text-sm leading-relaxed">No ponto mais alto do mapa (Meio do Céu em Aquário 6°22'), a conjunção Marte-Urano (3°27') e a presença de Netuno marcam Nara como uma visionária. Ela não segue tendências; ela as cria. Sua missão é romper com o "sempre foi assim" para implementar inovações que o mundo ainda nem sabe que precisa.</p>
+                  <p className="text-white/60 text-sm leading-relaxed">No ponto mais alto do mapa (Meio do Céu em Aquário 6°22'), a conjunção Marte-Urano (3°27') na Casa 10 marca Nara como uma visionária. Netuno está na Casa 9, conjunto ao MC (~3°55'), trazendo sonho e ideal à direção de vida. Ela não segue tendências; ela as cria.</p>
                 </div>
               </Card>
             </Reveal>
@@ -347,11 +350,7 @@ export default function NaraLayout() {
                 subtitle: "Quadratura 2°30' • Tradição × Vanguarda",
                 text: "O encontro entre a tradição sólida e a vanguarda revolucionária. Habilidade rara para modernizar estruturas antigas e criar inovações seguras no tempo."
               },
-              {
-                title: "Sol △ Júpiter",
-                subtitle: "Trígono 7°59' • Proteção Cósmica",
-                text: "Sol na Casa 8 em trígono com seu regente Júpiter na Casa 12: benção de proteção cósmica, otimismo natural e superação vitoriosa de qualquer crise."
-              },
+              
               {
                 title: "Lua ⚹ Vênus",
                 subtitle: "Sextil 2°29' • Elegância & Afeto Sólido",
@@ -420,9 +419,9 @@ export default function NaraLayout() {
                 <h2 className="font-playfair text-3xl mb-8 text-center lg:text-left">Elementos</h2>
                 <div className="space-y-4">
                   {[
-                    { name: "Fogo", pct: "33%", desc: "Entusiasmo, coragem, visão expansiva e busca ardente pela verdade.", color: "bg-orange-500" },
+                    { name: "Ar", pct: "33%", desc: "Visão de vanguarda, originalidade, mente sistêmica e liberdade.", color: "bg-sky-400" },
                     { name: "Terra", pct: "25%", desc: "Pragmatismo, elegância clássica, solidez material e confiabilidade.", color: "bg-emerald-500" },
-                    { name: "Ar", pct: "25%", desc: "Visão de vanguarda, originalidade, mente sistêmica e liberdade.", color: "bg-sky-400" },
+                    { name: "Fogo", pct: "25%", desc: "Entusiasmo, coragem, visão expansiva e busca ardente pela verdade.", color: "bg-orange-500" },
                     { name: "Água", pct: "17%", desc: "Profundidade psicológica, sensibilidade oracular e lealdade visceral.", color: "bg-indigo-400" },
                   ].map((el, idx) => (
                     <div key={idx} className="bg-white/[0.03] border border-white/10 rounded-sm p-5">
@@ -460,10 +459,10 @@ export default function NaraLayout() {
         </div>
       </section>
 
-      {/* OS 5 PODERES */}
+      {/* OS 6 PODERES */}
       <section className="py-24 px-6 bg-gradient-to-b from-nara-amethyst/5 via-transparent to-nara-amethyst/5 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <SectionTitle eyebrow="Essência de Lady Nara" title="Os Cinco Poderes" description="As frequências centrais que regem sua encarnação e seu modo de mover o mundo." />
+          <SectionTitle eyebrow="Essência de Lady Nara" title="Os Seis Poderes" description="As frequências centrais que regem sua encarnação e seu modo de mover o mundo." />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
@@ -478,21 +477,21 @@ export default function NaraLayout() {
                 title: "A Fênix Alquímica",
                 subtitle: "Sol, Plutão e Quíron na Casa 8",
                 quote: "Transformar a dor em poder e a crise em ouro é a verdadeira alquimia da alma.",
-                text: "A maestria de transformar qualquer desafio em sabedoria de vida, regeneração profunda e prosperidade inabalável."
+                text: "A maestria de transformar desafios em sabedoria. A conjunção mais precisa aqui é Plutão-Quíron (~1°43'), com o Sol participando da concentração sagitariana por uma conjunção mais ampla (~6°37')."
               },
               {
                 icon: "🏛️",
                 title: "A Rocha Inabalável",
                 subtitle: "Ascendente em Touro conjunto Saturno",
                 quote: "A verdadeira nobreza repousa na constância, na paciência e na serenidade dos passos.",
-                text: "Firmeza serena e aristocrática que transmite segurança a todos ao redor, construindo estabilidade financeira, afetiva e estética."
+                text: "Firmeza serena e aristocrática que transmite segurança. Saturno na Casa 1, a pouco mais de 5° do Ascendente, traz maturação e estrutura à identidade."
               },
               {
                 icon: "⚡",
                 title: "A Visão do Futuro",
                 subtitle: "MC, Marte, Urano e Netuno em Aquário",
                 quote: "Construir o legado de amanhã exige coragem para inovar com princípios inegociáveis.",
-                text: "Inteligência brilhante para idealizar projetos de vanguarda, liderar com originalidade e manifestar conquistas de alto impacto."
+                text: "Inteligência brilhante para idealizar projetos de vanguarda. Marte e Urano na Casa 10 trazem ruptura e ação à carreira. Netuno, na Casa 9 e conjunto ao MC, acrescenta sonho e ideal à direção de vida."
               },
               {
                 icon: "👑",
@@ -504,9 +503,9 @@ export default function NaraLayout() {
               {
                 icon: "🌙",
                 title: "A Intuição Oracular",
-                subtitle: "Mercúrio em Escorpião grau anarético",
+                subtitle: "Mercúrio em Escorpião / Casa 7",
                 quote: "O silêncio que escuta a alma é mais eloquente que mil palavras.",
-                text: "Mente penetrante que lê entrelinhas, captura microexpressões e compreende o não-dito com precisão cirúrgica."
+                text: "Mente penetrante que lê entrelinhas, captura microexpressões e compreende o não-dito com precisão cirúrgica. Mercúrio está em 28°12' Escorpião, próximo do fim do signo, mas não no grau anarético (29°)."
               },
             ].map((power, idx) => (
               <Reveal key={idx} delay={idx * 100}>
@@ -603,9 +602,9 @@ export default function NaraLayout() {
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
             <Card className="bg-gradient-to-br from-white/[0.05] to-transparent border-white/10">
-              <h2 className="font-playfair text-3xl mb-4">A Primavera da Sabedoria</h2>
-              <p className="text-nara-amethyst-soft text-xs uppercase tracking-widest mb-6">O Ciclo Dourado dos 25 Anos</p>
-              <p className="text-white/70 leading-relaxed mb-6">Aos 25 anos, Lady Nara ingressa no poderoso ciclo de florescimento de sua Grande Cruz Fixa e da maturidade de seu KIN 130 Cachorro Cósmico. É o momento de consolidar projetos profissionais de vanguarda no Meio do Céu em Aquário, ancorar sua autoridade amorosa e celebrar o magnetismo único de sua beleza clássica.</p>
+              <h2 className="font-playfair text-3xl mb-4">A Travessia da Vanguarda</h2>
+              <p className="text-nara-amethyst-soft text-xs uppercase tracking-widest mb-6">O Ciclo de Reconfiguração dos 26 Anos</p>
+              <p className="text-white/70 leading-relaxed mb-6">Aos 26 anos, Nara atravessa uma fase de reconfiguração profunda entre segurança e liberdade. Urano inaugura um novo ciclo na Casa 2 enquanto Júpiter ativa por oposição sua conjunção Marte-Urano natal, e Plutão se aproxima lentamente do Meio do Céu. O céu não descreve apenas expansão: descreve mudança de arquitetura. Aquilo que antes sustentava sua identidade material e profissional começa a ser questionado para que uma estrutura mais autêntica possa emergir.</p>
               <p className="text-white/50 text-sm italic">Vitality Secret: Banhos botânicos com lavanda e sândalo, rituais de autocuidado com óleos puros, contato frequente com a natureza e momentos de intimidade e riso com sua família do coração.</p>
             </Card>
           </Reveal>
