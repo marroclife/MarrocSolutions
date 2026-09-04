@@ -625,7 +625,7 @@ export default function MarcioLayout() {
             <Card className="bg-gradient-to-br from-white/[0.05] to-transparent border-white/10">
               <h2 className="font-playfair text-3xl mb-4">O Despertar da Mestria</h2>
               <p className="text-marcio-copper-light text-xs uppercase tracking-widest mb-6">Saturno sobre o Ascendente &amp; Júpiter em Trígono</p>
-              <p className="text-white/70 leading-relaxed mb-6">Aos 31 anos, Marcio ingressa em um dos ciclos mais poderosos de toda a sua vida: a entrada definitiva de Plutão em seu signo solar (Aquário) e a ativação de seu Rede de Fogo por trânsitos cósmicos de expansão. É o momento de assumir sua autoridade como arquiteto de novos ecossistemas.</p>
+              <p className="text-white/70 leading-relaxed mb-6">Aos 31 anos, não é Plutão sobre o Sol que define o céu de Marcio. Saturno atravessa praticamente em grau exato o Ascendente (~0°11') enquanto Júpiter o sustenta por trígono. O período combina expansão e estrutura: crescer exige forma; liberdade exige responsabilidade; visão precisa tornar-se construção. Júpiter também atravessa Leão, ativando progressivamente a Lua e Marte natais. Plutão, nos primeiros graus de Aquário, caminha em direção a Mercúrio natal — uma transformação intelectual/vocacional de longo prazo.</p>
               <p className="text-white/50 text-sm italic">Vitality Secret: Equilibrar a mente visionária com a prática de atividades físicas vigorosas, conexão com a natureza e cultivo de amizades leais que nutrem o coração.</p>
             </Card>
           </Reveal>
