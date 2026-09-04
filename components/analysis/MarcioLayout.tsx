@@ -43,7 +43,7 @@ export default function MarcioLayout() {
             <span className="italic text-marcio-copper/90 font-playfair">Rocha</span>
           </h1>
           <p className="text-sm md:text-base tracking-widest text-white/60 mt-6 font-light uppercase">13 de Fevereiro de 1995 • 10:20 BRT • Rio de Janeiro, RJ</p>
-          <p className="text-xs text-white/40 mt-2 uppercase tracking-widest">Ascendente Áries • Sol Aquário Casa 11 • Lua Leão Casa 5</p>
+          <p className="text-xs text-white/40 mt-2 uppercase tracking-widest">Ascendente Áries 13°40' • Sol Aquário 24°19' Casa 11 • Lua Leão 0°26' Casa 4</p>
           <div className="relative inline-block py-8 px-4 md:px-12 mt-8">
             <span className="absolute top-0 left-0 text-6xl text-marcio-copper opacity-30 font-playfair">"</span>
             <p className="text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto text-white/90 italic">
@@ -69,7 +69,7 @@ export default function MarcioLayout() {
           <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-12 w-full">
             {[
               "Tríade Fundamental",
-              "Grande Trígono de Fogo",
+              "Rede de Fogo",
               "Identidade Galáctica",
               "Eixo Elétrico de Criação",
               "Caminho da Alma",
@@ -77,7 +77,7 @@ export default function MarcioLayout() {
               "Aspectos que Moldam o Destino",
               "Elementos & Modalidades",
               "Perfil de Estilo Cósmico",
-              "Os Cinco Poderes",
+              "Os Seis Poderes",
             ].map((topic, index) => (
               <div key={index} className="group flex items-center cursor-default">
                 <span className="text-marcio-copper-light/50 font-playfair text-lg mr-4 group-hover:text-marcio-copper-light transition-colors">{String(index + 1).padStart(2, '0')}.</span>
@@ -101,8 +101,8 @@ export default function MarcioLayout() {
                 <h3 className="font-playfair text-2xl text-white mb-2">Sol em Aquário</h3>
                 <p className="text-marcio-copper-light text-xs uppercase tracking-widest mb-6">24°19' • Casa 11 • A Mente do Futuro</p>
                 <p className="text-white/70 font-light leading-relaxed text-sm mb-4 italic">“Arquiteto de redes e comunidades conscientes”</p>
-                <p className="text-white/70 font-light leading-relaxed text-left text-sm">Seu Sol pulsa a 24° de Aquário na Casa 11 — o lar natural do signo. Sua identidade se constrói na liberdade intelectual, na quebra de padrões obsoletos e na capacidade de enxergar conexões invisíveis.</p>
-                <p className="text-white/50 text-xs mt-4 leading-relaxed">Exílio tradicional, mas aqui fortalecido pela Casa 11. Você não veio para seguir regras, mas para redesenhar a arquitetura do possível.</p>
+                <p className="text-white/70 font-light leading-relaxed text-left text-sm">Seu Sol pulsa a 24° de Aquário na Casa 11. Sua identidade se constrói na liberdade intelectual, na quebra de padrões obsoletos e na capacidade de enxergar conexões invisíveis.</p>
+                <p className="text-white/50 text-xs mt-4 leading-relaxed">Sol em Aquário está tradicionalmente em detrimento, pois o domicílio solar é Leão. Mas isso é formato, não defeito: a sua luz funciona em círculos, não em pirâmides. A Casa 11 reforça a ênfase em redes, grupos, comunidades, projetos coletivos, inovação e futuro.</p>
               </Card>
             </Reveal>
             <Reveal delay={200}>
@@ -111,10 +111,10 @@ export default function MarcioLayout() {
                   <Moon size={32} strokeWidth={1.5} />
                 </div>
                 <h3 className="font-playfair text-2xl text-white mb-2">Lua em Leão</h3>
-                <p className="text-marcio-copper-light text-xs uppercase tracking-widest mb-6">0°26' • Casa 5 • O Coração do Criador</p>
+                <p className="text-marcio-copper-light text-xs uppercase tracking-widest mb-6">0°26' • Casa 4 • O Coração do Criador</p>
                 <p className="text-white/70 font-light leading-relaxed text-sm mb-4 italic">“Alma de artista e calor generoso”</p>
-                <p className="text-white/70 font-light leading-relaxed text-left text-sm">Sua Lua no grau puro de Leão na Casa 5 confere imenso magnetismo emocional, coração caloroso e dignidade régia. Forma um Grande Trígono de Fogo com o Ascendente em Áries e Plutão/Júpiter em Sagitário.</p>
-                <p className="text-white/50 text-xs mt-4 leading-relaxed">O mundo emocional é ardente, generoso, leal e motivado pelo amor genuíno à vida e à arte. Precisa criar para se sentir vivo.</p>
+                <p className="text-white/70 font-light leading-relaxed text-left text-sm">Sua Lua nos primeiros graus de Leão na Casa 4 confere imenso magnetismo emocional, coração caloroso e dignidade régia. Aqui a Lua desloca a interpretação para raízes, lar, intimidade, ancestralidade, pertencimento e mundo emocional privado.</p>
+                <p className="text-white/50 text-xs mt-4 leading-relaxed">O mundo emocional é ardente, generoso, leal e motivado pelo amor genuíno à vida e à arte. A Casa 4 coloca essa chama no espaço privado: família, ninho, espaços que você chama de seus.</p>
               </Card>
             </Reveal>
             <Reveal delay={300}>
@@ -208,7 +208,7 @@ export default function MarcioLayout() {
 
                   <div className="mt-6 p-4 bg-white/[0.03] border border-white/10 rounded-sm">
                     <p className="text-white/70 text-xs leading-relaxed italic">
-                      KIN 191 é o 9º Kin da Onda Encantada da Noite Azul. O pano de fundo é o sonho: a Noite sonha a possibilidade, o Macaco brinca com ela, o Solar escolhe uma intenção, a Mão transforma em realização, a Estrela dá forma e beleza, o Dragão exige sustentação e o Cachorro pergunta se há coração em tudo isso.
+                      KIN 191 é o 9º Kin da Onda Encantada da Noite Azul no Dreamspell de José Argüelles. O pano de fundo é o sonho: a Noite sonha a possibilidade, o Macaco brinca com ela, o Solar escolhe uma intenção, a Mão transforma em realização, a Estrela dá forma e beleza, o Dragão exige sustentação e o Cachorro pergunta se há coração em tudo isso. Dreamspell e Tzolk'in maia histórico não são sistemas idênticos.
                     </p>
                   </div>
                 </div>
@@ -221,10 +221,10 @@ export default function MarcioLayout() {
       {/* GRANDE TRÍGONO DE FOGO */}
       <section className="py-24 px-6 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          <SectionTitle eyebrow="Padrão Geométrico Supremo" title="Grande Trígono de Fogo Cósmico" description="Conexão harmoniosa nos três signos de Fogo: Áries, Leão e Sagitário. O circuito sagrado de entusiasmo, coragem e regeneração." />
+          <SectionTitle eyebrow="Padrão Geométrico Supremo" title="Rede de Fogo Cósmico" description="Conexão harmoniosa nos três signos de Fogo: Áries, Leão e Sagitário. O circuito sagrado de entusiasmo, coragem e regeneração." />
           <div className="max-w-3xl mx-auto mb-16 text-white/70 font-light leading-relaxed space-y-6 text-sm md:text-base">
-            <p>Uma conexão harmoniosa nos três signos de Fogo: <strong>Áries, Leão e Sagitário</strong>. É o circuito sagrado que canaliza entusiasmo, coragem criativa e regeneração instantânea.</p>
-            <p>Esta configuração concede uma chama interna inextinguível. Mesmo diante dos maiores desafios, você encontra em si mesmo a centelha de ânimo, fé e coragem para liderar.</p>
+            <p>Uma concentração real nos três signos de Fogo: <strong>Áries, Leão e Sagitário</strong>. Tecnicamente não forma um único Grande Trígono por grau, mas existe uma geometria de fogo muito viva.</p>
+            <p>Essa Rede de Fogo concede uma chama interna inextinguível. Mesmo diante dos maiores desafios, você encontra em si mesmo a centelha de ânimo, fé e coragem para liderar.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <Reveal delay={100}>
@@ -239,7 +239,7 @@ export default function MarcioLayout() {
               <Card className="h-full text-center border-t-2 border-t-marcio-copper mt-0 md:mt-8">
                 <Sun className="w-8 h-8 text-marcio-copper mx-auto mb-4" />
                 <h3 className="font-playfair text-xl text-white mb-2">Leão</h3>
-                <p className="text-[10px] uppercase tracking-widest text-marcio-copper-light mb-4">Lua 0° • Marte 22° • Coração</p>
+                <p className="text-[10px] uppercase tracking-widest text-marcio-copper-light mb-4">Lua 0° • Marte 22° • Lar e Criação</p>
                 <p className="text-white/70 font-light text-sm">O coração do criador. Paixão, generosidade e magnetismo. Marte retrógrado aqui é o motor central do mapa.</p>
               </Card>
             </Reveal>
@@ -247,8 +247,8 @@ export default function MarcioLayout() {
               <Card className="h-full text-center border-t-2 border-t-marcio-ember">
                 <Sparkles className="w-8 h-8 text-marcio-ember mx-auto mb-4" />
                 <h3 className="font-playfair text-xl text-white mb-2">Sagitário</h3>
-                <p className="text-[10px] uppercase tracking-widest text-marcio-copper-light mb-4">Júpiter 12° • Plutão 0°30' • Sabedoria</p>
-                <p className="text-white/70 font-light text-sm">A sabedoria transcendental. Fé, expansão e regeneração. Plutão em grau zero forma trígono exatíssimo com a Lua.</p>
+                <p className="text-[10px] uppercase tracking-widest text-marcio-copper-light mb-4">Júpiter 12° • Plutão 0°30' • Transformação e Expansão</p>
+                <p className="text-white/70 font-light text-sm">A transformação profunda e a expansão. Plutão forma trígono exatíssimo com a Lua (~0°04'), e Júpiter forma trígono preciso com o Ascendente (~1°32').</p>
               </Card>
             </Reveal>
           </div>
@@ -256,8 +256,8 @@ export default function MarcioLayout() {
             <Card className="bg-gradient-to-br from-marcio-copper/10 to-transparent border-marcio-copper/20">
               <div className="max-w-3xl mx-auto">
                 <h3 className="font-playfair text-2xl text-marcio-copper mb-4">O Circuito Sagrado de Fogo & Vitalidade Invencível</h3>
-                <p className="text-white/70 leading-relaxed text-sm">Um triângulo equilátero no coração da mandala interliga a identidade de guerreiro (Áries), o coração do criador (Leão) e a sabedoria transcendental (Sagitário). Esta configuração concede uma chama interna inextinguível.</p>
-                <p className="text-white/50 text-sm mt-4 italic">Como harmonizar: canalizar essa energia dinâmica em projetos autorais de alta expressão, exercícios físicos, estudos profundos e criações inovadoras.</p>
+                <p className="text-white/70 leading-relaxed text-sm">A Rede de Fogo une a identidade de guerreiro (Áries), o coração criativo (Leão) e a expansão transformadora (Sagitário). Trígonos precisos — Lua-Plutão (~0°04') e Júpiter-Ascendente (~1°32') — dão vida a essa geometria.</p>
+                <p className="text-white/50 text-sm mt-4 italic">Como harmonizar: canalizar essa energia dinâmica em projetos autorais de alta expressão, exercícios físicos, estudos profundos e criações inovadoras. O fogo precisa de movimento para não virar fumaça.</p>
               </div>
             </Card>
           </Reveal>
@@ -310,7 +310,7 @@ export default function MarcioLayout() {
               <Card className="flex flex-col md:flex-row gap-8 items-center bg-gradient-to-r from-white/5 to-transparent">
                 <div className="md:w-1/4 text-center md:text-left">
                   <h3 className="text-marcio-copper font-playfair text-2xl">Nodo Norte em Escorpião</h3>
-                  <p className="text-[10px] uppercase tracking-widest text-white/40 mt-1">8°47' • Casa 8 • Destino Alquímico</p>
+                  <p className="text-[10px] uppercase tracking-widest text-white/40 mt-1">8°47' • Casa 7 • Destino Relacional</p>
                 </div>
                 <div className="md:w-3/4 border-l border-white/10 md:pl-8 pt-4 md:pt-0 border-t md:border-t-0">
                   <p className="text-white font-serif italic mb-2">“Mergulhar no autoconhecimento profundo e no poder pessoal”</p>
@@ -322,11 +322,11 @@ export default function MarcioLayout() {
               <Card className="flex flex-col md:flex-row gap-8 items-center bg-gradient-to-r from-white/5 to-transparent">
                 <div className="md:w-1/4 text-center md:text-left">
                   <h3 className="text-marcio-ember font-playfair text-2xl">Júpiter em Sagitário</h3>
-                  <p className="text-[10px] uppercase tracking-widest text-white/40 mt-1">12°08' • Casa 9 • Domicílio Sagrado</p>
+                  <p className="text-[10px] uppercase tracking-widest text-white/40 mt-1">12°08' • Casa 8 • Próximo à Casa 9</p>
                 </div>
                 <div className="md:w-3/4 border-l border-white/10 md:pl-8 pt-4 md:pt-0 border-t md:border-t-0">
                   <p className="text-white font-serif italic mb-2">“Mente cósmica e proteção providencial”</p>
-                  <p className="text-white/60 text-sm leading-relaxed">Júpiter reina absoluto em seu próprio domicílio. Em trígono exato com o Ascendente em Áries, concede sorte, expansão filosófica e fé inabalável. Sua mente é um portal entre o conhecimento antigo e as fronteiras do futuro.</p>
+                  <p className="text-white/60 text-sm leading-relaxed">Júpiter reina absoluto em seu próprio domicílio. Tecnicamente está na Casa 8, a apenas ~1°33' da cúspide da Casa 9. Isso cria uma passagem simbólica da profundidade/transformação para filosofia, conhecimento, viagens e sistemas de sentido.</p>
                 </div>
               </Card>
             </Reveal>
@@ -380,7 +380,7 @@ export default function MarcioLayout() {
               {
                 title: "Urano ☌ Netuno",
                 subtitle: "Conjunção 3°49' • Tecnologia × Espiritualidade",
-                text: "No Meio do Céu em Capricórnio. Capacidade de projetar sistemas, plataformas e obras que unem lógica rigorosa, design estético transcendental e propósito ético."
+                text: "Na Casa 10 em Capricórnio. Urano e Netuno formam conjunção geracional (~3°49'), cuja expressão individual ganha relevância por estar na Casa 10. Capacidade de projetar sistemas, plataformas e obras que unem lógica rigorosa, inovação, idealismo e propósito ético."
               },
             ].map((aspect, idx) => (
               <Reveal key={idx} delay={idx * 100}>
@@ -405,7 +405,7 @@ export default function MarcioLayout() {
               { house: "2", title: "Casa 2 em Touro", area: "Recursos & Valores", text: "Busca por solidez, estabilidade duradoura e apreço por qualidade genuína e conforto bem estruturado." },
               { house: "3", title: "Casa 3 em Gêmeos", area: "Comunicação & Mente", text: "Mente ágil, curiosidade insaciável, facilidade para articular ideias complexas com leveza e dinamismo." },
               { house: "4", title: "IC em Câncer", area: "Lar & Raízes", text: "O lar é o refúgio do guerreiro, um santuário de acolhimento, afeto protetor e memória familiar profunda." },
-              { house: "5", title: "Casa 5 em Leão", area: "Criatividade & Paixão", text: "Centro vulcânico de criatividade. Contém Lua e Marte: alegria de viver, generosidade e alma do criador." },
+              { house: "5", title: "Casa 5 em Leão", area: "Criatividade & Paixão", text: "Centro vulcânico de criatividade. Contém Marte: alegria de viver, generosidade e alma do criador. A Lua está na Casa 4." },
               { house: "6", title: "Casa 6 em Virgem", area: "Rotina & Saúde", text: "Maestria na rotina, dedicação ao aprimoramento contínuo e cuidado meticuloso com qualidade." },
               { house: "7", title: "DC em Libra", area: "Relacionamentos", text: "Atrai parcerias baseadas em elegância, reciprocidade ética, diálogo inteligente e harmonia estética." },
               { house: "8", title: "Casa 8 em Escorpião", area: "Transformação & Poder", text: "Mergulho na verdade essencial, regeneração psíquica e magnetismo de atração. Nodo Norte e Plutão." },
@@ -461,8 +461,8 @@ export default function MarcioLayout() {
                 <h2 className="font-playfair text-3xl mb-8 text-center lg:text-left">Modalidades</h2>
                 <div className="space-y-4">
                   {[
-                    { name: "Fixo", pct: "42%", desc: "Lealdade inabalável, determinação férrea, fidelidade aos próprios princípios e resistência a pressões externas.", color: "bg-purple-500" },
-                    { name: "Cardinal", pct: "33%", desc: "Iniciativa pioneira, liderança empreendedora, capacidade de iniciar novos ciclos e construir legados.", color: "bg-red-500" },
+                    { name: "Cardinal", pct: "42%", desc: "Iniciativa pioneira, liderança empreendedora, capacidade de iniciar novos ciclos e construir legados.", color: "bg-red-500" },
+                    { name: "Fixo", pct: "33%", desc: "Lealdade inabalável, determinação férrea, fidelidade aos próprios princípios e resistência a pressões externas.", color: "bg-purple-500" },
                     { name: "Mutável", pct: "25%", desc: "Flexibilidade mental para aprender continuamente, capacidade de adaptação filosófica e refinamento técnico.", color: "bg-cyan-500" },
                   ].map((mod, idx) => (
                     <div key={idx} className="bg-white/[0.03] border border-white/10 rounded-sm p-5">
@@ -480,32 +480,32 @@ export default function MarcioLayout() {
         </div>
       </section>
 
-      {/* OS 5 PODERES */}
+      {/* OS 6 PODERES */}
       <section className="py-24 px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <SectionTitle eyebrow="Essência de Marcio" title="Os Cinco Poderes" description="As frequências centrais que regem sua encarnação e seu modo de mover o mundo." />
+          <SectionTitle eyebrow="Essência de Marcio" title="Os Seis Poderes" description="As frequências centrais que regem sua encarnação e seu modo de mover o mundo." />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 icon: "⚡",
                 title: "A Mente do Futuro",
-                subtitle: "Sol e Mercúrio Retrógrado em Aquário",
+                subtitle: "Mercúrio Retrógrado em Aquário / Casa 10",
                 quote: "Quem enxerga a arquitetura do invisível cria o futuro no presente.",
-                text: "Processa informações em alta velocidade e antecipa conexões estruturais que passam despercebidas. Mente de laboratório de síntese de dados, tecnologia e conceitos transcendentais."
+                text: "Processa informações em alta velocidade e antecipa conexões estruturais que passam despercebidas. Mercúrio está na Casa 10 (não na 11), o que liga pensamento, comunicação e inteligência à vocação e imagem pública."
               },
               {
                 icon: "🦁",
                 title: "O Fogo Criativo",
-                subtitle: "Lua e Marte em Leão na Casa 5",
+                subtitle: "Marte em Leão na Casa 5, Lua em Leão na Casa 4",
                 quote: "A verdadeira arte nasce quando a paixão sincera encontra a maestria.",
                 text: "O setor da criação artística é o pulsar vital. Coloca a alma em tudo o que faz, buscando não apenas entregar algo funcional, mas uma experiência memorável."
               },
               {
                 icon: "🔥",
                 title: "A Ação Pioneira",
-                subtitle: "Ascendente em Áries com Grande Trígono de Fogo",
+                subtitle: "Ascendente em Áries com Rede de Fogo",
                 quote: "O guerreiro consciente não espera as condições ideais: ele cria o caminho.",
-                text: "Dom de dar a largada, desbravar novos territórios e transformar ideias abstratas em movimento concreto sem hesitação."
+                text: "Dom de dar a largada, desbravar novos territórios e transformar ideias abstratas em movimento concreto. A força cardinal do mapa (42%) coloca iniciar e inaugurar como modo natural."
               },
               {
                 icon: "🔮",
@@ -517,14 +517,14 @@ export default function MarcioLayout() {
               {
                 icon: "🏛️",
                 title: "A Elegância Atemporal",
-                subtitle: "Vênus e MC em Capricórnio com Sextil a Saturno",
+                subtitle: "Vênus próxima ao MC em Capricórnio / Casa 9",
                 quote: "A verdadeira sofisticação reside na simplicidade que resiste ao teste do tempo.",
-                text: "Integridade artística, respeito aos fundamentos sólidos e compromisso de construir algo com durabilidade e honra."
+                text: "Integridade artística, respeito aos fundamentos sólidos e compromisso de construir algo com durabilidade e honra. Vênus está a cerca de 3°52' do Meio do Céu, conectando estética, imagem pública e vocação."
               },
               {
                 icon: "🦅",
                 title: "A Visão do Águia",
-                subtitle: "Júpiter em Sagitário na Casa 9",
+                subtitle: "Júpiter em Sagitário na Casa 8",
                 quote: "A mente que voa alto enxerga o padrão onde outros enxergam apenas caos.",
                 text: "Proteção providencial, otimismo resiliente e capacidade de absorver conhecimentos profundos. Mente-ponte entre o antigo e o futuro."
               },
@@ -591,7 +591,7 @@ export default function MarcioLayout() {
           <SectionTitle eyebrow="Farmácia da Alma" title="Ferramentas & Ritual de Alinhamento" description="Cristais, aromas e práticas que sintonizam a frequência de Marcio." />
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             {[
-              { name: "Cornalina", subtitle: "Fogo Criativo", desc: "Ativa a coragem e a paixão do Grande Trígono de Fogo." },
+              { name: "Cornalina", subtitle: "Fogo Criativo", desc: "Ativa a coragem e a paixão do Rede de Fogo." },
               { name: "Ônix", subtitle: "Ancoragem", desc: "Para estruturar ideias e manter o foco profissional." },
               { name: "Quartzo Fumê", subtitle: "Proteção", desc: "Dissipa a sobrecarga mental e limpa o campo energético." },
               { name: "Óleo de Cedro", subtitle: "Força", desc: "Traz estrutura, confiança e raízes profundas." },
@@ -624,8 +624,8 @@ export default function MarcioLayout() {
           <Reveal>
             <Card className="bg-gradient-to-br from-white/[0.05] to-transparent border-white/10">
               <h2 className="font-playfair text-3xl mb-4">O Despertar da Mestria</h2>
-              <p className="text-marcio-copper-light text-xs uppercase tracking-widest mb-6">A Era de Plutão em Aquário</p>
-              <p className="text-white/70 leading-relaxed mb-6">Aos 31 anos, Marcio ingressa em um dos ciclos mais poderosos de toda a sua vida: a entrada definitiva de Plutão em seu signo solar (Aquário) e a ativação de seu Grande Trígono de Fogo por trânsitos cósmicos de expansão. É o momento de assumir sua autoridade como arquiteto de novos ecossistemas.</p>
+              <p className="text-marcio-copper-light text-xs uppercase tracking-widest mb-6">Saturno sobre o Ascendente &amp; Júpiter em Trígono</p>
+              <p className="text-white/70 leading-relaxed mb-6">Aos 31 anos, Marcio ingressa em um dos ciclos mais poderosos de toda a sua vida: a entrada definitiva de Plutão em seu signo solar (Aquário) e a ativação de seu Rede de Fogo por trânsitos cósmicos de expansão. É o momento de assumir sua autoridade como arquiteto de novos ecossistemas.</p>
               <p className="text-white/50 text-sm italic">Vitality Secret: Equilibrar a mente visionária com a prática de atividades físicas vigorosas, conexão com a natureza e cultivo de amizades leais que nutrem o coração.</p>
             </Card>
           </Reveal>
@@ -640,7 +640,7 @@ export default function MarcioLayout() {
             <h2 className="font-playfair text-3xl md:text-4xl text-white mb-8">✦ A Jornada Continua... ✦</h2>
             <div className="max-w-3xl mx-auto text-white/70 font-light leading-relaxed space-y-6 text-lg">
               <p>Marcio, navegar pela arquitetura da sua alma foi uma honra. Este mapa não é um destino final, mas um mapa do tesouro que vive dentro de você.</p>
-              <p>Que as frequências reveladas aqui — da magia do seu <strong className="text-white">Macaco Solar</strong> à potência do seu <strong className="text-white">Grande Trígono de Fogo</strong> — sirvam como alicerce para sua maior obra-prima: a sua própria vida.</p>
+              <p>Que as frequências reveladas aqui — da magia do seu <strong className="text-white">Macaco Solar</strong> à potência do seu <strong className="text-white">Rede de Fogo</strong> — sirvam como alicerce para sua maior obra-prima: a sua própria vida.</p>
               <p className="italic text-marcio-copper">Confie na sua visão, honre sua coragem e lembre-se: o futuro é construído por aqueles que ousam sonhar.</p>
             </div>
           </Reveal>
