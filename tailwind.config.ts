@@ -72,6 +72,15 @@ const config: Config = {
                 'slate': '#8C8C8C',
                 'ember': '#D44A2C',
             },
+            barbara: {
+                'earth': '#120F0C',
+                'clay': '#1C1712',
+                'terracotta': '#A67C52',
+                'terracotta-light': '#C49A70',
+                'terracotta-soft': '#B08A60',
+                'gold': '#C7A94B',
+                'slate': '#A8A39A',
+            },
 
             // --- SHADCN UI (OVERRIDE DARK) ---
   			background: '#1a1a1a', 
